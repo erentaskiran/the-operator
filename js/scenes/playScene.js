@@ -2,7 +2,7 @@ import { registerScene, setScene } from "../sceneManager.js";
 import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from "../input.js";
 import { clamp, lerp } from "../math.js";
 import { pickChoice, resetRun, setNode, state } from "../game/state.js";
-import { updateWave } from "../game/waves.js";
+import { getBiometricDrawData, updateWave } from "../game/waves.js";
 import { drawSceneBackground } from "../ui/background.js";
 import { drawNarrationBox } from "../ui/narrationBox.js";
 import { drawPortraitBadge } from "../ui/portraitBadge.js";
@@ -141,6 +141,7 @@ function drawPlayScene(ctx) {
     waves: state.wave,
     time: state.time,
     metrics: state.metrics,
+    biometric: getBiometricDrawData(state),
     fearBar: state.fearBarDisplay,
     maxFearBar: state.maxFearBar,
     fearFlash: state.fearFlash,
@@ -294,7 +295,7 @@ export function registerPlayScene(_canvas, ctx) {
     },
     update(dt) {
       state.time += dt;
-      updateWave(state.wave, state.waveTarget, dt);
+      updateWave(state, dt);
       tickFearAnimation(dt);
 
       portraitSlide = Math.min(1, portraitSlide + dt * PORTRAIT_SLIDE_SPEED);

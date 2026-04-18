@@ -2,47 +2,6 @@ import { drawRect, drawText } from "../draw.js";
 import { clamp } from "../math.js";
 import { COLORS, UI_FONT } from "./theme.js";
 
-function signalNoise(x, t) {
-  return (
-    Math.sin(x * 0.17 + t * 1.41) * 0.5 +
-    Math.sin(x * 0.048 - t * 2.1) * 0.3 +
-    Math.sin(x * 0.29 + t * 0.5) * 0.2
-  );
-}
-
-function ekgPulse(phase) {
-  if (phase < 0.02) return phase * 12;
-  if (phase < 0.06) return 0.22 - (phase - 0.02) * 9;
-  if (phase < 0.09) return -0.18 + (phase - 0.06) * 4;
-  if (phase < 0.11) return 1.35 - (phase - 0.09) * 52;
-  if (phase < 0.145) return -0.42 + (phase - 0.11) * 10;
-  return Math.sin((phase - 0.145) * 8) * 0.06;
-}
-
-function sampleWave(nx, time, profile, type) {
-  const noise = signalNoise(nx * 600, time) * profile.noise;
-  if (type === "heart") {
-    const cycle = (time * profile.freq + nx * 4.8) % 1;
-    return ekgPulse(cycle) * profile.amp + noise;
-  }
-  if (type === "eeg") {
-    return (
-      (Math.sin(time * profile.freq * 6 + nx * 30) * 0.45 +
-        Math.sin(time * profile.freq * 8 - nx * 18) * 0.35 +
-        Math.sin(time * profile.freq * 2 + nx * 10) * 0.25) *
-        profile.amp +
-      noise
-    );
-  }
-  return (
-    (Math.sin(time * profile.freq * 2 + nx * 6) * 0.34 +
-      Math.sin(time * profile.freq * 0.8 - nx * 4) * 0.18 +
-      (nx - 0.5) * 0.08) *
-      profile.amp +
-    noise
-  );
-}
-
 function drawLaneGrid(ctx, x, y, w, h) {
   drawRect(ctx, x, y, w, h, "rgba(10, 6, 3, 0.55)");
   for (let gy = y + 4; gy < y + h; gy += 6) {
@@ -53,28 +12,80 @@ function drawLaneGrid(ctx, x, y, w, h) {
   }
 }
 
-function drawLaneWave(ctx, x, y, w, h, color, profile, type, time) {
-  const midY = y + h / 2;
-  ctx.save();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 1.2;
-  ctx.beginPath();
-  const step = 2;
-  for (let i = 0; i <= w; i += step) {
-    const nx = i / w;
-    const sample = sampleWave(nx, time, profile, type);
-    const py = midY - sample * (h * 0.42);
-    if (i === 0) {
-      ctx.moveTo(x + i, py);
-    } else {
-      ctx.lineTo(x + i, py);
-    }
+function sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt) {
+  if (typeof sampleAt === "function") {
+    const offsetFloat = Math.max(0, secondsAgo * sampleRate);
+    return sampleAt(offsetFloat);
   }
-  ctx.stroke();
+  if (!buffer || buffer.count <= 0) {
+    return 0;
+  }
+  const offset = Math.floor(secondsAgo * sampleRate);
+  if (offset >= buffer.count) {
+    const oldestIdx = (buffer.head - buffer.count + buffer.size * 4) % buffer.size;
+    return buffer.data[oldestIdx];
+  }
+  const idx = (buffer.head - 1 - offset + buffer.size * 4) % buffer.size;
+  return buffer.data[idx];
+}
+
+function drawLaneWave(ctx, x, y, w, h, color, buffer, sampleRate, type, sampleAt) {
+  if (!buffer || buffer.count <= 1) {
+    return;
+  }
+
+  const midY = y + h / 2;
+  const gain = type === "heart" ? h * 0.4 : type === "eeg" ? h * 0.43 : h * 0.72;
+  const secondsWindow = 8;
+
+  ctx.save();
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 6;
+
+  for (let pass = 2; pass >= 0; pass -= 1) {
+    ctx.beginPath();
+    const alpha = pass === 0 ? 0.95 : pass === 1 ? 0.42 : 0.2;
+    ctx.strokeStyle = `rgba(${color === COLORS.pulse ? "224,72,72" : color === COLORS.eeg ? "227,193,58" : "92,207,125"},${alpha})`;
+    ctx.lineWidth = pass === 0 ? 1.15 : pass === 1 ? 2.1 : 3.6;
+
+    const step = 1;
+    for (let i = 0; i <= w; i += step) {
+      const nx = i / w;
+      const secondsAgo = (1 - nx) * secondsWindow;
+      const sample = sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt);
+      const py = clamp(midY - sample * gain, y + 1, y + h - 1);
+      if (i === 0) {
+        ctx.moveTo(x + i, py);
+      } else {
+        ctx.lineTo(x + i, py);
+      }
+    }
+    ctx.stroke();
+  }
+
+  ctx.shadowBlur = 0;
+  const cursor = x + w - 2;
+  const latestSample = sampleFromRing(buffer, sampleRate, 0, sampleAt);
+  drawRect(ctx, cursor, y + 1, 1, h - 2, "rgba(255, 210, 150, 0.2)");
+
+  ctx.beginPath();
+  ctx.fillStyle = color;
+  ctx.arc(cursor, clamp(midY - latestSample * gain, y + 1, y + h - 1), 1.4, 0, Math.PI * 2);
+  ctx.fill();
   ctx.restore();
 }
 
-function readout(type, profile) {
+function readout(type, profile, biometricReadout) {
+  if (biometricReadout) {
+    if (type === "heart") {
+      return `${Math.round(biometricReadout.bpm)} BPM`;
+    }
+    if (type === "eeg") {
+      return `${biometricReadout.eegUv.toFixed(1)} uV`;
+    }
+    return `${biometricReadout.gsrUs.toFixed(1)} uS`;
+  }
+
   if (type === "heart") {
     return `${Math.round(40 + profile.freq * 22)} BPM`;
   }
@@ -84,14 +95,40 @@ function readout(type, profile) {
   return `${Math.round(8 + profile.amp * 42)} uS`;
 }
 
-function drawLane(ctx, x, y, w, h, { label, color, profile, type, time, metric, flash = 0 }) {
-  const labelW = 38;
-  const valueW = 108;
+
+function drawLane(
+  ctx,
+  x,
+  y,
+  w,
+  h,
+  {
+    label,
+    color,
+    profile,
+    type,
+    time,
+    metric,
+    flash = 0,
+    buffer,
+    sampleRate,
+    biometricReadout,
+    sampleAt,
+  },
+) {
+  const labelW = 48;
+  const valueW = 130;
+
   const waveX = x + labelW;
   const waveW = w - labelW - valueW;
 
   drawLaneGrid(ctx, waveX, y + 2, waveW, h - 4);
-  drawLaneWave(ctx, waveX, y + 2, waveW, h - 4, color, profile, type, time);
+
+  const sweepX = waveX + ((time * 28) % waveW);
+  drawRect(ctx, sweepX - 8, y + 2, 7, h - 4, "rgba(255, 210, 150, 0.06)");
+  drawRect(ctx, sweepX - 1, y + 2, 2, h - 4, "rgba(255, 210, 150, 0.15)");
+
+  drawLaneWave(ctx, waveX, y + 2, waveW, h - 4, color, buffer, sampleRate, type, sampleAt);
 
   if (flash > 0.001) {
     ctx.save();
@@ -107,8 +144,9 @@ function drawLane(ctx, x, y, w, h, { label, color, profile, type, time, metric, 
     baseline: "middle",
   });
 
-  drawText(ctx, `${readout(type, profile)} ${metric}`, x + w - 4, y + h / 2, {
-    size: 12,
+
+  drawText(ctx, `${readout(type, profile, biometricReadout)} ${metric}`, x + w - 4, y + h / 2, {
+    size: 16,
     color: COLORS.cream,
     align: "right",
     font: UI_FONT,
@@ -117,7 +155,12 @@ function drawLane(ctx, x, y, w, h, { label, color, profile, type, time, metric, 
 }
 
 export function drawPolygraph(ctx, x, y, w, h, data) {
-  const { waves, time, metrics, fearBar, maxFearBar, fearFlash = 0, laneFlash = {} } = data;
+  const { waves, time, metrics, fearBar, maxFearBar, fearFlash = 0, laneFlash = {}, biometric } = data;
+
+  const bioBuffers = biometric?.buffers || {};
+  const bioRate = biometric?.sampleRate || {};
+  const bioReadout = biometric?.readout || null;
+  const bioSampleAt = biometric?.sampleAt || null;
 
   drawRect(ctx, x, y, w, h, COLORS.panelSolid);
   drawRect(ctx, x, y, w, 1, COLORS.amber);
@@ -182,6 +225,10 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     time,
     metric: metrics.heartRate,
     flash: laneFlash.heartRate || 0,
+    buffer: bioBuffers.heartRate,
+    sampleRate: bioRate.heartRate || 250,
+    biometricReadout: bioReadout,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("heartRate", offsetFloat) : null,
   });
 
   drawLane(ctx, x, lanesY + laneH, w, laneH, {
@@ -192,6 +239,10 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     time,
     metric: metrics.eeg,
     flash: laneFlash.eeg || 0,
+    buffer: bioBuffers.eeg,
+    sampleRate: bioRate.eeg || 256,
+    biometricReadout: bioReadout,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("eeg", offsetFloat) : null,
   });
 
   drawLane(ctx, x, lanesY + laneH * 2, w, laneH, {
@@ -202,5 +253,9 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     time,
     metric: metrics.gsr,
     flash: laneFlash.gsr || 0,
+    buffer: bioBuffers.gsr,
+    sampleRate: bioRate.gsr || 64,
+    biometricReadout: bioReadout,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("gsr", offsetFloat) : null,
   });
 }

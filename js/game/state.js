@@ -1,6 +1,6 @@
 import { clamp } from "../math.js";
 import { CASES } from "./cases.js";
-import { setWaveTargetsFromMechanics } from "./waves.js";
+import { applyMechanicsToBiometrics, resetBiometricsOnState } from "./waves.js";
 
 export const state = {
   gameData: null,
@@ -98,6 +98,7 @@ export function resetRun() {
   state.error = "";
   state.questionProgress = 0;
   state.answerProgress = 0;
+  resetBiometricsOnState(state);
   pushLog(state.gameData.context);
   return setNode(state.gameData.start_node);
 }
@@ -131,7 +132,7 @@ export function pickChoice(index) {
   if (state.fearBar !== prevFear) {
     state.fearFlash = 1;
   }
-  setWaveTargetsFromMechanics(state.waveTarget, mechanics);
+  applyMechanicsToBiometrics(state, mechanics);
 
   state.responseMode = true;
   state.responseTimer = 1.2;
