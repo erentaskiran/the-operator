@@ -24,6 +24,8 @@ if (!canvas || !ctx) {
 }
 
 let renderScale = 1;
+let scanTime = 0;
+let scanFlicker = 0;
 
 function resizeCanvas() {
   const vw = window.innerWidth;
@@ -54,14 +56,31 @@ registerPlayScene(canvas, ctx);
 registerResultScene(canvas, ctx);
 
 function update(dt) {
+  scanTime += dt;
+  scanFlicker = Math.max(0, scanFlicker - dt * 3);
+  if (Math.random() < dt * 0.04) {
+    scanFlicker = 1;
+  }
   updateScene(dt);
   endFrameInput();
+}
+
+function drawScanlines() {
+  const spacing = 3;
+  const rollOffset = Math.floor(scanTime * 5) % spacing;
+  const breathe = Math.sin(scanTime * 2.2) * 0.015;
+  const alpha = Math.max(0, Math.min(0.3, 0.11 + breathe + scanFlicker * 0.02));
+  ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+  for (let y = -rollOffset; y < DESIGN_H; y += spacing) {
+    ctx.fillRect(0, y, DESIGN_W, 1);
+  }
 }
 
 function render() {
   ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
   ctx.imageSmoothingEnabled = false;
   renderScene();
+  drawScanlines();
 
   const alpha = getTransitionAlpha();
   if (alpha > 0) {
