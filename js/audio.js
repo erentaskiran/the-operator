@@ -1,4 +1,4 @@
-import { getAudio } from "./assets.js";
+import { getAudio } from './assets.js';
 
 let currentMusic = null;
 

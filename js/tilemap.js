@@ -160,7 +160,7 @@ export async function loadTilemap(path, options = {}) {
 
   const data = await response.json();
   if (!data || !Array.isArray(data.layers)) {
-    throw new Error("Invalid map format: expected layers array.");
+    throw new Error('Invalid map format: expected layers array.');
   }
 
   const normalized = {
@@ -168,7 +168,7 @@ export async function loadTilemap(path, options = {}) {
     mapWidth: Number(data.mapWidth) || 0,
     mapHeight: Number(data.mapHeight) || 0,
     layers: data.layers.map((layer) => ({
-      name: layer.name || "layer",
+      name: layer.name || 'layer',
       collider: Boolean(layer.collider),
       tiles: Array.isArray(layer.tiles)
         ? layer.tiles.map((tile) => ({
@@ -189,7 +189,7 @@ export async function loadTilemap(path, options = {}) {
   );
   normalized.spawns = extractSpawns(normalized.layers, normalized.tileSize, options);
 
-  if (data.tileset && typeof data.tileset === "object") {
+  if (data.tileset && typeof data.tileset === 'object') {
     normalized.tileset = {
       columns: Number(data.tileset.columns) || null,
       tileWidth: Number(data.tileset.tileWidth) || normalized.tileSize,

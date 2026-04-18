@@ -20,12 +20,12 @@ Generating a full case in one shot is unreliable — the model has to invent a p
 
 The runners are pre-wired with four steps. Each step's output is parsed as JSON and fed into the next step's prompt via `{{…_json}}` placeholders, while the full chat history also stays in the `messages` array so Claude sees every prior turn.
 
-| # | Step     | Output                                                    | Consumes                 |
-| - | -------- | --------------------------------------------------------- | ------------------------ |
-| 1 | Suspect  | `{ suspect: { name, role, profile, motive, secret, credibility } }` | —                |
-| 2 | Case     | `{ title, context }`                                      | suspect                  |
-| 3 | Nodes    | `{ start_node, nodes: {…} }` — branching interrogation graph | suspect + case        |
-| 4 | Assembly | `{ game_data: {…} }` — final shape written to disk        | suspect + case + nodes   |
+| #   | Step     | Output                                                              | Consumes               |
+| --- | -------- | ------------------------------------------------------------------- | ---------------------- |
+| 1   | Suspect  | `{ suspect: { name, role, profile, motive, secret, credibility } }` | —                      |
+| 2   | Case     | `{ title, context }`                                                | suspect                |
+| 3   | Nodes    | `{ start_node, nodes: {…} }` — branching interrogation graph        | suspect + case         |
+| 4   | Assembly | `{ game_data: {…} }` — final shape written to disk                  | suspect + case + nodes |
 
 ## Mental model
 
@@ -113,18 +113,18 @@ The pipeline-level `SYSTEM` prompt at the top of each runner tells the model to 
 If you want a different shape, the pipeline runner itself is generic:
 
 ```js
-import { runPipeline, parseJsonBlock } from "./llm-pipeline.js";
+import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
 
 const { results } = await runPipeline(
   [
-    { name: "premise", prompt: "PROMPT 1 TEXT", parse: parseJsonBlock },
+    { name: 'premise', prompt: 'PROMPT 1 TEXT', parse: parseJsonBlock },
     {
-      name: "nodes",
+      name: 'nodes',
       prompt: (r) => `Given:\n${JSON.stringify(r.premise)}\n\nPROMPT 2 TEXT`,
       parse: parseJsonBlock,
     },
   ],
-  { system: "You are a JSON generator.", thinking: true }
+  { system: 'You are a JSON generator.', thinking: true }
 );
 ```
 
@@ -162,7 +162,7 @@ Passed as the second argument to `runPipeline`:
 
 ## Helpers
 
-- `parseJsonBlock(text)` — pulls JSON out of a ```` ```json ```` fenced block if present, otherwise parses the whole string. Attach as `parse:` on any step whose output should be a JSON object rather than raw text.
+- `parseJsonBlock(text)` — pulls JSON out of a ` ```json ` fenced block if present, otherwise parses the whole string. Attach as `parse:` on any step whose output should be a JSON object rather than raw text.
 - `extractText(response)` — concatenates the `text` blocks from an SDK response.
 - `callClaude(...)` — single-shot call if you want to bypass the pipeline.
 

@@ -1,4 +1,4 @@
-import { getImage } from "./assets.js";
+import { getImage } from './assets.js';
 
 export function createSpriteSheet(frameWidth, frameHeight, frameCount, startX = 0, startY = 0) {
   const frames = [];
@@ -13,15 +13,9 @@ export function createSpriteSheet(frameWidth, frameHeight, frameCount, startX = 
   return frames;
 }
 
-export function createAnimation({
-  image,
-  frames,
-  fps = 8,
-  loop = true,
-  autoPlay = true,
-}) {
+export function createAnimation({ image, frames, fps = 8, loop = true, autoPlay = true }) {
   if (!Array.isArray(frames) || frames.length === 0) {
-    throw new Error("Animation requires at least one frame.");
+    throw new Error('Animation requires at least one frame.');
   }
 
   const state = {
@@ -81,7 +75,7 @@ export function createAnimation({
 
   function setFrames(nextFrames, reset = true) {
     if (!Array.isArray(nextFrames) || nextFrames.length === 0) {
-      throw new Error("setFrames requires at least one frame.");
+      throw new Error('setFrames requires at least one frame.');
     }
 
     state.frames = nextFrames;
@@ -101,7 +95,7 @@ export function createAnimation({
   function setFPS(nextFPS) {
     const value = Number(nextFPS);
     if (!Number.isFinite(value) || value <= 0) {
-      throw new Error("FPS must be a positive number.");
+      throw new Error('FPS must be a positive number.');
     }
     state.fps = value;
     state.frameDuration = 1 / value;
@@ -136,18 +130,17 @@ export function createAnimation({
 }
 
 export function createAnimationSet(config) {
-  if (!config || typeof config !== "object") {
-    throw new Error("Animation set config must be an object.");
+  if (!config || typeof config !== 'object') {
+    throw new Error('Animation set config must be an object.');
   }
 
   const animations = new Map();
-  let currentName = "";
+  let currentName = '';
   let current = null;
 
   for (const [name, definition] of Object.entries(config)) {
     const image =
-      definition.image ||
-      (definition.imageName ? getImage(definition.imageName) : null);
+      definition.image || (definition.imageName ? getImage(definition.imageName) : null);
 
     const anim = createAnimation({
       image,
@@ -165,7 +158,7 @@ export function createAnimationSet(config) {
   }
 
   if (!current) {
-    throw new Error("Animation set requires at least one animation.");
+    throw new Error('Animation set requires at least one animation.');
   }
 
   function play(name, reset = true) {

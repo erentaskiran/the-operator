@@ -1,7 +1,7 @@
-import { drawText, wrapTextLines } from "../draw.js";
-import { clamp } from "../math.js";
-import { COLORS, UI_FONT } from "./theme.js";
-import { drawPanel } from "./panel.js";
+import { drawText, wrapTextLines } from '../draw.js';
+import { clamp } from '../math.js';
+import { COLORS, UI_FONT } from './theme.js';
+import { drawPanel } from './panel.js';
 
 function pointInRect(p, r) {
   return p && p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
@@ -11,14 +11,17 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-export function drawChoiceModal(ctx, { x, y, w, h, choices, mouse, animProgress = 1, title = "SORU SEC" }) {
+export function drawChoiceModal(
+  ctx,
+  { x, y, w, h, choices, mouse, animProgress = 1, title = 'SORU SEC' }
+) {
   drawPanel(ctx, x, y, w, h, { border: COLORS.amber });
 
   drawText(ctx, `[ ${title} ]`, x + 8, y + 10, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   const rects = [];
@@ -66,7 +69,7 @@ export function drawChoiceModal(ctx, { x, y, w, h, choices, mouse, animProgress 
 
       drawPanel(ctx, rect.x, drawY, rect.w, rect.h, {
         border: hovered ? COLORS.amberBright : COLORS.amberDim,
-        fill: hovered ? "rgba(70, 42, 16, 0.75)" : COLORS.panelFillLight,
+        fill: hovered ? 'rgba(70, 42, 16, 0.75)' : COLORS.panelFillLight,
       });
 
       let remaining = charsToShow;
@@ -79,7 +82,7 @@ export function drawChoiceModal(ctx, { x, y, w, h, choices, mouse, animProgress 
           size: fontSize,
           color: hovered ? COLORS.amberBright : COLORS.cream,
           font: UI_FONT,
-          baseline: "middle",
+          baseline: 'middle',
         });
         remaining -= lines[j].length;
       }

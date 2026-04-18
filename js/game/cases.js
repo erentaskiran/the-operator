@@ -1,18 +1,18 @@
 export const CASES = [
   {
-    id: "A",
-    file: "./dialogs/silikon-vadisi-sizintisi.json",
-    label: "CASE A - SILIKON VADISI SIZINTISI",
+    id: 'A',
+    file: './dialogs/silikon-vadisi-sizintisi.json',
+    label: 'CASE A - SILIKON VADISI SIZINTISI',
   },
   {
-    id: "B",
-    file: "./dialogs/sessiz-commit.json",
-    label: "CASE B - SESSIZ COMMIT",
+    id: 'B',
+    file: './dialogs/sessiz-commit.json',
+    label: 'CASE B - SESSIZ COMMIT',
   },
   {
-    id: "TR TEST",
-    file: "./dialogs/soguk--oda.json",
-    label: "CASE TR TEST",
+    id: 'TR TEST',
+    file: './dialogs/soguk--oda.json',
+    label: 'CASE TR TEST',
   },
 ];
 
@@ -25,7 +25,7 @@ export async function loadAllCases() {
       }
       const data = await response.json();
       return [caseDef.id, data.game_data];
-    }),
+    })
   );
   return Object.fromEntries(entries);
 }

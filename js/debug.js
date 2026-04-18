@@ -1,4 +1,4 @@
-import { drawRect, drawText } from "./draw.js";
+import { drawRect, drawText } from './draw.js';
 
 const state = {
   enabled: false,
@@ -31,11 +31,11 @@ export function drawFPS(ctx) {
     return;
   }
 
-  drawRect(ctx, 8, 8, 120, 46, "rgba(5, 8, 15, 0.75)");
-  drawText(ctx, `FPS: ${state.fps}`, 16, 28, { size: 16, color: "#34d399" });
+  drawRect(ctx, 8, 8, 120, 46, 'rgba(5, 8, 15, 0.75)');
+  drawText(ctx, `FPS: ${state.fps}`, 16, 28, { size: 16, color: '#34d399' });
 }
 
-export function drawHitbox(ctx, entity, color = "#f43f5e") {
+export function drawHitbox(ctx, entity, color = '#f43f5e') {
   if (!state.enabled || !entity) {
     return;
   }

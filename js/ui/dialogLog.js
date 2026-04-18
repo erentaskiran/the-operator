@@ -1,12 +1,12 @@
-import { drawRect, drawText, wrapTextLines } from "../draw.js";
-import { COLORS, UI_FONT } from "./theme.js";
-import { drawPanel } from "./panel.js";
+import { drawRect, drawText, wrapTextLines } from '../draw.js';
+import { COLORS, UI_FONT } from './theme.js';
+import { drawPanel } from './panel.js';
 
 function colorForEntry(entry) {
-  if (entry.startsWith("SEN")) {
+  if (entry.startsWith('SEN')) {
     return COLORS.creamDim;
   }
-  if (entry.startsWith("OZAN")) {
+  if (entry.startsWith('OZAN')) {
     return COLORS.amberBright;
   }
   return COLORS.creamDim;
@@ -32,9 +32,9 @@ function drawTabTexture(ctx, x, y, w, h) {
     for (let xx = x + 2; xx < x + w - 2; xx += 2) {
       const seed = (xx * 13 + yy * 7) % 11;
       if (seed < 3) {
-        drawRect(ctx, xx, yy, 1, 1, "rgba(255, 245, 220, 0.04)");
+        drawRect(ctx, xx, yy, 1, 1, 'rgba(255, 245, 220, 0.04)');
       } else if (seed > 8) {
-        drawRect(ctx, xx, yy, 1, 1, "rgba(12, 9, 7, 0.28)");
+        drawRect(ctx, xx, yy, 1, 1, 'rgba(12, 9, 7, 0.28)');
       }
     }
   }
@@ -50,10 +50,17 @@ export function drawLogTab(ctx, x, y, w, h, expanded, hovered = false) {
 
   drawPanel(ctx, x, y, w, h, {
     border: COLORS.amberDim,
-    fill: hovered ? "rgba(20, 14, 8, 0.95)" : "rgba(14, 9, 6, 0.92)",
+    fill: hovered ? 'rgba(20, 14, 8, 0.95)' : 'rgba(14, 9, 6, 0.92)',
   });
 
-  drawRect(ctx, x + 1, y + 1, w - 2, h - 2, hovered ? "rgba(24, 18, 12, 0.42)" : "rgba(18, 13, 9, 0.5)");
+  drawRect(
+    ctx,
+    x + 1,
+    y + 1,
+    w - 2,
+    h - 2,
+    hovered ? 'rgba(24, 18, 12, 0.42)' : 'rgba(18, 13, 9, 0.5)'
+  );
   drawTabTexture(ctx, x, y, w, h);
 
   const cx = x + w / 2;
@@ -72,7 +79,7 @@ export function drawLogTab(ctx, x, y, w, h, expanded, hovered = false) {
       ];
 
   ctx.save();
-  ctx.fillStyle = "rgba(130, 111, 82, 0.88)";
+  ctx.fillStyle = 'rgba(130, 111, 82, 0.88)';
   ctx.beginPath();
   ctx.moveTo(arrow[0][0], arrow[0][1]);
   ctx.lineTo(arrow[1][0], arrow[1][1]);
@@ -85,14 +92,14 @@ export function drawLogTab(ctx, x, y, w, h, expanded, hovered = false) {
 export function drawLogPanel(ctx, x, y, w, h, log, scrollOffset) {
   drawPanel(ctx, x, y, w, h, {
     border: COLORS.amber,
-    fill: "rgba(14, 9, 6, 0.95)",
+    fill: 'rgba(14, 9, 6, 0.95)',
   });
 
-  drawText(ctx, "[ LOG ]", x + 8, y + 10, {
+  drawText(ctx, '[ LOG ]', x + 8, y + 10, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   const textX = x + 8;
@@ -115,7 +122,7 @@ export function drawLogPanel(ctx, x, y, w, h, log, scrollOffset) {
       size,
       color: visible[i].color,
       font: UI_FONT,
-      baseline: "middle",
+      baseline: 'middle',
     });
   }
 

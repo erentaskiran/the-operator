@@ -1,7 +1,7 @@
-import { getImage } from "../assets.js";
-import { drawRect, drawText } from "../draw.js";
-import { COLORS, UI_FONT } from "./theme.js";
-import { drawPanel } from "./panel.js";
+import { getImage } from '../assets.js';
+import { drawRect, drawText } from '../draw.js';
+import { COLORS, UI_FONT } from './theme.js';
+import { drawPanel } from './panel.js';
 
 export function drawPortraitBadge(ctx, x, y, w, h, imageKey, label) {
   drawPanel(ctx, x, y, w, h, { border: COLORS.amber });
@@ -34,8 +34,8 @@ export function drawPortraitBadge(ctx, x, y, w, h, imageKey, label) {
   drawText(ctx, label, x + w / 2, y + h - labelH / 2, {
     size: 12,
     color: COLORS.cream,
-    align: "center",
+    align: 'center',
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 }

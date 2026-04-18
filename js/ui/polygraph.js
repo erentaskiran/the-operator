@@ -1,6 +1,6 @@
-import { drawRect, drawText } from "../draw.js";
-import { clamp } from "../math.js";
-import { COLORS, UI_FONT } from "./theme.js";
+import { drawRect, drawText } from '../draw.js';
+import { clamp } from '../math.js';
+import { COLORS, UI_FONT } from './theme.js';
 
 const TRACE_STATE = {
   heart: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
@@ -9,17 +9,17 @@ const TRACE_STATE = {
 };
 
 function drawLaneGrid(ctx, x, y, w, h) {
-  drawRect(ctx, x, y, w, h, "rgba(10, 6, 3, 0.55)");
+  drawRect(ctx, x, y, w, h, 'rgba(10, 6, 3, 0.55)');
   for (let gy = y + 4; gy < y + h; gy += 6) {
-    drawRect(ctx, x, gy, w, 1, "rgba(90, 60, 30, 0.08)");
+    drawRect(ctx, x, gy, w, 1, 'rgba(90, 60, 30, 0.08)');
   }
   for (let gx = x + 16; gx < x + w; gx += 16) {
-    drawRect(ctx, gx, y, 1, h, "rgba(90, 60, 30, 0.08)");
+    drawRect(ctx, gx, y, 1, h, 'rgba(90, 60, 30, 0.08)');
   }
 }
 
 function sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt) {
-  if (typeof sampleAt === "function") {
+  if (typeof sampleAt === 'function') {
     const offsetFloat = Math.max(0, secondsAgo * sampleRate);
     return sampleAt(offsetFloat);
   }
@@ -52,7 +52,7 @@ function resetTraceLane(lane, width, fill) {
 }
 
 function getLatestSample(buffer, sampleAt) {
-  if (typeof sampleAt === "function") {
+  if (typeof sampleAt === 'function') {
     return sampleAt(0);
   }
   return sampleByOffset(buffer, 0);
@@ -99,7 +99,7 @@ function drawLaneWave(ctx, x, y, w, h, color, buffer, sampleRate, type, sampleAt
   }
 
   const midY = y + h / 2;
-  const gain = type === "heart" ? h * 0.4 : type === "eeg" ? h * 0.43 : h * 0.72;
+  const gain = type === 'heart' ? h * 0.4 : type === 'eeg' ? h * 0.43 : h * 0.72;
   const lane = TRACE_STATE[type];
   updateTraceLane(lane, buffer, w, sharedCursor, sampleAt);
   if (!lane.samples) {
@@ -127,24 +127,23 @@ function drawLaneWave(ctx, x, y, w, h, color, buffer, sampleRate, type, sampleAt
 
 function readout(type, profile, biometricReadout) {
   if (biometricReadout) {
-    if (type === "heart") {
+    if (type === 'heart') {
       return `${Math.round(biometricReadout.bpm)} BPM`;
     }
-    if (type === "eeg") {
+    if (type === 'eeg') {
       return `${biometricReadout.eegUv.toFixed(1)} uV`;
     }
     return `${biometricReadout.gsrUs.toFixed(1)} uS`;
   }
 
-  if (type === "heart") {
+  if (type === 'heart') {
     return `${Math.round(40 + profile.freq * 22)} BPM`;
   }
-  if (type === "eeg") {
+  if (type === 'eeg') {
     return `${(0.05 + profile.amp * 0.35).toFixed(2)} mV`;
   }
   return `${Math.round(8 + profile.amp * 42)} uS`;
 }
-
 
 function drawLane(
   ctx,
@@ -166,7 +165,7 @@ function drawLane(
     sampleAt,
     sharedCursor,
     drawSweep,
-  },
+  }
 ) {
   const labelW = 48;
   const valueW = 130;
@@ -178,11 +177,23 @@ function drawLane(
 
   if (drawSweep) {
     const sweepX = waveX + sharedCursor;
-    drawRect(ctx, sweepX - 8, y + 2, 8, h - 4, "rgba(224, 72, 72, 0.10)");
-    drawRect(ctx, sweepX - 2, y + 2, 2, h - 4, "rgba(224, 72, 72, 0.18)");
+    drawRect(ctx, sweepX - 8, y + 2, 8, h - 4, 'rgba(224, 72, 72, 0.10)');
+    drawRect(ctx, sweepX - 2, y + 2, 2, h - 4, 'rgba(224, 72, 72, 0.18)');
   }
 
-  drawLaneWave(ctx, waveX, y + 2, waveW, h - 4, color, buffer, sampleRate, type, sampleAt, sharedCursor);
+  drawLaneWave(
+    ctx,
+    waveX,
+    y + 2,
+    waveW,
+    h - 4,
+    color,
+    buffer,
+    sampleRate,
+    type,
+    sampleAt,
+    sharedCursor
+  );
 
   if (flash > 0.001) {
     ctx.save();
@@ -195,21 +206,29 @@ function drawLane(
     size: 12,
     color,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
-
 
   drawText(ctx, `${readout(type, profile, biometricReadout)} ${metric}`, x + w - 4, y + h / 2, {
     size: 16,
     color: COLORS.cream,
-    align: "right",
+    align: 'right',
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 }
 
 export function drawPolygraph(ctx, x, y, w, h, data) {
-  const { waves, time, metrics, fearBar, maxFearBar, fearFlash = 0, laneFlash = {}, biometric } = data;
+  const {
+    waves,
+    time,
+    metrics,
+    fearBar,
+    maxFearBar,
+    fearFlash = 0,
+    laneFlash = {},
+    biometric,
+  } = data;
 
   const bioBuffers = biometric?.buffers || {};
   const bioRate = biometric?.sampleRate || {};
@@ -220,11 +239,11 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   drawRect(ctx, x, y, w, 1, COLORS.amber);
 
   const headerH = 16;
-  drawText(ctx, "POLYGRAPH ANALYSIS", x + 6, y + headerH / 2 + 1, {
+  drawText(ctx, 'POLYGRAPH ANALYSIS', x + 6, y + headerH / 2 + 1, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   const fearValText = `${Math.round(fearBar)}/${maxFearBar}`;
@@ -235,12 +254,12 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   const fearLabelX = fearBarX - 4;
   const fearMidY = y + headerH / 2 + 1;
 
-  drawText(ctx, "FEAR", fearLabelX, fearMidY, {
+  drawText(ctx, 'FEAR', fearLabelX, fearMidY, {
     size: 12,
     color: COLORS.cream,
-    align: "right",
+    align: 'right',
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   drawRect(ctx, fearBarX, y + headerH / 2 - 3, fearBarW, 6, COLORS.fearTrack);
@@ -253,16 +272,16 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
       y + headerH / 2 - 3,
       fearBarW,
       6,
-      `rgba(255, 220, 150, ${Math.min(0.75, fearFlash * 0.75)})`,
+      `rgba(255, 220, 150, ${Math.min(0.75, fearFlash * 0.75)})`
     );
   }
 
   drawText(ctx, fearValText, fearValX, fearMidY, {
     size: 12,
     color: COLORS.cream,
-    align: "right",
+    align: 'right',
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   drawRect(ctx, x, y + headerH, w, 1, COLORS.amberDim);
@@ -276,49 +295,49 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   const sharedCursor = Math.floor((time * 28) % Math.max(1, waveW));
 
   drawLane(ctx, x, lanesY, w, laneH, {
-    label: "PULSE",
+    label: 'PULSE',
     color: COLORS.pulse,
     profile: waves.heartRate,
-    type: "heart",
+    type: 'heart',
     time,
     metric: metrics.heartRate,
     flash: laneFlash.heartRate || 0,
     buffer: bioBuffers.heartRate,
     sampleRate: bioRate.heartRate || 250,
     biometricReadout: bioReadout,
-    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("heartRate", offsetFloat) : null,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('heartRate', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
   });
 
   drawLane(ctx, x, lanesY + laneH, w, laneH, {
-    label: "EEG",
+    label: 'EEG',
     color: COLORS.eeg,
     profile: waves.eeg,
-    type: "eeg",
+    type: 'eeg',
     time,
     metric: metrics.eeg,
     flash: laneFlash.eeg || 0,
     buffer: bioBuffers.eeg,
     sampleRate: bioRate.eeg || 256,
     biometricReadout: bioReadout,
-    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("eeg", offsetFloat) : null,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('eeg', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
   });
 
   drawLane(ctx, x, lanesY + laneH * 2, w, laneH, {
-    label: "GSR",
+    label: 'GSR',
     color: COLORS.gsr,
     profile: waves.gsr,
-    type: "gsr",
+    type: 'gsr',
     time,
     metric: metrics.gsr,
     flash: laneFlash.gsr || 0,
     buffer: bioBuffers.gsr,
     sampleRate: bioRate.gsr || 64,
     biometricReadout: bioReadout,
-    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt("gsr", offsetFloat) : null,
+    sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('gsr', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
   });

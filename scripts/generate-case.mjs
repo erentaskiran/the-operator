@@ -1,18 +1,18 @@
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
-import { runPipeline, parseJsonBlock } from "./llm-pipeline.js";
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
 
 const caseId = process.argv[2];
 if (!caseId) {
-  console.error("usage: npm run generate -- <case-id>");
-  console.error("  example: npm run generate -- case-c");
+  console.error('usage: npm run generate -- <case-id>');
+  console.error('  example: npm run generate -- case-c');
   process.exit(1);
 }
 
 const SYSTEM =
-  "You are a JSON generation step in a pipeline for the legal interrogation " +
+  'You are a JSON generation step in a pipeline for the legal interrogation ' +
   "game 'The Operator'. Output only valid JSON matching the requested schema. " +
-  "No markdown fences, no prose, no explanations.";
+  'No markdown fences, no prose, no explanations.';
 
 const STEP_1_SUSPECT = `You are generating a suspect for a legal interrogation game.
 
@@ -225,30 +225,28 @@ RULES:
 
 const fill = (template, vars) =>
   Object.entries(vars).reduce(
-    (acc, [key, val]) =>
-      acc.replaceAll(`{{${key}}}`, JSON.stringify(val, null, 2)),
+    (acc, [key, val]) => acc.replaceAll(`{{${key}}}`, JSON.stringify(val, null, 2)),
     template
   );
 
 const steps = [
   {
-    name: "suspect",
+    name: 'suspect',
     prompt: STEP_1_SUSPECT,
     parse: parseJsonBlock,
   },
   {
-    name: "case",
+    name: 'case',
     prompt: (r) => fill(STEP_2_CASE, { suspect_json: r.suspect }),
     parse: parseJsonBlock,
   },
   {
-    name: "nodes",
-    prompt: (r) =>
-      fill(STEP_3_NODES, { suspect_json: r.suspect, case_json: r.case }),
+    name: 'nodes',
+    prompt: (r) => fill(STEP_3_NODES, { suspect_json: r.suspect, case_json: r.case }),
     parse: parseJsonBlock,
   },
   {
-    name: "final",
+    name: 'final',
     prompt: (r) =>
       fill(STEP_4_ASSEMBLE, {
         suspect_json: r.suspect,
@@ -265,6 +263,6 @@ const { results } = await runPipeline(steps, {
   onStep: ({ name, text }) => console.log(`[${name}] ${text.length} chars`),
 });
 
-const outPath = resolve("dialogs", `${caseId}.json`);
+const outPath = resolve('dialogs', `${caseId}.json`);
 writeFileSync(outPath, JSON.stringify(results.final, null, 2));
 console.log(`wrote ${outPath}`);

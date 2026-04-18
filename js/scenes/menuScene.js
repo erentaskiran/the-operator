@@ -1,12 +1,12 @@
-import { drawRect, drawText, drawWrappedText } from "../draw.js";
-import { registerScene, setScene } from "../sceneManager.js";
-import { getMousePos, wasKeyPressed, wasMousePressed } from "../input.js";
-import { clamp } from "../math.js";
-import { CASES } from "../game/cases.js";
-import { getSelectedCaseData, setSelectedCase, state } from "../game/state.js";
-import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from "../ui/theme.js";
-import { drawSceneBackground } from "../ui/background.js";
-import { drawPanel } from "../ui/panel.js";
+import { drawRect, drawText, drawWrappedText } from '../draw.js';
+import { registerScene, setScene } from '../sceneManager.js';
+import { getMousePos, wasKeyPressed, wasMousePressed } from '../input.js';
+import { clamp } from '../math.js';
+import { CASES } from '../game/cases.js';
+import { getSelectedCaseData, setSelectedCase, state } from '../game/state.js';
+import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
+import { drawSceneBackground } from '../ui/background.js';
+import { drawPanel } from '../ui/panel.js';
 
 let menuAnim = 0;
 
@@ -15,13 +15,18 @@ function smoothstep(t) {
 }
 
 function inRect(point, rect) {
-  return point.x >= rect.x && point.x <= rect.x + rect.w && point.y >= rect.y && point.y <= rect.y + rect.h;
+  return (
+    point.x >= rect.x &&
+    point.x <= rect.x + rect.w &&
+    point.y >= rect.y &&
+    point.y <= rect.y + rect.h
+  );
 }
 
 function parseLabel(label) {
-  const dashIdx = label.indexOf(" - ");
+  const dashIdx = label.indexOf(' - ');
   if (dashIdx < 0) {
-    return { prefix: label, suffix: "" };
+    return { prefix: label, suffix: '' };
   }
   return {
     prefix: label.slice(0, dashIdx),
@@ -33,9 +38,9 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
   const { number, prefix, suffix, selected, hovered, pulseT } = opts;
   const borderColor = selected ? COLORS.amberBright : hovered ? COLORS.amber : COLORS.amberDim;
   const fillColor = selected
-    ? "rgba(60, 36, 14, 0.8)"
+    ? 'rgba(60, 36, 14, 0.8)'
     : hovered
-      ? "rgba(30, 20, 10, 0.65)"
+      ? 'rgba(30, 20, 10, 0.65)'
       : COLORS.panelFillLight;
 
   drawPanel(ctx, x, y, w, h, { border: borderColor, fill: fillColor });
@@ -44,7 +49,7 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     size: 22,
     color: selected ? COLORS.amberBright : COLORS.amber,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   drawRect(ctx, x + 42, y + 8, 1, h - 16, COLORS.amberDim);
@@ -53,7 +58,7 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     size: 12,
     color: selected ? COLORS.amberBright : COLORS.cream,
     font: UI_FONT,
-    baseline: "middle",
+    baseline: 'middle',
   });
 
   drawWrappedText(ctx, suffix, x + 50, y + 32, w - 60, {
@@ -88,12 +93,12 @@ function drawMenuScene(ctx) {
     const titleY = -28 + (52 - -28) * titleP;
     ctx.save();
     ctx.globalAlpha = titleP;
-    drawText(ctx, "THE OPERATOR", DESIGN_W / 2, titleY, {
-      align: "center",
+    drawText(ctx, 'THE OPERATOR', DESIGN_W / 2, titleY, {
+      align: 'center',
       size: 28,
       color: COLORS.amberBright,
       font: UI_FONT,
-      baseline: "middle",
+      baseline: 'middle',
     });
     ctx.restore();
   }
@@ -102,12 +107,12 @@ function drawMenuScene(ctx) {
   if (subtitleP > 0.01) {
     ctx.save();
     ctx.globalAlpha = subtitleP;
-    drawText(ctx, "[ CASE SECIMI ]", DESIGN_W / 2, 78, {
-      align: "center",
+    drawText(ctx, '[ CASE SECIMI ]', DESIGN_W / 2, 78, {
+      align: 'center',
       size: 12,
       color: COLORS.cream,
       font: UI_FONT,
-      baseline: "middle",
+      baseline: 'middle',
     });
     ctx.restore();
   }
@@ -138,7 +143,7 @@ function drawMenuScene(ctx) {
     const hovered = interactive && inRect(mouse, rect);
 
     const { prefix, suffix } = parseLabel(CASES[i].label);
-    const numberStr = String(i + 1).padStart(2, "0");
+    const numberStr = String(i + 1).padStart(2, '0');
 
     ctx.save();
     ctx.globalAlpha = cardP;
@@ -169,11 +174,11 @@ function drawMenuScene(ctx) {
 
     if (caseData) {
       drawText(ctx, caseData.title, DESIGN_W / 2, infoY + 14, {
-        align: "center",
+        align: 'center',
         size: 12,
         color: COLORS.amberBright,
         font: UI_FONT,
-        baseline: "middle",
+        baseline: 'middle',
       });
       drawWrappedText(ctx, caseData.context, infoX + 12, infoY + 34, infoW - 24, {
         size: 12,
@@ -183,12 +188,12 @@ function drawMenuScene(ctx) {
         maxLines: 9,
       });
     } else {
-      drawText(ctx, "Vaka yuklenemedi.", DESIGN_W / 2, infoY + infoH / 2, {
-        align: "center",
+      drawText(ctx, 'Vaka yuklenemedi.', DESIGN_W / 2, infoY + infoH / 2, {
+        align: 'center',
         size: 12,
         color: COLORS.fail,
         font: UI_FONT,
-        baseline: "middle",
+        baseline: 'middle',
       });
     }
 
@@ -199,47 +204,57 @@ function drawMenuScene(ctx) {
   if (promptP > 0.01) {
     ctx.save();
     ctx.globalAlpha = promptP;
-    drawText(ctx, "1-2 / OK TUSLARI: VAKA SEC", DESIGN_W / 2, DESIGN_H - 44, {
-      align: "center",
+    drawText(ctx, '1-2 / OK TUSLARI: VAKA SEC', DESIGN_W / 2, DESIGN_H - 44, {
+      align: 'center',
       size: 12,
       color: COLORS.creamDim,
       font: UI_FONT,
-      baseline: "middle",
+      baseline: 'middle',
     });
     ctx.restore();
 
     const blink = 0.45 + 0.55 * Math.abs(Math.sin(menuAnim * 2.6));
     ctx.save();
     ctx.globalAlpha = promptP * blink;
-    drawText(ctx, ">> ENTER: BASLA <<", DESIGN_W / 2, DESIGN_H - 28, {
-      align: "center",
+    drawText(ctx, '>> ENTER: BASLA <<', DESIGN_W / 2, DESIGN_H - 28, {
+      align: 'center',
       size: 12,
       color: COLORS.amberBright,
       font: UI_FONT,
-      baseline: "middle",
+      baseline: 'middle',
     });
     ctx.restore();
   }
 }
 
 export function registerMenuScene(_canvas, ctx) {
-  registerScene("menu", {
+  registerScene('menu', {
     enter() {
       menuAnim = 0;
     },
     update(dt) {
       menuAnim += dt;
 
-      if (wasKeyPressed("1")) {
+      if (wasKeyPressed('1')) {
         setSelectedCase(0);
       }
-      if (wasKeyPressed("2")) {
+      if (wasKeyPressed('2')) {
         setSelectedCase(1);
       }
-      if (wasKeyPressed("arrowleft") || wasKeyPressed("arrowup") || wasKeyPressed("a") || wasKeyPressed("w")) {
+      if (
+        wasKeyPressed('arrowleft') ||
+        wasKeyPressed('arrowup') ||
+        wasKeyPressed('a') ||
+        wasKeyPressed('w')
+      ) {
         setSelectedCase(state.caseIndex - 1);
       }
-      if (wasKeyPressed("arrowright") || wasKeyPressed("arrowdown") || wasKeyPressed("d") || wasKeyPressed("s")) {
+      if (
+        wasKeyPressed('arrowright') ||
+        wasKeyPressed('arrowdown') ||
+        wasKeyPressed('d') ||
+        wasKeyPressed('s')
+      ) {
         setSelectedCase(state.caseIndex + 1);
       }
 
@@ -253,8 +268,8 @@ export function registerMenuScene(_canvas, ctx) {
         }
       }
 
-      if (wasKeyPressed("enter") && state.gameData) {
-        setScene("play");
+      if (wasKeyPressed('enter') && state.gameData) {
+        setScene('play');
       }
     },
     render() {

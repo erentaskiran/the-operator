@@ -69,14 +69,14 @@ export function initInput(canvas) {
   }
 
   isInitialized = true;
-  window.addEventListener("keydown", onKeyDown);
-  window.addEventListener("keyup", onKeyUp);
+  window.addEventListener('keydown', onKeyDown);
+  window.addEventListener('keyup', onKeyUp);
 
-  canvas.addEventListener("mousedown", onMouseDown);
-  window.addEventListener("mouseup", onMouseUp);
-  canvas.addEventListener("mousemove", (event) => onMouseMove(event, canvas));
-  canvas.addEventListener("wheel", onWheel, { passive: false });
-  canvas.addEventListener("contextmenu", (event) => event.preventDefault());
+  canvas.addEventListener('mousedown', onMouseDown);
+  window.addEventListener('mouseup', onMouseUp);
+  canvas.addEventListener('mousemove', (event) => onMouseMove(event, canvas));
+  canvas.addEventListener('wheel', onWheel, { passive: false });
+  canvas.addEventListener('contextmenu', (event) => event.preventDefault());
 }
 
 export function endFrameInput() {

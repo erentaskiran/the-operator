@@ -1,9 +1,4 @@
-export function createGameLoop({
-  update,
-  render,
-  fixedTimeStep = 1 / 60,
-  maxSubSteps = 5,
-}) {
+export function createGameLoop({ update, render, fixedTimeStep = 1 / 60, maxSubSteps = 5 }) {
   let isRunning = false;
   let lastTime = 0;
   let accumulator = 0;

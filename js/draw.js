@@ -1,9 +1,9 @@
-export function clearCanvas(ctx, color = "#0b1224") {
+export function clearCanvas(ctx, color = '#0b1224') {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
-export function drawRect(ctx, x, y, w, h, color = "#ffffff") {
+export function drawRect(ctx, x, y, w, h, color = '#ffffff') {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, w, h);
 }
@@ -55,11 +55,11 @@ export function drawSpriteFrame(ctx, img, frame, x, y, w, h, flipX = false, opti
 
 export function drawText(ctx, text, x, y, options = {}) {
   const {
-    color = "#e5e7eb",
+    color = '#e5e7eb',
     size = 18,
-    font = "Trebuchet MS, Segoe UI, sans-serif",
-    align = "left",
-    baseline = "alphabetic",
+    font = 'Trebuchet MS, Segoe UI, sans-serif',
+    align = 'left',
+    baseline = 'alphabetic',
   } = options;
 
   ctx.fillStyle = color;
@@ -69,10 +69,10 @@ export function drawText(ctx, text, x, y, options = {}) {
   ctx.fillText(text, x, y);
 }
 
-const DEFAULT_FONT = "Trebuchet MS, Segoe UI, sans-serif";
+const DEFAULT_FONT = 'Trebuchet MS, Segoe UI, sans-serif';
 
 export function wrapTextLines(ctx, text, maxWidth, size = 12, font = DEFAULT_FONT) {
-  const content = String(text || "").trim();
+  const content = String(text || '').trim();
   if (!content) {
     return [];
   }
@@ -85,7 +85,7 @@ export function wrapTextLines(ctx, text, maxWidth, size = 12, font = DEFAULT_FON
   for (const paragraph of paragraphs) {
     const words = paragraph.split(/\s+/).filter(Boolean);
     if (words.length === 0) {
-      lines.push("");
+      lines.push('');
       continue;
     }
 

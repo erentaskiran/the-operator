@@ -4,9 +4,14 @@
   "type": "module",
   "scripts": {
     "generate": "node --env-file=.env scripts/generate-case.mjs",
-    "generate:tr": "node --env-file=.env scripts/generate-case-tr.mjs"
+    "generate:tr": "node --env-file=.env scripts/generate-case-tr.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
   }
 }

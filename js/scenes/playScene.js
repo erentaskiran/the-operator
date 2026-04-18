@@ -1,16 +1,16 @@
-import { registerScene, setScene } from "../sceneManager.js";
-import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from "../input.js";
-import { clamp, lerp } from "../math.js";
-import { pickChoice, resetRun, setNode, state } from "../game/state.js";
-import { getBiometricDrawData, updateWave } from "../game/waves.js";
-import { drawSceneBackground } from "../ui/background.js";
-import { drawNarrationBox } from "../ui/narrationBox.js";
-import { drawPortraitBadge } from "../ui/portraitBadge.js";
-import { drawPolygraph } from "../ui/polygraph.js";
-import { drawChoiceModal } from "../ui/choiceModal.js";
-import { drawDialogueModal } from "../ui/dialogueModal.js";
-import { drawLogPanel, drawLogTab } from "../ui/dialogLog.js";
-import { DESIGN_H, DESIGN_W } from "../ui/theme.js";
+import { registerScene, setScene } from '../sceneManager.js';
+import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from '../input.js';
+import { clamp, lerp } from '../math.js';
+import { pickChoice, resetRun, setNode, state } from '../game/state.js';
+import { getBiometricDrawData, updateWave } from '../game/waves.js';
+import { drawSceneBackground } from '../ui/background.js';
+import { drawNarrationBox } from '../ui/narrationBox.js';
+import { drawPortraitBadge } from '../ui/portraitBadge.js';
+import { drawPolygraph } from '../ui/polygraph.js';
+import { drawChoiceModal } from '../ui/choiceModal.js';
+import { drawDialogueModal } from '../ui/dialogueModal.js';
+import { drawLogPanel, drawLogTab } from '../ui/dialogLog.js';
+import { DESIGN_H, DESIGN_W } from '../ui/theme.js';
 
 const LAYOUT = {
   narration: { x: 8, y: 8, w: 518, h: 48 },
@@ -43,10 +43,10 @@ let narrationSlide = 0;
 let narrationTextProgress = 0;
 let choicesAnim = 0;
 let polygraphSlide = 0;
-let displayedNodeId = "";
+let displayedNodeId = '';
 
 const laneFlash = { heartRate: 0, eeg: 0, gsr: 0 };
-const prevMetrics = { heartRate: "", eeg: "", gsr: "" };
+const prevMetrics = { heartRate: '', eeg: '', gsr: '' };
 
 function smoothstep(t) {
   return t * t * (3 - 2 * t);
@@ -57,7 +57,12 @@ function easeOutCubic(t) {
 }
 
 function inRect(point, rect) {
-  return point.x >= rect.x && point.x <= rect.x + rect.w && point.y >= rect.y && point.y <= rect.y + rect.h;
+  return (
+    point.x >= rect.x &&
+    point.x <= rect.x + rect.w &&
+    point.y >= rect.y &&
+    point.y <= rect.y + rect.h
+  );
 }
 
 function drawConversationPortraits(ctx) {
@@ -71,8 +76,8 @@ function drawConversationPortraits(ctx) {
     LAYOUT.operatorBadge.y,
     LAYOUT.operatorBadge.w,
     LAYOUT.operatorBadge.h,
-    "operator",
-    "OPERATOR",
+    'operator',
+    'OPERATOR'
   );
 
   drawPortraitBadge(
@@ -81,8 +86,8 @@ function drawConversationPortraits(ctx) {
     LAYOUT.defendantBadge.y,
     LAYOUT.defendantBadge.w,
     LAYOUT.defendantBadge.h,
-    "defendant",
-    state.gameData?.suspect?.role ? "OZAN" : "DEFENDANT",
+    'defendant',
+    state.gameData?.suspect?.role ? 'OZAN' : 'DEFENDANT'
   );
 }
 
@@ -96,14 +101,22 @@ function drawPlayScene(ctx) {
     const narrEase = easeOutCubic(clamp(narrationSlide, 0, 1));
     const narrY = lerp(-LAYOUT.narration.h, LAYOUT.narration.y, narrEase);
 
-    const titleStr = node.theme || "";
-    const descStr = node.description || "";
+    const titleStr = node.theme || '';
+    const descStr = node.description || '';
     const titleLen = titleStr.length;
     const shown = Math.floor(narrationTextProgress);
     const titleSlice = titleStr.slice(0, Math.min(titleLen, shown));
     const descSlice = descStr.slice(0, Math.max(0, shown - titleLen));
 
-    drawNarrationBox(ctx, LAYOUT.narration.x, narrY, LAYOUT.narration.w, LAYOUT.narration.h, titleSlice, descSlice);
+    drawNarrationBox(
+      ctx,
+      LAYOUT.narration.x,
+      narrY,
+      LAYOUT.narration.w,
+      LAYOUT.narration.h,
+      titleSlice,
+      descSlice
+    );
   }
 
   const mouse = getMousePos();
@@ -170,7 +183,7 @@ function drawPlayScene(ctx) {
       panelRect.w,
       panelRect.h,
       state.topLog,
-      logScrollOffset,
+      logScrollOffset
     );
     ctx.restore();
     if (ease > 0.95) {
@@ -185,7 +198,7 @@ function narrationTotalLen() {
   if (!node) {
     return 0;
   }
-  return (node.theme || "").length + (node.description || "").length;
+  return (node.theme || '').length + (node.description || '').length;
 }
 
 function advanceToPendingNode() {
@@ -194,7 +207,7 @@ function advanceToPendingNode() {
   }
   const result = setNode(state.pendingNodeId);
   if (!result.ok || result.isEnd) {
-    setScene("result");
+    setScene('result');
   }
 }
 
@@ -252,7 +265,7 @@ function handleResponseMode(dt) {
   const qDone = state.questionProgress >= qLen;
   const aDone = state.answerProgress >= aLen;
 
-  if (wasKeyPressed("enter")) {
+  if (wasKeyPressed('enter')) {
     if (!qDone) {
       state.questionProgress = qLen;
       return;
@@ -282,7 +295,7 @@ function handleResponseMode(dt) {
 }
 
 export function registerPlayScene(_canvas, ctx) {
-  registerScene("play", {
+  registerScene('play', {
     enter() {
       resetRun();
       logExpanded = false;
@@ -313,7 +326,7 @@ export function registerPlayScene(_canvas, ctx) {
         narrationSlide = Math.min(1, narrationSlide + dt * NARRATION_SLIDE_SPEED);
       }
 
-      for (const key of ["heartRate", "eeg", "gsr"]) {
+      for (const key of ['heartRate', 'eeg', 'gsr']) {
         if (state.metrics[key] !== prevMetrics[key]) {
           prevMetrics[key] = state.metrics[key];
           laneFlash[key] = 1;
@@ -338,19 +351,19 @@ export function registerPlayScene(_canvas, ctx) {
 
       updateLogHover(dt);
 
-      if (wasKeyPressed("escape")) {
-        setScene("menu");
+      if (wasKeyPressed('escape')) {
+        setScene('menu');
         return;
       }
 
-      if (wasKeyPressed("r")) {
+      if (wasKeyPressed('r')) {
         resetRun();
         narrationTextProgress = 0;
         choicesAnim = 0;
         return;
       }
 
-      if (!state.responseMode && narrationTextProgress < totalTextLen && wasKeyPressed("enter")) {
+      if (!state.responseMode && narrationTextProgress < totalTextLen && wasKeyPressed('enter')) {
         narrationTextProgress = totalTextLen;
         return;
       }

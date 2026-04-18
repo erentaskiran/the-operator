@@ -1,23 +1,23 @@
-import { clamp } from "../math.js";
-import { CASES } from "./cases.js";
-import { applyMechanicsToBiometrics, resetBiometricsOnState } from "./waves.js";
+import { clamp } from '../math.js';
+import { CASES } from './cases.js';
+import { applyMechanicsToBiometrics, resetBiometricsOnState } from './waves.js';
 
 export const state = {
   gameData: null,
   loading: true,
-  error: "",
-  currentNodeId: "",
+  error: '',
+  currentNodeId: '',
   currentNode: null,
   fearBar: 0,
   maxFearBar: 100,
   topLog: [],
-  prompt: "",
-  note: "",
-  lastQuestion: "",
-  lastAnswer: "",
+  prompt: '',
+  note: '',
+  lastQuestion: '',
+  lastAnswer: '',
   responseMode: false,
   responseTimer: 0,
-  pendingNodeId: "",
+  pendingNodeId: '',
   choiceRects: [],
   questionProgress: 0,
   answerProgress: 0,
@@ -27,11 +27,11 @@ export const state = {
   caseIndex: 0,
   caseDataById: {},
   metrics: {
-    heartRate: "BASELINE",
-    eeg: "BASELINE",
-    gsr: "BASELINE",
-    breathing: "BASELINE",
-    cctvVisual: "NEUTRAL",
+    heartRate: 'BASELINE',
+    eeg: 'BASELINE',
+    gsr: 'BASELINE',
+    breathing: 'BASELINE',
+    cctvVisual: 'NEUTRAL',
   },
   wave: {
     heartRate: { amp: 0.25, freq: 1.5, noise: 0.04 },
@@ -79,8 +79,8 @@ export function setNode(nodeId) {
   state.currentNode = node;
   state.responseMode = false;
   state.responseTimer = 0;
-  state.pendingNodeId = "";
-  state.prompt = "";
+  state.pendingNodeId = '';
+  state.prompt = '';
   state.choiceRects = [];
 
   return { ok: true, isEnd: !!node.is_end_state };
@@ -93,9 +93,9 @@ export function resetRun() {
   state.fearBarDisplay = config.initial_fear_bar;
   state.fearFlash = 0;
   state.topLog = [];
-  state.lastQuestion = "";
-  state.lastAnswer = "";
-  state.error = "";
+  state.lastQuestion = '';
+  state.lastAnswer = '';
+  state.error = '';
   state.questionProgress = 0;
   state.answerProgress = 0;
   resetBiometricsOnState(state);
@@ -119,7 +119,7 @@ export function pickChoice(index) {
   state.lastAnswer = choice.answer;
   pushLog(`SEN: ${choice.question}`);
   pushLog(`OZAN: ${choice.answer}`);
-  state.note = "";
+  state.note = '';
 
   state.metrics.heartRate = mechanics.heart_rate || state.metrics.heartRate;
   state.metrics.eeg = mechanics.eeg || state.metrics.eeg;

@@ -1,20 +1,20 @@
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
-import { runPipeline, parseJsonBlock } from "./llm-pipeline.js";
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
 
 const caseId = process.argv[2];
 if (!caseId) {
-  console.error("kullanim: npm run generate:tr -- <case-id>");
-  console.error("  ornek: npm run generate:tr -- sessiz-tanik");
+  console.error('kullanim: npm run generate:tr -- <case-id>');
+  console.error('  ornek: npm run generate:tr -- sessiz-tanik');
   process.exit(1);
 }
 
 const SYSTEM =
   "Hukuki sorgulama oyunu 'The Operator' icin JSON ureten bir pipeline " +
-  "adimisin. Yalnizca istenen semaya uyan gecerli JSON ciktisi ver. " +
-  "Markdown, aciklama veya on-soz kullanma. Tum serbest metin alanlari " +
-  "TURKCE olmali. Sema anahtarlari ve enum degerleri (STABLE, RISE, " +
-  "ANALYTICAL vb.) ingilizce kalmali.";
+  'adimisin. Yalnizca istenen semaya uyan gecerli JSON ciktisi ver. ' +
+  'Markdown, aciklama veya on-soz kullanma. Tum serbest metin alanlari ' +
+  'TURKCE olmali. Sema anahtarlari ve enum degerleri (STABLE, RISE, ' +
+  'ANALYTICAL vb.) ingilizce kalmali.';
 
 const STEP_1_SUSPECT = `Hukuki bir sorgulama oyunu icin suphelisi uretiyorsun.
 
@@ -234,30 +234,28 @@ KURALLAR:
 
 const fill = (template, vars) =>
   Object.entries(vars).reduce(
-    (acc, [key, val]) =>
-      acc.replaceAll(`{{${key}}}`, JSON.stringify(val, null, 2)),
+    (acc, [key, val]) => acc.replaceAll(`{{${key}}}`, JSON.stringify(val, null, 2)),
     template
   );
 
 const steps = [
   {
-    name: "suspect",
+    name: 'suspect',
     prompt: STEP_1_SUSPECT,
     parse: parseJsonBlock,
   },
   {
-    name: "case",
+    name: 'case',
     prompt: (r) => fill(STEP_2_CASE, { suspect_json: r.suspect }),
     parse: parseJsonBlock,
   },
   {
-    name: "nodes",
-    prompt: (r) =>
-      fill(STEP_3_NODES, { suspect_json: r.suspect, case_json: r.case }),
+    name: 'nodes',
+    prompt: (r) => fill(STEP_3_NODES, { suspect_json: r.suspect, case_json: r.case }),
     parse: parseJsonBlock,
   },
   {
-    name: "final",
+    name: 'final',
     prompt: (r) =>
       fill(STEP_4_ASSEMBLE, {
         suspect_json: r.suspect,
@@ -274,6 +272,6 @@ const { results } = await runPipeline(steps, {
   onStep: ({ name, text }) => console.log(`[${name}] ${text.length} karakter`),
 });
 
-const outPath = resolve("dialogs", `${caseId}.json`);
+const outPath = resolve('dialogs', `${caseId}.json`);
 writeFileSync(outPath, JSON.stringify(results.final, null, 2));
 console.log(`yazildi: ${outPath}`);

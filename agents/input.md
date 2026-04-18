@@ -3,11 +3,13 @@
 Source file: `js/input.js`
 
 ## Responsibilities
+
 - Track keyboard and mouse state.
 - Store per-frame events (`pressed`/`released`).
 - Convert mouse position to canvas coordinates with proper scaling.
 
 ## API Summary
+
 - `initInput(canvas)`: Registers event listeners and runs once.
 - `endFrameInput()`: Clears pressed/released sets.
 - `isKeyDown(key)`: Whether a key is currently held.
@@ -19,5 +21,6 @@ Source file: `js/input.js`
 - `getMousePos()`: Mouse position in canvas coordinates.
 
 ## Notes
+
 - Keys are normalized to lowercase.
 - `endFrameInput()` should be called at the end of every update tick.

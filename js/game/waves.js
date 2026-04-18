@@ -1,4 +1,4 @@
-import { clamp } from "../math.js";
+import { clamp } from '../math.js';
 
 const WINDOW_SECONDS = 8;
 const SAMPLE_RATE = {
@@ -166,16 +166,22 @@ function updateLatentAndDrive(model, dt) {
   const { latent, drive } = model;
 
   const symTarget = clamp(
-    0.08 + latent.arousal * 0.5 + latent.cognitiveLoad * 0.18 + latent.painManipulation * 0.24 - latent.control * 0.14,
+    0.08 +
+      latent.arousal * 0.5 +
+      latent.cognitiveLoad * 0.18 +
+      latent.painManipulation * 0.24 -
+      latent.control * 0.14,
     0,
-    1,
+    1
   );
   drive.sympathetic += (symTarget - drive.sympathetic) * Math.min(1, dt * 2.9);
-  drive.parasympathetic += ((1 - symTarget * 0.82) - drive.parasympathetic) * Math.min(1, dt * 1.8);
+  drive.parasympathetic += (1 - symTarget * 0.82 - drive.parasympathetic) * Math.min(1, dt * 1.8);
 
   latent.arousal += (RELAX_BASELINE.arousal - latent.arousal) * Math.min(1, dt * 0.2);
-  latent.cognitiveLoad += (RELAX_BASELINE.cognitiveLoad - latent.cognitiveLoad) * Math.min(1, dt * 0.17);
-  latent.painManipulation += (RELAX_BASELINE.painManipulation - latent.painManipulation) * Math.min(1, dt * 0.58);
+  latent.cognitiveLoad +=
+    (RELAX_BASELINE.cognitiveLoad - latent.cognitiveLoad) * Math.min(1, dt * 0.17);
+  latent.painManipulation +=
+    (RELAX_BASELINE.painManipulation - latent.painManipulation) * Math.min(1, dt * 0.58);
   latent.fatigue += (RELAX_BASELINE.fatigue - latent.fatigue) * Math.min(1, dt * 0.1);
   latent.control += (RELAX_BASELINE.control - latent.control) * Math.min(1, dt * 0.26);
 
@@ -185,15 +191,27 @@ function updateLatentAndDrive(model, dt) {
 
 function updateEcgParams(model, dt) {
   const { ecg, drive, latent, time } = model;
-  const bpmTarget = clamp(56 + drive.sympathetic * 66 + latent.painManipulation * 18 - drive.parasympathetic * 8, 48, 162);
+  const bpmTarget = clamp(
+    56 + drive.sympathetic * 66 + latent.painManipulation * 18 - drive.parasympathetic * 8,
+    48,
+    162
+  );
   ecg.bpm += (bpmTarget - ecg.bpm) * Math.min(1, dt * 3.2);
 
   ecg.hrvLf = Math.sin(time * Math.PI * 2 * 0.1) * (0.02 + drive.parasympathetic * 0.02);
   ecg.hrvHf = Math.sin(time * Math.PI * 2 * 0.26 + 1.2) * (0.01 + drive.parasympathetic * 0.018);
   ecg.rr = clamp(60 / Math.max(ecg.bpm, 45) + ecg.hrvLf + ecg.hrvHf, 0.36, 1.4);
 
-  const qrsTarget = clamp(0.9 + drive.sympathetic * 0.6 + latent.painManipulation * 0.22 - drive.parasympathetic * 0.1, 0.75, 1.85);
-  const twaveTarget = clamp(0.95 + drive.sympathetic * 0.2 - latent.painManipulation * 0.15, 0.7, 1.35);
+  const qrsTarget = clamp(
+    0.9 + drive.sympathetic * 0.6 + latent.painManipulation * 0.22 - drive.parasympathetic * 0.1,
+    0.75,
+    1.85
+  );
+  const twaveTarget = clamp(
+    0.95 + drive.sympathetic * 0.2 - latent.painManipulation * 0.15,
+    0.7,
+    1.35
+  );
   ecg.qrsGain += (qrsTarget - ecg.qrsGain) * Math.min(1, dt * 2.6);
   ecg.twaveGain += (twaveTarget - ecg.twaveGain) * Math.min(1, dt * 2.2);
 
@@ -277,7 +295,10 @@ function emitEegSamples(model, dt) {
     const blinkArtifact = model.eeg.blink * 0.23;
 
     const exciteGain = 1 + model.transient.eegExcite * 1.15;
-    const sample = (delta + theta + alpha + beta + gamma + model.eeg.pink + emg + line + blinkArtifact) * 0.26 * exciteGain;
+    const sample =
+      (delta + theta + alpha + beta + gamma + model.eeg.pink + emg + line + blinkArtifact) *
+      0.26 *
+      exciteGain;
     pushRing(model.buffers.eeg, sample);
   }
 
@@ -356,7 +377,11 @@ function syncLegacyWave(state) {
   state.wave.eeg.freq = clamp(1.2 + state.biometric.latent.cognitiveLoad * 4.5, 1, 6.6);
   state.wave.gsr.freq = clamp(0.35 + state.biometric.drive.sympathetic * 0.8, 0.35, 1.8);
 
-  state.wave.heartRate.noise = clamp(0.015 + state.biometric.latent.painManipulation * 0.12, 0.01, 0.2);
+  state.wave.heartRate.noise = clamp(
+    0.015 + state.biometric.latent.painManipulation * 0.12,
+    0.01,
+    0.2
+  );
   state.wave.eeg.noise = clamp(0.03 + state.biometric.eeg.emg * 0.2, 0.02, 0.3);
   state.wave.gsr.noise = clamp(0.006 + state.biometric.latent.painManipulation * 0.04, 0.005, 0.09);
 }
@@ -415,11 +440,11 @@ export function applyMechanicsToBiometrics(state, mechanics) {
   };
   state.biometric.transient.heartExcite = Math.max(
     state.biometric.transient.heartExcite,
-    heartExciteMap[mechanics.heart_rate] ?? 0.2,
+    heartExciteMap[mechanics.heart_rate] ?? 0.2
   );
   state.biometric.transient.eegExcite = Math.max(
     state.biometric.transient.eegExcite,
-    eegExciteMap[mechanics.eeg] ?? 0.2,
+    eegExciteMap[mechanics.eeg] ?? 0.2
   );
 
   const breathingMap = {
@@ -448,7 +473,10 @@ export function applyMechanicsToBiometrics(state, mechanics) {
   };
   applyDelta(latent, cctvMap[mechanics.cctv_visual], 1);
 
-  triggerGsrEvent(state.biometric, clamp(0.25 + latent.arousal * 0.55 + latent.cognitiveLoad * 0.38, 0.1, 1));
+  triggerGsrEvent(
+    state.biometric,
+    clamp(0.25 + latent.arousal * 0.55 + latent.cognitiveLoad * 0.38, 0.1, 1)
+  );
   if (latent.painManipulation > 0.36) {
     state.biometric.ecg.artifactBurst = clamp(state.biometric.ecg.artifactBurst + 0.2, 0, 0.9);
   }
@@ -477,6 +505,7 @@ export function getBiometricDrawData(state) {
     sampleRate: SAMPLE_RATE,
     buffers: state.biometric.buffers,
     readout: state.biometric.readout,
-    sampleAt: (metric, offsetFloat) => ringAtOffsetLerp(state.biometric.buffers[metric], offsetFloat),
+    sampleAt: (metric, offsetFloat) =>
+      ringAtOffsetLerp(state.biometric.buffers[metric], offsetFloat),
   };
 }

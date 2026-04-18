@@ -26,12 +26,12 @@ function loadAudio(name, src) {
       reject(new Error(`Failed to load audio: ${src}`));
     };
     const cleanup = () => {
-      audio.removeEventListener("canplaythrough", onReady);
-      audio.removeEventListener("error", onError);
+      audio.removeEventListener('canplaythrough', onReady);
+      audio.removeEventListener('error', onError);
     };
 
-    audio.addEventListener("canplaythrough", onReady, { once: true });
-    audio.addEventListener("error", onError, { once: true });
+    audio.addEventListener('canplaythrough', onReady, { once: true });
+    audio.addEventListener('error', onError, { once: true });
     audio.src = src;
     audio.load();
   });
