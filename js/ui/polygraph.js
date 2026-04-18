@@ -39,39 +39,28 @@ function drawLaneWave(ctx, x, y, w, h, color, buffer, sampleRate, type, sampleAt
   const secondsWindow = 8;
 
   ctx.save();
-  ctx.shadowColor = color;
-  ctx.shadowBlur = 6;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
 
-  for (let pass = 2; pass >= 0; pass -= 1) {
-    ctx.beginPath();
-    const alpha = pass === 0 ? 0.95 : pass === 1 ? 0.42 : 0.2;
-    ctx.strokeStyle = `rgba(${color === COLORS.pulse ? "224,72,72" : color === COLORS.eeg ? "227,193,58" : "92,207,125"},${alpha})`;
-    ctx.lineWidth = pass === 0 ? 1.15 : pass === 1 ? 2.1 : 3.6;
-
-    const step = 1;
-    for (let i = 0; i <= w; i += step) {
-      const nx = i / w;
-      const secondsAgo = (1 - nx) * secondsWindow;
-      const sample = sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt);
-      const py = clamp(midY - sample * gain, y + 1, y + h - 1);
-      if (i === 0) {
-        ctx.moveTo(x + i, py);
-      } else {
-        ctx.lineTo(x + i, py);
-      }
+  for (let i = 0; i <= w; i += 1) {
+    const nx = i / w;
+    const secondsAgo = (1 - nx) * secondsWindow;
+    const sample = sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt);
+    const py = clamp(midY - sample * gain, y + 1, y + h - 1);
+    if (i === 0) {
+      ctx.moveTo(x + i, py);
+    } else {
+      ctx.lineTo(x + i, py);
     }
-    ctx.stroke();
   }
+  ctx.stroke();
 
-  ctx.shadowBlur = 0;
   const cursor = x + w - 2;
   const latestSample = sampleFromRing(buffer, sampleRate, 0, sampleAt);
   drawRect(ctx, cursor, y + 1, 1, h - 2, "rgba(255, 210, 150, 0.2)");
-
-  ctx.beginPath();
   ctx.fillStyle = color;
-  ctx.arc(cursor, clamp(midY - latestSample * gain, y + 1, y + h - 1), 1.4, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.fillRect(cursor - 1, clamp(midY - latestSample * gain, y + 1, y + h - 1) - 1, 3, 3);
   ctx.restore();
 }
 
