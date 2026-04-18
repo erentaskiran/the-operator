@@ -28,15 +28,21 @@ let renderScale = 1;
 function resizeCanvas() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  const scale = Math.max(
-    1,
-    Math.min(Math.floor(vw / DESIGN_W), Math.floor(vh / DESIGN_H)),
-  );
-  renderScale = scale;
-  canvas.width = DESIGN_W * scale;
-  canvas.height = DESIGN_H * scale;
+  const aspect = DESIGN_W / DESIGN_H;
+  let w;
+  let h;
+  if (vw / vh > aspect) {
+    h = vh;
+    w = Math.round(vh * aspect);
+  } else {
+    w = vw;
+    h = Math.round(vw / aspect);
+  }
+  canvas.width = w;
+  canvas.height = h;
+  renderScale = w / DESIGN_W;
   ctx.imageSmoothingEnabled = false;
-  setDesignScale(scale);
+  setDesignScale(renderScale);
 }
 
 initInput(canvas);
