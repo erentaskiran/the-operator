@@ -2,6 +2,7 @@ import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp, lerp } from '../math.js';
 import {
+  getDefendantImageKey,
   getSuspectLabel,
   pickChoice,
   resetRun,
@@ -147,7 +148,7 @@ function drawConversationPortraits(ctx) {
     LAYOUT.defendantBadge.y,
     LAYOUT.defendantBadge.w,
     LAYOUT.defendantBadge.h,
-    'defendant',
+    getDefendantImageKey(),
     getSuspectLabel(),
     { style: cctvStyle, intensity: cctvIntensity, time: state.time }
   );

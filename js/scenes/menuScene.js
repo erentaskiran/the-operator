@@ -1,4 +1,5 @@
 import { drawRect, drawText, drawWrappedText, drawScrollableText } from '../draw.js';
+import { getImage } from '../assets.js';
 import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp } from '../math.js';
@@ -47,27 +48,19 @@ function inRect(point, rect) {
 }
 
 function parseLabel(label) {
-  const dashIdx = label.indexOf(' - ');
+  const sep = label.includes(' — ') ? ' — ' : ' - ';
+  const dashIdx = label.indexOf(sep);
   if (dashIdx < 0) {
     return { prefix: label, suffix: '' };
   }
   return {
     prefix: label.slice(0, dashIdx),
-    suffix: label.slice(dashIdx + 3),
+    suffix: label.slice(dashIdx + sep.length),
   };
 }
 
 function drawStatsPill(ctx, x, y, stats) {
-  if (!stats || stats.attempts <= 0) {
-    drawText(ctx, t('STAT_NEW'), x, y, {
-      size: 9,
-      color: COLORS.amberBright,
-      font: UI_FONT,
-      align: 'right',
-      baseline: 'middle',
-    });
-    return;
-  }
+  if (!stats || stats.attempts <= 0) return;
   const pillColor =
     stats.successes > 0 ? COLORS.success : stats.fails > 0 ? COLORS.fail : COLORS.amber;
   const label = `x${stats.attempts}`;
@@ -88,7 +81,7 @@ function drawStatsPill(ctx, x, y, stats) {
 }
 
 function drawCaseCard(ctx, x, y, w, h, opts) {
-  const { number, prefix, suffix, selected, hovered, pulseT, stats } = opts;
+  const { number, prefix, suffix, selected, hovered, pulseT, stats, characterImage } = opts;
   const borderColor = selected ? COLORS.amberBright : hovered ? COLORS.amber : COLORS.amberDim;
   const fillColor = selected
     ? 'rgba(60, 36, 14, 0.8)'
@@ -98,16 +91,27 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
 
   drawPanel(ctx, x, y, w, h, { border: borderColor, fill: fillColor });
 
-  drawText(ctx, number, x + 12, y + h / 2, {
-    size: 18,
-    color: selected ? COLORS.amberBright : COLORS.amber,
-    font: UI_FONT,
-    baseline: 'middle',
-  });
+  if (characterImage) {
+    const imgSize = h - 4;
+    const imgX = x + 2;
+    const imgY = y + 2;
+    ctx.drawImage(characterImage, imgX, imgY, imgSize, imgSize);
+  } else {
+    drawText(ctx, number, x + 12, y + h / 2, {
+      size: 18,
+      color: selected ? COLORS.amberBright : COLORS.amber,
+      font: UI_FONT,
+      baseline: 'middle',
+    });
+  }
 
-  drawRect(ctx, x + 36, y + 6, 1, h - 12, COLORS.amberDim);
+  const dividerX = characterImage ? x + h - 2 : x + 36;
+  drawRect(ctx, dividerX, y + 6, 1, h - 12, COLORS.amberDim);
 
-  drawText(ctx, prefix, x + 44, y + 13, {
+  const textX = characterImage ? x + h + 4 : x + 44;
+  const textW = characterImage ? w - h - 12 : w - 52;
+
+  drawText(ctx, prefix, textX, y + 13, {
     size: 11,
     color: selected ? COLORS.amberBright : COLORS.cream,
     font: UI_FONT,
@@ -116,7 +120,7 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
 
   drawStatsPill(ctx, x + w - 6, y + 13, stats);
 
-  drawWrappedText(ctx, suffix, x + 44, y + 28, w - 52, {
+  drawWrappedText(ctx, suffix, textX, y + 28, textW, {
     size: 11,
     color: COLORS.creamDim,
     font: UI_FONT,
@@ -229,6 +233,7 @@ function drawMenuScene(ctx) {
 
     const { prefix, suffix } = parseLabel(caseDef.label);
     const numberStr = String(i + 1).padStart(2, '0');
+    const characterImage = getImage(`defendant-${caseDef.id}`);
 
     ctx.save();
     ctx.globalAlpha = cardP;
@@ -240,6 +245,7 @@ function drawMenuScene(ctx) {
       hovered,
       pulseT: menuAnim,
       stats: getStats(caseDef.id),
+      characterImage,
     });
     ctx.restore();
   }
@@ -259,20 +265,23 @@ function drawMenuScene(ctx) {
     drawPanel(ctx, infoX, infoY, infoW, infoH, { border: COLORS.amberDim });
 
     if (caseData) {
-      drawText(ctx, caseData.title, infoX + infoW / 2, infoY + 14, {
+      const titleLineCount = drawWrappedText(ctx, caseData.title, infoX + infoW / 2, infoY + 10, infoW - 24, {
         align: 'center',
         size: 12,
         color: COLORS.amberBright,
         font: UI_FONT,
-        baseline: 'middle',
+        baseline: 'top',
+        lineHeight: 15,
+        maxLines: 3,
       });
+      const titleBlockH = titleLineCount * 15 + 10;
       const scrollResult = drawScrollableText(
         ctx,
         caseData.context,
         infoX + 12,
-        infoY + 32,
+        infoY + titleBlockH,
         infoW - 24,
-        infoH - 40,
+        infoH - titleBlockH - 8,
         infoScrollOffset,
         {
           size: 12,

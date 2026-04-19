@@ -1,6 +1,7 @@
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
+import { generateCharacterImage } from './generate-character-image.mjs';
 
 const caseId = process.argv[2];
 if (!caseId) {
@@ -379,12 +380,35 @@ const steps = [
   },
 ];
 
+const STEP_LABELS = {
+  suspect: 'Working on suspect...',
+  case: 'Working on case context...',
+  nodes: 'Building interrogation nodes...',
+  final: 'Assembling final case...',
+};
+
 const { results } = await runPipeline(steps, {
   system: SYSTEM,
   thinking: true,
-  onStep: ({ name, text }) => console.log(`[${name}] ${text.length} chars`),
+  onStepStart: ({ name }) => console.log(STEP_LABELS[name] ?? `Working on ${name}...`),
+  onStep: ({ name, text }) => console.log(`[${name}] done — ${text.length} chars`),
 });
+
+const imageOutPath = resolve('assets', 'characters', `${caseId}.png`);
+console.log('Generating character image...');
+await generateCharacterImage(results.suspect.suspect, imageOutPath);
+
+results.final.game_data.character_image = `./assets/characters/${caseId}.png`;
 
 const outPath = resolve('dialogs', `${caseId}.json`);
 writeFileSync(outPath, JSON.stringify(results.final, null, 2));
 console.log(`wrote ${outPath}`);
+
+const casesListPath = resolve('js', 'game', 'cases-list.js');
+const casesListSrc = readFileSync(casesListPath, 'utf8');
+const title = results.final.game_data.title ?? caseId;
+const language = results.final.game_data.language ?? 'en';
+const newEntry = `  {\n    id: '${caseId}',\n    file: './dialogs/${caseId}.json',\n    label: '${title}',\n    language: '${language}',\n  },\n`;
+const updated = casesListSrc.replace(/\];\s*$/, `${newEntry}];\n`);
+writeFileSync(casesListPath, updated);
+console.log(`added '${caseId}' to cases-list.js`);

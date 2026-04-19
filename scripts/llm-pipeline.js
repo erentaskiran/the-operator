@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-const DEFAULT_MODEL = 'claude-opus-4-7';
+// const DEFAULT_MODEL = 'claude-opus-4-7';
+const DEFAULT_MODEL = 'claude-sonnet-4-6';
 
 const client = new Anthropic();
 
@@ -32,7 +33,7 @@ export function extractText(response) {
 
 export async function runPipeline(
   steps,
-  { system, model, maxTokens, thinking = true, onStep, signal } = {}
+  { system, model, maxTokens, thinking = true, onStepStart, onStep, signal } = {}
 ) {
   if (!Array.isArray(steps) || steps.length === 0) {
     throw new Error('runPipeline: `steps` must be a non-empty array.');
@@ -50,6 +51,8 @@ export async function runPipeline(
     }
 
     messages.push({ role: 'user', content: userText });
+
+    if (onStepStart) onStepStart({ name, index: i });
 
     const response = await callClaude({
       system: step.system ?? system,

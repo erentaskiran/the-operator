@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
+import { generateCharacterImage } from './generate-character-image.mjs';
 
 const caseId = process.argv[2];
 if (!caseId) {
@@ -387,11 +388,25 @@ const steps = [
   },
 ];
 
+const STEP_LABELS = {
+  suspect: 'Şüpheli oluşturuluyor...',
+  case: 'Dava bağlamı oluşturuluyor...',
+  nodes: 'Sorgulama düğümleri oluşturuluyor...',
+  final: 'Final dava JSON\'u derleniyor...',
+};
+
 const { results } = await runPipeline(steps, {
   system: SYSTEM,
   thinking: true,
-  onStep: ({ name, text }) => console.log(`[${name}] ${text.length} karakter`),
+  onStepStart: ({ name }) => console.log(STEP_LABELS[name] ?? `${name} işleniyor...`),
+  onStep: ({ name, text }) => console.log(`[${name}] tamamlandı — ${text.length} karakter`),
 });
+
+const imageOutPath = resolve('assets', 'characters', `${caseId}.png`);
+console.log('Karakter görseli oluşturuluyor...');
+await generateCharacterImage(results.suspect.suspect, imageOutPath);
+
+results.final.game_data.character_image = `./assets/characters/${caseId}.png`;
 
 const outPath = resolve('dialogs', `${caseId}.json`);
 writeFileSync(outPath, JSON.stringify(results.final, null, 2));

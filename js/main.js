@@ -115,21 +115,26 @@ async function boot() {
     baseline: 'middle',
   });
 
-  const [caseDataById] = await Promise.all([
-    loadAllCases(),
-    preloadAssets({
-      images: {
-        background: './assets/background.png',
-        'background-no-light': './assets/background-no-light.png',
-        operator: './assets/operator.png',
-        defendant: './assets/defendant.png',
-      },
-      audio: {
-        'case-slam': './assets/audio/case-slam.wav',
-      },
-    }),
-    loadCustomFonts(),
-  ]);
+  const [caseDataById] = await Promise.all([loadAllCases(), loadCustomFonts()]);
+
+  const characterImages = Object.fromEntries(
+    Object.entries(caseDataById)
+      .filter(([, data]) => data.character_image)
+      .map(([id, data]) => [`defendant-${id}`, data.character_image])
+  );
+
+  await preloadAssets({
+    images: {
+      background: './assets/background.png',
+      'background-no-light': './assets/background-no-light.png',
+      operator: './assets/operator.png',
+      defendant: './assets/defendant.png',
+      ...characterImages,
+    },
+    audio: {
+      'case-slam': './assets/audio/case-slam.wav',
+    },
+  });
 
   state.caseDataById = caseDataById;
   setSelectedCase(0);

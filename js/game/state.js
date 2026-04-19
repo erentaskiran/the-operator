@@ -59,6 +59,14 @@ export function getSelectedCaseDef() {
   return CASES[state.caseIndex] || CASES[0];
 }
 
+export function getDefendantImageKey() {
+  const caseDef = getSelectedCaseDef();
+  if (caseDef && state.gameData?.character_image) {
+    return `defendant-${caseDef.id}`;
+  }
+  return 'defendant';
+}
+
 export function getSelectedCaseData() {
   const selected = getSelectedCaseDef();
   return state.caseDataById[selected.id] || null;

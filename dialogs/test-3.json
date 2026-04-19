@@ -1,71 +1,72 @@
 {
   "game_data": {
-    "title": "Yıldız Özel Hastanesi Malpraktis Soruşturması: Arda Keskin Davası",
+    "title": "In Re: MBX-417 Adverse Event Suppression — Voss v. FDA Civil Enforcement & Hargrove et al. Class Action",
     "suspect": {
-      "name": "Cenk Aydoğan",
-      "role": "Özel hastane başhekimi",
-      "profile": "Küçük bir Anadolu kasabasında büyüdü, burslarla tıp fakültesini bitirdi. Yirmi yıldır cerrah olarak çalışıyor, son beş yıldır İstanbul'daki özel bir hastaneyi yönetiyor. Dışarıdan karizmatik ve soğukkanlı görünür; ancak astlarına karşı mikro-yönetici ve aşırı kontrolcü olduğu söyleniyor. Şüpheli detay: hastanenin mali denetim raporları son iki çeyrektir gecikmeli teslim ediliyor ve Cenk bazı ameliyat kayıtlarını bizzat dijitalleştirmekte ısrar ediyor. İnsani detay: her pazar sabahı kimseye söylemeden yaşlı annesinin yanına gidip kahvaltı hazırlıyor."
+      "name": "Renata Voss",
+      "role": "Senior Clinical Trial Coordinator, Meridian Biosolutions",
+      "profile": "Renata Voss spent eighteen years building a reputation as one of the most meticulous trial coordinators in mid-tier pharmaceutical research. Raised in Akron, Ohio by a single mother who worked hospital orderly shifts, she put herself through Case Western Reserve on academic scholarships and entered the industry after her father died from an undiagnosed autoimmune condition. She joined Meridian Biosolutions in 2017 to oversee Phase III trials for MBX-417, an experimental immunosuppressant. Colleagues describe her as methodical to the point of rigidity—rarely social, rarely wrong, and deeply trusted by regulators. Suspicious detail: internal audit logs show she requested an anomalous volume of data entry corrections during the final data-lock phase of MBX-417, far outside her own historical baseline. Humanizing detail: for nearly two years, she drove her terminally ill younger sister Petra to every oncology and specialist appointment, often working midnight shifts remotely just to keep her caseload from slipping."
     },
     "system_config": {
       "initial_fear_bar": 20,
       "max_fear_bar": 100,
-      "fear_bar_description": "Şüphelinin psikolojik baskı altında ne kadar kırılmaya yaklaştığını gösteren duygusal gerilim göstergesi. Yükseldikçe savunma duvarları incelir, düştükçe kontrolü geri alır.",
+      "fear_bar_description": "Tracks Renata Voss's accumulated psychological pressure throughout the interrogation. The bar rises as she is confronted with evidence, emotional leverage, or targeted questions probing concealed information. High values indicate a suspect approaching defensive collapse or involuntary disclosure; low values indicate she has regained composure and retreated into legal control. Her documented Generalized Anxiety Disorder and the unresolved grief surrounding her deceased sister Petra mean her threshold for emotional destabilization is lower than her professional composure suggests — skilled operators should exploit that gap carefully and early.",
       "heart_rate_baseline": 82,
+<<<<<<< HEAD
       "gsr_baseline": 7
+=======
+      "eeg_baseline": 24,
+      "gsr_baseline": 9
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
     },
-    "context": "Kırk iki yaşındaki inşaat mühendisi Arda Keskin, Yıldız Özel Hastanesi'nde rutin bir bypass ameliyatının ardından yoğun bakımda hayatını kaybetti. Ameliyatı bizzat başhekim Dr. Cenk Aydoğan yönetmişti. Merhumun eşi Deniz Keskin, ameliyat öncesi değerlendirmenin aceleye getirildiğini, kocasının tansiyon ve kan değerlerinin yeterince izlenmediğini öne sürerek hastane ve Dr. Aydoğan hakkında hem cezai şikâyette bulundu hem de tazminat davası açtı. Aile avukatı, ameliyat notlarında sonradan değişiklik yapıldığı ve ameliyathaneye giriş-çıkış kayıtlarıyla yazılı raporlar arasında tutarsızlıklar bulunduğu iddiasını savcılığa iletti; bir hemşirenin verdiği ifadenin arşivden kaybolduğu da söylentiler arasında. Savcılık, ihmal sonucu ölüme neden olma şüphesiyle soruşturma başlattı ve Dr. Aydoğan'ı ifadeye çağırdı. Bu oturum, şüphelinin olayın gerçek seyri, kayıt tutarsızlıkları ve ekibindeki kişilerin rolü hakkında sorgulanacağı ön inceleme aşamasıdır.",
+    "context": "Meridian Biosolutions' immunosuppressant MBX-417 received FDA approval in early 2023 following a Phase III trial certified by Senior Coordinator Renata Voss, but within eight months of market release, twelve patients developed severe hepatotoxic reactions requiring hospitalization — three of whom have since died. A plaintiff class-action law firm, representing the affected patients and their families, has named Voss as the primary individual defendant, alleging she knowingly falsified adverse-event records during the data-lock phase to conceal known liver-safety signals and accelerate approval. Internal audit logs corroborate that Voss made an unusually high volume of data corrections in the weeks preceding final submission, and recovered emails confirm she received internal memos flagging hepatic enzyme irregularities in a subset of trial participants. Voss maintains she certified the dataset in good faith and that any corrections were routine, but has refused to explain the specific entries she modified, citing pending legal counsel. The investigation is further complicated by the fact that her direct supervisor, Dr. Harlan Reed, has separately invoked Fifth Amendment protections in a parallel FDA criminal referral, suggesting the misconduct may extend beyond Voss — though regulators have not publicly shifted their focus away from her.",
     "true_verdict": "NOT_GUILTY",
-    "verdict_truth_text": "Dr. Cenk Aydoğan, Arda Keskin'in ölümünden doğrudan sorumlu değildir; ameliyat protokolü standartlara uygun yürütülmüş ve ölüm öngörülemeyen komplikasyonlardan kaynaklanmıştır. Ancak şüpheli tamamen temiz de sayılmaz: hemşire Ayşen Yılmaz'ın sakinleştirici protokolüne dair ifadesi, asistanı Dr. Mert Oskay tarafından Cenk'in zımni bilgisiyle arşivden kaldırılmış ve ameliyat notlarında idari düzeltmeler yapılmıştır. Bu örtbas bir malpraktis suçunu değil, hastanenin iç disiplin sorununu ve bir başhekimin itibar kaygısını gizlemektedir.",
+    "verdict_truth_text": "Renata Voss did falsify records — but only a single set: those belonging to her dying sister Petra, whom she had covertly enrolled in the MBX-417 trial under a pseudonym as an unauthorized compassionate-use participant. When Petra experienced a sharp hepatic enzyme spike mid-trial, Voss removed and reclassified those entries solely to conceal her sister's identity and protect her own career — not to clear the drug for market or suppress systemic safety signals. The coordinated suppression of adverse-event data that caused harm to twelve patients was the work of Dr. Harlan Reed, who manipulated the trial's efficacy endpoints for commercial gain and subsequently invoked Fifth Amendment protections — having successfully positioned Voss's narrow, personal falsification as the face of a fraud she neither designed nor understood.",
     "dossier": {
-      "age": 52,
-      "identity_summary": "Elli iki yaşında kıdemli kalp damar cerrahı, Yıldız Özel Hastanesi başhekimi. Sakin görünümü ve titizliğiyle tanınıyor.",
+      "age": 44,
+      "identity_summary": "Senior Clinical Trial Coordinator with 18 years in pharmaceutical research; primary signatory on the MBX-417 Phase III final dataset submitted to the FDA in November 2022.",
       "family": [
         {
-          "relation": "Eş",
-          "name": "Selin Aydoğan",
-          "note": "Üç yıldır süren sessiz bir ayrılık süreci var; mal paylaşımı davası şüpheliyi mali baskı altında tutuyor."
+          "relation": "Deceased younger sister",
+          "name": "Petra Voss",
+          "note": "Died six months ago from illness-related complications. Her treatment history during the trial period is a critical emotional pressure point and may be directly relevant to the alleged data irregularities."
         },
         {
-          "relation": "Asistan hekim",
-          "name": "Dr. Mert Oskay",
-          "note": "Koruyucu baba-oğul ilişkisi; Mert'in adı geçtiğinde Cenk savunmacı tavır alıyor, leverage noktası."
+          "relation": "Estranged brother",
+          "name": "Elias Voss",
+          "note": "Has sporadic contact with Renata; reportedly aware of some details surrounding Petra's final care arrangements. Potential corroborating or contradicting witness on the timeline of Petra's treatment."
         },
         {
-          "relation": "Anne",
-          "name": "Hatice Aydoğan",
-          "note": "Alzheimer erken evre; Cenk'in en kırılgan noktası, empatik baskıda duygusal çözülme yaratabilir."
+          "relation": "Ex-husband",
+          "name": "Thomas Bray",
+          "note": "Divorce finalized mid-2022, directly overlapping with the MBX-417 data-lock window. Financial stress during this period is documented in court filings and is relevant to establishing whether personal financial motive existed alongside any professional motive."
         }
       ],
       "medical": [
         {
-          "condition": "Kronik hipertansiyon",
-          "polygraph_effect": "Kalp atışı baseline'ı sürekli yüksek; stres tepkisi olarak yorumlanabilecek artışlar aslında normal olabilir."
+          "condition": "Generalized Anxiety Disorder (GAD), diagnosed 2015, ongoing treatment",
+          "polygraph_effect": "Chronically elevated baseline GSR and irregular respiratory pattern throughout session. Sympathetic arousal will read high independent of deception. Single-question spikes are unreliable without extended baseline calibration; discount isolated GSR elevations."
         },
         {
-          "condition": "Hafif esansiyel tremor",
-          "polygraph_effect": "El bileği sensörlerinde mikro titreşim gürültüsü; GSR ölçümünde yanlış pozitif oluşturabilir."
+          "condition": "Prescribed escitalopram (SSRI, 20mg daily)",
+          "polygraph_effect": "Blunts sympathetic nervous system reactivity globally. Heart-rate elevation responses to both control and relevant questions may be suppressed or flattened, reducing contrast between truthful and deceptive responses. Extend baseline acquisition windows before target questions."
         }
       ],
       "habits": [
         {
-          "habit": "Günde 6-7 fincan espresso",
-          "polygraph_effect": "GSR baseline'ı yüksek, cilt iletkenliği dalgalanmaları abartılı görünür."
+          "habit": "High caffeine intake — 4 to 5 cups of coffee daily, self-reported",
+          "polygraph_effect": "Further elevates baseline GSR; compounds anxiety disorder readings. Expect false-positive stress indicators on neutral or low-stakes questions throughout the session."
         },
         {
-          "habit": "Beta-bloker (propranolol) günlük kullanım",
-          "polygraph_effect": "Kalp atış hızı tepkisi belirgin şekilde baskılanır; yalan anında bile kalp sıçraması zayıf olabilir."
-        },
-        {
-          "habit": "Ortalama 4 saat uyku",
-          "polygraph_effect": "Dikkat dalgalanmaları ve mikro-ifade kontrolünde zayıflama; yanlış negatifleri artırır."
+          "habit": "Nightly alcohol use — 1 to 2 glasses of wine, self-reported and habitual",
+          "polygraph_effect": "Mild chronic depressant effect; negligible polygraph impact at reported levels but may marginally blunt autonomic peaks under extreme emotional stress."
         }
       ],
       "priors": [
-        "2019'da başka bir hastanede disiplin uyarısı aldı: tıbbi kayıt düzenleme ihmali.",
-        "Vergi dairesi tarafından 2022'de şahsi gelir beyanında inceleme açıldı, sonradan kapandı.",
-        "Bir meslektaşıyla yaşanan kamuya açık bir tartışma basına yansımıştı."
+        "2019: Named respondent in an internal workplace complaint at Halcyon Therapeutics for an 'unauthorized protocol deviation.' Investigation closed without formal findings or disciplinary record.",
+        "2021: Party to a civil dispute with a residential contractor over alleged billing fraud; settled out of court for an undisclosed sum. No criminal referral."
       ],
       "pressure_points": [
+<<<<<<< HEAD
         "Annesinin bakımı ve tedavi masrafları sorulduğunda duygusal çözülme gösteriyor.",
         "Asistanı Mert'in adı üzerinden kurulan tuzak sorular onu savunmaya iter.",
         "Mesleki itibarı ve 'iyi hekim' imajı doğrudan saldırıya uğradığında öfke tepkisi veriyor."
@@ -77,50 +78,111 @@
         "gsr_baseline_shift": 0,
         "breathing_instability": 0.08
       }
+=======
+        "Sister's memory: Direct mention of Petra produces visible emotional dysregulation. Subject is likely to over-explain or become defensive in ways that inadvertently reveal more than intended about the trial period. High-yield for EMPATHIC approach.",
+        "Professional identity: She defines herself entirely through methodological precision. Framing her conduct as 'careless' rather than 'deliberate' tends to provoke corrective disclosures — she will often expose the real shape of what she did while insisting it was controlled and intentional.",
+        "Protective instinct: Documented pattern of absorbing blame to shield people close to her. Suggesting that her supervisor was the true architect of the fraud may cause her to partially admit her own actions in order to appear cooperative while distancing herself from him — a contradiction that can be exploited with a well-timed TRAP approach."
+      ]
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
     },
     "start_node": "node_01_intro",
     "nodes": {
       "node_01_intro": {
-        "theme": "Sorgu Odasına Giriş",
-        "description": "Dr. Cenk Aydoğan sorgu odasına girdi, üzerinde henüz çıkarmadığı beyaz önlüğün yakasını düzeltiyor. Kollarını masaya koyup avukatının birazdan geleceğini belirtiyor ama ifadeye başlamaya hazır olduğunu söylüyor. Baseline ölçümünüz alındı: kalp atışı zaten yüksek, GSR dalgalıyor.",
+        "theme": "First Contact",
+        "description": "Voss sits across the table in a gray blazer, coffee in hand — her fourth of the day by her own admission. She has counsel on standby but agreed to a voluntary pre-litigation interview. Her baseline polygraph readings are already elevated, consistent with her documented GAD and high caffeine intake.",
         "is_end_state": false,
         "choices": [
           {
             "type": "ANALYTICAL",
-            "question": "Doktor Bey, Arda Keskin'in ameliyat öncesi değerlendirmesini bizzat siz mi yaptınız? Süreci adım adım anlatır mısınız?",
-            "answer": "Ön değerlendirmeyi ben ve asistanım Dr. Mert Oskay birlikte yürüttük. EKG, ekokardiyografi, kan profili; hepsi standart protokole uygun yapıldı. Hasta ASA-III sınıfındaydı, riskler aileyle konuşuldu ve onam formu imzalandı. Prosedürde bir aksama yok.",
+            "question": "Ms. Voss, walk me through your standard data-lock procedure for a Phase III trial. Step by step, from your perspective.",
+            "answer": "She sets down her coffee and straightens. 'The data-lock sequence is strictly protocol-governed. I receive the final CDISC-compliant datasets, cross-reference against source documents, log discrepancies through the audit trail, and certify once every query is resolved. I've done it the same way for eighteen years.' Her tone is practiced, technical, almost rehearsed in its precision.",
             "mechanics": {
               "heart_rate": "STABLE",
+<<<<<<< HEAD
               "breathing": "CALM",
               "gsr": "BASELINE",
               "cctv_visual": "PROFESSIONAL_COMPOSURE",
               "korku_bari_delta": 5,
               "gameplay_note": "BASELINE OKUMASI: Supheli teknik alanda rahat. Beta-bloker etkisi nedeniyle kalp sinyaline fazla guvenme."
+=======
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "CONTROLLED_POSTURE",
+              "korku_bari_delta": 10,
+              "gameplay_note": "BASELINE ESTABLISHMENT: Technical fluency reads as truthful; GSR elevation is caffeine/GAD artifact, not deception. Useful calibration window before harder questions."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
-            "next_node": "node_02_preop"
+            "next_node": "node_02_audit_anomaly"
+          },
+          {
+            "type": "EVIDENCE",
+            "question": "I'm going to put something in front of you right now. This is the audit log summary for the MBX-417 data-lock window. You made 147 corrections in the final two weeks. Your own historical baseline across prior trials is 23. Explain that gap.",
+            "answer": "Her eyes move to the printout and stay there a moment longer than comfortable. 'There were more queries than usual in this trial. More participants, longer follow-up windows, more endpoints.' She doesn't look up immediately. 'The number looks unusual in isolation. I can walk you through the log categories if that would help.'",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 20,
+              "gameplay_note": "PARTIAL TRUTH SIGNAL: Elevated response on confrontation with the number; justification is technically plausible but eye avoidance and GSR spike suggest concealment of specifics rather than the complete picture."
+            },
+            "next_node": "node_03_liver_memos"
+          }
+        ]
+      },
+      "node_02_audit_anomaly": {
+        "theme": "The Correction Count",
+        "description": "The audit log printout sits on the table between you. 147 corrections against a baseline of 23. Voss is composed but her hands are folded tightly. How you press on these numbers will determine whether she reveals which entries she actually touched.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "NARROW_TARGET",
+            "question": "I don't need the full log walkthrough. I need you to tell me which specific participant IDs correspond to the hepatic enzyme corrections you made in October 2022.",
+            "answer": "A brief, involuntary stillness — then: 'I'd need to pull the specific records to give you accurate participant IDs. I'm not going to recite alphanumeric codes from memory.' Her voice stays flat but her breathing hitches. 'That question should really be directed to the clinical database custodian.'",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "eeg": "ERRATIC",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 35,
+              "gameplay_note": "DECEPTION SIGNAL: Acute stress cluster on the specific participant ID query — the redirect to 'database custodian' is a calculated deflection. GSR surge is significant even accounting for SSRI blunting. Strong indicator of selective concealment around particular entries."
+            },
+            "next_node": "node_04_petra_angle"
           },
           {
             "type": "AGGRESSIVE",
-            "question": "Hastanın ailesi, ameliyatın aceleye getirildiğini söylüyor. Siz başhekim olarak neden bizzat ameliyathaneye girdiniz, başka cerrah yok muydu?",
-            "answer": "Bu ne biçim bir soru? Yirmi yıldır bu ameliyatı yapıyorum. Hasta vaka kompleksti, tecrübeli bir ekip istedi, ben de girdim. 'Acele' diyen kim? Aile mi, avukat mı? Dosyaya bakın, operasyon beş saat sürdü.",
+            "question": "One hundred and forty-seven corrections. Twelve patients hospitalized. Three dead. You're going to sit there and tell me those numbers don't mean anything?",
+            "answer": "Her jaw sets. She pulls the printout toward herself, then deliberately pushes it aside. 'I'm going to ask you to change your tone, or I'm ending this interview. I came here voluntarily. I am not responsible for those patients. I certified a dataset that met every regulatory standard at the time of submission.'",
             "mechanics": {
-              "heart_rate": "RISE",
+              "heart_rate": "SPIKE",
               "breathing": "UNEVEN",
+<<<<<<< HEAD
               "gsr": "INCREASE",
               "cctv_visual": "JAW_TIGHTEN",
               "korku_bari_delta": -10,
               "gameplay_note": "YANLIS HAMLE: Mesleki itibarina saldiri ofke tetikledi, kapandi. Ilk hamlede sertlik maliyetli."
+=======
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -30,
+              "gameplay_note": "WRONG MOVE: Aggressive framing triggers defensive arousal without information yield; suspect retreats into legal posture. Signal reflects anger and threat response, not deception tell. Session at risk of termination."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
-            "next_node": "node_02_preop"
+            "next_node": "node_fail_lockdown"
           },
           {
-            "type": "EMPATHIC",
-            "question": "Doktor Bey, biliyorum yoğun bir dönemdesiniz. Anneniz de rahatsız duyduk. Kaybettiğiniz hastalar sizi nasıl etkiliyor?",
-            "answer": "Her hastayı hatırlarım. Arda Bey'in yüzünü de. Bu iş alıştığınız bir şey değil; alıştıysanız kötü hekim olmuşsunuz demektir. Annem... orası ayrı bir konu, onu karıştırmayalım lütfen.",
+            "type": "STRATEGIC",
+            "question": "Here is what I find interesting. Dr. Reed's correction logs for the same data-lock window show nearly zero entries. He was your direct supervisor on MBX-417. How is that possible?",
+            "answer": "Something shifts behind her eyes. 'Harlan — Dr. Reed had a different role in the submission process. He reviewed summaries, not source data. Data-level corrections were my responsibility.' A pause. Then, quietly: 'Is that what this is actually about?'",
             "mechanics": {
               "heart_rate": "RISE",
               "breathing": "DEEP",
               "gsr": "INCREASE",
+<<<<<<< HEAD
               "cctv_visual": "BRIEF_EYE_GLASS",
               "korku_bari_delta": 12,
               "gameplay_note": "DOGRU HAMLE: Duygusal kanal acildi, supheli kismen indirgendi. Empatik baslangic guvenli tunel."
@@ -142,10 +204,14 @@
               "heart_rate": "SPIKE",
               "breathing": "SHALLOW",
               "gsr": "SPIKE",
+=======
+              "eeg": "FOCUSED",
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
               "cctv_visual": "MICRO_TWITCH",
-              "korku_bari_delta": 18,
-              "gameplay_note": "ILERLEME: Kayit tutarsizligi supheliyi zorladi ama aciklamasi savunulabilir. Tremor + kafein + hipertansiyon filtrele."
+              "korku_bari_delta": 25,
+              "gameplay_note": "PROGRESS: The Reed comparison registers — suspect is recalculating. The question 'Is that what this is about?' signals she is testing whether Reed is under separate investigation. Controlled response, no clean deception tell, but a productive opening."
             },
+<<<<<<< HEAD
             "next_node": "node_04_nurse"
           },
           {
@@ -175,15 +241,19 @@
               "gameplay_note": "YANLIS HAMLE: Erken tehdit supheliyi kilitledi. Sinyaller yukseldi ama bunlar SAVUNMA gerginligi, itiraf degil."
             },
             "next_node": "node_fail_lawyered_up"
+=======
+            "next_node": "node_05_reed_leverage"
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
           }
         ]
       },
-      "node_03_records": {
-        "theme": "Kayıtlardaki Tutarsızlık",
-        "description": "Konu ameliyat notlarına geldiğinde Dr. Aydoğan önce sakin kalıyor, sonra dirsekleri masadan kalkıyor. Dosya elinde, sayfalari parmagiyla cevirerek gozden geciriyor.",
+      "node_03_liver_memos": {
+        "theme": "The Safety Signal Emails",
+        "description": "You lay two internal DSMB memos on the table — September 2022 communications flagging statistically elevated hepatic enzyme readings in a subset of trial participants, cc'd to Voss and Reed. She recognizes them immediately and does not pretend otherwise.",
         "is_end_state": false,
         "choices": [
           {
+<<<<<<< HEAD
             "type": "EVIDENCE",
             "question": "Ameliyat notunun dijital versiyonunda, orijinal kağıt nüshadan farklı iki paragraf var. Değişiklikler sizin hesabınızdan gece 02:47'de yapılmış. Neden?",
             "answer": "Dijitalleştirmeyi ben yapıyorum çünkü hastanede yeterli arşiv personeli yok. Değişiklik değil, transkripsiyon. Kağıtta el yazısı okunaksız olan bölümleri netleştirdim. Klinik bulgu eklemedim, çıkarmadım.",
@@ -201,18 +271,31 @@
             "type": "NARROW_TARGET",
             "question": "Gece 02:47'de hastanedeydiniz. CCTV sizin arşive girişinizi kaydetmiş. O saatte tam olarak ne yapıyordunuz?",
             "answer": "Uyku düzenim bozuk, zaten biliyorsunuz. Gece hastanede vakit geçirmem sık olur. O gece bir cerrahi raporu tamamlıyordum, başka bir hasta için. İsterseniz aynı gece imzaladığım diğer dosyalara da bakın.",
+=======
+            "type": "EMPATHIC",
+            "question": "You received these six weeks before certification. You knew there were signals. What was going through your mind when you saw those numbers, knowing what we know now about those twelve people?",
+            "answer": "She looks at the memos for a long moment. Her voice is quieter when she responds. 'At the time, those readings were within a range the DSMB still considered manageable. I didn't — I wasn't trying to...' She stops. Swallows. 'I think about those patients. More than you would believe.' There is something she does not finish.",
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             "mechanics": {
               "heart_rate": "RISE",
-              "breathing": "CALM",
+              "breathing": "UNEVEN",
               "gsr": "INCREASE",
+<<<<<<< HEAD
               "cctv_visual": "STEADY_GAZE",
               "korku_bari_delta": 6,
               "gameplay_note": "BASELINE CIVARI: Aciklama tutarli, uyku aliskanligi dosyayla uyumlu. Zayif ipucu."
+=======
+              "eeg": "INCREASE",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 20,
+              "gameplay_note": "PARTIAL TRUTH: Genuine distress and an interrupted sentence — she started to say 'I wasn't trying to [conceal the drug's systemic risk]' and caught herself. Signal pattern consistent with grief and partial concealment rather than coordinated fraud authorship."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
-            "next_node": "node_04_nurse"
+            "next_node": "node_04_petra_angle"
           },
           {
             "type": "TRAP",
+<<<<<<< HEAD
             "question": "Orijinal kağıt nüshayı görmek istiyoruz. Dosyada göremiyoruz. Arşivde olmadığını siz de biliyor musunuz?",
             "answer": "Nasıl yani? Kağıt nüsha arşivde olmalı. Belki sekreterlik henüz taramamış, ya da... bilmiyorum. Bunu kontrol etmem lazım. Bakın, burada bir şey kaçırıyorsak sorumlusu ben değilim, arşiv birimi.",
             "mechanics": {
@@ -236,64 +319,143 @@
             "type": "SYSTEMIC_READ",
             "question": "Hemşire Ayşen, ameliyattan üç gün önce ekibinize verilen bir ilaca dair şikâyetini yazılı olarak iletmiş. O ifade şu an arşivde yok. Sizin haberiniz var mı?",
             "answer": "O ifadeden... haberim oldu, evet. Ayşen Hanım bir sakinleştirici protokolü hakkında endişesini bildirmişti. Mesele hastaya değil, ekibin yoğun çalışma temposunu yönetmeye yönelikti. Ama evrakı ben kaldırmadım. Arşivde olmaması beni de rahatsız ediyor.",
+=======
+            "question": "These memos were sent to exactly two people: you and Dr. Reed. Reed has now invoked the Fifth Amendment in the parallel criminal referral. Given that, help me understand why I should believe the decision to proceed came from you alone.",
+            "answer": "Her eyes sharpen. 'Then ask him.' A pause — long enough to be deliberate. 'I'm not going to speculate about Harlan Reed's legal strategy. But the decisions I made about that dataset were mine. What I certified was what I certified.' The phrasing is oddly specific — not 'what I certified was accurate,' but 'what I certified was what I certified.'",
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             "mechanics": {
               "heart_rate": "SPIKE",
               "breathing": "SHALLOW",
               "gsr": "SURGE",
+<<<<<<< HEAD
               "cctv_visual": "SWALLOW_HARD",
               "korku_bari_delta": 28,
               "gameplay_note": "KRITIK ITIRAF KISMI: Supheli ifadenin varligini kabul etti ama olumle baglantiyi reddetti. Sinyaller yuksek ama FLATLINE yok — savunma degil, utanc."
+=======
+              "eeg": "ERRATIC",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": 30,
+              "gameplay_note": "PROGRESS: Sharp stress cluster on the Reed connection; the evasive tautology — 'what I certified was what I certified' — avoids confirming accuracy. EEG disruption suggests active concealment processing. High-value tell without full deception signature."
+            },
+            "next_node": "node_05_reed_leverage"
+          }
+        ]
+      },
+      "node_04_petra_angle": {
+        "theme": "A Sister's Name",
+        "description": "You set down a copy of Petra Voss's oncology intake records from the overlapping trial period, obtained through Elias Voss's voluntary statement. Renata sees her sister's name and goes completely still. The polygraph baseline fractures.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EMPATHIC",
+            "question": "You were driving Petra to every appointment while running a Phase III trial. Watching her deteriorate while managing an entire dataset. I'm not here to judge that. I just need you to tell me — was there any connection between what was happening to Petra and the corrections you made?",
+            "answer": "A long silence. Her eyes fill. 'I need you to understand — she was dying. She was thirty-nine years old and she was dying and there was nothing—' Her voice breaks. She presses her fingers to her mouth. Then, barely audible: 'There was one participant. One set of entries. It wasn't about the trial. It was never about the trial.' She does not say more yet, but the wall is coming down.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SPIKE",
+              "eeg": "ERRATIC",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 45,
+              "gameplay_note": "BREAKTHROUGH SIGNAL: Admission of 'one participant, one set of entries' is the first concrete disclosure. Signal cluster is emotionally authentic, not cold deception tell. Pattern consistent with personal guilt over a narrow falsification rather than coordinated fraud authorship."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
             "next_node": "node_success_partial_admission"
           },
           {
             "type": "MORAL_PRESSURE",
-            "question": "Asistanınız Mert, sizin bilginiz dışında o ifadeyi arşivden kaldıracak biri mi? Yoksa onu koruyor musunuz?",
-            "answer": "Mert'i buna karıştırmayın dedim. O çocuk... bana baktığı için bazı şeyleri benim için yapmış olabilir, evet. Ama hastanın ölümüyle ilgisi yok. Ben söylemedim ona böyle bir şey. Eğer yaptıysa, kendi inisiyatifi.",
+            "question": "Three of those twelve patients had children. One was thirty-seven years old — same age range as Petra. If you knew something that could have stopped this drug reaching the market, you had an obligation.",
+            "answer": "She flinches visibly. Her breathing becomes ragged. 'Don't — don't do that.' Her voice sharpens with real anguish. 'What I did, I did for one reason and it had nothing to do with those twelve people. What happened to them — that's something else.' She clamps down immediately, realizing she has said too much.",
             "mechanics": {
               "heart_rate": "SPIKE",
-              "breathing": "CRYING",
+              "breathing": "HYPERVENTILATION",
               "gsr": "SURGE",
+<<<<<<< HEAD
               "cctv_visual": "TEAR_POOLING",
               "korku_bari_delta": 32,
               "gameplay_note": "CIDDI COZULME: Koruma refleksi kirildi. Supheli bir seyi saklamis ama bu SUC degil. FLATLINE yok, yani olume dair degil."
+=======
+              "eeg": "ERRATIC",
+              "cctv_visual": "FROZEN",
+              "korku_bari_delta": 30,
+              "gameplay_note": "PROGRESS: 'What happened to them — that's something else' is a critical distinguishing tell. She is separating her narrow act from the broader harm. Emotional signal is genuine moral conflict, not calculated fraud concealment. Routes to success."
+            },
+            "next_node": "node_success_partial_admission"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Was Petra enrolled in the MBX-417 trial under a false name? I need a yes or no answer right now.",
+            "answer": "She pushes halfway out of her chair before catching herself. 'I want my attorney. Right now. This interview is over.' Her voice has gone completely flat. Whatever was opening is sealed.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "eeg": "INCREASE",
+              "cctv_visual": "AVOIDANCE",
+              "korku_bari_delta": -40,
+              "gameplay_note": "WRONG MOVE: Direct accusation at the precise moment of emotional vulnerability triggers total shutdown. The polygraph spike reflects acute threat response, not confirmed deception — cannot be used as clean evidence. Session terminating."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_05_reed_leverage": {
+        "theme": "The Supervisor's Silence",
+        "description": "You slide Dr. Reed's Fifth Amendment invocation filing across the table alongside a summary of his partial pre-invocation statement — one that, you explain, places primary operational responsibility for adverse-event log modifications on Voss by name. She reads it without touching it.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "TRAP",
+            "question": "Reed's pre-invocation statement says — and I'm quoting — 'all adverse-event log modifications during data-lock were the sole discretion of the coordinating officer.' He is building a case where you acted alone. I don't think that's the whole story. Do you?",
+            "answer": "Her expression goes cold — not with guilt, but with something closer to recognition. 'Harlan wouldn't—' She stops. Then: 'The modifications I made were not connected to his projections. They were connected to something personal. Something that has nothing to do with the efficacy data or the commercial timeline.' She exhales slowly. 'I need to tell you about a participant.'",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "SPIKE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "RELEASED_SHOULDERS",
+              "korku_bari_delta": 45,
+              "gameplay_note": "CORRECT MOVE: Framing Reed as adversary breaks her protective silence — she is now actively separating her narrow act from his fraud. 'Nothing to do with the efficacy data or commercial timeline' is a major tell toward limited personal culpability, not systematic fraud authorship."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
             "next_node": "node_success_partial_admission"
           },
           {
             "type": "GULLIBLE",
-            "question": "Yani hemşire ifadesinin neden kaybolduğunu gerçekten bilmiyorsunuz, öyle mi? Böyle bir şey hastanenizde nasıl olur?",
-            "answer": "Bilmiyorum. Hastane büyük, evrak trafiği yoğun. Belki dijitalleştirme sırasında taranamadı, belki yanlış klasöre gitti. Bu tür şeyler olur. Araştırmamız lazım ama şu an elimde bir cevap yok.",
+            "question": "If you come clean right now — fully cooperate — investigators will almost certainly look past your involvement and focus entirely on Reed. You have a real chance to walk away from this today.",
+            "answer": "Something closes in her face. 'You're not authorized to offer me anything, and you know that.' She leans back, arms folded. 'I've said what I'm going to say without counsel present. I think we're done here.'",
             "mechanics": {
               "heart_rate": "STABLE",
-              "breathing": "CALM",
+              "breathing": "DEEP",
               "gsr": "DECREASE",
+<<<<<<< HEAD
               "cctv_visual": "RELIEVED_EXHALE",
               "korku_bari_delta": -25,
               "gameplay_note": "YANLIS HAMLE: Supheliye kacis rampasi sundunuz. Tam kilit anda gevsetildi, sinyaller normale dondu."
+=======
+              "eeg": "FOCUSED",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": -35,
+              "gameplay_note": "WRONG MOVE: Voss immediately recognizes a procedurally illegitimate offer — her technical and institutional background makes her fluent in what investigators can and cannot promise. The offer reads as amateur and she shuts down. GSR decrease reflects controlled decision-making, not relief."
+>>>>>>> 668e5c0 (Add new character images and update case dialogs)
             },
-            "next_node": "node_fail_deflected"
+            "next_node": "node_fail_lockdown"
           }
         ]
       },
       "node_success_partial_admission": {
-        "theme": "Kırılma Anı",
-        "description": "Dr. Aydoğan koltuğa yaslandı, önlüğünün ilk düğmesini açtı. Gözleri dolu, sesi alçak. Avukatını beklemeden konuşmaya devam etti; bu sorguda söylemeyi göze aldığı en dürüst cümleleri kuruyor.",
+        "theme": "The Narrow Truth Surfaces",
+        "description": "The session has reached a critical threshold. Voss is no longer holding a full defensive posture — she has gestured at, or partially disclosed, the existence of a single unauthorized participant whose records she touched for reasons entirely separate from the broader trial fraud. Her composure is fractured and her words have become imprecise.",
         "is_end_state": true,
-        "result_text": "Şüpheli, hemşire Ayşen Yılmaz'ın ifadesinin varlığından haberdar olduğunu kabul etti ve asistanı Dr. Mert Oskay'ın ifadeyi arşivden kaldırmış olabileceğine dair güçlü bir ima verdi. Ameliyat notlarında dijital düzenleme yaptığını da itiraf etti, ancak tüm bunların Arda Keskin'in ölümüne yol açtığını reddetmeye devam ediyor. Sakinleştirici protokolü meselesinin operasyonla değil, ekibin çalışma temposuyla ilgili olduğunu söyledi. Duygusal çözülme belirgin; poligraf verileriniz yüksek ama değişken bir profil çiziyor. Avukatı odaya girdi ve sorgu burada sonlandı. Hüküm sizin kararınıza bırakıldı: topladığınız biyometrik desen, bir cerrahın ölüm suçunu mu yoksa idari bir örtbasını mı gösteriyor?"
+        "result_text": "Renata Voss did not confess in full. But she crossed a threshold she cannot walk back — acknowledging that at least one set of data corrections was 'personal' and explicitly disconnected from any commercial or efficacy pressure. She referenced 'one participant' with visible emotional fracture, and she actively distanced her actions from Dr. Reed's parallel conduct without being directly prompted to do so. She has not been read her rights. She has not signed anything. She is visibly shaken when she finally requests a brief recess. The polygraph log is now in your hands: the signal pattern shows acute deception stress concentrated on personal and family-adjacent questions, with notably muted responses on the direct systemic fraud accusations. Review the full log and determine whether what she was concealing constitutes the fraud she is charged with — or something categorically narrower."
       },
-      "node_fail_lawyered_up": {
-        "theme": "Avukat Duvarı",
-        "description": "Kapı açıldı; Dr. Aydoğan'ın avukatı bir dosyayla içeri girdi ve müvekkilinin bundan sonra hiçbir soruya cevap vermeyeceğini bildirdi. Şüpheli arkaya yaslandı, gözlerini tavana dikti.",
+      "node_fail_lockdown": {
+        "theme": "Legal Shutdown",
+        "description": "The session has collapsed. Voss has either explicitly invoked counsel, physically withdrawn, or delivered a practiced refusal that signals she will not speak further without representation. The polygraph recorded activity before the shutdown — but the session ended before the most critical territory could be fully explored.",
         "is_end_state": true,
-        "result_text": "Sorgu, kritik sorular sorulmadan kapandı. Şüpheli avukatının arkasına çekildi ve hemşire ifadesi, gece 02:47 kayıt düzenlemesi gibi hassas konulara dair hiçbir şey söylemedi. Elinizde yalnızca sert suçlama anlarında ölçtüğünüz savunmacı sıçramalar var — bunların kaçı suçluluktan, kaçı haksız yere köşeye sıkışmış bir adamın refleksinden? Poligraf kaydı eksik bir tabloya dönüştü. Hüküm ekranında, bu zayıf veriyle bir malpraktis kararı vermek zorunda kalacaksınız."
-      },
-      "node_fail_deflected": {
-        "theme": "Savuşturulmuş Sorgu",
-        "description": "Dr. Aydoğan omuzlarını gevşetti, espresso bardağını istedi. Ses tonu yeniden profesyonel bir başhekimin sakinliğine büründü. Onu kırabileceğiniz pencere kapandı.",
-        "is_end_state": true,
-        "result_text": "Şüpheli, son kritik anda ona sunulan 'arşiv kazası' açıklamasına tutundu ve bir daha gardını düşürmedi. Ameliyat notu düzenlemeleri için teknik gerekçeler üretti, hemşire ifadesinin kaybolmasını idari kaosa bağladı, asistanı Mert'e dair hiçbir şey söylemedi. Poligrafınızda bazı yüksek noktalar var ama bunlar dağınık; belirgin bir yalan örüntüsü çıkarmak zor. Sorgunun kritik eşiği atlatılamadı. Hüküm ekranına belirsiz bir kanıt dosyası taşıyacaksınız; karar, sinyallerin hangilerine güveneceğinize kalmış."
+        "result_text": "Renata Voss terminated the voluntary interview before the interrogation could reach its most productive territory. Her final posture was closed, controlled, and legally defensive. Prior to shutdown, the polygraph captured elevated but ambiguous signals — consistent with a subject under significant stress, but without sufficient targeted responses on the core fraud questions to establish a clean deception profile. Notably, the sharpest readings occurred in proximity to personal and family-adjacent questions rather than during direct accusations about the systematic trial misconduct. You have a partial signal log and an abrupt termination to interpret. Determine whether the pattern of what she spiked on — and what she stayed calm through — tells you something about the shape of what she was actually protecting."
       }
-    }
+    },
+    "character_image": "./assets/characters/test-3.png"
   }
 }

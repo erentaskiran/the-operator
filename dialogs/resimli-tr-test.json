@@ -1,0 +1,300 @@
+{
+  "game_data": {
+    "title": "Pera Yasam Hastanesi Malpraktis Dosyasi: Yildirim Ailesi v. Dr. Selim Karabulut",
+    "suspect": {
+      "name": "Selim Karabulut",
+      "role": "Ozel hastane bas hekimi ve ortak",
+      "profile": "Trabzon dogumlu, dar gelirli bir ailede buyudu. Devlet burslari ile tip fakultesini bitirdi, Istanbul'da kardiyoloji uzmanligi yapti. On bes yil devlet hastanesinde calistiktan sonra iki meslektasiyla Ozel Pera Yasam Hastanesi'ni kurdu. Disiplinli, sozunu sakinmayan, hasta dosyalarini ezbere bilen biri olarak taninir; ancak personel toplantilarinda sogukkanli bir hesapcilikla ameliyat kotalarini dayattigi soylenir. Son donemde hastanenin finansal ortaklarindan biriyle kapali kapilar ardinda sert tartismalar yasadigi duyuldu. Ise her sabah ayni kafeden aldigi sade kahveyle gelir ve olen annesinin fotografini cuzdaninda tasir."
+    },
+    "system_config": {
+      "initial_fear_bar": 20,
+      "max_fear_bar": 100,
+      "fear_bar_description": "Suphelinin psikolojik baski esigini temsil eder. Deger yukseldikce suphelinin savunmasi zayiflar, ifsaat ve kirilma anlari olasilasir; deger dustukce supheli kontrolu geri alir ve sorgu profesyonel mesafeye cekilir. Her sorunun korku_bari_delta degeri bu bara eklenir veya cikarilir.",
+      "heart_rate_baseline": 74,
+      "eeg_baseline": 24,
+      "gsr_baseline": 7
+    },
+    "context": "52 yasindaki Ayla Yildirim, 14 Mart gecesi Ozel Pera Yasam Hastanesi'nde planli bir kardiyak girisim sirasinda hayatini kaybetti. Aile, ameliyatin bas cerrah olarak kayitlara gecen Dr. Selim Karabulut tarafindan degil, yeterli deneyime sahip olmayan bir asistan hekim tarafindan yurutuldugunu ve olum saatinin evraklarda yaklasik kirk dakika geriye cekildigini ileri suruyor. Savcilik, hem taksirle olume sebebiyet hem de resmi belgede sahtecilik suphesiyle sorusturma baslatti ve Dr. Karabulut'u bas supheli olarak ifadeye cagirdi. Sorusturmayi karmasiklastiran nokta, hastanenin yaklasan yatirim turu oncesinde Karabulut'un ortaklariyla yasadigi bilinen anlasmazliklar ve kayit sisteminde daha once de tespit edilmis tarih uyusmazliklari. Operator olarak goreviniz, Karabulut'un o gece gercekten ameliyathanede olup olmadigini ve kayitlardaki tutarsizliklarin arkasinda onun mu yoksa baska birinin mi oldugunu ortaya cikarmak. Adamin anlattiklari tutarli gorunuyor, ancak sessiz kaldigi seyler en az soyledikleri kadar agir.",
+    "character_image": "./assets/characters/resimli-tr-test-transparent.png",
+    "true_verdict": "NOT_GUILTY",
+    "verdict_truth_text": "Dr. Karabulut, Ayla Yildirim'in olumunden dogrudan sorumlu degildir; operasyon protokol dahilinde yurutulmus ve olum klinik komplikasyon kaynaklidir. Ancak o gece ameliyathanede degildi: mali ortagi Erkan Demirtas ile hastane hisselerinin usulsuz devrine iliskin gizli bir anlasma imzaliyor, operasyonu kayit disi olarak asistan Dr. Aksoy'a birakmisti. Yani karanlik bir sir tasiyor, fakat bu davada malpraktisten veya taksirle olumden sucsuzdur; kayit tutarsizliklarinin bir kismi onun kendi ticari ortbasindan, diger kismi ise sistemsel bir zaaftan kaynaklaniyor.",
+    "dossier": {
+      "age": 52,
+      "identity_summary": "Ozel Pera Yasam Hastanesi'nin kurucu ortagi ve bas hekimi. Kardiyoloji alaninda taninmis, hastane yonetiminde son soz sahibi.",
+      "family": [
+        {
+          "relation": "es",
+          "name": "Nermin Karabulut",
+          "note": "Hastanenin hukuk danismani; malpraktis dosyasinin icerigine dogrudan erisimi var, esini korumak icin belge saklamis olabilir."
+        },
+        {
+          "relation": "kiz",
+          "name": "Deniz Karabulut",
+          "note": "Yurt disinda tip egitimi goruyor; babasinin itibari ve maddi destegi onun kariyeri icin kritik, duygusal baski noktasi."
+        },
+        {
+          "relation": "kardes",
+          "name": "Orhan Karabulut",
+          "note": "Hastanenin tedarikci firmalariyla calisan eski bir muteahhit; gecmiste vergi sorusturmasi gecirmis, isim benzerligi supheliye golge dusuruyor."
+        }
+      ],
+      "medical": [
+        {
+          "condition": "Hafif atriyal fibrilasyon",
+          "polygraph_effect": "Kalp atisi temel cizgisi duzensiz; ani sicramalar her zaman stres kaynakli olmayabilir."
+        },
+        {
+          "condition": "Kronik migren",
+          "polygraph_effect": "Agri atagi sirasinda cilt iletkenligi beklenmedik sekilde yukselebilir, yalan gostergesi gibi okunabilir."
+        }
+      ],
+      "habits": [
+        {
+          "habit": "Gunde dort fincan espresso",
+          "polygraph_effect": "Yuksek kafein nedeniyle GSR temel cizgisi sabit sekilde yuksek; hafif tepkiler gurultude kaybolur."
+        },
+        {
+          "habit": "Dusuk doz beta-bloker kullanimi",
+          "polygraph_effect": "Kalp atisi tepkisi baskilanir; stres anlarinda nabiz sicramasi beklenenden az olur."
+        },
+        {
+          "habit": "Gunde dort bes saat uyku",
+          "polygraph_effect": "Kronik uyku yoksunlugu mikro-ifadeleri zayiflatir ve sempatik tepkileri duzensizlestirir."
+        }
+      ],
+      "priors": [
+        "2016'da baska bir hastanede calisirken bir hastanin yakini tarafindan sikayet edildi; dosya delil yetersizliginden dustu.",
+        "2021'de Saglik Bakanligi denetiminde hasta kayitlarinda kucuk tarih uyusmazliklari tespit edildi, idari uyari aldi.",
+        "Hastane ortaklarindan biriyle ticari anlasmazlik nedeniyle hakem heyetine basvurdu."
+      ],
+      "pressure_points": [
+        "Kizinin yurt disindaki gelecegine yonelik imalar onu savunmaya gecirir; dogrudan TRAP taktigi geri teper.",
+        "Mesleki itibarini vurgulayan EVIDENCE yaklasimi, gercegi soyledigi noktalarda bile onu gergin ve savunmaci gosterir.",
+        "Annesinin olumunden ve ilk yillarindaki yoksunluktan bahseden EMPATHIC yaklasim sessiz kirilma anlari yaratir."
+      ]
+    },
+    "start_node": "node_01_intro",
+    "nodes": {
+      "node_01_intro": {
+        "theme": "Acilis Karsilasmasi",
+        "description": "Dr. Karabulut sorgu odasina ozenle utulenmis bir gomlekle girer, ceketini sandalyenin arkasina katlayarak asar. Sizinle goz teması kurar ama kahvesinin kenarini parmagiyla sürekli sivazlar. Savunmaya degil, kontrole gelmis gibidir.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "ANALYTICAL",
+            "question": "Doktor, 14 Mart gecesi saat 21:40 ile 23:20 arasi nerede oldugunuzu dakika dakika anlatir misiniz?",
+            "answer": "Hastanedeydim. Saat 21:30 civari vizite bitti, 22:00'de ameliyathane onu brifingine girdim, sonra hasta hazirlandi ve operasyon basladi. 23:15'te ex'i kabul ettik. Kayitlar ne diyorsa odur.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "MEASURED_BLINK",
+              "korku_bari_delta": 8,
+              "gameplay_note": "ILERLEME: Cevabi fazla prova edilmis. Zaman blogu dogru ama 'brifing' ve 'operasyon' arasindaki geciste mikro gecikme var."
+            },
+            "next_node": "node_02_timeline"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Otuz yil hekimlik yaptiniz. Bir hastayi kaybetmenin agirligini anliyorum. O gece ameliyathaneden cikarken ne hissettiniz?",
+            "answer": "Insan aliskin olmuyor, biliyor musunuz? Yirmi iki yildir kardiyolojideyim, hala... Ayla Hanim gibi hastalar benim annemin yasindaydi. Annemi de kalpten kaybettim. O gece eve gittim, kizimi aradim. Konusamadim.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "DEEP",
+              "gsr": "BASELINE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "EYE_SOFTEN",
+              "korku_bari_delta": 12,
+              "gameplay_note": "DOGRU HAMLE: Anne referansi gercek bir kirilma yaratti. Bu aralikta baseline'i kaydedin; sonraki sorularda kiyas icin kritik."
+            },
+            "next_node": "node_04_partner"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Kayitlar iki kez degistirildi. Bu bir kaza degil, sistematik. Parmak iziniz her yerde, Doktor.",
+            "answer": "Parmak izim her yerde, cunku hastanenin bas hekimiyim. Benim sistemime bagli 40 hekim var. Suclamadan once somut bir sey koyun onume. Aksi halde avukatimi caginm.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "eeg": "INCREASE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -12,
+              "gameplay_note": "YANLIS HAMLE: Kanitsiz suclama onu avukat moduna itti. Sicrama stres kaynakli, aldatma sinyali degil."
+            },
+            "next_node": "node_03_records"
+          }
+        ]
+      },
+      "node_02_timeline": {
+        "theme": "Ameliyathane Saatleri",
+        "description": "Dosyadan ameliyathane giris-cikis loglarinin cikti alinmis halini masaya birakirsiniz. Kart okuyucu kayitlarinda Karabulut'un kartinin 22:07'de girdigi, 22:11'de cikip 23:22'ye kadar tekrar okunmadigi gorunuyor.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Kart kayitlarinda 22:11'de ameliyathane blogundan ciktiniz ve 23:22'ye kadar donmediniz. Operasyon sirasinda neredeydiniz?",
+            "answer": "O... kart okuyucu zaman zaman dondurur. Arkamdan gelen birinin kartiyla gecmis olabilirim. Her gun olan bir sey.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 18,
+              "gameplay_note": "YALAN SINYALI: Belirgin kacinma. Ama bu sinyal ameliyat degil, BASKA BIR SEYI sakladigini gosteriyor olabilir."
+            },
+            "next_node": "node_04_partner"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Operasyon boyunca bas cerrahin hangi adimlari yaptigini soyleyin. Anestezi indüksiyonu kim verdi? Steril alana kim gecti?",
+            "answer": "Anestezi Dr. Yalcin'di, standart prosedur. Steril alana... ekip geldi, biz girdik. Detay soruyorsunuz, ben o gece sekiz saat ayaktaydim, her vida her kim takti her zaman hatirlamam.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "eeg": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 14,
+              "gameplay_note": "KISMEN DOGRU: Prosedurel detaylardan kaciyor. 'Biz girdik' cogul kullanimi dikkat cekici."
+            },
+            "next_node": "node_04_partner"
+          },
+          {
+            "type": "TRAP",
+            "question": "Yani operasyonu bizzat siz yonettiniz. Asistaniniz Dr. Cem Aksoy'un ifadesiyle celismek istemezsiniz, degil mi?",
+            "answer": "Cem ne ifade vermisse kendi bilir. Ben hastanenin bas hekimiyim. O odada bas cerrah olarak kayitliysam, sorumluluk benimdir. Bu, operasyonu 'ben yaptim' demekle ayni sey mi, ona siz karar verin.",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "CALM",
+              "gsr": "STABLE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "MEASURED_BLINK",
+              "korku_bari_delta": -8,
+              "gameplay_note": "YANLIS HAMLE: Sahte bir ifadeyle blof attiniz. Sezdi ve hukuki bir mesafe cumlesiyle sorudan cikti."
+            },
+            "next_node": "node_03_records"
+          }
+        ]
+      },
+      "node_03_records": {
+        "theme": "Kayit Tutarsizliklari",
+        "description": "Karabulut sandalyede hafifce geriye yaslanir, parmaklarini birlestirir. Sorusturmanin kalbine, belgedeki tarih oynamalarina dogru ilerliyorsunuz. Esinin hukuk danismani oldugunu biliyorsunuz.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EVIDENCE",
+            "question": "Olum sertifikasinda saat 23:15 yaziyor. Sistem loglari girisin aslinda 23:54'te yapildigini gosteriyor. Bu kirk dakikayi kim sildi?",
+            "answer": "Kayit sistemi asenkron calisir. Hekim el yazisi formu doldurur, sekreter sisteme sonra girer. Kirk dakika geri kalan girise 'sahtecilik' demek, hastane isletmeciligini bilmemektir.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 6,
+              "gameplay_note": "KISMEN DOGRU: Teknik aciklamasi aslinda gecerli. Sinyaller stres seviyesinde ama aldatma profilinde degil."
+            },
+            "next_node": "node_04_partner"
+          },
+          {
+            "type": "LEGAL_THREAT",
+            "question": "Esiniz Nermin Hanim bu dosyanin hukuk danismani. Evde konusulanlar sorusturma kapsamina girerse esinizi de tanik sandalyesine oturturuz.",
+            "answer": "Esimi bu isin icine karistirmayin. Benimle konusun, onunla degil. Yoksa bu odada bir sey daha konusmam.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "eeg": "CHAOTIC",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -20,
+              "gameplay_note": "YANLIS HAMLE: Aileye tehdit onu tamamen kapatti. Sicrama koruma icgudusu, suc kaniti degil."
+            },
+            "next_node": "node_fail_lawyer"
+          },
+          {
+            "type": "SYSTEMIC_READ",
+            "question": "2021'de de ayni tarz tarih uyusmazliklarindan idari uyari aldiniz. Bu kez tek bir form degil, iki ayri sistem uzerinde. Bu sizin aliskanliginiz mi, yoksa birinin sizin adiniza tekrarlatmaya calistigi bir desen mi?",
+            "answer": "Iyi soru. ...2021'deki uyari bilgisayar saati ayari yuzundeydi. Bu seferki farkli, biliyorum. Sistem girisi benim kullanicimdan yapilmis ama o saatte ben terminalde degildim. Bunu kanitlamam gerekirse... gerekirse konusacagiz.",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 22,
+              "gameplay_note": "DOGRU HAMLE: Desene atif yapti. 'Kanitlamam gerekirse' ifadesi alibi varligina guclu imada."
+            },
+            "next_node": "node_04_partner"
+          }
+        ]
+      },
+      "node_04_partner": {
+        "theme": "Ortak ile Anlasmazlik",
+        "description": "Dosyadaki finansal notlar, Karabulut'un mali ortagi Erkan Demirtas ile son alti ayda siddetli tartismalar yasadigini soyluyor. Yatirim turu iki hafta sonra. Bu konuyu acarsiniz.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "STRATEGIC",
+            "question": "Erkan Bey ile 14 Mart gunu telefonda 11 dakika, aksam 19:48'de 23 dakika gorustunuz. Ameliyat gecesi neyi konusacak kadar acilinizdi?",
+            "answer": "...Is konusuyorduk. Yatirim turu oncesi parametreler. Bunun ameliyatla ilgisi yok.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "MICRO_TWITCH",
+              "korku_bari_delta": 16,
+              "gameplay_note": "YALAN SINYALI: Sicrama burada guclu ama malpraktis sorusunda degil, ORTAK sorusunda. Oyuncuya not."
+            },
+            "next_node": "node_success_alibi"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Doktor, size suclama degil, anlamak icin soruyorum. Bir insan ayni gece hem bir ameliyatin basinda olup hem baska bir seyi dusunemez. O gece zihniniz gercekten orada miydi?",
+            "answer": "...Durust olmak gerekirse, o gece kafam hastanenin gelecegindeydi. Ameliyat rutindi, ekibime guveniyordum. Erkan ile olan mesele... benim icin hastanenin kendisini kaybetmek demekti. Bunu soylemek benim icin kolay degil.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 28,
+              "gameplay_note": "DOGRU HAMLE: Alibi'sinin kapisini ona acti. Duygusal yumusama gercek; sinyaller aldatma profiline dusmedi."
+            },
+            "next_node": "node_success_alibi"
+          },
+          {
+            "type": "PRESSURE",
+            "question": "Ortaginiz ile kavganizi orgutlu bir ortbasa donusturdunuz, oyle degil mi? Ayla Yildirim'in dosyasi sizin icin ucuncu oncelikti.",
+            "answer": "Bu soyledigiriniz iftiradir. Herhangi bir sey daha soylerseniz tutanaga gecirtip odadan cikacagim.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "SURGE",
+              "eeg": "ERRATIC",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -25,
+              "gameplay_note": "YANLIS HAMLE: Iki farkli konuyu harmanlayan komplo suclamasi onu kitledi. Sicrama asiri ama yonu savunma, itiraf degil."
+            },
+            "next_node": "node_fail_lawyer"
+          }
+        ]
+      },
+      "node_success_alibi": {
+        "theme": "Aralanan Kapi",
+        "description": "Karabulut uzun bir sessizlikten sonra cuzdanini cikarir, icinden katlanmis bir kagit parcasi cikarir: 14 Mart tarihli, elle yazilmis bir toplanti notu. Sesi kisilir: 'Avukatim ile konusmam lazim ama... o gece ameliyathanede degildim. Erkan ile hastanenin B blok ofisinde idim. Operasyonu Dr. Aksoy tamamladi. Bunu kayitlara islemedim cunku toplanti... baska bir sey icindi.' Elleri titrer, omuzlari dusmustur. Bu bir itiraf degil, bir takas teklifidir.",
+        "is_end_state": true,
+        "result_text": "Sorgu, suphelinin kismi bir ifsaatiyla sonlandi. Karabulut, ameliyathanede olmadigini ve operasyonu asistana biraktigini kabul etti; ancak bunu malpraktis ortbasi olarak degil, ayri bir meseleyi — ortagiyla yaptigi kayit disi toplantiyi — gizleme gerekcesiyle yaptigini iddia ediyor. Dr. Aksoy'un ifadesi ve B blok CCTV kayitlari dogrulama icin talep edildi. Ameliyatin hatali yurutulup yurutulmedigi ayri bir teknik sorun olarak dosyada duruyor. Poligraf kayitlari masanizda; hukum ekranina gecmeden once sinyallerin hangi sorularda sicradigini, hangilerinde duzlestigini yeniden okuyun."
+      },
+      "node_fail_lawyer": {
+        "theme": "Avukat Cagrisi",
+        "description": "Karabulut sandalyeyi geriye iterek ayaga kalkar, ceketini alir. 'Bu noktadan sonra tek bir kelime daha etmem. Avukatim yarin sabah sizinle iletisime gececek.' Kapida bir an duraklar, size donmeden odayi terk eder.",
+        "is_end_state": true,
+        "result_text": "Sorgu sert bir duvara tosladi. Karabulut susma hakkini kullandi ve avukati gelene kadar ifade vermeyecegini bildirdi. Kart okuyucu tutarsizligi, ortakla olan gorusme suresi ve esinin dosyaya erisimi gibi kritik yollar kapandi. Elinizde yalnizca parcali bir biyometrik profil var: bazi sicramalar malpraktis sorularinda cok hafif kalirken, ortaklik ve aile ile ilgili sorularda keskinlesti. Bu desenin hukmunuze nasil yansiyacagina oyuncu olarak siz karar vereceksiniz — ama temiz bir itiraf ya da net bir aklanma elinizde yok."
+      }
+    }
+  }
+}

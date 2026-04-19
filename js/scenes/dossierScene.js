@@ -2,7 +2,7 @@ import { drawRect, drawText, drawWrappedText, wrapTextLines } from '../draw.js';
 import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp } from '../math.js';
-import { state } from '../game/state.js';
+import { state, getDefendantImageKey } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
@@ -99,7 +99,8 @@ function layoutEntries(ctx, entries, width) {
       y += h + 4;
     } else if (e.type === 'item') {
       const labelLines = wrapTextLines(ctx, e.label, width, 11, UI_FONT);
-      const detailLines = wrapTextLines(ctx, e.detail, width - 8, 11, UI_FONT);
+      const detailIndent = e.tag ? 40 : 8;
+      const detailLines = wrapTextLines(ctx, e.detail, width - detailIndent, 11, UI_FONT);
       const h = labelLines.length * 12 + (detailLines.length > 0 ? detailLines.length * 12 + 2 : 0);
       layout.push({ ...e, y, h, labelLines, detailLines });
       y += h + 6;
@@ -144,7 +145,7 @@ function drawDossierScene(ctx) {
     portraitY,
     portraitW,
     portraitH,
-    'defendant',
+    getDefendantImageKey(),
     state.gameData?.suspect?.name?.toUpperCase() || t('DOSSIER_DEFAULT_NAME')
   );
 
