@@ -49,6 +49,8 @@ function drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, ageStart, ageEnd
 
 function drawLaneMarkers(ctx, waveX, y, waveW, h, type, time, sharedCursor, markers) {
   if (!markers || markers.length === 0) return;
+  const minBandPx = 6;
+
   for (const m of markers) {
     if (m.startTime == null) continue;
     const endTime = m.endTime != null ? m.endTime : time;
@@ -73,9 +75,15 @@ function drawLaneMarkers(ctx, waveX, y, waveW, h, type, time, sharedCursor, mark
     const alpha = severityAlpha(sev, isActive, fade);
     if (alpha <= 0) continue;
 
-    drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, visibleStart, visibleEnd, alpha);
+    let bandStart = visibleStart;
+    let bandEnd = visibleEnd;
+    if (bandStart - bandEnd < minBandPx) {
+      bandEnd = Math.max(0, bandStart - minBandPx);
+    }
 
-    const headCol = (((sharedCursor - visibleStart) % waveW) + waveW) % waveW;
+    drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, bandStart, bandEnd, alpha);
+
+    const headCol = (((sharedCursor - bandStart) % waveW) + waveW) % waveW;
     ctx.save();
     ctx.globalAlpha = Math.min(0.85, alpha + 0.22);
     drawRect(ctx, waveX + headCol, y + 2, 1, h - 4, '#ffd26a');

@@ -84,10 +84,14 @@ function finalizeMarkerCapture() {
   if (!m) {
     return;
   }
+
+  const minMarkerDuration = 0.12;
+  const endTime = Math.max(state.time, (m.startTime ?? state.time) + minMarkerDuration);
+
   state.polygraphMarkers.push({
     qIndex: m.qIndex,
     startTime: m.startTime,
-    endTime: state.time,
+    endTime,
     hrPeak: m.peakHr,
     eegPeak: m.peakEeg,
     gsrPeak: m.peakGsr,

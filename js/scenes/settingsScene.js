@@ -1,6 +1,12 @@
 import { drawRect, drawText } from '../draw.js';
 import { registerScene, setScene } from '../sceneManager.js';
-import { getMousePos, wasKeyPressed, wasMousePressed } from '../input.js';
+import {
+  getMousePos,
+  isScrollInverted,
+  toggleScrollInverted,
+  wasKeyPressed,
+  wasMousePressed,
+} from '../input.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
@@ -8,6 +14,7 @@ import { t, getLanguage, setLanguage } from '../i18n/index.js';
 
 let langLeftRect = null;
 let langRightRect = null;
+let scrollToggleRect = null;
 const LANGS = ['en', 'tr'];
 
 function inRect(point, rect) {
@@ -102,6 +109,36 @@ function drawSettingsScene(ctx) {
     baseline: 'middle',
   });
 
+  // Invert scroll row
+  const scrollRowY = rowY + 34;
+  drawText(ctx, t('SETTINGS_SCROLL_LABEL'), panelX + 24, scrollRowY, {
+    size: 12,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
+  scrollToggleRect = {
+    x: rowRight - 92,
+    y: scrollRowY - 10,
+    w: 92,
+    h: 20,
+  };
+  const scrollHover = inRect(mouse, scrollToggleRect);
+  drawPanel(ctx, scrollToggleRect.x, scrollToggleRect.y, scrollToggleRect.w, scrollToggleRect.h, {
+    border: scrollHover ? COLORS.amberBright : COLORS.amberDim,
+    fill: scrollHover ? 'rgba(60,36,14,0.8)' : COLORS.panelFillLight,
+  });
+
+  const scrollLabel = isScrollInverted() ? t('SETTINGS_SCROLL_ON') : t('SETTINGS_SCROLL_OFF');
+  drawText(ctx, scrollLabel, scrollToggleRect.x + scrollToggleRect.w / 2, scrollRowY, {
+    align: 'center',
+    size: 12,
+    color: scrollHover ? COLORS.amberBright : COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
   drawText(ctx, t('SETTINGS_BACK'), DESIGN_W / 2, panelY + panelH - 16, {
     align: 'center',
     size: 11,
@@ -116,6 +153,7 @@ export function registerSettingsScene(_canvas, ctx) {
     enter() {
       langLeftRect = null;
       langRightRect = null;
+      scrollToggleRect = null;
     },
     update() {
       if (wasKeyPressed('escape')) {
@@ -130,10 +168,18 @@ export function registerSettingsScene(_canvas, ctx) {
         cycleLanguage(1);
         return;
       }
+      if (wasKeyPressed('i')) {
+        toggleScrollInverted();
+        return;
+      }
       if (wasMousePressed(0)) {
         const mouse = getMousePos();
         if (inRect(mouse, langLeftRect)) { cycleLanguage(-1); return; }
         if (inRect(mouse, langRightRect)) { cycleLanguage(1); return; }
+        if (inRect(mouse, scrollToggleRect)) {
+          toggleScrollInverted();
+          return;
+        }
       }
     },
     render() {
