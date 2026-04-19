@@ -6,6 +6,7 @@ import { getTransitionAlpha, renderScene, setScene, updateScene } from './sceneM
 import { loadAllCases } from './game/cases.js';
 import { setSelectedCase, state } from './game/state.js';
 import { registerMenuScene } from './scenes/menuScene.js';
+import { registerDossierScene } from './scenes/dossierScene.js';
 import { registerPlayScene } from './scenes/playScene.js';
 import { registerResultScene } from './scenes/resultScene.js';
 import { registerVerdictScene } from './scenes/verdictScene.js';
@@ -53,6 +54,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 registerMenuScene(canvas, ctx);
+registerDossierScene(canvas, ctx);
 registerPlayScene(canvas, ctx);
 registerVerdictScene(canvas, ctx);
 registerResultScene(canvas, ctx);

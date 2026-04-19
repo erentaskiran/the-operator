@@ -1,7 +1,8 @@
 import { drawRect, drawScrollableText, drawText } from '../draw.js';
 import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from '../input.js';
-import { getSuspectLabel, state } from '../game/state.js';
+import { getSelectedCaseDef, getSuspectLabel, state } from '../game/state.js';
+import { recordAttempt } from '../game/caseStats.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
@@ -286,6 +287,11 @@ function drawVerdictScene(ctx) {
 
 function submitVerdict(verdict) {
   state.verdict = verdict;
+  const correct = Boolean(state.trueVerdict) && verdict === state.trueVerdict;
+  const caseDef = getSelectedCaseDef();
+  if (caseDef?.id) {
+    recordAttempt(caseDef.id, correct);
+  }
   setScene('result');
 }
 

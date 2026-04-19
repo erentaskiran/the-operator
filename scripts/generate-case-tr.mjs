@@ -32,7 +32,16 @@ CIKTI:
     "motive": string,
     "secret": string,
     "credibility": number,
-    "true_verdict": "GUILTY" | "NOT_GUILTY"
+    "true_verdict": "GUILTY" | "NOT_GUILTY",
+    "dossier": {
+      "age": number,
+      "identity_summary": string,
+      "family": [ { "relation": string, "name": string, "note": string } ],
+      "medical": [ { "condition": string, "polygraph_effect": string } ],
+      "habits": [ { "habit": string, "polygraph_effect": string } ],
+      "priors": [ string ],
+      "pressure_points": [ string ]
+    }
   }
 }
 
@@ -52,7 +61,30 @@ KURALLAR:
   - "GUILTY" = supheli gercekten sorumlu (secret asil fiili iceriyor)
   - "NOT_GUILTY" = secret karanlik bile olsa supheli bu suctan masum
   - Davayi en ilginc kilan verdict'i sec; zamanla her ikisini de kullan
-  - Enum degerleri ingilizce kalmali`;
+  - Enum degerleri ingilizce kalmali
+
+DOSSIER (oyuncunun sorgudan ONCE okuyacagi arka plan):
+- age: gercekci bir yas
+- identity_summary: 1-2 cumle, gorev ve kilit nitelikler
+- family: 1-4 giris. Akrabalar veya yakin iliskilerden olusur; her birinin
+  note alani sorguda NEDEN onemli oldugunu kisaca acikmali (bagimlilik,
+  leverage, catisma).
+- medical: 0-3 giris. Her birinin polygraph_effect alani, durumun
+  biyometriyi nasil bozdugunu aciklamali (orn. anksiyete bozuklugu ->
+  yuksek GSR baseline; kalp pili -> kalp atisi dalgalanmasi bastirilir).
+  AMAC: oyuncu hangi sicramalarina GUVENMEMESI gerektigini bilsin. Suc
+  kaniti olacak sekilde hastalik UYDURMA.
+- habits: 0-3 giris (ilac, kafein, uyku, madde). Her birinin
+  polygraph_effect alani olmali. Ornek: "Beta-bloker -> kalp atisi
+  tepkisi baskilanir"; "Yuksek kafein -> GSR baseline yuksek"; "SSRI ->
+  sempatik tepki hafifler".
+- priors: 0-3 kisa olgusal bullet (onceki olaylar). Verdict'i ele vermez.
+- pressure_points: 1-3 kisa bullet, duygusal veya durumsal leverage.
+  Hangi taktigin (EMPATHIC, TRAP, EVIDENCE, vb.) supheliyi kiracagini
+  veya bloklayacagini ima eder.
+- Dossier true_verdict'i SIZDIRMAMALI. Motif/firsat imalari olabilir ama
+  bir operatorun sorgu oncesi arastirmasinda (kamu kayitlari, IK, saglik
+  beyannameleri) makul olarak bulabilecegi bilgiler olmali.`;
 
 const STEP_2_CASE = `Hukuki bir dava baglami uretiyorsun.
 
@@ -258,6 +290,7 @@ CIKTI:
     "context": string,
     "true_verdict": "GUILTY" | "NOT_GUILTY",
     "verdict_truth_text": string,
+    "dossier": <suspect.dossier'i OLDUGU GIBI kopyala>,
     "start_node": string,
     "nodes": <dugum girdisinden OLDUGU GIBI kopyala; her dugumde theme,
               description, is_end_state bulunmali; ayrica choices[] veya
@@ -267,6 +300,7 @@ CIKTI:
 
 KURALLAR:
 - suspect.name, role, profile alanlarini girdiden kopyala
+- suspect.dossier'i game_data.dossier icine TUM IC ALANLAR ile OLDUGU GIBI kopyala
 - title ve context degerlerini dava girdisinden al
 - suspect.true_verdict degerini game_data.true_verdict icine OLDUGU GIBI yaz
   (enum degeri ingilizce kalir: "GUILTY" veya "NOT_GUILTY")

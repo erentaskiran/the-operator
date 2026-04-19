@@ -17,6 +17,28 @@
         "context": "Şirketin geliştirdiği yeni nesil bir yapay zeka çekirdeği (Core-X) yerel sunucudan kopyalanıp harici bir bellekle dışarı çıkarıldı. Ozan, olay gecesi mesaiye kalan 3 kişiden biriydi. Kameraların kör noktası olan yangın merdiveninde 10 dakika geçirdiği tespit edildi.",
         "true_verdict": "GUILTY",
         "verdict_truth_text": "Ozan, Core-X'i yangın merdivenindeki kör noktada harici belleğe kopyaladı. Sızıntının sorumlusu odur.",
+        "dossier": {
+          "age": 31,
+          "identity_summary": "Dokuz yillik ML deneyimi. Core-X projesinde kidemli kontributor. Son performans degerlendirmesinde 'terfi bekleyen ama geciken' statusu.",
+          "family": [
+            { "relation": "Esi", "name": "Merve", "note": "Bir ay once issiz kaldi; ekonomik baski var." },
+            { "relation": "Annesi", "name": "Ayse Hanim", "note": "Kronik bobrek yetmezligi, pahali tedavi suruyor." }
+          ],
+          "medical": [
+            { "condition": "Panik atak oykusu", "polygraph_effect": "Masum baski altinda bile GSR ve kalp atisi yuksek baslar; tek basina suc kaniti sayilamaz." }
+          ],
+          "habits": [
+            { "habit": "Gunde 6+ kahve", "polygraph_effect": "GSR ve kalp atisi baseline yuksek; hafif artislar yanli yorumlanabilir." },
+            { "habit": "Poligraf karsi onlem arastirmasi (tarayici gecmisinden)", "polygraph_effect": "Kasitli nefes kontrolu, parmaga bastirma gibi teknikler deneyebilir — biyometri ani dususlerle gelirse suphelenin." }
+          ],
+          "priors": [
+            "Universite doneminde bir defa kod hirsizligi sikayeti aldi; sikayet geri cekildi."
+          ],
+          "pressure_points": [
+            "Esinin issiz kalmasi ve annesinin tedavi masrafi ciddi finansal motivasyon.",
+            "Terfisinin geciktirilmesi ofis icinde konusulan bir mesele; huzursuzluk biliniyor."
+          ]
+        },
         "start_node": "node_01_the_blindspot",
         "nodes": {
             "node_01_the_blindspot": {

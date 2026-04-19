@@ -29,7 +29,16 @@ OUTPUT:
     "motive": string,
     "secret": string,
     "credibility": number,
-    "true_verdict": "GUILTY" | "NOT_GUILTY"
+    "true_verdict": "GUILTY" | "NOT_GUILTY",
+    "dossier": {
+      "age": number,
+      "identity_summary": string,
+      "family": [ { "relation": string, "name": string, "note": string } ],
+      "medical": [ { "condition": string, "polygraph_effect": string } ],
+      "habits": [ { "habit": string, "polygraph_effect": string } ],
+      "priors": [ string ],
+      "pressure_points": [ string ]
+    }
   }
 }
 
@@ -48,7 +57,30 @@ RULES:
 - true_verdict is the ground truth the player must deduce from polygraph evidence:
   - "GUILTY" means the suspect actually is responsible (secret contains the real act)
   - "NOT_GUILTY" means the suspect is innocent of the charge even if the secret is shady
-  - Pick the verdict that makes the case most interesting; mix both over time`;
+  - Pick the verdict that makes the case most interesting; mix both over time
+
+DOSSIER (background the player reads BEFORE interrogation):
+- age: realistic age
+- identity_summary: 1-2 sentence factual capsule (role, key credentials)
+- family: 1-4 entries. Relatives or close partners with a SHORT note saying
+  WHY they matter to the interrogation (leverage, dependency, conflict).
+- medical: 0-3 entries. Each must include polygraph_effect explaining how the
+  condition distorts readings (e.g. anxiety disorder -> elevated baseline
+  GSR; pacemaker -> suppressed heart rate swings). Never invent diseases
+  that conveniently reveal guilt. The goal is to let the player know which
+  spikes to DISCOUNT.
+- habits: 0-3 entries (medications, caffeine, sleep, substances). Each must
+  include polygraph_effect. Examples: "Beta-blocker -> suppresses
+  heart-rate response"; "High caffeine -> GSR baseline elevated"; "SSRI
+  -> blunts sympathetic response".
+- priors: 0-3 short factual bullets about prior incidents or proceedings.
+  Not verdict-revealing.
+- pressure_points: 1-3 short bullets describing emotional or situational
+  leverage. These telegraph which tactics (EMPATHIC, TRAP, EVIDENCE, etc.)
+  will unlock or block the suspect.
+- Dossier MUST NOT spoil true_verdict. It can hint at motive/opportunity
+  but must be believably available to an operator doing pre-interrogation
+  research (public records, HR, medical disclosure forms).`;
 
 const STEP_2_CASE = `You are generating a legal case context.
 
@@ -251,6 +283,7 @@ OUTPUT:
     "context": string,
     "true_verdict": "GUILTY" | "NOT_GUILTY",
     "verdict_truth_text": string,
+    "dossier": <copy suspect.dossier VERBATIM from suspect input>,
     "start_node": string,
     "nodes": <copy from nodes input exactly; every node has theme,
              description, is_end_state, plus choices[] or result_text>
@@ -259,6 +292,7 @@ OUTPUT:
 
 RULES:
 - Copy suspect.name, role, profile from input
+- Copy suspect.dossier VERBATIM into game_data.dossier (all nested fields)
 - Use title and context from case input
 - Copy suspect.true_verdict VERBATIM into game_data.true_verdict
 - Generate verdict_truth_text: 2-3 sentence reveal of what the suspect

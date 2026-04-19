@@ -17,6 +17,27 @@
     "context": "Noxtera Biotech'in Klinik AI platformunda gece yarisi imzasiz bir model guncellemesi yapildi. Ertesi sabah yogun bakimda risk puani algoritmasi 14 hastayi dusuk oncelikledi. Elif, o gece binaya kart basan son kisiydi. Sunucu odasindan cikmadan once USB engel loglarinda 7 dakikalik bir kor nokta olustu.",
     "true_verdict": "GUILTY",
     "verdict_truth_text": "Elif o gece sunucu odasinda tehdit altinda imzasiz commit'i yukledi. Yari dogrularla kapansa da sorumlusu kendisidir.",
+    "dossier": {
+      "age": 34,
+      "identity_summary": "Noxtera Biotech'te 5 yildir Klinik AI ekip lideri. Etik kurul uyesi. Kariyerinde tek kusuru yok, performans aldigi tek sirket icin hakem.",
+      "family": [
+        { "relation": "Oglu", "name": "Kaan (7)", "note": "Ozel ogrenme ihtiyaclari var; pahali bir ozel okula yeni basladi." },
+        { "relation": "Esi", "name": "Arda", "note": "Uluslararasi ilac tedarik zincirinde calisiyor; is seyahatleri sik." }
+      ],
+      "medical": [
+        { "condition": "Kronik uyku bozuklugu (2 yildir)", "polygraph_effect": "EEG varyansi yuksek; FOCUSED durum beklemeyin, hafif ERRATIC seviyesi baseline olabilir." }
+      ],
+      "habits": [
+        { "habit": "Antidepresan (SSRI) tedavisi", "polygraph_effect": "Kalp atisi tepkileri hafif baskilanmis; MAX_SPIKE zor gorulur. Kalp kaniti tek basina yeterli degil." }
+      ],
+      "priors": [
+        "Kayda deger bir hukuki gecmisi yok. Ancak 3 ay once bir anonim e-posta tehdidi aldigini kurumsal guvenlige bildirdi, konu kapandi."
+      ],
+      "pressure_points": [
+        "Oglu Kaan'in okul masraflari ve esinin seyahatleri yuzunden ekonomik kirilganlik var.",
+        "Anonim tehdit e-postasi: supheli bunu dogrudan itiraf etmekten cekinebilir — dolayli sorularla acilabilir."
+      ]
+    },
     "start_node": "node_01_midnight_push",
     "nodes": {
       "node_01_midnight_push": {

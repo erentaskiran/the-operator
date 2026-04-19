@@ -17,6 +17,33 @@
     "context": "Bakırköy'deki Yıldıztepe Rezidans şantiyesinde yapımı süren istinat duvarı, Mart ayındaki şiddetli yağışların ardından alt kottaki bitişik apartmanın bahçesine çökerek zemin kat dairesinde oturan Yücel ailesinin ağır şekilde yaralanmasına yol açtı. Yücel ailesi, projenin yüklenicisi Arslaner İnşaat A.Ş. ve şirketin sahibi Selim Arslaner aleyhine hem maddi-manevi tazminat hem de taksirle yaralama suçlamasıyla şikâyetçi oldu; Cumhuriyet Savcılığı bilirkişi raporu doğrultusunda soruşturmayı derinleştirdi. İddiaya göre duvarda kullanılan beton ve demir donatı, onaylı statik projede öngörülen sınıfın altında kalıyor ve zemin etüdündeki uyarılar yeterince dikkate alınmamış. Selim Arslaner, malzeme seçiminin tamamen taşeron firmanın inisiyatifinde olduğunu, kendisinin teknik ayrıntılardan haberdar edilmediğini öne sürüyor. Ancak firma içi yazışmaların bir kısmının silindiğine dair ihbar ve eski şantiye şefinin aniden başka bir ile tayin edilmesi, savcılığın Arslaner'in bilgisi ve talimatı olup olmadığını sorgulamasına neden oluyor. Ruhsat sürecinde belediyeyle olan yakın ilişkiler de ayrı bir ön soruşturma dosyasına konu edildi.",
     "true_verdict": "GUILTY",
     "verdict_truth_text": "Selim Arslaner, silinen e-postayı okuduktan sonra şantiye şefine maliyet düşürme talimatını sözlü olarak verdi. Düşük sınıf beton kararı ondan çıkmasa bile, riski bilerek göz yumdu. Taksirli yaralamada asli sorumlu odur.",
+    "dossier": {
+      "age": 46,
+      "identity_summary": "Arslaner Insaat A.S. kurucusu ve yuzde 100 hissedari. Istanbul Avrupa yakasinda uc aktif rezidans projesi yonetiyor. Insaat muhendisi, MBA'li.",
+      "family": [
+        { "relation": "Kizi", "name": "Ezgi (10)", "note": "Bosanmis eski esinde. Her hafta sonu sehir disindan ucakla gorumeye gidiyor. Ofisinde cizimlerini sergiliyor." },
+        { "relation": "Eski Esi", "name": "Nihal Arslaner", "note": "Velayet Nihal'de. Iliski medeni ama gergin." },
+        { "relation": "Kardesi", "name": "Murat Arslaner", "note": "Sirketin mali isler muduru. Bir sorusturmada ismi gecmisti." }
+      ],
+      "medical": [
+        { "condition": "Hafif hipertansiyon (Grade 1)", "polygraph_effect": "Baseline kalp atisi yuksek olabilir; stres spikelari normalden erken gorulebilir." },
+        { "condition": "Kronik migren", "polygraph_effect": "Yogun sorguda EEG'de beklenmedik geciciliklere yol acabilir." }
+      ],
+      "habits": [
+        { "habit": "Beta-bloker (10mg Bisoprolol, gunluk)", "polygraph_effect": "Kalp atisi tepkilerini kismen baskilar; tam MAX_SPIKE zorlasir. Kalp uzerinden YALANLARI ELE VERMEZ." },
+        { "habit": "Gunde 4-5 espresso", "polygraph_effect": "GSR baseline yuksek; terleme kolaylikla tetiklenir, tek basina deception gostermez." },
+        { "habit": "Duzenli gece 2'ye kadar mesai", "polygraph_effect": "Uyku yoksunluklu; EEG varyansi normalden yuksek baslayabilir." }
+      ],
+      "priors": [
+        "2019: Ihaleye fesat karistirma iddiasiyla sorgulandi, kovusturmasizlik karari verildi.",
+        "2017: Eski bir santiye iscisinin is kazasinda taksirle yaralama dosyasi; sirket sigortasi devreye girdi, kisisel sorumluluk aranmadi."
+      ],
+      "pressure_points": [
+        "Kizi Ezgi'nin adi veya imaji yanlis zamanlanirsa avukatlar uzerinden BLOK atiyor — direkt kisisel soru kacak yolu yaratabilir.",
+        "Santiye sefi Hakan Demirel'i ani tayinle Erzurum'a gonderdi. Hakan'in adi agir kanit olarak ortaya cikarilirsa supheli kontrolu kaybediyor.",
+        "Kendi emegini, 'bursla okudum, babam marangozdu' anlatisini bir kimlik kalkani olarak kullaniyor. Empati capasi olarak dogru kullanilirsa maskeyi cozer; yaninda saldiri varsa savunma duvarina doner."
+      ]
+    },
     "start_node": "node_01_intro",
     "nodes": {
       "node_01_intro": {

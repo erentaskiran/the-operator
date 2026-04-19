@@ -14,6 +14,11 @@ export const CASES = [
     file: './dialogs/soguk--oda.json',
     label: 'CASE TR TEST',
   },
+  {
+    id: 'TR TEST 2',
+    file: './dialogs/test-2.json',
+    label: 'CASE TR TEST 2',
+  },
 ];
 
 export async function loadAllCases() {

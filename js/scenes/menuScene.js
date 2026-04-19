@@ -3,6 +3,7 @@ import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp } from '../math.js';
 import { CASES } from '../game/cases.js';
+import { getStats } from '../game/caseStats.js';
 import { getSelectedCaseData, setSelectedCase, state } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
@@ -37,8 +38,38 @@ function parseLabel(label) {
   };
 }
 
+function drawStatsPill(ctx, x, y, stats) {
+  if (!stats || stats.attempts <= 0) {
+    drawText(ctx, 'YENI', x, y, {
+      size: 9,
+      color: COLORS.amberBright,
+      font: UI_FONT,
+      align: 'right',
+      baseline: 'middle',
+    });
+    return;
+  }
+  const pillColor =
+    stats.successes > 0 ? COLORS.success : stats.fails > 0 ? COLORS.fail : COLORS.amber;
+  const label = `x${stats.attempts}`;
+  ctx.font = `9px ${UI_FONT}`;
+  const textW = ctx.measureText(label).width;
+  const pillW = Math.max(18, textW + 8);
+  const pillH = 10;
+  const pillX = x - pillW;
+  const pillY = y - pillH / 2;
+  drawRect(ctx, pillX, pillY, pillW, pillH, pillColor);
+  drawText(ctx, label, pillX + pillW / 2, pillY + pillH / 2 + 1, {
+    size: 9,
+    color: COLORS.ink,
+    align: 'center',
+    baseline: 'middle',
+    font: UI_FONT,
+  });
+}
+
 function drawCaseCard(ctx, x, y, w, h, opts) {
-  const { number, prefix, suffix, selected, hovered, pulseT } = opts;
+  const { number, prefix, suffix, selected, hovered, pulseT, stats } = opts;
   const borderColor = selected ? COLORS.amberBright : hovered ? COLORS.amber : COLORS.amberDim;
   const fillColor = selected
     ? 'rgba(60, 36, 14, 0.8)'
@@ -64,6 +95,8 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     baseline: 'middle',
   });
 
+  drawStatsPill(ctx, x + w - 6, y + 13, stats);
+
   drawWrappedText(ctx, suffix, x + 44, y + 28, w - 52, {
     size: 11,
     color: COLORS.creamDim,
@@ -71,6 +104,17 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     lineHeight: 11,
     maxLines: 2,
   });
+
+  if (stats && stats.attempts > 0) {
+    const breakdown = `DOG ${stats.successes}  HATA ${stats.fails}`;
+    drawText(ctx, breakdown, x + w - 6, y + h - 6, {
+      size: 9,
+      color: stats.successes > 0 ? COLORS.success : COLORS.fail,
+      font: UI_FONT,
+      align: 'right',
+      baseline: 'alphabetic',
+    });
+  }
 
   if (selected) {
     const pulse = 0.5 + 0.5 * Math.sin(pulseT * 3);
@@ -156,6 +200,7 @@ function drawMenuScene(ctx) {
       selected,
       hovered,
       pulseT: menuAnim,
+      stats: getStats(CASES[i].id),
     });
     ctx.restore();
   }
@@ -295,7 +340,7 @@ export function registerMenuScene(_canvas, ctx) {
       }
 
       if (wasKeyPressed('enter') && state.gameData) {
-        setScene('play');
+        setScene('dossier');
       }
     },
     render() {
