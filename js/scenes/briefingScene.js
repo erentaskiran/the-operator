@@ -11,6 +11,7 @@ import { t } from '../i18n/index.js';
 import { getBiometricDrawData, resetBiometricsOnState, updateWave } from '../game/waves.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
 import { clamp } from '../math.js';
+import { markBriefingSeen } from '../game/onboarding.js';
 
 const sandbox = {
   biometric: null,
@@ -373,6 +374,7 @@ export function registerBriefingScene(_canvas, ctx) {
       laneFlash.gsr = Math.max(0, laneFlash.gsr - dt * 1.8);
 
       if (wasKeyPressed('escape')) {
+        markBriefingSeen();
         setScene('menu');
         return;
       }
@@ -389,6 +391,7 @@ export function registerBriefingScene(_canvas, ctx) {
         wasMousePressed(0)
       ) {
         if (stepIndex >= STEPS.length - 1) {
+          markBriefingSeen();
           setScene('menu');
           return;
         }

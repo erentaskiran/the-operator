@@ -7,6 +7,7 @@ import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t } from '../i18n/index.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
+import { hasSeenBriefing } from '../game/onboarding.js';
 
 let anim = 0;
 let armed = false;
@@ -88,7 +89,7 @@ export function registerTitleScene(_canvas, ctx) {
       }
       if (!armed) return;
       if (wasAnyKeyPressed() || wasMousePressed(0)) {
-        setScene('menu');
+        setScene(hasSeenBriefing() ? 'menu' : 'briefing');
       }
     },
     render() {
