@@ -17,7 +17,8 @@ function getMasterVolumeScale() {
     const stored = localStorage.getItem(MASTER_VOLUME_KEY);
     const raw = stored == null || String(stored).trim() === '' ? NaN : Number(stored);
     if (Number.isFinite(raw)) {
-      return clamp01(raw / 100);
+      const percent = raw <= 1 ? raw * 100 : raw;
+      return clamp01(percent / 100);
     }
   } catch {}
   return 0.5;
@@ -168,7 +169,7 @@ export function playTypewriterKey(volume = 1) {
   osc.type = 'triangle';
   osc.frequency.value = 120 + Math.random() * 40;
 
-  gain.gain.setValueAtTime(0.004 + 0.03 * v, now);
+  gain.gain.setValueAtTime(0.0077 + 0.055 * v, now);
   gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
   osc.connect(gain);
@@ -186,7 +187,7 @@ export function playTypewriterKey(volume = 1) {
   const noise = ctx.createBufferSource();
   const noiseGain = ctx.createGain();
   noise.buffer = buffer;
-  noiseGain.gain.setValueAtTime(0.002 + 0.013 * v, now);
+  noiseGain.gain.setValueAtTime(0.0044 + 0.0242 * v, now);
   noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
 
   noise.connect(noiseGain);
