@@ -27,7 +27,7 @@ function categoryForLane(marker, type) {
 function drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, ageStart, ageEnd, color, alpha) {
   if (ageStart <= ageEnd) return;
   const lenSamples = ageStart - ageEnd;
-  const colStart = ((sharedCursor - ageStart) % waveW + waveW) % waveW;
+  const colStart = (((sharedCursor - ageStart) % waveW) + waveW) % waveW;
   ctx.save();
   ctx.globalAlpha = alpha;
   const room = waveW - colStart;
@@ -57,9 +57,20 @@ function drawLaneMarkers(ctx, waveX, y, waveW, h, type, time, sharedCursor, mark
     if (!color) continue;
     const fade = clamp(1 - ageStart / waveW, 0, 1);
     const fillAlpha = 0.12 + 0.22 * fade;
-    drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, visibleStart, visibleEnd, color, fillAlpha);
+    drawBandSegment(
+      ctx,
+      waveX,
+      y,
+      h,
+      sharedCursor,
+      waveW,
+      visibleStart,
+      visibleEnd,
+      color,
+      fillAlpha
+    );
     if (ageStart < waveW) {
-      const startCol = ((sharedCursor - visibleStart) % waveW + waveW) % waveW;
+      const startCol = (((sharedCursor - visibleStart) % waveW) + waveW) % waveW;
       ctx.save();
       ctx.globalAlpha = 0.6 + 0.3 * fade;
       drawRect(ctx, waveX + startCol, y + 2, 1, h - 4, color);
@@ -74,7 +85,6 @@ const TRACE_STATE = {
   gsr: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
 };
 
-
 function drawLaneGrid(ctx, x, y, w, h) {
   drawRect(ctx, x, y, w, h, 'rgba(10, 6, 3, 0.55)');
   for (let gy = y + 4; gy < y + h; gy += 6) {
@@ -83,23 +93,6 @@ function drawLaneGrid(ctx, x, y, w, h) {
   for (let gx = x + 16; gx < x + w; gx += 16) {
     drawRect(ctx, gx, y, 1, h, 'rgba(90, 60, 30, 0.08)');
   }
-}
-
-function sampleFromRing(buffer, sampleRate, secondsAgo, sampleAt) {
-  if (typeof sampleAt === 'function') {
-    const offsetFloat = Math.max(0, secondsAgo * sampleRate);
-    return sampleAt(offsetFloat);
-  }
-  if (!buffer || buffer.count <= 0) {
-    return 0;
-  }
-  const offset = Math.floor(secondsAgo * sampleRate);
-  if (offset >= buffer.count) {
-    const oldestIdx = (buffer.head - buffer.count + buffer.size * 4) % buffer.size;
-    return buffer.data[oldestIdx];
-  }
-  const idx = (buffer.head - 1 - offset + buffer.size * 4) % buffer.size;
-  return buffer.data[idx];
 }
 
 function sampleByOffset(buffer, offset) {
