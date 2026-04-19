@@ -41,6 +41,7 @@
   const LAYER_DEFS = [
     { id: 'drone', label: 'Deep Drone', type: 'continuous', defaultVol: 60 },
     { id: 'room', label: 'Room Tone', type: 'continuous', defaultVol: 55 },
+    { id: 'rain', label: 'Soft Rain', type: 'continuous', defaultVol: 14 },
     { id: 'air', label: 'Air Hiss', type: 'continuous', defaultVol: 28 },
     { id: 'cello', label: 'Low Cello', type: 'continuous', defaultVol: 35 },
     { id: 'organ', label: 'Harmonium Pad', type: 'continuous', defaultVol: 24 },
@@ -60,6 +61,7 @@
     tense: {
       drone: 60,
       room: 48,
+      rain: 10,
       air: 12,
       cello: 40,
       organ: 26,
@@ -77,6 +79,7 @@
     cold: {
       drone: 35,
       room: 62,
+      rain: 14,
       air: 16,
       cello: 25,
       organ: 30,
@@ -94,6 +97,7 @@
     breaking: {
       drone: 75,
       room: 30,
+      rain: 8,
       air: 10,
       cello: 60,
       organ: 18,
@@ -111,6 +115,7 @@
     reveal: {
       drone: 40,
       room: 42,
+      rain: 9,
       air: 10,
       cello: 30,
       organ: 42,
@@ -128,6 +133,7 @@
     silent: {
       drone: 20,
       room: 68,
+      rain: 16,
       air: 14,
       cello: 15,
       organ: 20,
@@ -589,7 +595,7 @@
     _layerScalar(id) {
       const s = this._modState.intensity / 100;
       const mod = this._modState.id;
-      const ambient = { room: 1, air: 1, drone: 1, rumble: 1, organ: 1 };
+      const ambient = { room: 1, rain: 1, air: 1, drone: 1, rumble: 1, organ: 1 };
       const events = {
         chair: 1,
         slam: 1,
@@ -805,6 +811,103 @@
                 } catch (e) {}
               },
             };
+        },
+
+        rain(oneshot) {
+          const g = self._G(self._vol.rain, 'rain');
+
+          // Far rain bed (broadband, muted lows/highs)
+          const farBed = AC.createBufferSource();
+          farBed.buffer = self._noiseBuf(4.8, 0.22);
+          farBed.loop = !oneshot;
+          const farHP = AC.createBiquadFilter();
+          farHP.type = 'highpass';
+          farHP.frequency.value = 220;
+          const farLP = AC.createBiquadFilter();
+          farLP.type = 'lowpass';
+          farLP.frequency.value = 3600;
+          const farGain = AC.createGain();
+          farGain.gain.value = 0.3;
+          farBed.connect(farHP);
+          farHP.connect(farLP);
+          farLP.connect(farGain);
+          farGain.connect(g);
+          farBed.start();
+
+          // Near window hiss (fast raindrops on glass feel)
+          const nearBed = AC.createBufferSource();
+          nearBed.buffer = self._noiseBuf(2.6, 0.12);
+          nearBed.loop = !oneshot;
+          const nearHP = AC.createBiquadFilter();
+          nearHP.type = 'highpass';
+          nearHP.frequency.value = 1800;
+          const nearLP = AC.createBiquadFilter();
+          nearLP.type = 'lowpass';
+          nearLP.frequency.value = 7800;
+          const nearGain = AC.createGain();
+          nearGain.gain.value = 0.12;
+
+          const weatherLfo = AC.createOscillator();
+          const weatherDepth = AC.createGain();
+          weatherLfo.frequency.value = 0.08;
+          weatherDepth.gain.value = 0.06;
+          weatherLfo.connect(weatherDepth);
+          weatherDepth.connect(nearGain.gain);
+          weatherLfo.start();
+
+          nearBed.connect(nearHP);
+          nearHP.connect(nearLP);
+          nearLP.connect(nearGain);
+          nearGain.connect(g);
+          nearBed.start();
+
+          // Sparse droplet transients for realism
+          let dropTimer = null;
+          const spawnDrop = () => {
+            if (!self._playing && !oneshot) return;
+            const src = AC.createBufferSource();
+            src.buffer = self._noiseBuf(0.035, 0.8);
+
+            const bp = AC.createBiquadFilter();
+            bp.type = 'bandpass';
+            bp.frequency.value = 1400 + Math.random() * 4200;
+            bp.Q.value = 6 + Math.random() * 6;
+
+            const env = AC.createGain();
+            const now = AC.currentTime;
+            const peak = 0.025 + Math.random() * 0.05;
+            env.gain.setValueAtTime(0, now);
+            env.gain.linearRampToValueAtTime(peak, now + 0.004);
+            env.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+            src.connect(bp);
+            bp.connect(env);
+            env.connect(g);
+            src.start(now);
+            src.stop(now + 0.07);
+
+            if (!oneshot) {
+              const storm = self._modState.intensity / 100;
+              const delay = 65 + Math.random() * (240 - storm * 70);
+              dropTimer = setTimeout(spawnDrop, delay);
+            }
+          };
+          spawnDrop();
+
+          const stop = () => {
+            clearTimeout(dropTimer);
+            try {
+              farBed.stop();
+              nearBed.stop();
+              weatherLfo.stop();
+            } catch (e) {}
+          };
+
+          if (oneshot) {
+            setTimeout(stop, 600);
+          } else {
+            self._nodes.rain = { gain: g, stop };
+          }
         },
 
         air(oneshot) {

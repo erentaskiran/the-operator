@@ -3,6 +3,7 @@ import { COLORS, UI_FONT, DESIGN_W, DESIGN_H } from './theme.js';
 import { drawPanel } from './panel.js';
 import { t, getLanguage, setLanguage } from '../i18n/index.js';
 import { isScrollInverted, toggleScrollInverted } from '../input.js';
+import { getAmbientVolume, setAmbientVolume } from '../interrogationAudio.js';
 
 const LANGS = ['en', 'tr'];
 
@@ -82,7 +83,7 @@ export function drawPauseModal(ctx, { mouse, selectedIndex = 0 }) {
 }
 
 const S_MODAL_W = 220;
-const S_MODAL_H = 146;
+const S_MODAL_H = 182;
 const S_MODAL_X = (DESIGN_W - S_MODAL_W) / 2;
 const S_MODAL_Y = (DESIGN_H - S_MODAL_H) / 2;
 
@@ -194,6 +195,50 @@ export function drawSettingsModal(ctx, { mouse }) {
     align: 'center',
   });
 
+  const volumeRowY = scrollRowY + 30;
+  drawText(ctx, t('SETTINGS_SOUND_LABEL'), S_MODAL_X + 18, volumeRowY, {
+    size: 11,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
+  const trackW = 96;
+  const trackH = 6;
+  const trackX = rowRight - trackW - 14;
+  const trackY = volumeRowY - trackH / 2;
+  const volumeTrackRect = { x: trackX, y: trackY, w: trackW, h: trackH };
+
+  const vol = getAmbientVolume();
+  const ratio = vol / 100;
+  drawRect(ctx, trackX, trackY, trackW, trackH, COLORS.amberDim);
+  drawRect(
+    ctx,
+    trackX,
+    trackY,
+    Math.max(1, Math.round(trackW * ratio)),
+    trackH,
+    COLORS.amberBright
+  );
+
+  const knobSize = 9;
+  const knobX = trackX + ratio * trackW - knobSize / 2;
+  const knobY = volumeRowY - knobSize / 2;
+  const volumeKnobRect = { x: knobX, y: knobY, w: knobSize, h: knobSize };
+  const volumeHover = pointInRect(mouse, volumeKnobRect);
+  drawPanel(ctx, knobX, knobY, knobSize, knobSize, {
+    border: volumeHover ? COLORS.amberBright : COLORS.amber,
+    fill: volumeHover ? 'rgba(60,36,14,0.8)' : COLORS.panelFillLight,
+  });
+
+  drawText(ctx, `${vol}%`, rowRight, volumeRowY, {
+    size: 10,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+    align: 'center',
+  });
+
   drawText(ctx, t('SETTINGS_BACK'), S_MODAL_X + S_MODAL_W / 2, S_MODAL_Y + S_MODAL_H - 14, {
     size: 10,
     color: COLORS.creamDim,
@@ -204,10 +249,24 @@ export function drawSettingsModal(ctx, { mouse }) {
 
   return {
     cycleLanguage,
+    adjustVolume(dir) {
+      setAmbientVolume(getAmbientVolume() + dir * 4);
+    },
     hitTest(mouse) {
       if (pointInRect(mouse, leftRect)) cycleLanguage(-1);
       else if (pointInRect(mouse, rightRect)) cycleLanguage(1);
       else if (pointInRect(mouse, scrollRect)) toggleScrollInverted();
+      else if (
+        pointInRect(mouse, {
+          x: volumeTrackRect.x,
+          y: volumeTrackRect.y - 6,
+          w: volumeTrackRect.w,
+          h: volumeTrackRect.h + 12,
+        })
+      ) {
+        const ratio = (mouse.x - volumeTrackRect.x) / volumeTrackRect.w;
+        setAmbientVolume(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
+      }
     },
   };
 }

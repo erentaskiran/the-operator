@@ -3,6 +3,7 @@ import { registerScene, setScene } from '../sceneManager.js';
 import {
   getMousePos,
   isScrollInverted,
+  isMouseDown,
   toggleScrollInverted,
   wasKeyPressed,
   wasMousePressed,
@@ -11,10 +12,14 @@ import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t, getLanguage, setLanguage } from '../i18n/index.js';
+import { getAmbientVolume, setAmbientVolume } from '../interrogationAudio.js';
 
 let langLeftRect = null;
 let langRightRect = null;
 let scrollToggleRect = null;
+let volumeTrackRect = null;
+let volumeHitRect = null;
+let volumeDragActive = false;
 const LANGS = ['en', 'tr'];
 
 function inRect(point, rect) {
@@ -139,6 +144,52 @@ function drawSettingsScene(ctx) {
     baseline: 'middle',
   });
 
+  // Volume row
+  const volumeRowY = scrollRowY + 34;
+  drawText(ctx, t('SETTINGS_SOUND_LABEL'), panelX + 24, volumeRowY, {
+    size: 12,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
+  const trackW = 96;
+  const trackH = 6;
+  const trackX = rowRight - trackW - 14;
+  const trackY = volumeRowY - trackH / 2;
+  volumeTrackRect = { x: trackX, y: trackY, w: trackW, h: trackH };
+  volumeHitRect = { x: trackX, y: trackY - 8, w: trackW, h: trackH + 16 };
+
+  const vol = getAmbientVolume();
+  const ratio = vol / 100;
+  drawRect(ctx, trackX, trackY, trackW, trackH, COLORS.amberDim);
+  drawRect(
+    ctx,
+    trackX,
+    trackY,
+    Math.max(1, Math.round(trackW * ratio)),
+    trackH,
+    COLORS.amberBright
+  );
+
+  const knobSize = 9;
+  const knobX = trackX + ratio * trackW - knobSize / 2;
+  const knobY = volumeRowY - knobSize / 2;
+  const knobRect = { x: knobX, y: knobY, w: knobSize, h: knobSize };
+  const knobHover = inRect(mouse, knobRect);
+  drawPanel(ctx, knobX, knobY, knobSize, knobSize, {
+    border: knobHover ? COLORS.amberBright : COLORS.amber,
+    fill: knobHover ? 'rgba(70,42,16,0.85)' : COLORS.panelFillLight,
+  });
+
+  drawText(ctx, `${vol}%`, rowRight, volumeRowY, {
+    align: 'center',
+    size: 11,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
   drawText(ctx, t('SETTINGS_BACK'), DESIGN_W / 2, panelY + panelH - 16, {
     align: 'center',
     size: 11,
@@ -154,8 +205,21 @@ export function registerSettingsScene(_canvas, ctx) {
       langLeftRect = null;
       langRightRect = null;
       scrollToggleRect = null;
+      volumeTrackRect = null;
+      volumeHitRect = null;
+      volumeDragActive = false;
     },
     update() {
+      const mouse = getMousePos();
+      if (volumeDragActive) {
+        if (isMouseDown(0) && volumeTrackRect) {
+          const ratio = (mouse.x - volumeTrackRect.x) / volumeTrackRect.w;
+          setAmbientVolume(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
+        } else {
+          volumeDragActive = false;
+        }
+      }
+
       if (wasKeyPressed('escape')) {
         setScene('menu');
         return;
@@ -172,8 +236,15 @@ export function registerSettingsScene(_canvas, ctx) {
         toggleScrollInverted();
         return;
       }
+      if (wasKeyPressed('arrowup') || wasKeyPressed('w')) {
+        setAmbientVolume(getAmbientVolume() + 4);
+        return;
+      }
+      if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
+        setAmbientVolume(getAmbientVolume() - 4);
+        return;
+      }
       if (wasMousePressed(0)) {
-        const mouse = getMousePos();
         if (inRect(mouse, langLeftRect)) {
           cycleLanguage(-1);
           return;
@@ -184,6 +255,12 @@ export function registerSettingsScene(_canvas, ctx) {
         }
         if (inRect(mouse, scrollToggleRect)) {
           toggleScrollInverted();
+          return;
+        }
+        if (volumeTrackRect && volumeHitRect && inRect(mouse, volumeHitRect)) {
+          const ratio = (mouse.x - volumeTrackRect.x) / volumeTrackRect.w;
+          setAmbientVolume(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
+          volumeDragActive = true;
           return;
         }
       }

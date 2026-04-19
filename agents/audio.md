@@ -26,5 +26,6 @@ Source files: `js/audio.js`, `js/interrogationAudio.js`, `js/interrogationSound.
 - Ambient engine (`InterrogationSound`) is loaded globally and guarded; audio helpers fail safely if unavailable.
 - Current gameplay primarily relies on procedural audio, not preloaded music tracks.
 - Title/menu ambiance includes low-intensity musical layers (`piano`, `organ`, `cello`) in the interrogation sound engine.
+- A low-level continuous `rain` layer is blended under scene ambience for atmosphere.
 - Dialogue-driven modulation now applies smoothing + trigger cooldowns to avoid abrupt audio jumps.
 - Heartbeat/pulse layers are restricted to interrogation gameplay (`play`) and muted in title/menu/verdict/result profiles.

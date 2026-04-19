@@ -620,6 +620,14 @@ export function registerPlayScene(_canvas, ctx) {
             settingsRects.cycleLanguage?.(1);
             return;
           }
+          if (wasKeyPressed('arrowup') || wasKeyPressed('w')) {
+            settingsRects.adjustVolume?.(1);
+            return;
+          }
+          if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
+            settingsRects.adjustVolume?.(-1);
+            return;
+          }
           if (wasMousePressed(0)) {
             const mouse = getMousePos();
             if (settingsRects.hitTest) {

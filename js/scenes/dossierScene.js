@@ -307,7 +307,7 @@ export function registerDossierScene(_canvas, ctx) {
       anim += dt;
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
-        scroll = clamp(scroll - wheel, 0, maxScroll);
+        scroll = clamp(scroll + wheel / 30, 0, maxScroll);
       }
       if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
         scroll = clamp(scroll + 24, 0, maxScroll);

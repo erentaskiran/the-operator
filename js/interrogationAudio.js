@@ -1,5 +1,7 @@
 import './interrogationSound.js';
 
+const AMBIENT_VOLUME_KEY = 'the-operator:ambient-volume:v1';
+
 function clamp01(v) {
   return Math.max(0, Math.min(1, v));
 }
@@ -126,15 +128,16 @@ function scoreChoiceStress(choice) {
   const type = String(choice?.type || '').toUpperCase();
 
   const stress = clamp01(
-    0.4 * mapMechanicLevel(mechanics.heart_rate, {
-      BASELINE: 0,
-      STABLE: -0.06,
-      RISE: 0.16,
-      INCREASE: 0.22,
-      SPIKE: 0.45,
-      MAX_SPIKE: 0.62,
-      DROP: -0.2,
-    }) +
+    0.4 *
+      mapMechanicLevel(mechanics.heart_rate, {
+        BASELINE: 0,
+        STABLE: -0.06,
+        RISE: 0.16,
+        INCREASE: 0.22,
+        SPIKE: 0.45,
+        MAX_SPIKE: 0.62,
+        DROP: -0.2,
+      }) +
       0.35 *
         mapMechanicLevel(mechanics.gsr, {
           BASELINE: 0,
@@ -224,16 +227,25 @@ let scene = null;
 let available = true;
 let activeProfile = 'title';
 let autoplayUnlockInstalled = false;
+let ambientVolume = 50;
 const runtimeMix = {
   mod: 'calm',
   modIntensity: 0,
   tension: 10,
   room: 42,
+  rain: 12,
   drone: 48,
   rumble: 28,
 };
 
 const triggerCooldownAt = new Map();
+
+try {
+  const saved = Number(localStorage.getItem(AMBIENT_VOLUME_KEY));
+  if (Number.isFinite(saved)) {
+    ambientVolume = clamp100(saved);
+  }
+} catch {}
 
 function triggerWithCooldown(s, id, cooldownMs = 800) {
   const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
@@ -267,6 +279,26 @@ function shouldAllowHeartPulseLayers() {
   return activeProfile === 'play';
 }
 
+function shouldTriggerDeskSlam(evidence, pressure, fearScore, intensity) {
+  if (!shouldAllowHeartPulseLayers()) return false;
+
+  const type = String(evidence.choiceType || '').toUpperCase();
+  const isCorneringType =
+    type === 'TRAP' ||
+    type === 'FORENSIC_CALL_OUT' ||
+    type === 'NARROW_TARGET' ||
+    type === 'LEGAL_THREAT' ||
+    type === 'PRESSURE';
+
+  const isCornered =
+    (evidence.fearDelta || 0) >= 18 || pressure >= 0.68 || fearScore >= 0.7 || intensity >= 70;
+
+  if (!isCornered) return false;
+
+  const chance = isCorneringType ? 0.45 : 0.22;
+  return Math.random() < chance;
+}
+
 function ensureScene() {
   if (!available) return null;
   if (scene) return scene;
@@ -278,7 +310,7 @@ function ensureScene() {
   }
 
   scene = new Ctor({
-    volume: 0.52,
+    volume: ambientVolume / 100,
     mood: 'tense',
     tension: 10,
     autoEvents: true,
@@ -292,6 +324,20 @@ function ensureScene() {
   scene.setLayer('rumble', 28);
   scene.setLayer('pulse', 16);
   return scene;
+}
+
+export function getAmbientVolume() {
+  return ambientVolume;
+}
+
+export function setAmbientVolume(nextVolume) {
+  ambientVolume = clamp100(nextVolume);
+  try {
+    localStorage.setItem(AMBIENT_VOLUME_KEY, String(ambientVolume));
+  } catch {}
+  if (scene) {
+    scene.setVolume(ambientVolume);
+  }
 }
 
 function installAutoplayUnlock() {
@@ -315,6 +361,7 @@ export function enterInterrogationAudio() {
   activeProfile = 'play';
   s.play();
   s.setMood('tense');
+  s.setVolume(ambientVolume);
   s.setMod('calm', 0);
   s.setTension(10);
   runtimeMix.mod = 'calm';
@@ -345,8 +392,9 @@ export function applyAmbientProfile(profile) {
     s.setMood('cold');
     s.setMod('calm', 0);
     s.setTension(6);
-    s.setVolume(44);
+    s.setVolume(ambientVolume);
     s.setLayer('room', 46);
+    s.setLayer('rain', 16);
     s.setLayer('drone', 34);
     s.setLayer('organ', 26);
     s.setLayer('piano', 58);
@@ -364,8 +412,9 @@ export function applyAmbientProfile(profile) {
     s.setMood('cold');
     s.setMod('calm', 0);
     s.setTension(12);
-    s.setVolume(44);
+    s.setVolume(ambientVolume);
     s.setLayer('room', 44);
+    s.setLayer('rain', 14);
     s.setLayer('drone', 40);
     s.setLayer('organ', 28);
     s.setLayer('piano', 42);
@@ -382,8 +431,9 @@ export function applyAmbientProfile(profile) {
     s.setMood('breaking');
     s.setMod('both', 42);
     s.setTension(58);
-    s.setVolume(52);
+    s.setVolume(ambientVolume);
     s.setLayer('room', 28);
+    s.setLayer('rain', 7);
     s.setLayer('drone', 68);
     s.setLayer('rumble', 62);
     s.setLayer('clock', 0);
@@ -395,10 +445,11 @@ export function applyAmbientProfile(profile) {
     s.setMood('reveal');
     s.setMod('excited', 20);
     s.setTension(24);
-    s.setVolume(46);
+    s.setVolume(ambientVolume);
     s.setLayer('piano', 72);
     s.setLayer('organ', 42);
     s.setLayer('room', 36);
+    s.setLayer('rain', 10);
     s.setLayer('rumble', 18);
     s.setLayer('clock', 0);
     s.setLayer('pulse', 0);
@@ -409,8 +460,9 @@ export function applyAmbientProfile(profile) {
     s.setMood('silent');
     s.setMod('afraid', 34);
     s.setTension(30);
-    s.setVolume(46);
+    s.setVolume(ambientVolume);
     s.setLayer('room', 54);
+    s.setLayer('rain', 17);
     s.setLayer('drone', 44);
     s.setLayer('organ', 18);
     s.setLayer('piano', 20);
@@ -466,9 +518,14 @@ export function applyDialogueAudio(evidence, fearBar, maxFearBar) {
   applyModSmooth(s, mod, intensity, 0.35);
 
   if (evidence.fearDelta >= 25 || pressure >= 0.72) {
-    triggerWithCooldown(s, 'slam', 900);
+    if (shouldTriggerDeskSlam(evidence, pressure, fearScore, intensity)) {
+      triggerWithCooldown(s, 'slam', 2200);
+    }
     triggerWithCooldown(s, 'metal', 900);
   } else if (evidence.fearDelta >= 14 || fearScore >= 0.62) {
+    if (shouldTriggerDeskSlam(evidence, pressure, fearScore, intensity)) {
+      triggerWithCooldown(s, 'slam', 2600);
+    }
     triggerWithCooldown(s, 'chair', 850);
   }
 
@@ -480,10 +537,12 @@ export function applyDialogueAudio(evidence, fearBar, maxFearBar) {
   if (mod === 'both' && intensity > 74) {
     triggerWithCooldown(s, 'radio', 1200);
     setDynamicLayerSmooth(s, 'room', 26, 0.35);
+    setDynamicLayerSmooth(s, 'rain', 6, 0.35);
     setDynamicLayerSmooth(s, 'drone', 74, 0.35);
     setDynamicLayerSmooth(s, 'rumble', 78, 0.35);
   } else {
     setDynamicLayerSmooth(s, 'room', 44 - fearRatio * 10, 0.35);
+    setDynamicLayerSmooth(s, 'rain', 14 - fearRatio * 4, 0.35);
     setDynamicLayerSmooth(s, 'drone', 46 + fearRatio * 18, 0.35);
     setDynamicLayerSmooth(s, 'rumble', 26 + fearRatio * 20, 0.35);
   }
