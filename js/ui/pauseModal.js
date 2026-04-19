@@ -26,7 +26,7 @@ function pointInRect(p, r) {
   return p && p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
 }
 
-export function drawPauseModal(ctx, { mouse }) {
+export function drawPauseModal(ctx, { mouse, selectedIndex = 0 }) {
   // Dimmed backdrop
   ctx.save();
   ctx.fillStyle = 'rgba(14, 9, 6, 0.78)';
@@ -46,6 +46,7 @@ export function drawPauseModal(ctx, { mouse }) {
   drawRect(ctx, MODAL_X + 8, MODAL_Y + 26, MODAL_W - 16, 1, COLORS.amberDim);
 
   const rects = [];
+  let keyboardIndex = 0;
 
   for (let i = 0; i < BUTTONS.length; i += 1) {
     const btn = BUTTONS[i];
@@ -55,16 +56,21 @@ export function drawPauseModal(ctx, { mouse }) {
       rects.push(rect);
     }
 
-    const hovered = !btn.disabled && pointInRect(mouse, rect);
+    const mouseHovered = !btn.disabled && pointInRect(mouse, rect);
+    const keyFocused = !btn.disabled && keyboardIndex === selectedIndex;
+    const active = mouseHovered || keyFocused;
+    if (!btn.disabled) {
+      keyboardIndex += 1;
+    }
 
     drawPanel(ctx, rect.x, rect.y, rect.w, rect.h, {
-      border: btn.disabled ? COLORS.amberDim : hovered ? COLORS.amberBright : COLORS.amber,
-      fill: hovered ? 'rgba(70, 42, 16, 0.75)' : COLORS.panelFillLight,
+      border: btn.disabled ? COLORS.amberDim : active ? COLORS.amberBright : COLORS.amber,
+      fill: active ? 'rgba(70, 42, 16, 0.75)' : COLORS.panelFillLight,
     });
 
     drawText(ctx, t(btn.labelKey), rect.x + rect.w / 2, rect.y + rect.h / 2, {
       size: 11,
-      color: btn.disabled ? COLORS.amberDim : hovered ? COLORS.amberBright : COLORS.cream,
+      color: btn.disabled ? COLORS.amberDim : active ? COLORS.amberBright : COLORS.cream,
       font: UI_FONT,
       baseline: 'middle',
       align: 'center',

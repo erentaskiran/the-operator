@@ -47,6 +47,7 @@ const LANE_FLASH_DECAY = 1.8;
 
 let pauseOpen = false;
 let pauseRects = [];
+let pauseSelectedIndex = 0;
 let settingsOpen = false;
 let settingsRects = {};
 let logExpanded = false;
@@ -278,7 +279,7 @@ function drawPlayScene(ctx) {
     if (settingsOpen) {
       settingsRects = drawSettingsModal(ctx, { mouse });
     } else {
-      const result = drawPauseModal(ctx, { mouse });
+      const result = drawPauseModal(ctx, { mouse, selectedIndex: pauseSelectedIndex });
       pauseRects = result.rects;
     }
   }
@@ -447,6 +448,7 @@ export function registerPlayScene(_canvas, ctx) {
       resetRun();
       pauseOpen = false;
       pauseRects = [];
+      pauseSelectedIndex = 0;
       settingsOpen = false;
       settingsRects = {};
       logExpanded = false;
@@ -521,6 +523,7 @@ export function registerPlayScene(_canvas, ctx) {
           settingsOpen = false;
         } else {
           pauseOpen = !pauseOpen;
+          pauseSelectedIndex = 0;
         }
         return;
       }
@@ -544,15 +547,37 @@ export function registerPlayScene(_canvas, ctx) {
           return;
         }
 
+        if (wasKeyPressed('arrowup') || wasKeyPressed('w')) {
+          pauseSelectedIndex = (pauseSelectedIndex - 1 + pauseRects.length) % pauseRects.length;
+          return;
+        }
+        if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
+          pauseSelectedIndex = (pauseSelectedIndex + 1) % pauseRects.length;
+          return;
+        }
+        if (wasKeyPressed('enter')) {
+          const selected = pauseRects[pauseSelectedIndex];
+          if (selected?.key === 'continue') {
+            pauseOpen = false;
+          } else if (selected?.key === 'settings') {
+            settingsOpen = true;
+          } else if (selected?.key === 'quit') {
+            setScene('menu');
+          }
+          return;
+        }
+
         if (wasMousePressed(0)) {
           const mouse = getMousePos();
-          for (const rect of pauseRects) {
+          for (let i = 0; i < pauseRects.length; i += 1) {
+            const rect = pauseRects[i];
             if (
               mouse.x >= rect.x &&
               mouse.x <= rect.x + rect.w &&
               mouse.y >= rect.y &&
               mouse.y <= rect.y + rect.h
             ) {
+              pauseSelectedIndex = i;
               if (rect.key === 'continue') {
                 pauseOpen = false;
               } else if (rect.key === 'settings') {
