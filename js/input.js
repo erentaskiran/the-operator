@@ -19,6 +19,8 @@ const platformText = `${navigator.platform || ''} ${navigator.userAgent || ''}`;
 const isMacPlatform = /mac|iphone|ipad|ipod/i.test(platformText);
 const isWindowsPlatform = /win/i.test(platformText);
 const SCROLL_INVERT_KEY = 'the-operator:scroll-invert:v1';
+const SCROLL_LINE_DIVISOR = 30;
+const SCROLL_PIXEL_DIVISOR = 2.5;
 
 let scrollInverted = false;
 try {
@@ -107,6 +109,14 @@ export function getPlatformScrollDelta() {
     return scrollInverted ? -delta : delta;
   }
   return scrollInverted ? -delta : delta;
+}
+
+export function toUnifiedScrollLines(delta) {
+  return delta / SCROLL_LINE_DIVISOR;
+}
+
+export function toUnifiedScrollPixels(delta) {
+  return delta / SCROLL_PIXEL_DIVISOR;
 }
 
 export function isScrollInverted() {

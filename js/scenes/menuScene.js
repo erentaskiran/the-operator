@@ -1,7 +1,13 @@
 import { drawRect, drawText, drawWrappedText, drawScrollableText } from '../draw.js';
 import { getImage } from '../assets.js';
 import { registerScene, setScene } from '../sceneManager.js';
-import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
+import {
+  getMousePos,
+  getPlatformScrollDelta,
+  toUnifiedScrollLines,
+  wasKeyPressed,
+  wasMousePressed,
+} from '../input.js';
 import { clamp } from '../math.js';
 import { CASES } from '../game/cases.js';
 import { getStats } from '../game/caseStats.js';
@@ -388,7 +394,7 @@ export function registerMenuScene(_canvas, ctx) {
 
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
-        infoScrollOffset = clamp(infoScrollOffset + wheel / 30, 0, infoMaxScroll);
+        infoScrollOffset = clamp(infoScrollOffset + toUnifiedScrollLines(wheel), 0, infoMaxScroll);
       }
 
       const visible = getVisibleCases();

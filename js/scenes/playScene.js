@@ -1,5 +1,12 @@
 import { registerScene, setScene } from '../sceneManager.js';
-import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
+import {
+  getMousePos,
+  getPlatformScrollDelta,
+  toUnifiedScrollLines,
+  toUnifiedScrollPixels,
+  wasKeyPressed,
+  wasMousePressed,
+} from '../input.js';
 import { clamp, lerp } from '../math.js';
 import {
   getDefendantImageKey,
@@ -410,7 +417,7 @@ function updateLogHover(dt) {
   if (logExpanded && inRect(mouse, panelRect)) {
     const wheel = getPlatformScrollDelta();
     if (wheel !== 0) {
-      logScrollOffset = clamp(logScrollOffset + wheel / 30, 0, logMaxScroll);
+      logScrollOffset = clamp(logScrollOffset + toUnifiedScrollPixels(wheel), 0, logMaxScroll);
     }
   }
 }
@@ -454,7 +461,11 @@ function updateDossierHover(dt) {
   if (dossierExpanded && inRect(mouse, panelRect)) {
     const wheel = getPlatformScrollDelta();
     if (wheel !== 0) {
-      dossierScrollOffset = clamp(dossierScrollOffset + wheel / 30, 0, dossierMaxScroll);
+      dossierScrollOffset = clamp(
+        dossierScrollOffset + toUnifiedScrollPixels(wheel),
+        0,
+        dossierMaxScroll
+      );
     }
   }
 }
@@ -733,7 +744,11 @@ export function registerPlayScene(_canvas, ctx) {
       if (state.responseMode) {
         const wheel = getPlatformScrollDelta();
         if (wheel !== 0) {
-          answerScrollOffset = clamp(answerScrollOffset + wheel / 30, 0, answerMaxScroll);
+          answerScrollOffset = clamp(
+            answerScrollOffset + toUnifiedScrollLines(wheel),
+            0,
+            answerMaxScroll
+          );
         }
         handleResponseMode(dt);
         return;
@@ -742,7 +757,11 @@ export function registerPlayScene(_canvas, ctx) {
       if (!state.responseMode && state.currentNode?.choices && !logExpanded && !dossierExpanded) {
         const wheel = getPlatformScrollDelta();
         if (wheel !== 0) {
-          choiceScrollOffset = clamp(choiceScrollOffset + wheel / 30, 0, choiceMaxScroll);
+          choiceScrollOffset = clamp(
+            choiceScrollOffset + toUnifiedScrollPixels(wheel),
+            0,
+            choiceMaxScroll
+          );
         }
       }
 

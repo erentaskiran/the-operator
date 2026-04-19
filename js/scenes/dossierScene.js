@@ -1,6 +1,12 @@
 import { drawRect, drawText, drawWrappedText, wrapTextLines } from '../draw.js';
 import { registerScene, setScene } from '../sceneManager.js';
-import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
+import {
+  getMousePos,
+  getPlatformScrollDelta,
+  toUnifiedScrollPixels,
+  wasKeyPressed,
+  wasMousePressed,
+} from '../input.js';
 import { clamp } from '../math.js';
 import { state, getDefendantImageKey } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
@@ -322,7 +328,7 @@ export function registerDossierScene(_canvas, ctx) {
       anim += dt;
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
-        scroll = clamp(scroll + wheel / 30, 0, maxScroll);
+        scroll = clamp(scroll + toUnifiedScrollPixels(wheel), 0, maxScroll);
       }
       if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
         scroll = clamp(scroll + 24, 0, maxScroll);

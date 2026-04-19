@@ -1,6 +1,13 @@
 import { drawRect, drawScrollableText, drawText, drawWrappedText, wrapTextLines } from '../draw.js';
 import { registerScene, setScene } from '../sceneManager.js';
-import { getMousePos, getPlatformScrollDelta, wasKeyPressed, wasMousePressed } from '../input.js';
+import {
+  getMousePos,
+  getPlatformScrollDelta,
+  toUnifiedScrollLines,
+  toUnifiedScrollPixels,
+  wasKeyPressed,
+  wasMousePressed,
+} from '../input.js';
 import { getSelectedCaseDef, getSuspectLabel, state } from '../game/state.js';
 import { recordAttempt } from '../game/caseStats.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
@@ -487,7 +494,7 @@ export function registerVerdictScene(_canvas, ctx) {
         if (summaryMaxScroll > 0 && summaryViewportRect && inRect(mouse, summaryViewportRect)) {
           summaryScrollOffset = Math.max(
             0,
-            Math.min(summaryMaxScroll, summaryScrollOffset + wheel / 30)
+            Math.min(summaryMaxScroll, summaryScrollOffset + toUnifiedScrollLines(wheel))
           );
         } else if (
           dossierMaxScroll > 0 &&
@@ -496,10 +503,13 @@ export function registerVerdictScene(_canvas, ctx) {
         ) {
           dossierScrollOffset = Math.max(
             0,
-            Math.min(dossierMaxScroll, dossierScrollOffset + wheel / 30)
+            Math.min(dossierMaxScroll, dossierScrollOffset + toUnifiedScrollPixels(wheel))
           );
         } else if (listMaxScroll > 0 && (!listViewportRect || inRect(mouse, listViewportRect))) {
-          listScrollOffset = Math.max(0, Math.min(listMaxScroll, listScrollOffset + wheel / 30));
+          listScrollOffset = Math.max(
+            0,
+            Math.min(listMaxScroll, listScrollOffset + toUnifiedScrollPixels(wheel))
+          );
         }
       }
       if (wasKeyPressed('arrowup')) {
