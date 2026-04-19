@@ -12,11 +12,11 @@ const flicker = {
 };
 
 function scheduleBurst(now) {
-  flicker.nextBurst = now + 2500 + Math.random() * 6000;
+  flicker.nextBurst = now + 8000 + Math.random() * 14000;
 }
 
 function buildBurst() {
-  const count = 3 + Math.floor(Math.random() * 5);
+  const count = 2 + Math.floor(Math.random() * 3);
   const queue = [];
   for (let i = 0; i < count; i++) {
     const dim = Math.random();
