@@ -1,0 +1,269 @@
+{
+  "game_data": {
+    "title": "Selin Acar Ölüm Davası: Tıbbi İhmal mi, Kaza mı?",
+    "suspect": {
+      "name": "Tayfun Keleş",
+      "role": "Plastik Cerrah / Özel Klinik Sahibi",
+      "profile": "Ankara'nın orta sınıf bir ailesinde yetişen Keleş, İstanbul Üniversitesi Tıp Fakültesi'ni birincilikle tamamlamış, ardından uzmanlığını Münih'te yapmıştır. Türkiye'ye dönüşünde Nişantaşı'nda kurduğu klinik, on beş yılda ünlü isimlerin tercihi hâline gelmiştir. Meslektaşları onu titiz ve soğukkanlı olarak tanımlar; ancak yakın çevresi son iki yılda belirgin bir sinirlilik ve içe kapanma fark etmiştir. Kliniğin muhasebe kayıtlarında gerekçelendirilmemiş nakit çekimler dikkat çekmektedir. Bununla birlikte yerel bir yetimhaneye düzenli bağış yapar, yeğeninin tıp eğitim masraflarını tamamen kendi üstlenmiştir."
+    },
+    "system_config": {
+      "initial_fear_bar": 20,
+      "max_fear_bar": 100,
+      "fear_bar_description": "Korku barı, şüphelinin sorgu boyunca hissettiği psikolojik ve duygusal baskının birikimli ölçümüdür. Değer yükseldikçe şüphelinin savunma mekanizmaları çözülmeye, biyometrik sinyalleri ise gerçeği sızdırmaya başlar. Düşük değer şüphelinin kontrolü elinde tuttuğunu; yüksek değer ise kırılma noktasına yaklaşıldığını gösterir.",
+      "heart_rate_baseline": 76,
+      "gsr_baseline": 7
+    },
+    "context": "42 yaşındaki Selin Acar, Dr. Tayfun Keleş'in Nişantaşı'ndaki özel kliniğinde geçirdiği estetik operasyonun ardından yoğun bakıma alınmış ve 18 saat içinde hayatını kaybetmiştir. Otopsi raporunda ölüm nedeni olarak intraoperatif damar hasarına bağlı kontrolsüz iç kanama gösterilmiştir. Acar'ın ailesi, ölümün cerrahi ihmalden kaynaklandığını öne sürerek Keleş hakkında taksirle öldürme suçlamasıyla savcılığa başvurmuştur. Savcılık, Keleş'in operasyon öncesinde bilişsel ya da fiziksel kapasitesini etkileyebilecek herhangi bir madde alıp almadığını ve hastanın şikâyetlerini bildirmesinin ardından müdahaleyi bilerek riskli koşullarda sürdürüp sürdürmediğini araştırmaktadır. Keleş ise komplikasyonun anatomik bir varyasyondan kaynaklandığını, kendisinin standart tüm protokollere uyduğunu ve ölümün öngörülemez bir tıbbi kaza olduğunu savunmaktadır.",
+    "true_verdict": "GUILTY",
+    "verdict_truth_text": "Tayfun Keleş, 14 Mart sabahı kronik ağrı bahanesiyle kendisine yüksek doz opioid reçete etmiş ve Selin Acar'ın operasyonuna bu maddenin etkisi altında girmiştir. El titremesi ve konsantrasyon kaybıyla yürütülen ameliyatta kritik bir damarı yanlış keserek hastanın kontrolsüz iç kanamayla hayatını kaybetmesine doğrudan neden olmuştur. İlgili reçeteleri klinik sistemine hiç kaydetmemiş, dijital izleri silmiş ve Acar'ın TTB şikâyetinin yarattığı varoluşsal baskı altında gerçeği sistematik biçimde örtbas etmeye çalışmıştır.",
+    "dossier": {
+      "age": 48,
+      "identity_summary": "Nişantaşı merkezli özel kliniğin kurucusu ve baş cerrahı; estetik cerrahi alanında on beş yıllık deneyime sahip yüksek profilli bir isim. Son dönemde hem mesleki hem kişisel alanda belirgin baskı altında olduğu gözlemlenmektedir.",
+      "family": [
+        {
+          "relation": "Eş (ayrı yaşıyor)",
+          "name": "Derya Keleş",
+          "note": "İki yıldır süren boşanma süreci mali anlaşmazlık nedeniyle tıkanmış durumda; Keleş üzerinde ciddi finansal ve duygusal baskı kaynağı. EMPATHIC taktikte kırılganlık noktası olarak kullanılabilir."
+        },
+        {
+          "relation": "Yeğen",
+          "name": "Bora Arslan",
+          "note": "Keleş'in tüm eğitim masraflarını üstlendiği tıp öğrencisi. Keleş'in çöküşü hâlinde doğrudan etkilenecek olan bu figür, EMPATHIC baskıda güçlü bir koz niteliği taşır."
+        },
+        {
+          "relation": "Abla",
+          "name": "Aslı Arslan",
+          "note": "Kliniğe küçük bir ortaklıkla dahil olan kişi; açıklanamayan nakit çekimlerden kısmen haberdar olabilir. Yanlış bir soruyla kardeşini koruma refleksine girerek anahtar bilgiyi örteleyebilir."
+        }
+      ],
+      "medical": [
+        {
+          "condition": "Kontrol altında hipertansiyon — bisoprolol 5 mg/gün (beta-bloker)",
+          "polygraph_effect": "Bisoprolol sempatik kalp atışı tepkisini belirgin biçimde bastırır; stres ya da yalan sırasında beklenen nabız artışı gözlemlenmeyebilir. Kalp atışı ipuçlarına tek başına güvenilmemeli."
+        },
+        {
+          "condition": "Kronik migren — akut atak dönemlerinde sumatriptan kullanımı",
+          "polygraph_effect": "Sumatriptan doğrudan biyometrik baskı yaratmaz; ancak aktif migren atağında nefes örüntüsünde tutarsızlık gözlemlenebilir. Sorgu öncesinde atak bildirirse solunum okumaları güvenilirliğini kaybeder."
+        }
+      ],
+      "habits": [
+        {
+          "habit": "Yüksek kafein tüketimi — günde 5-6 fincan espresso, zaman zaman enerji içeceği",
+          "polygraph_effect": "GSR bazal seviyesini yükseltir ve ter bezlerini daha tepkisel kılar; nötr sorularda bile yüksek GSR ölçümü alınabilir. Tüm GSR sıçramalarının bağlamı dikkatle değerlendirilmeli."
+        },
+        {
+          "habit": "Reçeteli uyku ilacı — zolpidem, düzensiz aralıklarla",
+          "polygraph_effect": "Düşük dozda kalıntı etkisi sempatik yanıtı hafifçe yumuşatabilir; bisoprolol ile birleştiğinde kalp atışı baskılanması kümülatif hâle gelir."
+        }
+      ],
+      "priors": [
+        "2019 — Bir hasta komplikasyon iddiasıyla dava açmış; dava mahkeme dışında gizli tazminat anlaşmasıyla sonuçlanmıştır.",
+        "2022 — Sağlık Bakanlığı denetiminde kliniğin sterilizasyon kayıtlarında eksiklik tespit edilmiş, yazılı uyarı cezası uygulanmıştır.",
+        "Son altı ayda klinik banka hesabından toplam 340.000 TL tutarında nakit çekim yapılmıştır; gerekçe belgelenmemiştir."
+      ],
+      "pressure_points": [
+        "Yeğen ve abla bağı: EMPATHIC taktikte aile yükümlülükleri vurgulanırsa savunma refleksleri zayıflayabilir; GSR ve solunum tepkisi belirginleşir.",
+        "2019 gizli tazminat anlaşması: EVIDENCE taktiğiyle bu dava gündeme getirilirse suçluluk kaygısı tırmanır ve anlık GSR sıçraması güvenilir sinyal üretebilir.",
+        "Mesleki kimlik baskısı: Cerrahî yetkinliğine açıkça ya da dolaylı biçimde itiraz edilirse aşırı savunmacı tepki verebilir; bu tepki biyometrik okumaları karmaşıklaştırır, ancak söylem tutarsızlıklarını gün yüzüne çıkarabilir."
+      ],
+      "modifiers": {
+        "heart_rate_suppression": 0.58,
+        "heart_rate_baseline_shift": 4,
+        "gsr_sensitivity": 1.42,
+        "gsr_baseline_shift": 2.5,
+        "breathing_instability": 0.12
+      }
+    },
+    "start_node": "node_01_intro",
+    "nodes": {
+      "node_01_intro": {
+        "theme": "Açılış: Kaleyi Yoklamak",
+        "description": "Tayfun Keleş avukatının önerileri doğrultusunda hazırlıklı görünüyor; soğukkanlı, düzenli bir duruş sergiliyor. Operasyon günü rutinini sormak ona anlatı zemini sunacak; şikâyet meselesini erkenden açmak ise duygusal topografyayı ortaya çıkarabilir.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "ANALYTICAL",
+            "question": "Dr. Keleş, operasyon günü sabahki rutininizi adım adım anlatır mısınız? Hangi saatte kliniğe geldiniz, operasyon öncesi hangi hazırlıkları yaptınız?",
+            "answer": "Sabah sekizde klinikeydim. Standart hazırlık protokolünü uyguladım: hasta dosyasını inceledim, ameliyathane ekibiyle kısa bir brifing yaptım. Her şey olağan bir başlangıçtı.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "cctv_visual": "CONTROLLED_NOD",
+              "korku_bari_delta": 5,
+              "gameplay_note": "KISMEN DOĞRU: Cevap genel hatlarıyla tutarlı görünüyor ama klinik sistem kayıtlarıyla çelişen bir saat boşluğu var — giriş kaydı 07:14'te kesilmiş. GSR bazal yüksek; kafein mi başka bir etken mi henüz ayırt edilemiyor."
+            },
+            "next_node": "node_02_operation_day"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Bu sürecin sizin için de son derece ağır olduğunu tahmin ediyorum. Selin Acar nasıl bir hastaydı, nasıl biriydi?",
+            "answer": "Titiz biriydi. Beklentilerini net biçimde ifade ederdi. Aramızdaki ilişki tamamen profesyoneldi. Ölümü... trajik.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "DEEP",
+              "gsr": "STABLE",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 8,
+              "gameplay_note": "İLERLEME: Empati kapısı aralandı. 'Trajik' kelimesi dikkat çekici — 'üzücü' ya da 'yıkıcı' değil. Mesafeli kelime seçimi, bağı olduğundan zayıf gösterme çabası olabilir."
+            },
+            "next_node": "node_03_complaint"
+          }
+        ]
+      },
+      "node_02_operation_day": {
+        "theme": "Operasyon Sabahı: Saat Boşluğu",
+        "description": "Keleş sabah rutinini anlattı; ancak klinik ağ kayıtları 07:14 ile 08:30 arasında sistem erişiminin kesildiğini gösteriyor. Bu aralık, silinmiş reçete kalıntılarının zaman damgasıyla örtüşüyor.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Klinik ağ kayıtları saat 07:14'te oturumunuzun kapandığını gösteriyor. Klinikte olduğunuzu söylüyorsunuz ama bu aralıkta sistemlere hiç erişmemişsiniz. O saatlerde tam olarak neredeydiniz?",
+            "answer": "Bilgisayar başında durmak zorunda değilim her zaman. Ameliyathaneyi fiziksel olarak denetliyordum — ekipmanlara bakıyordum, asistanlarla konuşuyordum. Bunların tümünün kayıtta olması gerekmez.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "SHALLOW",
+              "gsr": "SURGE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": 20,
+              "gameplay_note": "YALAN SİNYALİ: GSR belirgin artış — kafein bazalinin çok üstünde. Beta-bloker HR'ı kısmen bastırıyor ama nefes sığlaştı. Açıklama genel ve doğrulanamaz; saat boşluğunu kapatmıyor."
+            },
+            "next_node": "node_04_records"
+          },
+          {
+            "type": "STRATEGIC",
+            "question": "Anatomik varyasyon iddiasını operasyon öncesi görüntüleme raporlarında belgelenmiş olarak gördünüz mü?",
+            "answer": "Görüntüleme raporları standart aralıklar içindeydi. Vasküler varyasyonlar her zaman görüntülemeyle öngörülemez; bu cerrahi bir gerçek, herhangi bir uzman bunu doğrular.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "cctv_visual": "CONTROLLED_NOD",
+              "korku_bari_delta": 3,
+              "gameplay_note": "YANLIŞ HAMLE: Teknik olarak savunulabilir bir cevap aldınız. Sinyaller düşük ve karışık. Gerçek sorulardan uzaklaştınız — bu hat sizi şikâyet meselesine götürecek ama asıl kanıt zincirini zayıflatıyor."
+            },
+            "next_node": "node_03_complaint"
+          }
+        ]
+      },
+      "node_03_complaint": {
+        "theme": "Dilekçe: Varoluşsal Tehdit",
+        "description": "Selin Acar'ın TTB şikâyeti Keleş'in kariyerini bitirebilecek tek bir belgeydi. Bu meselenin ne zaman ve nasıl gündeme getirildiği, Keleş'in motivasyonunu açığa çıkarabilir ya da tamamen kapatabilir.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EVIDENCE",
+            "question": "Selin Acar'ın size Kasım ayında gönderdiği mesaj elimizde: 'TTB başvurusunu bu hafta yapacağım.' Bu mesajı alınca ne hissettiniz?",
+            "answer": "O mesajı almış olmam... bunu bir tehdit olarak değerlendirdiğim anlamına gelmez. Her hastanın şikâyet hakkı var. Ben her zaman hukuki sürece güvenirim.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "MAX",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 28,
+              "gameplay_note": "YALAN SİNYALİ: Güçlü çoklu sinyal. Beta-bloker HR'ı kısıyor ama yine de sızdı. GSR maksimuma ulaştı. 'Almış olmam' ve 'anlamına gelmez' — dolaylı kabul üstüne savunma inşası. Göz kaçırması ani ve belirgin."
+            },
+            "next_node": "node_05_substance"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Selin Acar sizi köşeye sıkıştırmıştı ve onu susturmanın en hızlı yolunu seçtiniz. Bunu burada açıkça söyleyin.",
+            "answer": "Bu bir suçlama ve kesinlikle reddediyorum. Avukatım olmadan bu sorguya devam etmeyeceğim.",
+            "mechanics": {
+              "heart_rate": "ERRATIC",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "SURGE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -32,
+              "gameplay_note": "YANLIŞ HAMLE: Erken ve ham suçlama onu tamamen kapattı. Biyometrik sinyaller güçlüydü ama kanıt zinciri kurulmadan sorgu bitti. Toplanan veri yetersiz."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_04_records": {
+        "theme": "Silinen Kayıtlar: Dijital Ayak İzi",
+        "description": "Adli bilişim ekibi klinik veritabanında operasyon sabahına ait silinmiş kayıt kalıntıları tespit etti. Keleş bu bilgiye nasıl tepki verecek, bunu şimdi öğreneceksiniz.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "NARROW_TARGET",
+            "question": "Adli bilişim ekibimiz veritabanında 14 Mart sabahı 07:22 ile 08:15 arasında oluşturulan ve ardından silinen reçete girişi kalıntıları tespit etti. Bu kayıtlar neyi içeriyordu?",
+            "answer": "Ne bulduğunuzu... tam olarak anlamıyorum. Sistem zaman zaman teknik hatalar üretiyor. Benden bağımsız bir aksaklık olmuş olabilir.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "MAX",
+              "cctv_visual": "MICRO_TWITCH",
+              "korku_bari_delta": 38,
+              "gameplay_note": "YALAN SİNYALİ: En güçlü sinyal kümesi bu noktaya kadar. Bisoprolol limitine ulaşıldı — HR bile bastırılmaya rağmen sızdı. GSR tavan yaptı. 'Ne bulduğunuzu anlamıyorum' yapısı bilgi saklamayı ele veriyor; 'teknik hata' hazır bir savunma kalıbı."
+            },
+            "next_node": "node_05_substance"
+          },
+          {
+            "type": "LEGAL_THREAT",
+            "question": "Savcılık bilişim suçları birimi bu kayıtların büyük bölümünü restore etti. Bu aşamada işbirliği yapmazsanız delil karartma suçlaması gündemin üst sırasına taşınır.",
+            "answer": "Avukatım burada olmadan bu konuyu konuşmaya devam etmeyeceğim. Baskı altında ifade vermem.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "SHALLOW",
+              "gsr": "SURGE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": -22,
+              "gameplay_note": "YANLIŞ HAMLE: Hukuki tehdit onu kapattı. Sinyaller orta şiddette ama ifade kesildi. Kısmi biyometrik veri elde edildi, sözel kanıt yok."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_05_substance": {
+        "theme": "İtirafın Eşiği: O Sabah Ne Aldı?",
+        "description": "Silinen kayıtlar, saat boşluğu ve şikâyet motivasyonu birbirine bağlandı. Artık doğrudan sormak mümkün: Keleş o sabah ameliyathaneye girerken gerçekten tamamen yerinde miydi?",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Dr. Keleş, ameliyat ekibinden birden fazla kişi o sabah elinizin titrediğini gördüğünü söyledi. Siz de bunu biliyorsunuz. Sadece Bora'yı düşünün — yeğeninizi, tıp öğrencisini. Bu gerçeği ondan önce bizden duymasını mı istiyorsunuz?",
+            "answer": "...(uzun bir sessizlik)... Ben yeterince uyuyamamıştım. Ağrı vardı. Bunu... yönetmeye çalıştım. Sadece odaklanmak istedim. Başka bir şey değildi.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "CRYING",
+              "gsr": "SURGE",
+              "cctv_visual": "BREAKDOWN",
+              "korku_bari_delta": 48,
+              "gameplay_note": "DOĞRU HAMLE: Aile kozu ile ahlaki baskının birleşimi savunmayı eritti. 'Ağrıyı yönetmeye çalıştım' doğrudan itiraf değil ama örtülü doğrulama. Bu sorgunun en güçlü sinyal serisi — kayıt altında."
+            },
+            "next_node": "node_success_breakdown"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "14 Mart sabahı opioid aldınız, kayıtları sildiniz ve Selin Acar bunun bedelini hayatıyla ödedi. Şimdi burada bunu söyleyin.",
+            "answer": "Bunu böyle çarpıtamazsınız. Avukatım olmadan bir kelime daha söylemeyeceğim.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SPIKE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -28,
+              "gameplay_note": "YANLIŞ HAMLE: İtirafın eşiğindeyken ham suçlama savunma duvarını yeniden örttü. Önemli sinyaller birikiyor ama sözel ifade kesildi — eksik veriyle hüküm ekranına gideceksiniz."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_success_breakdown": {
+        "theme": "Yıkılış: Örtülü Kabul",
+        "description": "Savunma duvarı çatladı. Keleş avukatını talep etmeden önce 'ağrıyı yönetmeye çalıştım' ifadesini kayıt altına aldırdı.",
+        "is_end_state": true,
+        "result_text": "Tayfun Keleş ifadesini yarıda kesip avukatını talep etti; ancak bunu yapmadan önce operasyon sabahı ağrı ve konsantrasyon kaybına ilişkin örtülü bir kabul kayıt altına girdi. Silinen reçete kalıntıları, 07:14-08:30 arası açıklanamayan saat boşluğu ve bu sözel sızıntı sorgu tutanağında bir arada yer alıyor. Keleş şu an avukatıyla görüşüyor. Sorgu boyunca toplanan biyometrik veri ve bu ifade hukuk ekibine iletildi — hükmü poligraf kayıtlarını okuyarak sen vereceksin."
+      },
+      "node_fail_lockdown": {
+        "theme": "Kapanma: Avukat Kalkanı",
+        "description": "Keleş sorguyu kapattı. Savunma duvarını korumayı başardı; sözel ifade yetersiz, biyometrik veri ise parçalı kaldı.",
+        "is_end_state": true,
+        "result_text": "Tayfun Keleş avukatını talep ederek ifadeyi sonlandırdı. Sorgu boyunca toplanan biyometrik veriler kayıt altında; ancak sözel ifade zayıf ve savunmacı kaldı, doğrudan hiçbir kabul elde edilemedi. Keleş savunma hattını korumayı başardı. Elindeki poligraf sinyallerini ve sorgu boyunca biriken biyometrik veriyi inceleyerek kendi hükmünü ver."
+      }
+    },
+    "character_image": "./assets/characters/tr-case-1.png"
+  }
+}
