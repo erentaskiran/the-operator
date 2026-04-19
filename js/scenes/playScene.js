@@ -1,7 +1,7 @@
 import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp, lerp } from '../math.js';
-import { pickChoice, resetRun, setNode, state } from '../game/state.js';
+import { getSuspectLabel, pickChoice, resetRun, setNode, state } from '../game/state.js';
 import { getBiometricDrawData, updateWave } from '../game/waves.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawNarrationBox } from '../ui/narrationBox.js';
@@ -91,7 +91,7 @@ function drawConversationPortraits(ctx) {
     LAYOUT.defendantBadge.w,
     LAYOUT.defendantBadge.h,
     'defendant',
-    state.gameData?.suspect?.role ? 'OZAN' : 'DEFENDANT'
+    getSuspectLabel()
   );
 }
 
@@ -137,6 +137,7 @@ function drawPlayScene(ctx) {
       question: qVisible,
       answer: aVisible,
       answerScrollOffset,
+      suspectLabel: getSuspectLabel(),
     });
     answerMaxScroll = modalResult.maxScroll;
     answerScrollOffset = modalResult.clampedScroll;

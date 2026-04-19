@@ -3,13 +3,10 @@ import { COLORS, UI_FONT } from './theme.js';
 import { drawPanel } from './panel.js';
 
 function colorForEntry(entry) {
-  if (entry.startsWith('SEN')) {
+  if (entry.startsWith('SEN:')) {
     return COLORS.creamDim;
   }
-  if (entry.startsWith('OZAN')) {
-    return COLORS.amberBright;
-  }
-  return COLORS.creamDim;
+  return COLORS.amberBright;
 }
 
 function buildLines(ctx, log, textW, size) {

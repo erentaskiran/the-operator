@@ -31,8 +31,29 @@ export function drawPortraitBadge(ctx, x, y, w, h, imageKey, label) {
 
   drawRect(ctx, x + 1, y + h - labelH - 1, w - 2, 1, COLORS.amberDim);
 
-  drawText(ctx, label, x + w / 2, y + h - labelH / 2, {
-    size: 12,
+  const maxLabelW = w - 6;
+  let labelText = label;
+  let labelSize = 12;
+  ctx.font = `${labelSize}px ${UI_FONT}`;
+  while (ctx.measureText(labelText).width > maxLabelW && labelSize > 7) {
+    labelSize -= 1;
+    ctx.font = `${labelSize}px ${UI_FONT}`;
+  }
+  if (ctx.measureText(labelText).width > maxLabelW) {
+    const firstWord = labelText.split(/\s+/)[0];
+    if (firstWord && firstWord !== labelText) {
+      labelText = firstWord;
+      labelSize = 12;
+      ctx.font = `${labelSize}px ${UI_FONT}`;
+      while (ctx.measureText(labelText).width > maxLabelW && labelSize > 7) {
+        labelSize -= 1;
+        ctx.font = `${labelSize}px ${UI_FONT}`;
+      }
+    }
+  }
+
+  drawText(ctx, labelText, x + w / 2, y + h - labelH / 2, {
+    size: labelSize,
     color: COLORS.cream,
     align: 'center',
     font: UI_FONT,

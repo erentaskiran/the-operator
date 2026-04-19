@@ -46,6 +46,11 @@ export const state = {
   time: 0,
 };
 
+export function getSuspectLabel() {
+  const name = state.gameData?.suspect?.name;
+  return name ? String(name).toUpperCase() : 'DEFENDANT';
+}
+
 export function getSelectedCaseDef() {
   return CASES[state.caseIndex] || CASES[0];
 }
@@ -122,7 +127,7 @@ export function pickChoice(index) {
   state.lastQuestion = choice.question;
   state.lastAnswer = choice.answer;
   pushLog(`SEN: ${choice.question}`);
-  pushLog(`OZAN: ${choice.answer}`);
+  pushLog(`${getSuspectLabel()}: ${choice.answer}`);
   state.note = '';
 
   state.metrics.heartRate = mechanics.heart_rate || state.metrics.heartRate;

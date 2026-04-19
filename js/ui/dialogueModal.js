@@ -2,7 +2,7 @@ import { drawText, drawWrappedText, drawScrollableText } from '../draw.js';
 import { COLORS, UI_FONT } from './theme.js';
 import { drawPanel } from './panel.js';
 
-export function drawDialogueModal(ctx, { x, y, w, h, question, answer, answerScrollOffset = 0 }) {
+export function drawDialogueModal(ctx, { x, y, w, h, question, answer, answerScrollOffset = 0, suspectLabel = 'DEFENDANT' }) {
   drawPanel(ctx, x, y, w, h, { border: COLORS.amber });
 
   drawText(ctx, '[ CEVAP ]', x + 8, y + 10, {
@@ -28,7 +28,7 @@ export function drawDialogueModal(ctx, { x, y, w, h, question, answer, answerScr
     const aH = y + h - footerH - aStartY;
     scrollResult = drawScrollableText(
       ctx,
-      `OZAN: ${answer}`,
+      `${suspectLabel}: ${answer}`,
       x + 8,
       aStartY,
       w - 16,
