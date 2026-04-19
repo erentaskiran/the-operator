@@ -347,6 +347,9 @@ export function setAmbientVolume(nextVolume) {
   try {
     localStorage.setItem(AMBIENT_VOLUME_KEY, String(ambientVolume));
   } catch {}
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('master-volume-changed'));
+  }
   if (scene) {
     scene.setVolume(ambientVolume);
   }

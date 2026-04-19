@@ -1,8 +1,41 @@
 import { getAudio } from './assets.js';
 
+const MASTER_VOLUME_KEY = 'the-operator:ambient-volume:v1';
+
 let currentMusic = null;
+let currentMusicBaseVolume = 0.6;
 let audioCtx = null;
 let lastTypewriterKeyAt = 0;
+let volumeListenerInstalled = false;
+
+function clamp01(v) {
+  return Math.max(0, Math.min(1, v));
+}
+
+function getMasterVolumeScale() {
+  try {
+    const raw = Number(localStorage.getItem(MASTER_VOLUME_KEY));
+    if (Number.isFinite(raw)) {
+      return clamp01(raw / 100);
+    }
+  } catch {}
+  return 0.5;
+}
+
+function applyCurrentMusicVolume() {
+  if (!currentMusic) {
+    return;
+  }
+  currentMusic.volume = clamp01(currentMusicBaseVolume * getMasterVolumeScale());
+}
+
+function installVolumeListener() {
+  if (volumeListenerInstalled || typeof window === 'undefined') {
+    return;
+  }
+  volumeListenerInstalled = true;
+  window.addEventListener('master-volume-changed', applyCurrentMusicVolume);
+}
 
 function getAudioCtx() {
   if (audioCtx) return audioCtx;
@@ -37,11 +70,14 @@ export function playLightBuzz(durationMs = 80, intensity = 1) {
   if (!ctx) return;
   if (ctx.state === 'suspended') ctx.resume().catch(() => {});
 
+  const masterScale = getMasterVolumeScale();
+  if (masterScale <= 0) return;
+
   const now = ctx.currentTime;
   const dur = Math.max(0.03, durationMs / 1000);
 
   const gain = ctx.createGain();
-  const peak = 0.05 + intensity * 0.07;
+  const peak = (0.05 + intensity * 0.07) * masterScale;
   gain.gain.setValueAtTime(0, now);
   gain.gain.linearRampToValueAtTime(peak, now + 0.004);
   gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
@@ -73,7 +109,7 @@ export function playLightBuzz(durationMs = 80, intensity = 1) {
   const noise = ctx.createBufferSource();
   noise.buffer = makeNoiseBuffer(ctx, dur + 0.05);
   const noiseGain = ctx.createGain();
-  noiseGain.gain.value = 0.12 * intensity;
+  noiseGain.gain.value = 0.12 * intensity * masterScale;
   const noiseFilter = ctx.createBiquadFilter();
   noiseFilter.type = 'highpass';
   noiseFilter.frequency.value = 900;
@@ -92,14 +128,14 @@ export function playLightBuzz(durationMs = 80, intensity = 1) {
   damp.type = 'lowpass';
   damp.frequency.value = 1800;
   const wet = ctx.createGain();
-  wet.gain.value = 0.45;
+  wet.gain.value = 0.45 * masterScale;
 
   gain.connect(delay);
   delay.connect(damp).connect(feedback).connect(delay);
   delay.connect(wet).connect(ctx.destination);
 
   const tail = 1.6;
-  wet.gain.setValueAtTime(0.45, now + dur);
+  wet.gain.setValueAtTime(0.45 * masterScale, now + dur);
   wet.gain.exponentialRampToValueAtTime(0.0001, now + dur + tail);
 
   osc.start(now);
@@ -115,13 +151,16 @@ export function playTypewriterKey(volume = 1) {
   if (!ctx) return;
   if (ctx.state === 'suspended') ctx.resume().catch(() => {});
 
+  const masterScale = getMasterVolumeScale();
+  if (masterScale <= 0) return;
+
   const now = ctx.currentTime;
   if (now - lastTypewriterKeyAt < 0.012) {
     return;
   }
   lastTypewriterKeyAt = now;
 
-  const v = Math.max(0, Math.min(1, volume));
+  const v = clamp01(volume) * masterScale;
 
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
@@ -160,11 +199,14 @@ export function playCaseCloseHit(intensity = 1) {
   if (!ctx) return;
   if (ctx.state === 'suspended') ctx.resume().catch(() => {});
 
+  const masterScale = getMasterVolumeScale();
+  if (masterScale <= 0) return;
+
   const now = ctx.currentTime;
   const k = Math.max(0.8, Math.min(2, intensity));
 
   const master = ctx.createGain();
-  master.gain.value = 0.88;
+  master.gain.value = 0.88 * masterScale;
 
   const comp = ctx.createDynamicsCompressor();
   comp.threshold.value = -30;
@@ -303,11 +345,13 @@ export function playSfx(name, volume = 1) {
   }
 
   const sound = source.cloneNode();
-  sound.volume = Math.max(0, Math.min(1, volume));
+  sound.volume = clamp01(volume) * getMasterVolumeScale();
   sound.play().catch(() => {});
 }
 
 export function playMusic(name, loop = true, volume = 0.6) {
+  installVolumeListener();
+
   const music = getAudio(name);
   if (!music) {
     return;
@@ -320,7 +364,8 @@ export function playMusic(name, loop = true, volume = 0.6) {
 
   currentMusic = music;
   currentMusic.loop = loop;
-  currentMusic.volume = Math.max(0, Math.min(1, volume));
+  currentMusicBaseVolume = clamp01(volume);
+  applyCurrentMusicVolume();
   currentMusic.play().catch(() => {});
 }
 
