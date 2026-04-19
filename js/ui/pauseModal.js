@@ -208,6 +208,7 @@ export function drawSettingsModal(ctx, { mouse }) {
   const trackX = rowRight - trackW - 14;
   const trackY = volumeRowY - trackH / 2;
   const volumeTrackRect = { x: trackX, y: trackY, w: trackW, h: trackH };
+  const volumeHitRect = { x: trackX, y: trackY - 8, w: trackW, h: trackH + 16 };
 
   const vol = getAmbientVolume();
   const ratio = vol / 100;
@@ -248,6 +249,8 @@ export function drawSettingsModal(ctx, { mouse }) {
   });
 
   return {
+    volumeTrackRect,
+    volumeHitRect,
     cycleLanguage,
     adjustVolume(dir) {
       setAmbientVolume(getAmbientVolume() + dir * 4);

@@ -14,7 +14,8 @@ function clamp01(v) {
 
 function getMasterVolumeScale() {
   try {
-    const raw = Number(localStorage.getItem(MASTER_VOLUME_KEY));
+    const stored = localStorage.getItem(MASTER_VOLUME_KEY);
+    const raw = stored == null || String(stored).trim() === '' ? NaN : Number(stored);
     if (Number.isFinite(raw)) {
       return clamp01(raw / 100);
     }

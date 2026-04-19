@@ -253,7 +253,8 @@ const runtimeMix = {
 const triggerCooldownAt = new Map();
 
 try {
-  const saved = Number(localStorage.getItem(AMBIENT_VOLUME_KEY));
+  const raw = localStorage.getItem(AMBIENT_VOLUME_KEY);
+  const saved = raw == null || String(raw).trim() === '' ? NaN : Number(raw);
   if (Number.isFinite(saved)) {
     ambientVolume = clamp100(saved);
   }

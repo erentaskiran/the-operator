@@ -2,6 +2,7 @@ import { registerScene, setScene } from '../sceneManager.js';
 import {
   getMousePos,
   getPlatformScrollDelta,
+  isMouseDown,
   toUnifiedScrollLines,
   toUnifiedScrollPixels,
   wasKeyPressed,
@@ -74,6 +75,7 @@ let pauseRects = [];
 let pauseSelectedIndex = 0;
 let settingsOpen = false;
 let settingsRects = {};
+let pauseSettingsVolumeDragActive = false;
 let logExpanded = false;
 let logAnim = 0;
 let logScrollOffset = 0;
@@ -528,6 +530,7 @@ export function registerPlayScene(_canvas, ctx) {
       pauseSelectedIndex = 0;
       settingsOpen = false;
       settingsRects = {};
+      pauseSettingsVolumeDragActive = false;
       logExpanded = false;
       logAnim = 0;
       logScrollOffset = 0;
@@ -659,6 +662,14 @@ export function registerPlayScene(_canvas, ctx) {
 
       if (pauseOpen) {
         if (settingsOpen) {
+          if (pauseSettingsVolumeDragActive) {
+            if (isMouseDown(0) && settingsRects.hitTest) {
+              settingsRects.hitTest(getMousePos());
+            } else {
+              pauseSettingsVolumeDragActive = false;
+            }
+          }
+
           if (wasKeyPressed('arrowleft') || wasKeyPressed('a')) {
             settingsRects.cycleLanguage?.(-1);
             return;
@@ -677,6 +688,9 @@ export function registerPlayScene(_canvas, ctx) {
           }
           if (wasMousePressed(0)) {
             const mouse = getMousePos();
+            if (settingsRects.volumeHitRect && inRect(mouse, settingsRects.volumeHitRect)) {
+              pauseSettingsVolumeDragActive = true;
+            }
             if (settingsRects.hitTest) {
               settingsRects.hitTest(mouse);
             }

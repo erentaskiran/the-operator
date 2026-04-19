@@ -45,31 +45,26 @@ function inRect(point, rect) {
   );
 }
 
-function drawMiniWave(ctx, x, y, w, h, samples, color) {
+function drawMiniWave(ctx, x, y, w, h, samples, color, type) {
   drawRect(ctx, x, y, w, h, 'rgba(20, 12, 6, 0.55)');
   drawRect(ctx, x, y + h / 2, w, 1, 'rgba(70, 48, 22, 0.35)');
   if (!samples || samples.length < 2) {
     return;
   }
-  let min = Infinity;
-  let max = -Infinity;
-  for (let i = 0; i < samples.length; i += 1) {
-    const v = samples[i];
-    if (v < min) min = v;
-    if (v > max) max = v;
-  }
-  const span = Math.max(1e-3, max - min);
+
   const midY = y + h / 2;
-  const halfH = (h - 2) / 2;
+  const gain = type === 'heart' ? h * 0.4 : type === 'breathing' ? h * 0.48 : h * 0.72;
 
   ctx.save();
   ctx.strokeStyle = color;
   ctx.lineWidth = 1;
   ctx.beginPath();
-  for (let i = 0; i < samples.length; i += 1) {
-    const px = x + (i / (samples.length - 1)) * w;
-    const norm = ((samples[i] - min) / span) * 2 - 1;
-    const py = midY - norm * halfH;
+  const count = samples.length;
+  for (let i = 0; i < w; i += 1) {
+    const sampleIdx = Math.floor((i / Math.max(1, w - 1)) * Math.max(0, count - 1));
+    const sample = samples[sampleIdx] || 0;
+    const px = x + i;
+    const py = Math.max(y + 1, Math.min(y + h - 1, midY - sample * gain));
     if (i === 0) ctx.moveTo(px, py);
     else ctx.lineTo(px, py);
   }
@@ -152,7 +147,7 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
     font: UI_FONT,
     baseline: 'middle',
   });
-  drawMiniWave(ctx, waveX, waveStartY, waveW, waveRowH, samples.hr, COLORS.pulse);
+  drawMiniWave(ctx, waveX, waveStartY, waveW, waveRowH, samples.hr, COLORS.pulse, 'heart');
 
   drawText(ctx, t('VERDICT_WAVE_BREATHING'), x + padX, waveStartY + waveRowH + waveRowH / 2, {
     size: 9,
@@ -167,7 +162,8 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
     waveW,
     waveRowH,
     samples.breathing,
-    COLORS.breathing
+    COLORS.breathing,
+    'breathing'
   );
 
   drawText(ctx, t('VERDICT_WAVE_GSR'), x + padX, waveStartY + waveRowH * 2 + waveRowH / 2, {
@@ -176,7 +172,16 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
     font: UI_FONT,
     baseline: 'middle',
   });
-  drawMiniWave(ctx, waveX, waveStartY + waveRowH * 2, waveW, waveRowH, samples.gsr, COLORS.gsr);
+  drawMiniWave(
+    ctx,
+    waveX,
+    waveStartY + waveRowH * 2,
+    waveW,
+    waveRowH,
+    samples.gsr,
+    COLORS.gsr,
+    'gsr'
+  );
 }
 
 function drawVerdictButton(ctx, rect, label, subtitle, hovered, accent) {

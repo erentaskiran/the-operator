@@ -133,7 +133,8 @@ export function setNode(nodeId) {
   return { ok: true, isEnd: !!node.is_end_state };
 }
 
-const MARKER_MAX_SAMPLES = 180;
+const MARKER_MAX_SAMPLES = 1200;
+const MARKER_CAPTURE_STEP_SEC = 1 / 60;
 
 function latestRingSample(buffer) {
   if (!buffer || buffer.count <= 0) {
@@ -141,6 +142,16 @@ function latestRingSample(buffer) {
   }
   const idx = (buffer.head - 1 + buffer.size) % buffer.size;
   return buffer.data[idx];
+}
+
+function pushMarkerSampleSet(m, buffers) {
+  m.samples.hr.push(latestRingSample(buffers.heartRate));
+  m.samples.breathing.push(latestRingSample(buffers.breathing));
+  m.samples.gsr.push(latestRingSample(buffers.gsr));
+
+  if (m.samples.hr.length > MARKER_MAX_SAMPLES) m.samples.hr.shift();
+  if (m.samples.breathing.length > MARKER_MAX_SAMPLES) m.samples.breathing.shift();
+  if (m.samples.gsr.length > MARKER_MAX_SAMPLES) m.samples.gsr.shift();
 }
 
 export function updateMarkerCapture() {
@@ -162,12 +173,18 @@ export function updateMarkerCapture() {
   if (breathingDelta > m.peakBreathing) m.peakBreathing = breathingDelta;
   if (gsrDelta > m.peakGsr) m.peakGsr = gsrDelta;
 
-  m.samples.hr.push(latestRingSample(buffers.heartRate));
-  m.samples.breathing.push(latestRingSample(buffers.breathing));
-  m.samples.gsr.push(latestRingSample(buffers.gsr));
-  if (m.samples.hr.length > MARKER_MAX_SAMPLES) m.samples.hr.shift();
-  if (m.samples.breathing.length > MARKER_MAX_SAMPLES) m.samples.breathing.shift();
-  if (m.samples.gsr.length > MARKER_MAX_SAMPLES) m.samples.gsr.shift();
+  const elapsed = Math.max(0, state.time - (m.lastCaptureTime ?? state.time));
+  m.lastCaptureTime = state.time;
+  m.sampleAccum = (m.sampleAccum || 0) + elapsed;
+
+  while (m.sampleAccum >= MARKER_CAPTURE_STEP_SEC) {
+    pushMarkerSampleSet(m, buffers);
+    m.sampleAccum -= MARKER_CAPTURE_STEP_SEC;
+  }
+
+  if (m.samples.hr.length === 0) {
+    pushMarkerSampleSet(m, buffers);
+  }
 
   const answerLen = state.lastAnswer.length;
   if (answerLen > 0 && state.answerProgress >= answerLen) {
@@ -280,6 +297,7 @@ export function pickChoice(index) {
     breathingCategory: mechanics.breathing || 'BASELINE',
     gsrCategory: mechanics.gsr || 'BASELINE',
     sampleAccum: 0,
+    lastCaptureTime: state.time,
     samples: { hr: [], breathing: [], gsr: [] },
   };
 
