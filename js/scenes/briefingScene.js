@@ -64,7 +64,6 @@ const SIGNAL_CYCLES = {
 };
 
 const STEPS = ['intro', 'pulse', 'breathing', 'gsr', 'fear', 'cctv', 'modifiers', 'close'];
-const CYCLE_DURATION = 3.6;
 
 const PULSE_STATES = {
   BASELINE: { excite: 0, arousal: 0.22, pain: 0.02 },
@@ -83,7 +82,6 @@ const GSR_STATES = {
 
 let stepIndex = 0;
 let cycleIndex = 0;
-let cycleTimer = 0;
 let gsrEmitTimer = 0;
 let demoFearBar = 20;
 let demoFearDisplay = 20;
@@ -119,7 +117,6 @@ function activeCycle() {
 function enterStep(idx) {
   stepIndex = clamp(idx, 0, STEPS.length - 1);
   cycleIndex = 0;
-  cycleTimer = 0;
   resetSandbox();
   applyCurrentCycle(true);
 }
@@ -286,7 +283,9 @@ function drawTextPanel(ctx, y, h) {
 
   const state = currentStateLabel();
   if (state) {
-    drawText(ctx, state, panelX + panelW - 14, y + 18, {
+    const cycle = activeCycle();
+    const suffix = cycle ? `  ${cycleIndex + 1}/${cycle.length}` : '';
+    drawText(ctx, `${state}${suffix}`, panelX + panelW - 14, y + 18, {
       size: 12,
       color: COLORS.amberBright,
       align: 'right',
@@ -326,19 +325,22 @@ function drawCctvDemo(ctx) {
 }
 
 function drawFooter(ctx) {
-  drawText(
-    ctx,
-    `${stepIndex + 1} / ${STEPS.length}  ·  ${t('BRIEFING_HINT_NEXT')}  ·  ${t('BRIEFING_HINT_BACK')}  ·  ${t('BRIEFING_HINT_EXIT')}`,
-    DESIGN_W / 2,
-    DESIGN_H - 16,
-    {
-      size: 10,
-      color: COLORS.creamDim,
-      align: 'center',
-      font: UI_FONT,
-      baseline: 'middle',
-    }
-  );
+  const parts = [
+    `${stepIndex + 1} / ${STEPS.length}`,
+    t('BRIEFING_HINT_NEXT'),
+    t('BRIEFING_HINT_BACK'),
+  ];
+  if (activeCycle()) {
+    parts.push(t('BRIEFING_HINT_STATE'));
+  }
+  parts.push(t('BRIEFING_HINT_EXIT'));
+  drawText(ctx, parts.join('  ·  '), DESIGN_W / 2, DESIGN_H - 16, {
+    size: 10,
+    color: COLORS.creamDim,
+    align: 'center',
+    font: UI_FONT,
+    baseline: 'middle',
+  });
 }
 
 function drawBriefingScene(ctx) {
@@ -381,18 +383,15 @@ export function registerBriefingScene(_canvas, ctx) {
       laneFlash.breathing = Math.max(0, laneFlash.breathing - dt * 1.8);
       laneFlash.gsr = Math.max(0, laneFlash.gsr - dt * 1.8);
 
-      const cycle = activeCycle();
-      if (cycle) {
-        cycleTimer += dt;
-        if (cycleTimer >= CYCLE_DURATION) {
-          cycleTimer = 0;
-          advanceCycle();
-        }
-      }
-
       if (wasKeyPressed('escape')) {
         setScene('menu');
         return;
+      }
+      if (wasKeyPressed(' ')) {
+        if (activeCycle()) {
+          advanceCycle();
+          return;
+        }
       }
       if (
         wasKeyPressed('enter') ||
