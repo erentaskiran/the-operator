@@ -1,6 +1,7 @@
 import { drawRect, drawText } from '../draw.js';
 import { clamp } from '../math.js';
 import { COLORS, UI_FONT } from './theme.js';
+import { t } from '../i18n/index.js';
 
 const TRACE_STATE = {
   heart: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
@@ -241,7 +242,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
 
   const headerH = 16;
 
-  drawText(ctx, 'POLYGRAPH SIGNALS', x + 6, y + headerH / 2 + 1, {
+  drawText(ctx, t('POLY_HEADER'), x + 6, y + headerH / 2 + 1, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,
@@ -256,7 +257,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   const fearLabelX = fearBarX - 4;
   const fearMidY = y + headerH / 2 + 1;
 
-  drawText(ctx, 'FEAR', fearLabelX, fearMidY, {
+  drawText(ctx, t('POLY_FEAR'), fearLabelX, fearMidY, {
     size: 12,
     color: COLORS.cream,
     align: 'right',
@@ -297,7 +298,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   const sharedCursor = Math.floor((time * 28) % Math.max(1, waveW));
 
   drawLane(ctx, x, lanesY, w, laneH, {
-    label: 'PULSE',
+    label: t('POLY_PULSE'),
     color: COLORS.pulse,
     profile: waves.heartRate,
     type: 'heart',
@@ -313,7 +314,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   });
 
   drawLane(ctx, x, lanesY + laneH, w, laneH, {
-    label: 'EEG',
+    label: t('POLY_EEG'),
     color: COLORS.eeg,
     profile: waves.eeg,
     type: 'eeg',
@@ -329,7 +330,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   });
 
   drawLane(ctx, x, lanesY + laneH * 2, w, laneH, {
-    label: 'GSR',
+    label: t('POLY_GSR'),
     color: COLORS.gsr,
     profile: waves.gsr,
     type: 'gsr',

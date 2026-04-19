@@ -2,6 +2,7 @@ import { drawText, drawRect, wrapTextLines } from '../draw.js';
 import { clamp } from '../math.js';
 import { COLORS, UI_FONT } from './theme.js';
 import { drawPanel } from './panel.js';
+import { t } from '../i18n/index.js';
 
 function pointInRect(p, r) {
   return p && p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
@@ -13,7 +14,7 @@ function easeOutCubic(t) {
 
 export function drawChoiceModal(
   ctx,
-  { x, y, w, h, choices, mouse, animProgress = 1, scrollOffset = 0, title = 'SORU SEC' }
+  { x, y, w, h, choices, mouse, animProgress = 1, scrollOffset = 0, title = null }
 ) {
   const fontSize = 12;
   const lineH = 12;
@@ -29,7 +30,7 @@ export function drawChoiceModal(
 
   drawPanel(ctx, x, y, w, h, { border: COLORS.amber });
 
-  drawText(ctx, `[ ${title} ]`, x + 8, y + 10, {
+  drawText(ctx, `[ ${title ?? t('CHOICE_MODAL_TITLE')} ]`, x + 8, y + 10, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,

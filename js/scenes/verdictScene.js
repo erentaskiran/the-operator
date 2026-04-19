@@ -6,6 +6,7 @@ import { recordAttempt } from '../game/caseStats.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
+import { t } from '../i18n/index.js';
 
 const VERDICT_GUILTY = 'GUILTY';
 const VERDICT_NOT_GUILTY = 'NOT_GUILTY';
@@ -187,7 +188,7 @@ function drawVerdictScene(ctx) {
   const panelH = DESIGN_H - 24;
   drawPanel(ctx, panelX, panelY, panelW, panelH, { border: COLORS.amber });
 
-  drawText(ctx, '[ HUKUM ASAMASI ]', DESIGN_W / 2, panelY + 12, {
+  drawText(ctx, t('VERDICT_TITLE'), DESIGN_W / 2, panelY + 12, {
     align: 'center',
     size: 12,
     color: COLORS.amberBright,
@@ -195,7 +196,7 @@ function drawVerdictScene(ctx) {
     baseline: 'middle',
   });
 
-  drawText(ctx, `SANIK: ${getSuspectLabel()}`, DESIGN_W / 2, panelY + 26, {
+  drawText(ctx, `${t('VERDICT_SUSPECT_PREFIX')}${getSuspectLabel()}`, DESIGN_W / 2, panelY + 26, {
     align: 'center',
     size: 10,
     color: COLORS.cream,
@@ -272,7 +273,7 @@ function drawVerdictScene(ctx) {
   }
 
   if (evidence.length === 0) {
-    drawText(ctx, 'Sorgu kaydi yok.', DESIGN_W / 2, listY + listH / 2, {
+    drawText(ctx, t('VERDICT_NO_RECORD'), DESIGN_W / 2, listY + listH / 2, {
       align: 'center',
       size: 11,
       color: COLORS.creamDim,
@@ -303,16 +304,16 @@ function drawVerdictScene(ctx) {
   drawVerdictButton(
     ctx,
     guiltyRect,
-    '[1] SUCLU',
-    'Poligraf yalanlarini ele verdi',
+    t('VERDICT_GUILTY_BTN'),
+    t('VERDICT_GUILTY_SUB'),
     inRect(mouse, guiltyRect),
     COLORS.fail
   );
   drawVerdictButton(
     ctx,
     notGuiltyRect,
-    '[2] SUCSUZ',
-    'Yeterli delil yok',
+    t('VERDICT_NOT_GUILTY_BTN'),
+    t('VERDICT_NOT_GUILTY_SUB'),
     inRect(mouse, notGuiltyRect),
     COLORS.success
   );
@@ -320,7 +321,7 @@ function drawVerdictScene(ctx) {
   const pulse = 0.55 + 0.45 * Math.abs(Math.sin(anim * 2.4));
   ctx.save();
   ctx.globalAlpha = pulse;
-  drawText(ctx, '1 / 2 / MOUSE: HUKUM VER', DESIGN_W / 2, btnY - 4, {
+  drawText(ctx, t('VERDICT_INSTRUCTIONS'), DESIGN_W / 2, btnY - 4, {
     align: 'center',
     size: 10,
     color: COLORS.amberBright,

@@ -1,6 +1,7 @@
 import { clamp } from '../math.js';
 import { CASES } from './cases.js';
 import { applyMechanicsToBiometrics, resetBiometricsOnState } from './waves.js';
+import { t } from '../i18n/index.js';
 
 export const state = {
   gameData: null,
@@ -221,10 +222,10 @@ export function pickChoice(index) {
   }
 
   const mechanics = choice.mechanics || {};
-  state.prompt = `SEN: ${choice.question}`;
+  state.prompt = `${t('DIALOGUE_YOU_PREFIX')}${choice.question}`;
   state.lastQuestion = choice.question;
   state.lastAnswer = choice.answer;
-  pushLog(`SEN: ${choice.question}`);
+  pushLog(`${t('DIALOGUE_YOU_PREFIX')}${choice.question}`);
   pushLog(`${getSuspectLabel()}: ${choice.answer}`);
   state.note = '';
 

@@ -3,9 +3,11 @@ import { endFrameInput, initInput, setDesignScale } from './input.js';
 import { preloadAssets } from './assets.js';
 import { clearCanvas, drawText } from './draw.js';
 import { getTransitionAlpha, renderScene, setScene, updateScene } from './sceneManager.js';
+import { t } from './i18n/index.js';
 import { loadAllCases } from './game/cases.js';
 import { setSelectedCase, state } from './game/state.js';
 import { registerTitleScene } from './scenes/titleScene.js';
+import { registerSettingsScene } from './scenes/settingsScene.js';
 import { registerMenuScene } from './scenes/menuScene.js';
 import { registerDossierScene } from './scenes/dossierScene.js';
 import { registerPlayScene } from './scenes/playScene.js';
@@ -55,6 +57,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 registerTitleScene(canvas, ctx);
+registerSettingsScene(canvas, ctx);
 registerMenuScene(canvas, ctx);
 registerDossierScene(canvas, ctx);
 registerPlayScene(canvas, ctx);
@@ -101,7 +104,7 @@ async function boot() {
   ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
   ctx.imageSmoothingEnabled = false;
   clearCanvas(ctx, COLORS.ink);
-  drawText(ctx, 'Yukleniyor...', DESIGN_W / 2, DESIGN_H / 2, {
+  drawText(ctx, t('LOADING'), DESIGN_W / 2, DESIGN_H / 2, {
     align: 'center',
     size: 18,
     color: COLORS.cream,
@@ -136,7 +139,7 @@ boot().catch((error) => {
   ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
   ctx.imageSmoothingEnabled = false;
   clearCanvas(ctx, '#1a0b10');
-  drawText(ctx, 'Oyun baslatilamadi', DESIGN_W / 2, DESIGN_H / 2 - 12, {
+  drawText(ctx, t('LOAD_FAIL_TITLE'), DESIGN_W / 2, DESIGN_H / 2 - 12, {
     align: 'center',
     size: 18,
     color: COLORS.fail,

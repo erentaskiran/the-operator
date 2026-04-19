@@ -8,6 +8,7 @@ import { getSelectedCaseData, setSelectedCase, state } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
+import { t } from '../i18n/index.js';
 
 let menuAnim = 0;
 let infoScrollOffset = 0;
@@ -40,7 +41,7 @@ function parseLabel(label) {
 
 function drawStatsPill(ctx, x, y, stats) {
   if (!stats || stats.attempts <= 0) {
-    drawText(ctx, 'YENI', x, y, {
+    drawText(ctx, t('STAT_NEW'), x, y, {
       size: 9,
       color: COLORS.amberBright,
       font: UI_FONT,
@@ -106,7 +107,7 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
   });
 
   if (stats && stats.attempts > 0) {
-    const breakdown = `DOG ${stats.successes}  HATA ${stats.fails}`;
+    const breakdown = `${t('STAT_SHORT_CORRECT')} ${stats.successes}  ${t('STAT_SHORT_FAIL')} ${stats.fails}`;
     drawText(ctx, breakdown, x + w - 6, y + h - 6, {
       size: 9,
       color: stats.successes > 0 ? COLORS.success : COLORS.fail,
@@ -154,7 +155,7 @@ function drawMenuScene(ctx) {
   if (subtitleP > 0.01) {
     ctx.save();
     ctx.globalAlpha = subtitleP;
-    drawText(ctx, '[ CASE SECIMI ]', DESIGN_W / 2, 78, {
+    drawText(ctx, t('MENU_CASE_SELECT'), DESIGN_W / 2, 78, {
       align: 'center',
       size: 12,
       color: COLORS.cream,
@@ -247,7 +248,7 @@ function drawMenuScene(ctx) {
       infoMaxScroll = scrollResult.maxScroll;
       infoScrollOffset = scrollResult.clampedScroll;
     } else {
-      drawText(ctx, 'Vaka yuklenemedi.', infoX + infoW / 2, infoY + infoH / 2, {
+      drawText(ctx, t('MENU_CASE_LOAD_ERROR'), infoX + infoW / 2, infoY + infoH / 2, {
         align: 'center',
         size: 12,
         color: COLORS.fail,
@@ -262,8 +263,19 @@ function drawMenuScene(ctx) {
   const promptP = smoothstep(clamp((menuAnim - 1.2) / 0.3, 0, 1));
   if (promptP > 0.01) {
     ctx.save();
+    ctx.globalAlpha = promptP * 0.6;
+    drawText(ctx, t('MENU_SETTINGS_HINT'), DESIGN_W - 28, DESIGN_H - 28, {
+      align: 'right',
+      size: 10,
+      color: COLORS.creamDim,
+      font: UI_FONT,
+      baseline: 'middle',
+    });
+    ctx.restore();
+
+    ctx.save();
     ctx.globalAlpha = promptP;
-    drawText(ctx, '1-' + CASES.length + ' / OK TUSLARI: VAKA SEC', DESIGN_W / 2, DESIGN_H - 44, {
+    drawText(ctx, `1-${CASES.length} / ${t('MENU_KEY_INSTRUCTIONS')}`, DESIGN_W / 2, DESIGN_H - 44, {
       align: 'center',
       size: 12,
       color: COLORS.creamDim,
@@ -275,7 +287,7 @@ function drawMenuScene(ctx) {
     const blink = 0.45 + 0.55 * Math.abs(Math.sin(menuAnim * 2.6));
     ctx.save();
     ctx.globalAlpha = promptP * blink;
-    drawText(ctx, '>> ENTER: BASLA <<', DESIGN_W / 2, DESIGN_H - 28, {
+    drawText(ctx, t('MENU_ENTER_START'), DESIGN_W / 2, DESIGN_H - 28, {
       align: 'center',
       size: 12,
       color: COLORS.amberBright,
@@ -339,6 +351,10 @@ export function registerMenuScene(_canvas, ctx) {
         }
       }
 
+      if (wasKeyPressed('s')) {
+        setScene('settings');
+        return;
+      }
       if (wasKeyPressed('enter') && state.gameData) {
         setScene('dossier');
       }

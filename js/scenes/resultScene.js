@@ -5,10 +5,11 @@ import { state } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
+import { t } from '../i18n/index.js';
 
 function verdictLabel(verdict) {
-  if (verdict === 'GUILTY') return 'SUCLU';
-  if (verdict === 'NOT_GUILTY') return 'SUCSUZ';
+  if (verdict === 'GUILTY') return t('VERDICT_LABEL_GUILTY');
+  if (verdict === 'NOT_GUILTY') return t('VERDICT_LABEL_NOT_GUILTY');
   return '-';
 }
 
@@ -27,7 +28,7 @@ function drawResultScene(ctx) {
 
   drawText(
     ctx,
-    `[ ${correct ? 'DOGRU HUKUM' : 'HATALI HUKUM'} ]`,
+    correct ? t('RESULT_CORRECT') : t('RESULT_WRONG'),
     DESIGN_W / 2,
     panelY + 16,
     {
@@ -41,7 +42,7 @@ function drawResultScene(ctx) {
 
   drawText(
     ctx,
-    `VERDIGINIZ HUKUM: ${verdictLabel(state.verdict)}`,
+    `${t('RESULT_YOUR_VERDICT')} ${verdictLabel(state.verdict)}`,
     DESIGN_W / 2,
     panelY + 36,
     {
@@ -55,7 +56,7 @@ function drawResultScene(ctx) {
 
   drawText(
     ctx,
-    `GERCEK: ${verdictLabel(state.trueVerdict)}`,
+    `${t('RESULT_TRUE_VERDICT')} ${verdictLabel(state.trueVerdict)}`,
     DESIGN_W / 2,
     panelY + 52,
     {
@@ -69,7 +70,7 @@ function drawResultScene(ctx) {
 
   const truthText = state.gameData?.verdict_truth_text || '';
   if (truthText) {
-    drawText(ctx, 'DAVANIN GERCEK OYKUSU', DESIGN_W / 2, panelY + 76, {
+    drawText(ctx, t('RESULT_TRUTH_STORY'), DESIGN_W / 2, panelY + 76, {
       align: 'center',
       size: 11,
       color: COLORS.amberBright,
@@ -88,7 +89,7 @@ function drawResultScene(ctx) {
 
   const outcome = state.interrogationOutcome;
   if (outcome) {
-    drawText(ctx, 'SORGU SONUCU', DESIGN_W / 2, panelY + 180, {
+    drawText(ctx, t('RESULT_INTERROGATION_RESULT'), DESIGN_W / 2, panelY + 180, {
       align: 'center',
       size: 11,
       color: COLORS.amberBright,
@@ -105,7 +106,7 @@ function drawResultScene(ctx) {
     });
   }
 
-  drawText(ctx, 'R: Yeniden Oyna  |  ESC: Menu', DESIGN_W / 2, panelY + panelH - 14, {
+  drawText(ctx, t('RESULT_INSTRUCTIONS'), DESIGN_W / 2, panelY + panelH - 14, {
     align: 'center',
     size: 11,
     color: COLORS.cream,
@@ -117,7 +118,7 @@ function drawResultScene(ctx) {
 function drawErrorScene(ctx) {
   drawSceneBackground(ctx);
   drawPanel(ctx, 60, 140, DESIGN_W - 120, 120, { border: COLORS.fail });
-  drawText(ctx, '[ HATA ]', DESIGN_W / 2, 164, {
+  drawText(ctx, t('RESULT_ERROR'), DESIGN_W / 2, 164, {
     align: 'center',
     size: 18,
     color: COLORS.fail,

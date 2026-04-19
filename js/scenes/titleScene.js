@@ -5,6 +5,7 @@ import { clamp } from '../math.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
+import { t } from '../i18n/index.js';
 
 let anim = 0;
 let armed = false;
@@ -39,14 +40,14 @@ function drawTitleScene(ctx) {
   if (subP > 0.01) {
     ctx.save();
     ctx.globalAlpha = subP;
-    drawText(ctx, '[ POLIGRAF SORGU SIMULATORU ]', DESIGN_W / 2, DESIGN_H / 2 - 4, {
+    drawText(ctx, t('GAME_SUBTITLE'), DESIGN_W / 2, DESIGN_H / 2 - 4, {
       align: 'center',
       size: 12,
       color: COLORS.cream,
       font: UI_FONT,
       baseline: 'middle',
     });
-    drawText(ctx, 'GERCEGI SIZ ORTAYA CIKARIN', DESIGN_W / 2, DESIGN_H / 2 + 12, {
+    drawText(ctx, t('GAME_TAGLINE'), DESIGN_W / 2, DESIGN_H / 2 + 12, {
       align: 'center',
       size: 11,
       color: COLORS.creamDim,
@@ -61,7 +62,7 @@ function drawTitleScene(ctx) {
     const blink = 0.4 + 0.6 * Math.abs(Math.sin(anim * 2.4));
     ctx.save();
     ctx.globalAlpha = promptP * blink;
-    drawText(ctx, '>> BASLAMAK ICIN BIR TUSA BASIN <<', DESIGN_W / 2, DESIGN_H - 60, {
+    drawText(ctx, t('PRESS_ANY_KEY'), DESIGN_W / 2, DESIGN_H - 60, {
       align: 'center',
       size: 12,
       color: COLORS.amberBright,

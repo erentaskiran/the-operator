@@ -7,6 +7,7 @@ import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { drawPortraitBadge } from '../ui/portraitBadge.js';
+import { t } from '../i18n/index.js';
 
 let scroll = 0;
 let maxScroll = 0;
@@ -27,14 +28,14 @@ function buildEntries(d) {
   const suspect = state.gameData?.suspect || {};
   const entries = [];
 
-  entries.push({ type: 'heading', text: 'KIMLIK' });
-  entries.push({ type: 'kv', key: 'Ad', value: suspect.name || '-' });
-  entries.push({ type: 'kv', key: 'Gorev', value: suspect.role || '-' });
-  if (d?.age != null) entries.push({ type: 'kv', key: 'Yas', value: String(d.age) });
+  entries.push({ type: 'heading', text: t('DOSSIER_IDENTITY') });
+  entries.push({ type: 'kv', key: t('DOSSIER_NAME'), value: suspect.name || '-' });
+  entries.push({ type: 'kv', key: t('DOSSIER_ROLE'), value: suspect.role || '-' });
+  if (d?.age != null) entries.push({ type: 'kv', key: t('DOSSIER_AGE'), value: String(d.age) });
   if (d?.identity_summary) entries.push({ type: 'body', text: d.identity_summary });
 
   if (d?.family?.length) {
-    entries.push({ type: 'heading', text: 'AILE VE ILISKILER' });
+    entries.push({ type: 'heading', text: t('DOSSIER_FAMILY') });
     for (const f of d.family) {
       const header = `${f.relation}: ${f.name || ''}`.trim();
       entries.push({ type: 'item', label: header, detail: f.note || '' });
@@ -42,26 +43,26 @@ function buildEntries(d) {
   }
 
   if (d?.medical?.length) {
-    entries.push({ type: 'heading', text: 'SAGLIK DURUMU' });
+    entries.push({ type: 'heading', text: t('DOSSIER_HEALTH') });
     for (const m of d.medical) {
-      entries.push({ type: 'item', label: m.condition, detail: m.polygraph_effect || '', tag: 'POLIGRAF' });
+      entries.push({ type: 'item', label: m.condition, detail: m.polygraph_effect || '', tag: t('DOSSIER_POLY_TAG') });
     }
   }
 
   if (d?.habits?.length) {
-    entries.push({ type: 'heading', text: 'ALISKANLIKLAR / ILAC' });
+    entries.push({ type: 'heading', text: t('DOSSIER_HABITS') });
     for (const h of d.habits) {
-      entries.push({ type: 'item', label: h.habit, detail: h.polygraph_effect || '', tag: 'POLIGRAF' });
+      entries.push({ type: 'item', label: h.habit, detail: h.polygraph_effect || '', tag: t('DOSSIER_POLY_TAG') });
     }
   }
 
   if (d?.priors?.length) {
-    entries.push({ type: 'heading', text: 'GECMIS KAYITLAR' });
+    entries.push({ type: 'heading', text: t('DOSSIER_PRIORS') });
     for (const p of d.priors) entries.push({ type: 'body', text: `• ${p}` });
   }
 
   if (d?.pressure_points?.length) {
-    entries.push({ type: 'heading', text: 'BASKI NOKTALARI' });
+    entries.push({ type: 'heading', text: t('DOSSIER_PRESSURE') });
     for (const pp of d.pressure_points) entries.push({ type: 'body', text: `• ${pp}` });
   }
 
@@ -105,7 +106,7 @@ function drawDossierScene(ctx) {
   const panelH = DESIGN_H - 28;
   drawPanel(ctx, panelX, panelY, panelW, panelH, { border: COLORS.amber });
 
-  drawText(ctx, '[ SANIK DOSYASI ]', DESIGN_W / 2, panelY + 14, {
+  drawText(ctx, t('DOSSIER_TITLE'), DESIGN_W / 2, panelY + 14, {
     align: 'center',
     size: 12,
     color: COLORS.amberBright,
@@ -133,13 +134,13 @@ function drawDossierScene(ctx) {
     portraitW,
     portraitH,
     'defendant',
-    state.gameData?.suspect?.name?.toUpperCase() || 'SANIK'
+    state.gameData?.suspect?.name?.toUpperCase() || t('DOSSIER_DEFAULT_NAME')
   );
 
   const contextX = portraitX;
   const contextY = portraitY + portraitH + 8;
   const contextW = portraitW;
-  drawText(ctx, 'DAVA OZETI', contextX, contextY, {
+  drawText(ctx, t('DOSSIER_CASE_SUMMARY'), contextX, contextY, {
     size: 11,
     color: COLORS.amberBright,
     font: UI_FONT,
@@ -267,7 +268,7 @@ function drawDossierScene(ctx) {
   const pulse = 0.55 + 0.45 * Math.abs(Math.sin(anim * 2.4));
   ctx.save();
   ctx.globalAlpha = pulse;
-  drawText(ctx, '>> SORGUYA BASLA (ENTER) <<', DESIGN_W / 2, btnY + btnH / 2, {
+  drawText(ctx, t('DOSSIER_START_BTN'), DESIGN_W / 2, btnY + btnH / 2, {
     align: 'center',
     size: 12,
     color: hovered ? COLORS.amberBright : COLORS.cream,
@@ -276,7 +277,7 @@ function drawDossierScene(ctx) {
   });
   ctx.restore();
 
-  drawText(ctx, 'ESC: Menu  |  Scroll: Kaydir', panelX + 14, btnY + btnH / 2, {
+  drawText(ctx, t('DOSSIER_FOOTER'), panelX + 14, btnY + btnH / 2, {
     size: 10,
     color: COLORS.creamDim,
     font: UI_FONT,

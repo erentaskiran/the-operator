@@ -1,9 +1,10 @@
 import { drawRect, drawText, wrapTextLines } from '../draw.js';
 import { COLORS, UI_FONT } from './theme.js';
 import { drawPanel } from './panel.js';
+import { t } from '../i18n/index.js';
 
 function colorForEntry(entry) {
-  if (entry.startsWith('SEN:')) {
+  if (entry.startsWith('SEN:') || entry.startsWith('YOU:')) {
     return COLORS.creamDim;
   }
   return COLORS.amberBright;
@@ -92,7 +93,7 @@ export function drawLogPanel(ctx, x, y, w, h, log, scrollOffset) {
     fill: 'rgba(14, 9, 6, 0.95)',
   });
 
-  drawText(ctx, '[ LOG ]', x + 8, y + 10, {
+  drawText(ctx, t('LOG_HEADER'), x + 8, y + 10, {
     size: 12,
     color: COLORS.amberBright,
     font: UI_FONT,
