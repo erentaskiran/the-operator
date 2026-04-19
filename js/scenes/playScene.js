@@ -300,10 +300,7 @@ function handleResponseMode(dt) {
     return;
   }
 
-  state.responseTimer -= dt;
-  if (state.responseTimer <= 0) {
-    advanceToPendingNode();
-  }
+  // both texts fully revealed — wait for user to press ENTER
 }
 
 export function registerPlayScene(_canvas, ctx) {
