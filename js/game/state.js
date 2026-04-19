@@ -30,6 +30,8 @@ export const state = {
   verdict: '',
   trueVerdict: '',
   interrogationOutcome: null,
+  polygraphMarkers: [],
+  markerCapture: null,
   metrics: {
     heartRate: 'BASELINE',
     eeg: 'BASELINE',
@@ -76,6 +78,28 @@ export function pushLog(text) {
   }
 }
 
+function finalizeMarkerCapture() {
+  const m = state.markerCapture;
+  if (!m) {
+    return;
+  }
+  state.polygraphMarkers.push({
+    qIndex: m.qIndex,
+    hrPeak: m.peakHr,
+    eegPeak: m.peakEeg,
+    gsrPeak: m.peakGsr,
+    hrCategory: m.hrCategory,
+    eegCategory: m.eegCategory,
+    gsrCategory: m.gsrCategory,
+    samples: {
+      hr: m.samples.hr.slice(),
+      eeg: m.samples.eeg.slice(),
+      gsr: m.samples.gsr.slice(),
+    },
+  });
+  state.markerCapture = null;
+}
+
 export function setNode(nodeId) {
   const node = state.gameData.nodes[nodeId];
   if (!node) {
@@ -83,6 +107,8 @@ export function setNode(nodeId) {
     state.currentNode = null;
     return { ok: false, isEnd: true };
   }
+
+  finalizeMarkerCapture();
 
   state.currentNodeId = nodeId;
   state.currentNode = node;
@@ -93,6 +119,48 @@ export function setNode(nodeId) {
   state.choiceRects = [];
 
   return { ok: true, isEnd: !!node.is_end_state };
+}
+
+const MARKER_MAX_SAMPLES = 180;
+
+function latestRingSample(buffer) {
+  if (!buffer || buffer.count <= 0) {
+    return 0;
+  }
+  const idx = (buffer.head - 1 + buffer.size) % buffer.size;
+  return buffer.data[idx];
+}
+
+export function updateMarkerCapture() {
+  const m = state.markerCapture;
+  if (!m || !state.biometric) {
+    return;
+  }
+  const readout = state.biometric.readout;
+  const baseline = state.biometric.baseline;
+  const buffers = state.biometric.buffers;
+  if (!readout || !baseline || !buffers) {
+    return;
+  }
+
+  const hrDelta = Math.abs((readout.bpm ?? 0) - (baseline.bpm ?? 0));
+  const eegDelta = Math.abs((readout.eegUv ?? 0) - (baseline.eegUv ?? 0));
+  const gsrDelta = Math.abs((readout.gsrUs ?? 0) - (baseline.gsrUs ?? 0));
+  if (hrDelta > m.peakHr) m.peakHr = hrDelta;
+  if (eegDelta > m.peakEeg) m.peakEeg = eegDelta;
+  if (gsrDelta > m.peakGsr) m.peakGsr = gsrDelta;
+
+  m.samples.hr.push(latestRingSample(buffers.heartRate));
+  m.samples.eeg.push(latestRingSample(buffers.eeg));
+  m.samples.gsr.push(latestRingSample(buffers.gsr));
+  if (m.samples.hr.length > MARKER_MAX_SAMPLES) m.samples.hr.shift();
+  if (m.samples.eeg.length > MARKER_MAX_SAMPLES) m.samples.eeg.shift();
+  if (m.samples.gsr.length > MARKER_MAX_SAMPLES) m.samples.gsr.shift();
+
+  const answerLen = state.lastAnswer.length;
+  if (answerLen > 0 && state.answerProgress >= answerLen) {
+    finalizeMarkerCapture();
+  }
 }
 
 export function resetRun() {
@@ -111,6 +179,8 @@ export function resetRun() {
   state.verdict = '';
   state.trueVerdict = state.gameData.true_verdict || '';
   state.interrogationOutcome = null;
+  state.polygraphMarkers = [];
+  state.markerCapture = null;
   resetBiometricsOnState(state, {
     heartRate: config.heart_rate_baseline,
     eeg: config.eeg_baseline,
@@ -164,12 +234,25 @@ export function pickChoice(index) {
     theme: state.currentNode.theme,
     choiceType: choice.type,
     question: choice.question,
+    answer: choice.answer,
     heartRate: mechanics.heart_rate || 'BASELINE',
     eeg: mechanics.eeg || 'BASELINE',
     gsr: mechanics.gsr || 'BASELINE',
     fearDelta: mechanics.korku_bari_delta || 0,
     score: deception.score,
   });
+
+  state.markerCapture = {
+    qIndex: state.evidence.length,
+    peakHr: 0,
+    peakEeg: 0,
+    peakGsr: 0,
+    hrCategory: mechanics.heart_rate || 'BASELINE',
+    eegCategory: mechanics.eeg || 'BASELINE',
+    gsrCategory: mechanics.gsr || 'BASELINE',
+    sampleAccum: 0,
+    samples: { hr: [], eeg: [], gsr: [] },
+  };
 
   state.metrics.heartRate = mechanics.heart_rate || state.metrics.heartRate;
   state.metrics.eeg = mechanics.eeg || state.metrics.eeg;

@@ -1,7 +1,14 @@
 import { registerScene, setScene } from '../sceneManager.js';
 import { getMousePos, getWheelDelta, wasKeyPressed, wasMousePressed } from '../input.js';
 import { clamp, lerp } from '../math.js';
-import { getSuspectLabel, pickChoice, resetRun, setNode, state } from '../game/state.js';
+import {
+  getSuspectLabel,
+  pickChoice,
+  resetRun,
+  setNode,
+  state,
+  updateMarkerCapture,
+} from '../game/state.js';
 import { getBiometricDrawData, updateWave } from '../game/waves.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawNarrationBox } from '../ui/narrationBox.js';
@@ -203,6 +210,7 @@ function drawPlayScene(ctx) {
       logScrollOffset = result.clampedScroll;
     }
   }
+
 }
 
 function narrationTotalLen() {
@@ -343,6 +351,7 @@ export function registerPlayScene(_canvas, ctx) {
       state.time += dt;
       updateWave(state, dt);
       tickFearAnimation(dt);
+      updateMarkerCapture();
 
       portraitSlide = Math.min(1, portraitSlide + dt * PORTRAIT_SLIDE_SPEED);
       polygraphSlide = Math.min(1, polygraphSlide + dt * POLYGRAPH_SLIDE_SPEED);

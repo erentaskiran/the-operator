@@ -8,6 +8,7 @@ const TRACE_STATE = {
   gsr: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
 };
 
+
 function drawLaneGrid(ctx, x, y, w, h) {
   drawRect(ctx, x, y, w, h, 'rgba(10, 6, 3, 0.55)');
   for (let gy = y + 4; gy < y + h; gy += 6) {
@@ -239,6 +240,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
   drawRect(ctx, x, y, w, 1, COLORS.amber);
 
   const headerH = 16;
+
   drawText(ctx, 'POLYGRAPH SIGNALS', x + 6, y + headerH / 2 + 1, {
     size: 12,
     color: COLORS.amberBright,
