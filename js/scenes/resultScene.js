@@ -6,6 +6,7 @@ import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t } from '../i18n/index.js';
+import { applyAmbientProfile } from '../interrogationAudio.js';
 
 function verdictLabel(verdict) {
   if (verdict === 'GUILTY') return t('VERDICT_LABEL_GUILTY');
@@ -26,19 +27,13 @@ function drawResultScene(ctx) {
 
   drawPanel(ctx, panelX, panelY, panelW, panelH, { border });
 
-  drawText(
-    ctx,
-    correct ? t('RESULT_CORRECT') : t('RESULT_WRONG'),
-    DESIGN_W / 2,
-    panelY + 16,
-    {
-      align: 'center',
-      size: 12,
-      color: correct ? COLORS.success : COLORS.fail,
-      font: UI_FONT,
-      baseline: 'middle',
-    }
-  );
+  drawText(ctx, correct ? t('RESULT_CORRECT') : t('RESULT_WRONG'), DESIGN_W / 2, panelY + 16, {
+    align: 'center',
+    size: 12,
+    color: correct ? COLORS.success : COLORS.fail,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
 
   drawText(
     ctx,
@@ -137,6 +132,10 @@ function drawErrorScene(ctx) {
 
 export function registerResultScene(_canvas, ctx) {
   registerScene('result', {
+    enter() {
+      const correct = state.verdict && state.trueVerdict && state.verdict === state.trueVerdict;
+      applyAmbientProfile(correct ? 'result-good' : 'result-bad');
+    },
     update() {
       if (wasKeyPressed('r')) {
         setScene('play');

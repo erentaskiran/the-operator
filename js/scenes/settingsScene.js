@@ -174,8 +174,14 @@ export function registerSettingsScene(_canvas, ctx) {
       }
       if (wasMousePressed(0)) {
         const mouse = getMousePos();
-        if (inRect(mouse, langLeftRect)) { cycleLanguage(-1); return; }
-        if (inRect(mouse, langRightRect)) { cycleLanguage(1); return; }
+        if (inRect(mouse, langLeftRect)) {
+          cycleLanguage(-1);
+          return;
+        }
+        if (inRect(mouse, langRightRect)) {
+          cycleLanguage(1);
+          return;
+        }
         if (inRect(mouse, scrollToggleRect)) {
           toggleScrollInverted();
           return;

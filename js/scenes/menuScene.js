@@ -9,6 +9,7 @@ import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t } from '../i18n/index.js';
+import { applyAmbientProfile } from '../interrogationAudio.js';
 
 let menuAnim = 0;
 let infoScrollOffset = 0;
@@ -311,6 +312,7 @@ export function registerMenuScene(_canvas, ctx) {
       infoScrollOffset = 0;
       infoMaxScroll = 0;
       lastCaseIndex = -1;
+      applyAmbientProfile('menu');
     },
     update(dt) {
       menuAnim += dt;

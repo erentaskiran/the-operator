@@ -2,6 +2,7 @@ import { getAudio } from './assets.js';
 
 let currentMusic = null;
 let audioCtx = null;
+let lastTypewriterKeyAt = 0;
 
 function getAudioCtx() {
   if (audioCtx) return audioCtx;
@@ -107,6 +108,51 @@ export function playLightBuzz(durationMs = 80, intensity = 1) {
   osc.stop(now + dur + 0.02);
   osc2.stop(now + dur + 0.02);
   noise.stop(now + dur + 0.05);
+}
+
+export function playTypewriterKey(volume = 1) {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+
+  const now = ctx.currentTime;
+  if (now - lastTypewriterKeyAt < 0.012) {
+    return;
+  }
+  lastTypewriterKeyAt = now;
+
+  const v = Math.max(0, Math.min(1, volume));
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'triangle';
+  osc.frequency.value = 120 + Math.random() * 40;
+
+  gain.gain.setValueAtTime(0.004 + 0.03 * v, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.06);
+
+  const noiseLen = Math.max(64, Math.floor(ctx.sampleRate * 0.045));
+  const buffer = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < data.length; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.2;
+  }
+
+  const noise = ctx.createBufferSource();
+  const noiseGain = ctx.createGain();
+  noise.buffer = buffer;
+  noiseGain.gain.setValueAtTime(0.002 + 0.013 * v, now);
+  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+  noise.connect(noiseGain);
+  noiseGain.connect(ctx.destination);
+  noise.start(now);
+  noise.stop(now + 0.05);
 }
 
 export function playSfx(name, volume = 1) {

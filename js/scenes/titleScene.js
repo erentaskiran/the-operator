@@ -6,6 +6,7 @@ import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t } from '../i18n/index.js';
+import { applyAmbientProfile } from '../interrogationAudio.js';
 
 let anim = 0;
 let armed = false;
@@ -78,6 +79,7 @@ export function registerTitleScene(_canvas, ctx) {
     enter() {
       anim = 0;
       armed = false;
+      applyAmbientProfile('title');
     },
     update(dt) {
       anim += dt;

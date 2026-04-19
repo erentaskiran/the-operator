@@ -27,6 +27,12 @@ import {
 } from '../ui/tutorial.js';
 import { DESIGN_H, DESIGN_W } from '../ui/theme.js';
 import { t } from '../i18n/index.js';
+import { playTypewriterKey } from '../audio.js';
+import {
+  applyDialogueAudio,
+  applyNodeAtmosphere,
+  enterInterrogationAudio,
+} from '../interrogationAudio.js';
 
 const LAYOUT = {
   narration: { x: 8, y: 8, w: 518, h: 48 },
@@ -78,6 +84,7 @@ let displayedNodeId = '';
 let tutorialStep = -1;
 let tutorialPulseTime = 0;
 let tutorialPending = false;
+let lastAppliedEvidenceCount = 0;
 
 const laneFlash = { heartRate: 0, eeg: 0, gsr: 0 };
 const prevMetrics = { heartRate: '', eeg: '', gsr: '' };
@@ -97,6 +104,19 @@ function inRect(point, rect) {
     point.y >= rect.y &&
     point.y <= rect.y + rect.h
   );
+}
+
+function playTypewriterForRange(text, startIndex, endIndex, volume = 1) {
+  if (!text || endIndex <= startIndex) {
+    return;
+  }
+
+  for (let i = startIndex; i < endIndex; i += 1) {
+    const ch = text[i];
+    if (ch && ch !== ' ' && ch !== '\n' && ch !== '\t') {
+      playTypewriterKey(volume);
+    }
+  }
 }
 
 function drawConversationPortraits(ctx) {
@@ -441,12 +461,18 @@ function handleResponseMode(dt) {
   }
 
   if (!qDone) {
+    const prevChars = Math.floor(state.questionProgress);
     state.questionProgress = Math.min(qLen, state.questionProgress + dt * QUESTION_CPS);
+    const nextChars = Math.floor(state.questionProgress);
+    playTypewriterForRange(state.lastQuestion, prevChars, nextChars, 0.85);
     return;
   }
 
   if (!aDone) {
+    const prevChars = Math.floor(state.answerProgress);
     state.answerProgress = Math.min(aLen, state.answerProgress + dt * ANSWER_CPS);
+    const nextChars = Math.floor(state.answerProgress);
+    playTypewriterForRange(state.lastAnswer, prevChars, nextChars, 0.75);
     return;
   }
 
@@ -457,6 +483,8 @@ export function registerPlayScene(_canvas, ctx) {
   registerScene('play', {
     enter() {
       resetRun();
+      enterInterrogationAudio();
+      applyNodeAtmosphere(state.currentNode);
       pauseOpen = false;
       pauseRects = [];
       pauseSelectedIndex = 0;
@@ -489,6 +517,7 @@ export function registerPlayScene(_canvas, ctx) {
       prevMetrics.eeg = state.metrics.eeg;
       prevMetrics.gsr = state.metrics.gsr;
       displayedNodeId = state.currentNodeId;
+      lastAppliedEvidenceCount = state.evidence.length;
     },
     update(dt) {
       state.time += dt;
@@ -538,6 +567,7 @@ export function registerPlayScene(_canvas, ctx) {
 
       if (state.currentNodeId !== displayedNodeId) {
         displayedNodeId = state.currentNodeId;
+        applyNodeAtmosphere(state.currentNode);
         narrationTextProgress = 0;
         choicesAnim = 0;
         answerScrollOffset = 0;
@@ -547,8 +577,20 @@ export function registerPlayScene(_canvas, ctx) {
       }
 
       const totalTextLen = narrationTotalLen();
+
+      if (state.evidence.length > lastAppliedEvidenceCount) {
+        const latest = state.evidence[state.evidence.length - 1];
+        applyDialogueAudio(latest, state.fearBar, state.maxFearBar);
+        lastAppliedEvidenceCount = state.evidence.length;
+      }
+
       if (narrationSlide >= 0.99 && narrationTextProgress < totalTextLen) {
+        const node = state.currentNode;
+        const fullNarration = `${node?.theme || ''}${node?.description || ''}`;
+        const prevChars = Math.floor(narrationTextProgress);
         narrationTextProgress = Math.min(totalTextLen, narrationTextProgress + dt * NARRATION_CPS);
+        const nextChars = Math.floor(narrationTextProgress);
+        playTypewriterForRange(fullNarration, prevChars, nextChars, 0.9);
       }
 
       if (narrationTextProgress >= totalTextLen && !state.responseMode) {

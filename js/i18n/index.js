@@ -16,7 +16,9 @@ export function t(key) {
 
 export function setLanguage(code) {
   current = code === 'en' ? EN : TR;
-  try { localStorage.setItem(LANG_KEY, code); } catch {}
+  try {
+    localStorage.setItem(LANG_KEY, code);
+  } catch {}
 }
 
 export function getLanguage() {

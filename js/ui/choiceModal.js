@@ -3,6 +3,22 @@ import { clamp } from '../math.js';
 import { COLORS, UI_FONT } from './theme.js';
 import { drawPanel } from './panel.js';
 import { t } from '../i18n/index.js';
+import { playTypewriterKey } from '../audio.js';
+
+let lastChoiceTypeChars = [];
+
+function playTypewriterForRange(text, startIndex, endIndex, volume = 1) {
+  if (!text || endIndex <= startIndex) {
+    return;
+  }
+
+  for (let i = startIndex; i < endIndex; i += 1) {
+    const ch = text[i];
+    if (ch && ch !== ' ' && ch !== '\n' && ch !== '\t') {
+      playTypewriterKey(volume);
+    }
+  }
+}
 
 function pointInRect(p, r) {
   return p && p.x >= r.x && p.x <= r.x + r.w && p.y >= r.y && p.y <= r.y + r.h;
@@ -29,6 +45,10 @@ export function drawChoiceModal(
   const typeCps = 70;
 
   drawPanel(ctx, x, y, w, h, { border: COLORS.amber });
+
+  if (lastChoiceTypeChars.length !== choices.length || animProgress <= typeStart + 0.001) {
+    lastChoiceTypeChars = new Array(choices.length).fill(0);
+  }
 
   drawText(ctx, `[ ${title ?? t('CHOICE_MODAL_TITLE')} ]`, x + 8, y + 10, {
     size: 12,
@@ -87,6 +107,12 @@ export function drawChoiceModal(
     const typeElapsed = Math.max(0, local - typeStart);
     const totalChars = lines.reduce((acc, line) => acc + line.length, 0);
     const charsToShow = Math.min(totalChars, Math.floor(typeElapsed * typeCps));
+    const prevChars = lastChoiceTypeChars[i] || 0;
+    if (charsToShow > prevChars) {
+      const fullText = lines.join('');
+      playTypewriterForRange(fullText, prevChars, charsToShow, 0.7);
+    }
+    lastChoiceTypeChars[i] = charsToShow;
 
     const drawY = rect.y + yOffset;
     const interactive = slideEase > 0.6;
