@@ -1,0 +1,273 @@
+{
+  "game_data": {
+    "title": "Osman v. Hargrove Academy — Fraudulent Scholarship Certification",
+    "suspect": {
+      "name": "Celeste Vaughn",
+      "role": "Head of School, Hargrove Academy (private K-12)",
+      "profile": "Celeste Vaughn climbed from a classroom English teacher in suburban Ohio to heading one of the region's most prestigious private schools by her early forties. Colleagues describe her as precise, politically fluent, and glacially composed under pressure — she rarely breaks in board meetings even when budgets collapse or major donors threaten to walk. She holds an M.Ed. from Northwestern and has been cited in two regional education journals on admissions equity. Suspicious detail: she quietly eliminated the school's long-tenured scholarship coordinator role eighteen months ago under the label 'administrative restructuring,' absorbed the duties herself, and never hired a replacement. Humanizing detail: on her own time and expense, she mentors first-generation college applicants through a small nonprofit every other Saturday."
+    },
+    "system_config": {
+      "initial_fear_bar": 20,
+      "max_fear_bar": 100,
+      "fear_bar_description": "The fear bar tracks accumulated psychological pressure on the suspect across the interrogation session. It rises when questions strike close to concealed truths, personal vulnerabilities, or undisclosed relationships, and falls when the suspect successfully reframes, deflects, or regains procedural control. A high fear bar does not confirm guilt — it signals that the operator has identified emotionally or legally sensitive terrain. The player must cross-reference fear bar movement against biometric signals to distinguish deception responses from anxiety reactions attributable to the suspect's documented medical profile.",
+      "heart_rate_baseline": 76,
+      "gsr_baseline": 9
+    },
+    "context": "The Osman family has filed a civil fraud complaint against Hargrove Academy and its Head of School, Celeste Vaughn, alleging that Vaughn deliberately falsified eligibility documentation for the Alderton Merit Scholarship in order to award it to Bram Whitmore, son of the Academy's largest capital campaign donor, Grant Whitmore. Yusra Osman, a first-generation immigrant student who met every published academic criterion for the award, was passed over without a documented rationale, while Bram Whitmore's academic record falls measurably below the scholarship's stated minimum threshold. A parallel inquiry by the Illinois State Board of Education is examining whether the Academy misrepresented scholarship eligibility standards in its publicly filed compliance reports. Vaughn maintains that the selection process involved holistic criteria not fully captured in published guidelines, and that donor relationships played no role in the final decision. The case is complicated by the fact that Vaughn dissolved the scholarship coordinator position eighteen months prior, leaving herself as the sole decision-maker with no co-signatory oversight. No direct financial transaction between the Whitmore family and Vaughn personally has been documented, leaving investigators uncertain whether her motive was institutional pressure, personal loyalty, or something else entirely.",
+    "true_verdict": "GUILTY",
+    "verdict_truth_text": "Celeste Vaughn did falsify the Alderton Merit Scholarship eligibility certification for Bram Whitmore, using the administrative monopoly she had deliberately engineered by eliminating the scholarship coordinator role. Her motive was not financial leverage or institutional pressure — it was a long-concealed affair she had with Grant Whitmore years prior, which produced Bram as a biological half-sibling to her own son Oliver, a fact unknown to her husband Thomas, to either boy, and to every investigative record. Unable to name or act on the connection openly, she channeled it into a single fraudulent certification, in doing so denying Yusra Osman a scholarship she had fully and legitimately earned.",
+    "dossier": {
+      "age": 44,
+      "identity_summary": "Celeste Vaughn has served as Head of School at Hargrove Academy since 2018. She holds an M.Ed. from Northwestern University and carries a current K-12 administrative license in the state of Illinois.",
+      "family": [
+        {
+          "relation": "Husband",
+          "name": "Thomas Vaughn",
+          "note": "Commercial real estate broker; no knowledge of past affair. Risk of marital collapse if personal history surfaces — creates high emotional volatility under indirect questioning about her private life."
+        },
+        {
+          "relation": "Son",
+          "name": "Oliver Vaughn (age 16)",
+          "note": "Currently enrolled at Hargrove Academy. His presence in the school creates a documented conflict-of-interest flag that investigators have already noted in pre-interview materials."
+        },
+        {
+          "relation": "Major Donor / External Pressure",
+          "name": "Grant Whitmore",
+          "note": "Father of scholarship beneficiary Bram Whitmore. Known to the record only as 'principal donor.' True personal history with Celeste is undisclosed and not in any file available to investigators."
+        }
+      ],
+      "medical": [
+        {
+          "condition": "Generalized Anxiety Disorder (diagnosed 2015, currently managed)",
+          "polygraph_effect": "Chronically elevated GSR baseline and mild breathing irregularity that appear on neutral and control questions alike. Elevated sweat response should not be interpreted as deception-specific without comparison to baseline."
+        },
+        {
+          "condition": "Situational insomnia (self-reported onset approximately 6 weeks ago)",
+          "polygraph_effect": "Sleep deprivation raises overall physiological arousal. Breathing trace may display low-amplitude jitter across all question categories regardless of content."
+        }
+      ],
+      "habits": [
+        {
+          "habit": "Daily sertraline (SSRI, 100mg) — prescribed for GAD",
+          "polygraph_effect": "Blunts sympathetic reactivity. Heart rate spikes to stress-laden questions will be reduced in amplitude by roughly 20%. GSR responses are partially muted but not eliminated — notable spikes still occur under high emotional load."
+        },
+        {
+          "habit": "Nicotine replacement patch (21mg/day) — cessation attempt, approximately 5 weeks in",
+          "polygraph_effect": "Transdermal nicotine maintains a slight upward shift in resting heart rate (+3 to +4 BPM). Effect is tonic, not phasic — it does not spike acutely in response to specific questions."
+        },
+        {
+          "habit": "High-volume coffee consumption (3–4 cups daily, typically before 11am)",
+          "polygraph_effect": "Elevates baseline skin conductance level. GSR responses may read above expected clinical range even on low-stakes content; amplification is across the board, not selective."
+        }
+      ],
+      "priors": [
+        "2019: Named as sole respondent in a wrongful termination civil action filed by former scholarship coordinator Marguerite Pell. Matter settled out of court; terms sealed by mutual agreement.",
+        "2017: Subject of a Title IX procedural complaint at a prior institution concerning faculty hiring irregularities. Complaint dismissed following internal review with no findings of violation.",
+        "2021: Hargrove Academy received a state scholarship disbursement audit notice. Audit closed with an administrative corrective-action memo; no financial penalty was assessed."
+      ],
+      "pressure_points": [
+        "Any probing of Grant Whitmore's relationship with Celeste beyond his formal donor role risks destabilizing her controlled affect — she has worked extensively to keep the personal dimension invisible from every record.",
+        "Direct reference to Yusra Osman by name triggers visible discomfort; Celeste is aware of the Osman family's circumstances and carries suppressed guilt that cracks her composure when it surfaces.",
+        "Framing questions around Oliver — his future, his standing, what he would think — produces a protective, emotionally reactive response that tends to break through her professional register."
+      ],
+      "modifiers": {
+        "heart_rate_suppression": 0.2,
+        "heart_rate_baseline_shift": 4,
+        "gsr_sensitivity": 1.35,
+        "gsr_baseline_shift": 2,
+        "breathing_instability": 0.2
+      }
+    },
+    "start_node": "node_01_intro",
+    "nodes": {
+      "node_01_intro": {
+        "theme": "Opening Positions",
+        "description": "Celeste Vaughn sits composed at the table, hands folded, posture immaculate. She thanks you for the opportunity to 'clarify the record.' Her voice is measured, professional — the register of someone who has run difficult parent conferences and board meetings for years.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "ANALYTICAL",
+            "question": "Ms. Vaughn, walk me through the Alderton Merit Scholarship selection criteria — exactly as they appear in the Academy's published guidelines.",
+            "answer": "The Alderton scholarship considers academic achievement, character, and demonstrated community engagement. The guidelines are public record. I'm happy to provide copies if they haven't already been furnished to your office.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "STABLE",
+              "cctv_visual": "CONTROLLED_SMILE",
+              "korku_bari_delta": 5,
+              "gameplay_note": "PROGRESS: She's fully on script. No deception signal — this is her comfort zone. Baseline established. Use this reading to calibrate against future spikes."
+            },
+            "next_node": "node_02_process_audit"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "I've read about your work mentoring first-generation college applicants on your own time. That's a real commitment. I want to understand how someone who built that record arrives at a decision like the one we're investigating.",
+            "answer": "I appreciate you saying that. I've spent my entire career trying to make education more accessible. Whatever conclusions this process reaches, I want that part of my record to remain visible.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "BRIEF_LOOK_DOWN",
+              "korku_bari_delta": 10,
+              "gameplay_note": "PROGRESS: Empathic framing produces a genuine emotional micro-response — the look-down is involuntary. GSR increase suggests this topic touches something real. She is not immune to personal framing. Route toward vulnerability."
+            },
+            "next_node": "node_04_osman_confrontation"
+          }
+        ]
+      },
+      "node_02_process_audit": {
+        "theme": "The Oversight Gap",
+        "description": "You've laid the published criteria on the table and Celeste has acknowledged them. Now you press on the structural fact that eliminated every check on her authority: the absence of any co-signatory since Marguerite Pell's position was dissolved.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "The scholarship coordinator role — Marguerite Pell's position — was eliminated eighteen months ago and never replaced. You absorbed those duties yourself. That means the Whitmore certification had exactly one signatory: you. Why did no second reviewer look at this file?",
+            "answer": "Administrative restructuring is a standard part of institutional management. Centralizing oversight can actually improve consistency and reduce the risk of conflicting recommendations. I followed the same criteria I have always applied.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SURGE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": 20,
+              "gameplay_note": "LIE SIGNAL: She is defending the structural decision that enabled the fraud. Spike cluster despite a composed verbal answer — this is a deception pattern, not anxiety. The jaw tighten is suppressed aggression. Log this."
+            },
+            "next_node": "node_03_whitmore_probe"
+          },
+          {
+            "type": "TRAP",
+            "question": "You've described the selection as holistic. I'd like you to tell me, precisely, which holistic factors elevated Bram Whitmore's file — and where those factors are documented in the certification record you signed.",
+            "answer": "Holistic review is standard practice in elite academic institutions. Not every dimension of character or potential translates neatly into a checklist item. I exercised professional judgment. That is what the role requires.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "SPIKE",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 15,
+              "gameplay_note": "PARTIAL TRUTH: She is deploying legitimate educational language to paper over a documentation gap she knows is damning. GSR spike and eye movement signal active evasion. The trap partially lands — note the breathing irregularity."
+            },
+            "next_node": "node_04_osman_confrontation"
+          }
+        ]
+      },
+      "node_03_whitmore_probe": {
+        "theme": "The Donor's Shadow",
+        "description": "You shift the line of questioning to Grant Whitmore directly. Celeste's posture adjusts almost imperceptibly — shoulders pull fractionally inward, the folded hands tighten by a degree.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "NARROW_TARGET",
+            "question": "How would you characterize your personal relationship with Grant Whitmore — outside of the donor context? Have you socialized with him, met his family, known him in any capacity beyond capital campaign events?",
+            "answer": "Grant Whitmore is a capital campaign donor. Our interactions have been professional. He attended school events, as donors typically do. I — I don't have a relationship with him outside that framework.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "MAX",
+              "cctv_visual": "FROZEN",
+              "korku_bari_delta": 35,
+              "gameplay_note": "LIE SIGNAL: Strongest cluster in the session so far. Hesitation before denial, over-specified refusal, HOLDING_BREATH — this is a textbook suppression response. She is protecting something deeply personal. Prioritize this signal."
+            },
+            "next_node": "node_05_oliver_pivot"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Let me be direct, Ms. Vaughn. We believe Grant Whitmore applied financial leverage to compel this award and that you complied in order to protect the capital campaign. That is the theory of this case. Is that what happened?",
+            "answer": "That is categorically false. I would ask you to note for the record that I am not responding further to accusations framed in this manner without legal counsel present.",
+            "mechanics": {
+              "heart_rate": "ERRATIC",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "SURGE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -25,
+              "gameplay_note": "WRONG MOVE: The signal is real but you have handed her a clean exit into defensive posture. More critically, financial leverage is the wrong theory — the truth is personal, not transactional. Aggressive donor-fraud framing closes the session prematurely."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_04_osman_confrontation": {
+        "theme": "The Name She Avoids",
+        "description": "You set Yusra Osman's application file on the table — GPA, standardized scores, community service record, two teacher recommendations. You slide it toward Celeste without comment and let the silence hold for several seconds.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Yusra Osman's family left a country they could no longer safely live in. She ranked in the top two percent of her class. Her file is right in front of you. I'd like you to look at it and tell me, in your own words, why she didn't receive this scholarship.",
+            "answer": "Scholarship decisions are — they are difficult. Many deserving students apply every year. There is no single metric that... the process considers the whole person, not just...",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 25,
+              "gameplay_note": "LIE SIGNAL: She trails off mid-sentence — deeply atypical for someone this verbally controlled. Avoidance behavior when the file is in front of her. The guilt response is visible. Yusra Osman's name is a confirmed pressure point."
+            },
+            "next_node": "node_05_oliver_pivot"
+          },
+          {
+            "type": "EVIDENCE",
+            "question": "The state board audit found no documentation for any holistic evaluation criteria in the Whitmore file. The only record is a certification bearing your signature alone, listing standard academic metrics — which Bram Whitmore failed to meet by sixteen grade-point units. Explain that discrepancy.",
+            "answer": "Administrative documentation practices vary across institutions and review cycles. The absence of a supplementary evaluative note does not constitute fraud. I followed institutional policy as I understood and applied it.",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 15,
+              "gameplay_note": "PARTIAL TRUTH: She is describing genuine policy ambiguity — but the lip press and spike pattern suggest she knows the documentation gap is the weakest point in her defense. Solid evidence play. Move toward the personal angle next."
+            },
+            "next_node": "node_03_whitmore_probe"
+          }
+        ]
+      },
+      "node_05_oliver_pivot": {
+        "theme": "The Son Question",
+        "description": "Signal has accumulated across the session. Celeste's breathing has not fully recovered from the previous exchange. You shift register entirely — away from institutional procedure and into the personal. Her hands are no longer folded.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EMPATHIC",
+            "question": "Your son Oliver attends Hargrove. He's sixteen. If he ever found out that a decision made in this building caused a real, lasting harm to a family like the Osmans — what would that do to him? What does he think of the person you are?",
+            "answer": "Oliver — he is not part of this. Please don't bring my son into this.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "MAX",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 45,
+              "gameplay_note": "LIE SIGNAL / BREAKDOWN APPROACHING: Highest-signal response in the session. The physical response is involuntary and sustained. Tear pooling paired with MAX cluster is the clearest deception-under-guilt profile. She is at the edge of a disclosure she cannot fully contain."
+            },
+            "next_node": "node_success_confession"
+          },
+          {
+            "type": "LEGAL_THREAT",
+            "question": "The Osman family's attorney has subpoenaed all personal communications between you and Grant Whitmore over the past five years — including private accounts. I am offering you the opportunity to get ahead of what those records will show before they are unsealed.",
+            "answer": "I'm going to stop you there. I have cooperated fully and voluntarily with this process. This has now become an active legal matter and I will not continue without counsel present. That is my final statement.",
+            "mechanics": {
+              "heart_rate": "ERRATIC",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": -20,
+              "gameplay_note": "WRONG MOVE: You were close to the real nerve — the personal history — but procedural legal pressure gives her a controlled exit. She has practice shutting down adversarial frames. The session ends before the secret surfaces."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_success_confession": {
+        "theme": "The Fracture",
+        "description": "Celeste Vaughn's composure has broken in a way that cannot be walked back. She sits with her hands in her lap, breathing audibly, eyes glassy. The room is quiet.",
+        "is_end_state": true,
+        "result_text": "Celeste Vaughn did not issue a formal confession, but her controlled presentation collapsed in the final exchange. When questioned about Oliver's awareness of her choices, she became visibly distressed — sustained tear pooling, hyperventilation, hands withdrawn from the table — and her prepared verbal responses ceased entirely. She stated, in a reduced voice: 'I need a moment.' Then, after a long pause: 'There are things about this situation I have not been able to explain to anyone. I would like to speak to legal counsel — but I also don't know how much longer I can hold this.' No admission of specific wrongdoing was recorded. The polygraph log shows a sustained maximum-signal cluster in the final two exchanges, particularly dense on questions touching Oliver Vaughn and Grant Whitmore's personal relationship. The player must now assess the cumulative biometric record to reach a verdict."
+      },
+      "node_fail_lockdown": {
+        "theme": "Tactical Retreat",
+        "description": "Celeste Vaughn has invoked legal counsel. She sits straight, hands folded again, expression fully reset — the composure of the opening minutes restored as if by muscle memory.",
+        "is_end_state": true,
+        "result_text": "Celeste Vaughn terminated voluntary cooperation and requested legal counsel to be present before any further questioning. Her final verbal posture was formal and non-committal, and no unscripted disclosure was recorded in the closing phase. The polygraph data captured before the lockdown presents a mixed picture: some elevated GSR readings consistent with either high-load anxiety or active concealment, heart rate shifts that were partially suppressed throughout by documented medication, and breathing irregularities the dossier warns may reflect her GAD baseline and recent insomnia onset. The player must determine whether the partial signal record accumulated before the session closed is sufficient to support a verdict, or whether the absence of a sustained deception cluster introduces meaningful ambiguity."
+      }
+    },
+    "character_image": "./assets/characters/en-case-2.png"
+  }
+}
