@@ -99,6 +99,10 @@ export function wasKeyPressed(key) {
   return keysPressed.has(normalizeKey(key));
 }
 
+export function wasAnyKeyPressed() {
+  return keysPressed.size > 0;
+}
+
 export function wasKeyReleased(key) {
   return keysReleased.has(normalizeKey(key));
 }

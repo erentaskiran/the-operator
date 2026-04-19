@@ -19,6 +19,11 @@ export const CASES = [
     file: './dialogs/test-2.json',
     label: 'CASE TR TEST 2',
   },
+  {
+    id: 'TR TEST 3',
+    file: './dialogs/test-3.json',
+    label: 'CASE TR TEST 3',
+  },
 ];
 
 export async function loadAllCases() {

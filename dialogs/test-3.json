@@ -1,0 +1,305 @@
+{
+  "game_data": {
+    "title": "Yıldız Özel Hastanesi Malpraktis Soruşturması: Arda Keskin Davası",
+    "suspect": {
+      "name": "Cenk Aydoğan",
+      "role": "Özel hastane başhekimi",
+      "profile": "Küçük bir Anadolu kasabasında büyüdü, burslarla tıp fakültesini bitirdi. Yirmi yıldır cerrah olarak çalışıyor, son beş yıldır İstanbul'daki özel bir hastaneyi yönetiyor. Dışarıdan karizmatik ve soğukkanlı görünür; ancak astlarına karşı mikro-yönetici ve aşırı kontrolcü olduğu söyleniyor. Şüpheli detay: hastanenin mali denetim raporları son iki çeyrektir gecikmeli teslim ediliyor ve Cenk bazı ameliyat kayıtlarını bizzat dijitalleştirmekte ısrar ediyor. İnsani detay: her pazar sabahı kimseye söylemeden yaşlı annesinin yanına gidip kahvaltı hazırlıyor."
+    },
+    "system_config": {
+      "initial_fear_bar": 20,
+      "max_fear_bar": 100,
+      "fear_bar_description": "Şüphelinin psikolojik baskı altında ne kadar kırılmaya yaklaştığını gösteren duygusal gerilim göstergesi. Yükseldikçe savunma duvarları incelir, düştükçe kontrolü geri alır.",
+      "heart_rate_baseline": 82,
+      "eeg_baseline": 24,
+      "gsr_baseline": 7
+    },
+    "context": "Kırk iki yaşındaki inşaat mühendisi Arda Keskin, Yıldız Özel Hastanesi'nde rutin bir bypass ameliyatının ardından yoğun bakımda hayatını kaybetti. Ameliyatı bizzat başhekim Dr. Cenk Aydoğan yönetmişti. Merhumun eşi Deniz Keskin, ameliyat öncesi değerlendirmenin aceleye getirildiğini, kocasının tansiyon ve kan değerlerinin yeterince izlenmediğini öne sürerek hastane ve Dr. Aydoğan hakkında hem cezai şikâyette bulundu hem de tazminat davası açtı. Aile avukatı, ameliyat notlarında sonradan değişiklik yapıldığı ve ameliyathaneye giriş-çıkış kayıtlarıyla yazılı raporlar arasında tutarsızlıklar bulunduğu iddiasını savcılığa iletti; bir hemşirenin verdiği ifadenin arşivden kaybolduğu da söylentiler arasında. Savcılık, ihmal sonucu ölüme neden olma şüphesiyle soruşturma başlattı ve Dr. Aydoğan'ı ifadeye çağırdı. Bu oturum, şüphelinin olayın gerçek seyri, kayıt tutarsızlıkları ve ekibindeki kişilerin rolü hakkında sorgulanacağı ön inceleme aşamasıdır.",
+    "true_verdict": "NOT_GUILTY",
+    "verdict_truth_text": "Dr. Cenk Aydoğan, Arda Keskin'in ölümünden doğrudan sorumlu değildir; ameliyat protokolü standartlara uygun yürütülmüş ve ölüm öngörülemeyen komplikasyonlardan kaynaklanmıştır. Ancak şüpheli tamamen temiz de sayılmaz: hemşire Ayşen Yılmaz'ın sakinleştirici protokolüne dair ifadesi, asistanı Dr. Mert Oskay tarafından Cenk'in zımni bilgisiyle arşivden kaldırılmış ve ameliyat notlarında idari düzeltmeler yapılmıştır. Bu örtbas bir malpraktis suçunu değil, hastanenin iç disiplin sorununu ve bir başhekimin itibar kaygısını gizlemektedir.",
+    "dossier": {
+      "age": 52,
+      "identity_summary": "Elli iki yaşında kıdemli kalp damar cerrahı, Yıldız Özel Hastanesi başhekimi. Sakin görünümü ve titizliğiyle tanınıyor.",
+      "family": [
+        {
+          "relation": "Eş",
+          "name": "Selin Aydoğan",
+          "note": "Üç yıldır süren sessiz bir ayrılık süreci var; mal paylaşımı davası şüpheliyi mali baskı altında tutuyor."
+        },
+        {
+          "relation": "Asistan hekim",
+          "name": "Dr. Mert Oskay",
+          "note": "Koruyucu baba-oğul ilişkisi; Mert'in adı geçtiğinde Cenk savunmacı tavır alıyor, leverage noktası."
+        },
+        {
+          "relation": "Anne",
+          "name": "Hatice Aydoğan",
+          "note": "Alzheimer erken evre; Cenk'in en kırılgan noktası, empatik baskıda duygusal çözülme yaratabilir."
+        }
+      ],
+      "medical": [
+        {
+          "condition": "Kronik hipertansiyon",
+          "polygraph_effect": "Kalp atışı baseline'ı sürekli yüksek; stres tepkisi olarak yorumlanabilecek artışlar aslında normal olabilir."
+        },
+        {
+          "condition": "Hafif esansiyel tremor",
+          "polygraph_effect": "El bileği sensörlerinde mikro titreşim gürültüsü; GSR ölçümünde yanlış pozitif oluşturabilir."
+        }
+      ],
+      "habits": [
+        {
+          "habit": "Günde 6-7 fincan espresso",
+          "polygraph_effect": "GSR baseline'ı yüksek, cilt iletkenliği dalgalanmaları abartılı görünür."
+        },
+        {
+          "habit": "Beta-bloker (propranolol) günlük kullanım",
+          "polygraph_effect": "Kalp atış hızı tepkisi belirgin şekilde baskılanır; yalan anında bile kalp sıçraması zayıf olabilir."
+        },
+        {
+          "habit": "Ortalama 4 saat uyku",
+          "polygraph_effect": "Dikkat dalgalanmaları ve mikro-ifade kontrolünde zayıflama; yanlış negatifleri artırır."
+        }
+      ],
+      "priors": [
+        "2019'da başka bir hastanede disiplin uyarısı aldı: tıbbi kayıt düzenleme ihmali.",
+        "Vergi dairesi tarafından 2022'de şahsi gelir beyanında inceleme açıldı, sonradan kapandı.",
+        "Bir meslektaşıyla yaşanan kamuya açık bir tartışma basına yansımıştı."
+      ],
+      "pressure_points": [
+        "Annesinin bakımı ve tedavi masrafları sorulduğunda duygusal çözülme gösteriyor.",
+        "Asistanı Mert'in adı üzerinden kurulan tuzak sorular onu savunmaya iter.",
+        "Mesleki itibarı ve 'iyi hekim' imajı doğrudan saldırıya uğradığında öfke tepkisi veriyor."
+      ]
+    },
+    "start_node": "node_01_intro",
+    "nodes": {
+      "node_01_intro": {
+        "theme": "Sorgu Odasına Giriş",
+        "description": "Dr. Cenk Aydoğan sorgu odasına girdi, üzerinde henüz çıkarmadığı beyaz önlüğün yakasını düzeltiyor. Kollarını masaya koyup avukatının birazdan geleceğini belirtiyor ama ifadeye başlamaya hazır olduğunu söylüyor. Baseline ölçümünüz alındı: kalp atışı zaten yüksek, GSR dalgalıyor.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "ANALYTICAL",
+            "question": "Doktor Bey, Arda Keskin'in ameliyat öncesi değerlendirmesini bizzat siz mi yaptınız? Süreci adım adım anlatır mısınız?",
+            "answer": "Ön değerlendirmeyi ben ve asistanım Dr. Mert Oskay birlikte yürüttük. EKG, ekokardiyografi, kan profili; hepsi standart protokole uygun yapıldı. Hasta ASA-III sınıfındaydı, riskler aileyle konuşuldu ve onam formu imzalandı. Prosedürde bir aksama yok.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "BASELINE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "PROFESSIONAL_COMPOSURE",
+              "korku_bari_delta": 5,
+              "gameplay_note": "BASELINE OKUMASI: Supheli teknik alanda rahat. Beta-bloker etkisi nedeniyle kalp sinyaline fazla guvenme."
+            },
+            "next_node": "node_02_preop"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Hastanın ailesi, ameliyatın aceleye getirildiğini söylüyor. Siz başhekim olarak neden bizzat ameliyathaneye girdiniz, başka cerrah yok muydu?",
+            "answer": "Bu ne biçim bir soru? Yirmi yıldır bu ameliyatı yapıyorum. Hasta vaka kompleksti, tecrübeli bir ekip istedi, ben de girdim. 'Acele' diyen kim? Aile mi, avukat mı? Dosyaya bakın, operasyon beş saat sürdü.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "eeg": "INCREASE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -10,
+              "gameplay_note": "YANLIS HAMLE: Mesleki itibarina saldiri ofke tetikledi, kapandi. Ilk hamlede sertlik maliyetli."
+            },
+            "next_node": "node_02_preop"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Doktor Bey, biliyorum yoğun bir dönemdesiniz. Anneniz de rahatsız duyduk. Kaybettiğiniz hastalar sizi nasıl etkiliyor?",
+            "answer": "Her hastayı hatırlarım. Arda Bey'in yüzünü de. Bu iş alıştığınız bir şey değil; alıştıysanız kötü hekim olmuşsunuz demektir. Annem... orası ayrı bir konu, onu karıştırmayalım lütfen.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "eeg": "BASELINE",
+              "cctv_visual": "BRIEF_EYE_GLASS",
+              "korku_bari_delta": 12,
+              "gameplay_note": "DOGRU HAMLE: Duygusal kanal acildi, supheli kismen indirgendi. Empatik baslangic guvenli tunel."
+            },
+            "next_node": "node_03_records"
+          }
+        ]
+      },
+      "node_02_preop": {
+        "theme": "Ameliyat Öncesi Değerlendirme",
+        "description": "Dr. Aydoğan hâlâ kontrolü kendinde tutmaya çalışıyor. Ön değerlendirme detaylarına girdikçe parmaklarını masada ritimsiz tıklatıyor. Tremorlu mu, gerginlik mi belirsiz.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Ameliyat öncesi tansiyon değerleri hasta dosyasında 135/85 yazıyor. Ancak hemşire teslim defterinde aynı saatlerde 165/100 kayıtlı. Hangisi doğru, Doktor Bey?",
+            "answer": "Bu... iki ayrı ölçüm olabilir. Hastanın tansiyonu dalgalıydı, bunu notlarda belirttik. Teslim defteri ilk ölçüm, dosyadaki sedasyon sonrası değer. Aradaki fark normal klinik seyir.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "MICRO_TWITCH",
+              "korku_bari_delta": 18,
+              "gameplay_note": "ILERLEME: Kayit tutarsizligi supheliyi zorladi ama aciklamasi savunulabilir. Tremor + kafein + hipertansiyon filtrele."
+            },
+            "next_node": "node_04_nurse"
+          },
+          {
+            "type": "STRATEGIC",
+            "question": "Ön değerlendirmeyi Dr. Mert Oskay ile yaptığınızı söylediniz. Mert Bey kararları sizinle tartışır mı, yoksa sizin talimatınızla mı hareket eder?",
+            "answer": "Mert iyi bir hekim, soru sorar. Ama kıdem sırası var, son karar benimdir. Bu vakada da ben imzaladım her şeyi. Onu bu işin içine çekmenize gerek yok, kendi yolunu yapıyor çocuk.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SPIKE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "PROTECTIVE_LEAN",
+              "korku_bari_delta": 8,
+              "gameplay_note": "LEVERAGE ACILDI: Mert adinin gecmesi koruyuculuk refleksini harekete gecirdi. Sonraki hamlelerde kullanilabilir."
+            },
+            "next_node": "node_04_nurse"
+          },
+          {
+            "type": "LEGAL_THREAT",
+            "question": "Bakın, eğer bir sorumluluk gizleniyorsa bu soruşturma TCK 83'e kadar gider. Şimdi konuşursanız savcılık indirim düşünebilir.",
+            "answer": "Tehdit mi ediyorsunuz? Avukatım gelene kadar bu tarz imalara cevap vermeyeceğim. Ben hekimim, sanık değil. Siz konuyu hukuki zemine çekmek istiyorsanız, o zeminde konuşuruz.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "eeg": "CHAOTIC",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -18,
+              "gameplay_note": "YANLIS HAMLE: Erken tehdit supheliyi kilitledi. Sinyaller yukseldi ama bunlar SAVUNMA gerginligi, itiraf degil."
+            },
+            "next_node": "node_fail_lawyered_up"
+          }
+        ]
+      },
+      "node_03_records": {
+        "theme": "Kayıtlardaki Tutarsızlık",
+        "description": "Konu ameliyat notlarına geldiğinde Dr. Aydoğan önce sakin kalıyor, sonra dirsekleri masadan kalkıyor. Dosya elinde, sayfalari parmagiyla cevirerek gozden geciriyor.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EVIDENCE",
+            "question": "Ameliyat notunun dijital versiyonunda, orijinal kağıt nüshadan farklı iki paragraf var. Değişiklikler sizin hesabınızdan gece 02:47'de yapılmış. Neden?",
+            "answer": "Dijitalleştirmeyi ben yapıyorum çünkü hastanede yeterli arşiv personeli yok. Değişiklik değil, transkripsiyon. Kağıtta el yazısı okunaksız olan bölümleri netleştirdim. Klinik bulgu eklemedim, çıkarmadım.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "eeg": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 15,
+              "gameplay_note": "KISMEN DOGRU: Supheli kayit dokunusunu KABUL etti ama olume bagli degil. Sinyaller yuksek ama FLATLINE/MAX yok."
+            },
+            "next_node": "node_04_nurse"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Gece 02:47'de hastanedeydiniz. CCTV sizin arşive girişinizi kaydetmiş. O saatte tam olarak ne yapıyordunuz?",
+            "answer": "Uyku düzenim bozuk, zaten biliyorsunuz. Gece hastanede vakit geçirmem sık olur. O gece bir cerrahi raporu tamamlıyordum, başka bir hasta için. İsterseniz aynı gece imzaladığım diğer dosyalara da bakın.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "STEADY_GAZE",
+              "korku_bari_delta": 6,
+              "gameplay_note": "BASELINE CIVARI: Aciklama tutarli, uyku aliskanligi dosyayla uyumlu. Zayif ipucu."
+            },
+            "next_node": "node_04_nurse"
+          },
+          {
+            "type": "TRAP",
+            "question": "Orijinal kağıt nüshayı görmek istiyoruz. Dosyada göremiyoruz. Arşivde olmadığını siz de biliyor musunuz?",
+            "answer": "Nasıl yani? Kağıt nüsha arşivde olmalı. Belki sekreterlik henüz taramamış, ya da... bilmiyorum. Bunu kontrol etmem lazım. Bakın, burada bir şey kaçırıyorsak sorumlusu ben değilim, arşiv birimi.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "eeg": "CHAOTIC",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 22,
+              "gameplay_note": "GUCLU SINYAL: Kayip dokuman suphelinin beklemedigi bir bilgi; gercek bir gerginlik dalgasi. Bu secret'a yakin bolge."
+            },
+            "next_node": "node_04_nurse"
+          }
+        ]
+      },
+      "node_04_nurse": {
+        "theme": "Kayıp Hemşire İfadesi",
+        "description": "Masaya bir tanık listesi koyuyorsunuz. Hemşire Ayşen Yılmaz'ın isminin üzerinde bir not: 'verdiği ifade arşivde bulunamıyor'. Dr. Aydoğan not defterine bakar gibi yapıyor ama gözü oraya kilitlenmiş.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "SYSTEMIC_READ",
+            "question": "Hemşire Ayşen, ameliyattan üç gün önce ekibinize verilen bir ilaca dair şikâyetini yazılı olarak iletmiş. O ifade şu an arşivde yok. Sizin haberiniz var mı?",
+            "answer": "O ifadeden... haberim oldu, evet. Ayşen Hanım bir sakinleştirici protokolü hakkında endişesini bildirmişti. Mesele hastaya değil, ekibin yoğun çalışma temposunu yönetmeye yönelikti. Ama evrakı ben kaldırmadım. Arşivde olmaması beni de rahatsız ediyor.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SURGE",
+              "eeg": "INCREASE",
+              "cctv_visual": "SWALLOW_HARD",
+              "korku_bari_delta": 28,
+              "gameplay_note": "KRITIK ITIRAF KISMI: Supheli ifadenin varligini kabul etti ama olumle baglantiyi reddetti. Sinyaller yuksek ama FLATLINE yok — savunma degil, utanc."
+            },
+            "next_node": "node_success_partial_admission"
+          },
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Asistanınız Mert, sizin bilginiz dışında o ifadeyi arşivden kaldıracak biri mi? Yoksa onu koruyor musunuz?",
+            "answer": "Mert'i buna karıştırmayın dedim. O çocuk... bana baktığı için bazı şeyleri benim için yapmış olabilir, evet. Ama hastanın ölümüyle ilgisi yok. Ben söylemedim ona böyle bir şey. Eğer yaptıysa, kendi inisiyatifi.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "CRYING",
+              "gsr": "SURGE",
+              "eeg": "ERRATIC",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 32,
+              "gameplay_note": "CIDDI COZULME: Koruma refleksi kirildi. Supheli bir seyi saklamis ama bu SUC degil. FLATLINE yok, yani olume dair degil."
+            },
+            "next_node": "node_success_partial_admission"
+          },
+          {
+            "type": "GULLIBLE",
+            "question": "Yani hemşire ifadesinin neden kaybolduğunu gerçekten bilmiyorsunuz, öyle mi? Böyle bir şey hastanenizde nasıl olur?",
+            "answer": "Bilmiyorum. Hastane büyük, evrak trafiği yoğun. Belki dijitalleştirme sırasında taranamadı, belki yanlış klasöre gitti. Bu tür şeyler olur. Araştırmamız lazım ama şu an elimde bir cevap yok.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "DECREASE",
+              "eeg": "FOCUSED",
+              "cctv_visual": "RELIEVED_EXHALE",
+              "korku_bari_delta": -25,
+              "gameplay_note": "YANLIS HAMLE: Supheliye kacis rampasi sundunuz. Tam kilit anda gevsetildi, sinyaller normale dondu."
+            },
+            "next_node": "node_fail_deflected"
+          }
+        ]
+      },
+      "node_success_partial_admission": {
+        "theme": "Kırılma Anı",
+        "description": "Dr. Aydoğan koltuğa yaslandı, önlüğünün ilk düğmesini açtı. Gözleri dolu, sesi alçak. Avukatını beklemeden konuşmaya devam etti; bu sorguda söylemeyi göze aldığı en dürüst cümleleri kuruyor.",
+        "is_end_state": true,
+        "result_text": "Şüpheli, hemşire Ayşen Yılmaz'ın ifadesinin varlığından haberdar olduğunu kabul etti ve asistanı Dr. Mert Oskay'ın ifadeyi arşivden kaldırmış olabileceğine dair güçlü bir ima verdi. Ameliyat notlarında dijital düzenleme yaptığını da itiraf etti, ancak tüm bunların Arda Keskin'in ölümüne yol açtığını reddetmeye devam ediyor. Sakinleştirici protokolü meselesinin operasyonla değil, ekibin çalışma temposuyla ilgili olduğunu söyledi. Duygusal çözülme belirgin; poligraf verileriniz yüksek ama değişken bir profil çiziyor. Avukatı odaya girdi ve sorgu burada sonlandı. Hüküm sizin kararınıza bırakıldı: topladığınız biyometrik desen, bir cerrahın ölüm suçunu mu yoksa idari bir örtbasını mı gösteriyor?"
+      },
+      "node_fail_lawyered_up": {
+        "theme": "Avukat Duvarı",
+        "description": "Kapı açıldı; Dr. Aydoğan'ın avukatı bir dosyayla içeri girdi ve müvekkilinin bundan sonra hiçbir soruya cevap vermeyeceğini bildirdi. Şüpheli arkaya yaslandı, gözlerini tavana dikti.",
+        "is_end_state": true,
+        "result_text": "Sorgu, kritik sorular sorulmadan kapandı. Şüpheli avukatının arkasına çekildi ve hemşire ifadesi, gece 02:47 kayıt düzenlemesi gibi hassas konulara dair hiçbir şey söylemedi. Elinizde yalnızca sert suçlama anlarında ölçtüğünüz savunmacı sıçramalar var — bunların kaçı suçluluktan, kaçı haksız yere köşeye sıkışmış bir adamın refleksinden? Poligraf kaydı eksik bir tabloya dönüştü. Hüküm ekranında, bu zayıf veriyle bir malpraktis kararı vermek zorunda kalacaksınız."
+      },
+      "node_fail_deflected": {
+        "theme": "Savuşturulmuş Sorgu",
+        "description": "Dr. Aydoğan omuzlarını gevşetti, espresso bardağını istedi. Ses tonu yeniden profesyonel bir başhekimin sakinliğine büründü. Onu kırabileceğiniz pencere kapandı.",
+        "is_end_state": true,
+        "result_text": "Şüpheli, son kritik anda ona sunulan 'arşiv kazası' açıklamasına tutundu ve bir daha gardını düşürmedi. Ameliyat notu düzenlemeleri için teknik gerekçeler üretti, hemşire ifadesinin kaybolmasını idari kaosa bağladı, asistanı Mert'e dair hiçbir şey söylemedi. Poligrafınızda bazı yüksek noktalar var ama bunlar dağınık; belirgin bir yalan örüntüsü çıkarmak zor. Sorgunun kritik eşiği atlatılamadı. Hüküm ekranına belirsiz bir kanıt dosyası taşıyacaksınız; karar, sinyallerin hangilerine güveneceğinize kalmış."
+      }
+    }
+  }
+}

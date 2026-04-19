@@ -5,6 +5,7 @@ import { clearCanvas, drawText } from './draw.js';
 import { getTransitionAlpha, renderScene, setScene, updateScene } from './sceneManager.js';
 import { loadAllCases } from './game/cases.js';
 import { setSelectedCase, state } from './game/state.js';
+import { registerTitleScene } from './scenes/titleScene.js';
 import { registerMenuScene } from './scenes/menuScene.js';
 import { registerDossierScene } from './scenes/dossierScene.js';
 import { registerPlayScene } from './scenes/playScene.js';
@@ -53,6 +54,7 @@ initInput(canvas);
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+registerTitleScene(canvas, ctx);
 registerMenuScene(canvas, ctx);
 registerDossierScene(canvas, ctx);
 registerPlayScene(canvas, ctx);
@@ -124,7 +126,7 @@ async function boot() {
   setSelectedCase(0);
   state.loading = false;
 
-  setScene('menu');
+  setScene('title');
   loop.start();
 }
 
