@@ -86,6 +86,8 @@ function finalizeMarkerCapture() {
   }
   state.polygraphMarkers.push({
     qIndex: m.qIndex,
+    startTime: m.startTime,
+    endTime: state.time,
     hrPeak: m.peakHr,
     eegPeak: m.peakEeg,
     gsrPeak: m.peakGsr,
@@ -245,6 +247,7 @@ export function pickChoice(index) {
 
   state.markerCapture = {
     qIndex: state.evidence.length,
+    startTime: state.time,
     peakHr: 0,
     peakEeg: 0,
     peakGsr: 0,

@@ -3,6 +3,71 @@ import { clamp } from '../math.js';
 import { COLORS, UI_FONT } from './theme.js';
 import { t } from '../i18n/index.js';
 
+const SWEEP_RATE = 28;
+
+const SEVERITY = {
+  heart: { MAX_SPIKE: 3, SPIKE: 2, MAX: 3, ERRATIC: 2, INCREASE: 1, RISE: 1 },
+  eeg: { FLATLINE: 3, CHAOTIC: 3, ERRATIC: 2, INCREASE: 1 },
+  gsr: { MAX: 3, SURGE: 3, SPIKE: 2, INCREASE: 1 },
+};
+
+function severityColor(score) {
+  if (score >= 3) return '#ff5d73';
+  if (score === 2) return '#ffb55a';
+  if (score === 1) return '#d98c3a';
+  return null;
+}
+
+function categoryForLane(marker, type) {
+  if (type === 'heart') return marker.hrCategory;
+  if (type === 'eeg') return marker.eegCategory;
+  return marker.gsrCategory;
+}
+
+function drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, ageStart, ageEnd, color, alpha) {
+  if (ageStart <= ageEnd) return;
+  const lenSamples = ageStart - ageEnd;
+  const colStart = ((sharedCursor - ageStart) % waveW + waveW) % waveW;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  const room = waveW - colStart;
+  if (lenSamples <= room) {
+    drawRect(ctx, waveX + colStart, y + 2, lenSamples, h - 4, color);
+  } else {
+    drawRect(ctx, waveX + colStart, y + 2, room, h - 4, color);
+    drawRect(ctx, waveX, y + 2, lenSamples - room, h - 4, color);
+  }
+  ctx.restore();
+}
+
+function drawLaneMarkers(ctx, waveX, y, waveW, h, type, time, sharedCursor, markers) {
+  if (!markers || markers.length === 0) return;
+  for (const m of markers) {
+    if (m.startTime == null) continue;
+    const endTime = m.endTime != null ? m.endTime : time;
+    const ageStart = Math.floor((time - m.startTime) * SWEEP_RATE);
+    const ageEnd = Math.floor((time - endTime) * SWEEP_RATE);
+    if (ageStart <= 0) continue;
+    const visibleStart = Math.min(ageStart, waveW);
+    const visibleEnd = Math.max(ageEnd, 0);
+    if (visibleStart <= visibleEnd) continue;
+    const cat = categoryForLane(m, type);
+    const sev = SEVERITY[type][cat] || 0;
+    const color = severityColor(sev);
+    if (!color) continue;
+    const fade = clamp(1 - ageStart / waveW, 0, 1);
+    const fillAlpha = 0.12 + 0.22 * fade;
+    drawBandSegment(ctx, waveX, y, h, sharedCursor, waveW, visibleStart, visibleEnd, color, fillAlpha);
+    if (ageStart < waveW) {
+      const startCol = ((sharedCursor - visibleStart) % waveW + waveW) % waveW;
+      ctx.save();
+      ctx.globalAlpha = 0.6 + 0.3 * fade;
+      drawRect(ctx, waveX + startCol, y + 2, 1, h - 4, color);
+      ctx.restore();
+    }
+  }
+}
+
 const TRACE_STATE = {
   heart: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
   eeg: { samples: null, width: 0, lastCursor: -1, bufferRef: null },
@@ -167,6 +232,7 @@ function drawLane(
     sampleAt,
     sharedCursor,
     drawSweep,
+    markers,
   }
 ) {
   const labelW = 40;
@@ -176,6 +242,8 @@ function drawLane(
   const waveW = w - labelW - valueW;
 
   drawLaneGrid(ctx, waveX, y + 2, waveW, h - 4);
+
+  drawLaneMarkers(ctx, waveX, y, waveW, h, type, time, sharedCursor, markers);
 
   if (drawSweep) {
     const sweepX = waveX + sharedCursor;
@@ -230,7 +298,11 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     fearFlash = 0,
     laneFlash = {},
     biometric,
+    markers = [],
+    activeMarker = null,
   } = data;
+
+  const allMarkers = activeMarker ? [...markers, activeMarker] : markers;
 
   const bioBuffers = biometric?.buffers || {};
   const bioRate = biometric?.sampleRate || {};
@@ -311,6 +383,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('heartRate', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
+    markers: allMarkers,
   });
 
   drawLane(ctx, x, lanesY + laneH, w, laneH, {
@@ -327,6 +400,7 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('eeg', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
+    markers: allMarkers,
   });
 
   drawLane(ctx, x, lanesY + laneH * 2, w, laneH, {
@@ -343,5 +417,6 @@ export function drawPolygraph(ctx, x, y, w, h, data) {
     sampleAt: bioSampleAt ? (offsetFloat) => bioSampleAt('gsr', offsetFloat) : null,
     sharedCursor,
     drawSweep: true,
+    markers: allMarkers,
   });
 }

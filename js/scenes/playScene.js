@@ -185,6 +185,8 @@ function drawPlayScene(ctx) {
     maxFearBar: state.maxFearBar,
     fearFlash: state.fearFlash,
     laneFlash,
+    markers: state.polygraphMarkers,
+    activeMarker: state.markerCapture,
   });
 
   const ease = smoothstep(clamp(logAnim, 0, 1));
