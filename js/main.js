@@ -1,5 +1,5 @@
 import { createGameLoop } from './gameLoop.js';
-import { endFrameInput, initInput, setDesignScale } from './input.js';
+import { endFrameInput, initInput, setDesignScale, wasKeyPressed } from './input.js';
 import { preloadAssets } from './assets.js';
 import { clearCanvas, drawText } from './draw.js';
 import { getTransitionAlpha, renderScene, setScene, updateScene } from './sceneManager.js';
@@ -36,6 +36,15 @@ let renderScale = 1;
 let scanTime = 0;
 let scanFlicker = 0;
 
+function toggleFullscreen() {
+  const el = document.documentElement;
+  if (!document.fullscreenElement) {
+    el.requestFullscreen?.().catch(() => {});
+  } else {
+    document.exitFullscreen?.().catch(() => {});
+  }
+}
+
 function resizeCanvas() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
@@ -59,6 +68,7 @@ function resizeCanvas() {
 initInput(canvas);
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+document.addEventListener('fullscreenchange', resizeCanvas);
 
 registerTitleScene(canvas, ctx);
 registerSettingsScene(canvas, ctx);
@@ -75,6 +85,9 @@ function update(dt) {
   scanFlicker = Math.max(0, scanFlicker - dt * 3);
   if (Math.random() < dt * 0.04) {
     scanFlicker = 1;
+  }
+  if (wasKeyPressed('f')) {
+    toggleFullscreen();
   }
   updateScene(dt);
   endFrameInput();
