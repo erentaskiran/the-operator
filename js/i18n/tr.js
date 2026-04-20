@@ -99,28 +99,28 @@ export const TR = {
   BRIEFING_HINT_EXIT: 'ESC : Menu',
   BRIEFING_INTRO_TITLE: 'ODAYI OKUMAK',
   BRIEFING_INTRO_BODY:
-    'Ekranda dort canli kanalin ve bir beden-dili kanalin var: nabiz, nefes, GSR, stres metresi ve kosedeki supheli portresi. Hicbir okuma sana "yaliyor" demez — dalgayi kendin okursun. Bu brifing her sinyali durum durum tanitir, neye dikkat edecegini gosterir.',
+    'Bu oyunda 5 kaynagi birlikte okursun: NABIZ, NEFES, GSR, STRES metresi ve supheli portresi. Tek bir kanal tek basina kanit degildir. Her sorudan sonra once degisimi gor, sonra dosya notlariyla karsilastir.',
   BRIEFING_PULSE_TITLE: 'NABIZ',
   BRIEFING_PULSE_BODY:
-    'Kalp atisi stresle yukselir, supheli guvende hissettiginde duser. QRS sicramasinin yuksekligine ve atim sikligina bak. Beta-blokerler acikca koseye sikismis bir supheliyi bile sakin gosterebilir — sakin nabza guvenmeden once dosyayi oku.',
+    'Nabizda hem atim sikligina hem de ani sicrama anlarina bak. Sert bir sorudan sonra hizli yukselis normaldir; hic tepki gelmemesi bazen "kontrol" degil ilac etkisi olabilir. Ozellikle beta-bloker notu varsa sakin gorunen nabzi tek basina dogru kabul etme.',
   BRIEFING_BREATHING_TITLE: 'NEFES',
   BRIEFING_BREATHING_BODY:
-    'Nefesin sekli kontrolu ele verir. Derin sinus = sakin. Yuzeysel ve hizli = savunmada. Uzun duz plato ve ardindan ani nefes = supheli bilinçli nefes tutuyor, manipulasyon denemesi. Aglama durumunda hizli sinuslere titreme biner.',
+    'Nefes kanali "ritim" verir: duzenli ve derin akis daha kontrollu bir durumu, yuzeysel/hizli akis savunmayi gosterir. Uzun duz bolge + ani nefes alma, nefes tutma denemesi olabilir. Cevabin zorlu noktasinda ritim bozuluyorsa bunu not et.',
   BRIEFING_GSR_TITLE: 'GSR (DERI ILETKENLIGI)',
   BRIEFING_GSR_BODY:
-    "Ter tepkisi duygusal sicramadan 1-3 saniye sonra gelir. Baseline neredeyse duz cizgi; SPIKE veya SURGE marker penceresi icinde net bir zirve yapar. Yuksek kafein ve anksiyete baseline'i yukseltir ve tepkileri abartir — yine once dosya.",
+    'GSR duygusal tepkiyi biraz gecikmeli verir. Soru aninda degil, kisa bir sure sonra yukselis gorebilirsin. Kafein ve anksiyete gibi etkiler taban seviyeyi zaten yuksek tutabilir; bu durumda artisin zamanlamasi, yukseklikten daha degerlidir.',
   BRIEFING_FEAR_TITLE: 'STRES METRESI',
   BRIEFING_FEAR_BODY:
-    'Toplam baski gostergesi. Gercek celiskiler veya empatik isabetlerde yukselir; yanlis hamlede (sakin supheliye erken saldiri, zamansiz hukuki tehdit) sert duser. Yuksek stres = maske kayiyor. Dusuk stres = supheli kontrolu geri aldi.',
+    'Stres metresi tek kanalin degil, genel sorgu baskisinin ozetidir. Dogru baski kurdugunda yukselir; zayif veya zamansiz hamlede dusebilir. "Yuksek stres = otomatik suclu" demek degildir, sadece dogru noktaya temas ettigini gosterir.',
   BRIEFING_CCTV_TITLE: 'SUPHELI PORTRESI',
   BRIEFING_CCTV_BODY:
-    'Mikro-ifadeler ve beden ipuclari her cevap sirasinda portre uzerinde gorsel efekt olarak cikar. Kirmizi titrek ton = gergin, kirmizi nabiz + sallanma = cokmus, mavimsi mor cokme = savunmaci kollar, sessiz desatur = kontrollu tas yuz, sicak parilti = rahatlama. Metin etiketi yok — portreyi oku.',
+    'Portrede metin etiketi yok; sadece gorsel ipucu var. Kirmizi/titrek gorunum genelde gerginlik, cokme etkisi kirilma, soguk-sabit gorunum kontrol, yumusama ise rahatlama sinyali verir. Portreyi mutlaka poligraf kanallariyla birlikte yorumla.',
   BRIEFING_MODIFIERS_TITLE: 'SAGLIK VE ALISKANLIK',
   BRIEFING_MODIFIERS_BODY:
-    'Her dosya medical ve habits listesinde "polygraph_effect" notu tasir. Bunlar gercek: beta-bloker gercekten nabiz sicramasini azaltir, kafein GSR\'yi buyutur, anksiyete nefesi dengesiz yapar. Grafigi okumadan once dosyayi oku — sinyal modeli bu degerleri zaten hesaba katiyor.',
+    'Dossier ekranindaki medical/habits notlari oyunu dogrudan etkiler. "polygraph_effect" satirlarini okumadan sinyal yorumlamak kolayca yanlis sonuca goturur. Kural basit: once dosya, sonra grafik.',
   BRIEFING_CLOSE_TITLE: 'OPERATOR SENSIN',
   BRIEFING_CLOSE_BODY:
-    "Hicbir sinyal tek basina kanit degildir. Hukum vermeden once iki kanali dosya ile dogrula. Yanlis hukum bedel odetir. Dava secimine donmek icin ENTER'a bas.",
+    'Guvenli karar akisi: (1) soruyu sor, (2) 3 kanaldaki degisimi gor, (3) dosya ile capraz kontrol et, (4) sonucu logdan tekrar oku. Bu adimlari birlestirmeden hukum verme. ENTER ile dava secimine donebilirsin.',
 
   // polygraph / UI
   POLY_HEADER: 'POLIGRAF SINYALLERI',

@@ -8,7 +8,13 @@ import { drawPortraitBadge } from '../ui/portraitBadge.js';
 import { classifyCctv } from '../ui/cctvEffect.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { t } from '../i18n/index.js';
-import { getBiometricDrawData, resetBiometricsOnState, updateWave } from '../game/waves.js';
+import {
+  applyMechanicsToBiometrics,
+  getBiometricDrawData,
+  resetBiometricsOnState,
+  settleBiometricsForNextQuestion,
+  updateWave,
+} from '../game/waves.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
 import { clamp } from '../math.js';
 import { markBriefingSeen } from '../game/onboarding.js';
@@ -57,24 +63,8 @@ const SIGNAL_CYCLES = {
 
 const STEPS = ['intro', 'pulse', 'breathing', 'gsr', 'fear', 'cctv', 'modifiers', 'close'];
 
-const PULSE_STATES = {
-  BASELINE: { excite: 0, arousal: 0.22, pain: 0.02 },
-  INCREASE: { excite: 0.55, arousal: 0.55, pain: 0.08 },
-  SPIKE: { excite: 0.88, arousal: 0.82, pain: 0.22 },
-  MAX_SPIKE: { excite: 1, arousal: 0.97, pain: 0.5 },
-};
-
-const GSR_STATES = {
-  BASELINE: { tonic: 0.22, amp: 0.04, interval: 0 },
-  INCREASE: { tonic: 0.4, amp: 0.18, interval: 1.6 },
-  SPIKE: { tonic: 0.55, amp: 0.35, interval: 1.2 },
-  SURGE: { tonic: 0.72, amp: 0.5, interval: 1 },
-  MAX: { tonic: 0.9, amp: 0.7, interval: 0.8 },
-};
-
 let stepIndex = 0;
 let cycleIndex = 0;
-let gsrEmitTimer = 0;
 let demoFearBar = 20;
 let demoFearDisplay = 20;
 let demoFearFlash = 0;
@@ -86,20 +76,9 @@ function resetSandbox() {
   demoFearBar = 20;
   demoFearDisplay = 20;
   demoFearFlash = 0;
-  gsrEmitTimer = 0;
   laneFlash.heartRate = 0;
   laneFlash.breathing = 0;
   laneFlash.gsr = 0;
-}
-
-function refillGsrBuffer(tonic) {
-  const bio = sandbox.biometric;
-  const buf = bio?.buffers?.gsr;
-  if (!buf) return;
-  const size = buf.size;
-  const data = new Float32Array(size);
-  data.fill(tonic);
-  bio.buffers.gsr = { data, size, count: size, head: 0 };
 }
 
 function activeCycle() {
@@ -126,40 +105,31 @@ function applyCurrentCycle(isEnter) {
   if (!entry) return;
 
   if (step === 'pulse') {
-    const name = entry.mechanics?.heart_rate || 'BASELINE';
-    const s = PULSE_STATES[name] || PULSE_STATES.BASELINE;
-    sandbox.biometric.transient.heartExcite = s.excite;
-    sandbox.biometric.latent.arousal = s.arousal;
-    sandbox.biometric.latent.painManipulation = s.pain;
-    if (name === 'MAX_SPIKE') {
-      sandbox.biometric.ecg.artifactBurst = clamp(
-        sandbox.biometric.ecg.artifactBurst + 0.35,
-        0,
-        0.9
-      );
-    }
+    settleBiometricsForNextQuestion(sandbox);
+    applyMechanicsToBiometrics(sandbox, {
+      heart_rate: entry.mechanics?.heart_rate || 'BASELINE',
+      breathing: 'BASELINE',
+      gsr: 'BASELINE',
+      cctv_visual: 'NEUTRAL',
+    });
     laneFlash.heartRate = 1;
   } else if (step === 'breathing') {
-    const name = entry.mechanics?.breathing || 'BASELINE';
-    sandbox.biometric.breathing.state = name;
-    sandbox.biometric.breathing.holdTimer = 0;
+    settleBiometricsForNextQuestion(sandbox);
+    applyMechanicsToBiometrics(sandbox, {
+      heart_rate: 'BASELINE',
+      breathing: entry.mechanics?.breathing || 'BASELINE',
+      gsr: 'BASELINE',
+      cctv_visual: 'NEUTRAL',
+    });
     laneFlash.breathing = 1;
   } else if (step === 'gsr') {
-    const name = entry.mechanics?.gsr || 'BASELINE';
-    const s = GSR_STATES[name] || GSR_STATES.BASELINE;
-    sandbox.biometric.gsr.events.length = 0;
-    sandbox.biometric.gsr.tonic = s.tonic;
-    sandbox.biometric.baseline.gsrUs = 2 + s.tonic * 13.5;
-    refillGsrBuffer(s.tonic);
-    if (s.amp > 0.06) {
-      sandbox.biometric.gsr.events.push({
-        start: sandbox.biometric.time + 0.25,
-        amp: s.amp,
-        riseTau: 0.35,
-        decayTau: 2.6,
-      });
-    }
-    gsrEmitTimer = s.interval > 0 ? s.interval : 0;
+    settleBiometricsForNextQuestion(sandbox);
+    applyMechanicsToBiometrics(sandbox, {
+      heart_rate: 'BASELINE',
+      breathing: 'BASELINE',
+      gsr: entry.mechanics?.gsr || 'BASELINE',
+      cctv_visual: 'NEUTRAL',
+    });
     laneFlash.gsr = 1;
   } else if (step === 'fear' && entry.fearDelta != null) {
     const prev = demoFearBar;
@@ -170,39 +140,6 @@ function applyCurrentCycle(isEnter) {
       demoFearBar = clamp(demoFearBar + entry.fearDelta, 0, 100);
     }
     if (demoFearBar !== prev) demoFearFlash = 1;
-  }
-}
-
-function sustainTaughtLane(dt) {
-  const step = STEPS[stepIndex];
-  const entry = currentCycleEntry();
-  if (!entry) return;
-
-  if (step === 'pulse') {
-    const name = entry.mechanics?.heart_rate || 'BASELINE';
-    const s = PULSE_STATES[name] || PULSE_STATES.BASELINE;
-    sandbox.biometric.transient.heartExcite = Math.max(
-      sandbox.biometric.transient.heartExcite,
-      s.excite
-    );
-    sandbox.biometric.latent.arousal = s.arousal;
-    sandbox.biometric.latent.painManipulation = s.pain;
-  } else if (step === 'gsr') {
-    const name = entry.mechanics?.gsr || 'BASELINE';
-    const s = GSR_STATES[name] || GSR_STATES.BASELINE;
-    sandbox.biometric.gsr.tonic += (s.tonic - sandbox.biometric.gsr.tonic) * Math.min(1, dt * 1.4);
-    if (s.interval > 0) {
-      gsrEmitTimer -= dt;
-      if (gsrEmitTimer <= 0) {
-        sandbox.biometric.gsr.events.push({
-          start: sandbox.biometric.time + 0.2,
-          amp: s.amp,
-          riseTau: 0.35,
-          decayTau: 2.4,
-        });
-        gsrEmitTimer = s.interval;
-      }
-    }
   }
 }
 
@@ -363,7 +300,6 @@ export function registerBriefingScene(_canvas, ctx) {
     },
     update(dt) {
       sandbox.time += dt;
-      sustainTaughtLane(dt);
       updateWave(sandbox, dt);
 
       const fearDiff = demoFearBar - demoFearDisplay;

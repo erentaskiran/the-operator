@@ -99,28 +99,28 @@ export const EN = {
   BRIEFING_HINT_EXIT: 'ESC : Menu',
   BRIEFING_INTRO_TITLE: 'READING THE ROOM',
   BRIEFING_INTRO_BODY:
-    'You have four live channels and one body-language channel. Pulse, breathing, GSR, the stress meter on screen, and the defendant portrait in the corner. No readout ever tells you "liar" — you read the waveforms yourself. This briefing walks each signal through its states so you know what to look for.',
+    'You read 5 sources together: PULSE, BREATHING, GSR, the STRESS meter, and the defendant portrait. No single channel is proof by itself. After each question, observe the change first, then verify it against dossier notes.',
   BRIEFING_PULSE_TITLE: 'PULSE',
   BRIEFING_PULSE_BODY:
-    'Heart rate rises with stress and drops when the suspect feels safe. Watch QRS spike height and beat density. Beta-blockers flatten the response even when the suspect is clearly cornered — always check the dossier before trusting a calm pulse.',
+    'On pulse, watch both beat density and sudden spikes. A hard question usually creates a rise; no visible reaction can sometimes be medication, not calmness. If the dossier mentions beta-blockers, do not trust a flat pulse on its own.',
   BRIEFING_BREATHING_TITLE: 'BREATHING',
   BRIEFING_BREATHING_BODY:
-    'Breath shape reveals control. Deep sine = composed. Shallow fast = defensive. Long flat plateaus with a gasp = the suspect is holding their breath — a deliberate manipulation attempt. Crying shows tremor on top of a fast sine.',
+    'Breathing gives you rhythm. Regular/deep flow suggests control; shallow/fast flow suggests defensive pressure. A long flat segment followed by a sharp inhale can indicate breath-holding. If rhythm breaks at key moments, flag it.',
   BRIEFING_GSR_TITLE: 'GSR (SKIN CONDUCTANCE)',
   BRIEFING_GSR_BODY:
-    'Sweat response fires 1-3 seconds after emotional spikes. Baseline is a near-flat line; a SPIKE or SURGE jumps visibly within the marker window. Heavy caffeine and anxiety raise baseline and amplify reactions — again, dossier first.',
+    'GSR is delayed compared to the spoken moment. You often see the rise shortly after the question, not instantly. Caffeine and anxiety can keep baseline high, so timing of the rise is often more valuable than raw height.',
   BRIEFING_FEAR_TITLE: 'STRESS METER',
   BRIEFING_FEAR_BODY:
-    'Aggregate pressure. It rises when you land true contradictions or empathy hits, and falls hard when you misfire (aggressive attack on a calm suspect, legal threats too early). High stress = mask slipping. Low stress = they are back in control.',
+    'The stress meter is a summary of interrogation pressure, not a lie detector on its own. It rises when your approach lands, and can drop on weak or mistimed pressure. High stress does not automatically mean guilty; it means your line is hitting.',
   BRIEFING_CCTV_TITLE: 'DEFENDANT PORTRAIT',
   BRIEFING_CCTV_BODY:
-    'Micro-expressions and body cues render as visual effects on the portrait during each answer. A red jittery tint = tense, warm red pulse + wobble = breakdown, cool purple sag = defensive cross-arms, desaturated stillness = controlled stone face, warm glow = relief. No text label — read the portrait.',
+    'The portrait has no text labels, only visual cues. Red/jitter usually means tension, collapse-like motion suggests breakdown, cold/still look suggests control, and warm softening suggests relief. Always read portrait cues together with polygraph channels.',
   BRIEFING_MODIFIERS_TITLE: 'MEDICAL & HABITS',
   BRIEFING_MODIFIERS_BODY:
-    'Every dossier lists medical conditions and habits with a "polygraph_effect" note. These are real: a beta-blocker really does mute pulse spikes, caffeine really does amplify GSR, anxiety really does destabilize breathing. Read the dossier before reading the chart — the signal model is already accounting for them.',
+    'Medical and habit notes in the dossier directly affect gameplay. If you ignore "polygraph_effect" lines, your interpretation can be wrong even when the chart looks clear. Rule of thumb: dossier first, chart second.',
   BRIEFING_CLOSE_TITLE: 'YOU ARE THE OPERATOR',
   BRIEFING_CLOSE_BODY:
-    'No signal is proof on its own. Cross-check two channels with the dossier before you commit to a verdict. Wrong verdicts have consequences. Press ENTER to return to case selection.',
+    'Safe decision flow: (1) ask, (2) observe changes across channels, (3) cross-check with dossier, (4) re-read from log before verdict. Do not commit on a single signal. Press ENTER to return to case selection.',
 
   // polygraph / UI
   POLY_HEADER: 'POLYGRAPH SIGNALS',
