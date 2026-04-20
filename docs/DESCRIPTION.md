@@ -1,6 +1,6 @@
 # The Operator
 
-**You don't catch liars. You read them.**
+## You don't catch liars. You read them.
 
 A lamp lit room. A polygraph. A suspect with a rehearsed story and a body that might betray them. You are the Operator, and the court is waiting on your call.
 
@@ -10,7 +10,7 @@ Every case is a civil suit waiting on your verdict. A pharmacist accused of dilu
 
 ## The Readout
 
-Three signals. Pulse. Breath. Skin.
+_Three signals. Pulse. Breath. Skin._
 
 No labels. No hints. No little words telling you when they are lying. Just raw waveforms climbing and falling across the screen while they talk. A spike can mean guilt, or caffeine, or the SSRI in their bloodstream, or nothing at all. The dossier in your hand is the only thing that tells you which.
 
@@ -33,3 +33,14 @@ Quiet tension. Pixel art rooms and soft room tone. A typewriter ticking out narr
 Two languages. Branching dialogue. Cases that reward patience and punish guessing.
 
 **Who is lying, and who is just afraid?**
+
+--
+
+### How to Play
+
+1. **Read the dossier.** Before the suspect sits down, study the file. Priors, relationships, medications, alibis, pressure points. Everything you need to interpret the traces is in there.
+2. **Establish a baseline.** Open with neutral questions. Watch how pulse, breath, and skin behave when the suspect is calm. This is the only reference you get.
+3. **Pick your tactic.** Each question has an approach: empathic, aggressive, trap, evidence, moral, legal. Match the tactic to the suspect and the moment.
+4. **Watch the waveforms.** Spikes are data, not answers. Compare against the baseline, the dossier, and the tactic you just used. Context decides what a signal means.
+5. **Manage the room.** Push too hard and the lawyer steps back in. Stay too soft and the suspect reframes the story. The interview window is finite.
+6. **Call the verdict.** When you've seen enough, rule guilty or not guilty. The truth is revealed, along with everything you read correctly, and everything you did not.
