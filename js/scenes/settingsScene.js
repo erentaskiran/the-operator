@@ -13,6 +13,7 @@ import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t, getLanguage, setLanguage } from '../i18n/index.js';
 import { getAmbientVolume, setAmbientVolume } from '../interrogationAudio.js';
+import { getCrtStrength, setCrtStrength } from '../videoSettings.js';
 
 let langLeftRect = null;
 let langRightRect = null;
@@ -20,6 +21,9 @@ let scrollToggleRect = null;
 let volumeTrackRect = null;
 let volumeHitRect = null;
 let volumeDragActive = false;
+let crtTrackRect = null;
+let crtHitRect = null;
+let crtDragActive = false;
 const LANGS = ['en', 'tr'];
 
 function inRect(point, rect) {
@@ -190,6 +194,52 @@ function drawSettingsScene(ctx) {
     baseline: 'middle',
   });
 
+  // CRT row
+  const crtRowY = volumeRowY + 34;
+  drawText(ctx, t('SETTINGS_CRT_LABEL'), panelX + 24, crtRowY, {
+    size: 12,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
+  const crtTrackW = 96;
+  const crtTrackH = 6;
+  const crtTrackX = rowRight - crtTrackW - 14;
+  const crtTrackY = crtRowY - crtTrackH / 2;
+  crtTrackRect = { x: crtTrackX, y: crtTrackY, w: crtTrackW, h: crtTrackH };
+  crtHitRect = { x: crtTrackX, y: crtTrackY - 8, w: crtTrackW, h: crtTrackH + 16 };
+
+  const crt = getCrtStrength();
+  const crtRatio = crt / 100;
+  drawRect(ctx, crtTrackX, crtTrackY, crtTrackW, crtTrackH, COLORS.amberDim);
+  drawRect(
+    ctx,
+    crtTrackX,
+    crtTrackY,
+    Math.max(1, Math.round(crtTrackW * crtRatio)),
+    crtTrackH,
+    COLORS.amberBright
+  );
+
+  const crtKnobSize = 9;
+  const crtKnobX = crtTrackX + crtRatio * crtTrackW - crtKnobSize / 2;
+  const crtKnobY = crtRowY - crtKnobSize / 2;
+  const crtKnobRect = { x: crtKnobX, y: crtKnobY, w: crtKnobSize, h: crtKnobSize };
+  const crtKnobHover = inRect(mouse, crtKnobRect);
+  drawPanel(ctx, crtKnobX, crtKnobY, crtKnobSize, crtKnobSize, {
+    border: crtKnobHover ? COLORS.amberBright : COLORS.amber,
+    fill: crtKnobHover ? 'rgba(70,42,16,0.85)' : COLORS.panelFillLight,
+  });
+
+  drawText(ctx, `${crt}%`, rowRight, crtRowY, {
+    align: 'center',
+    size: 11,
+    color: COLORS.cream,
+    font: UI_FONT,
+    baseline: 'middle',
+  });
+
   drawText(ctx, t('SETTINGS_BACK'), DESIGN_W / 2, panelY + panelH - 16, {
     align: 'center',
     size: 11,
@@ -208,6 +258,9 @@ export function registerSettingsScene(_canvas, ctx) {
       volumeTrackRect = null;
       volumeHitRect = null;
       volumeDragActive = false;
+      crtTrackRect = null;
+      crtHitRect = null;
+      crtDragActive = false;
     },
     update() {
       const mouse = getMousePos();
@@ -217,6 +270,14 @@ export function registerSettingsScene(_canvas, ctx) {
           setAmbientVolume(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
         } else {
           volumeDragActive = false;
+        }
+      }
+      if (crtDragActive) {
+        if (isMouseDown(0) && crtTrackRect) {
+          const ratio = (mouse.x - crtTrackRect.x) / crtTrackRect.w;
+          setCrtStrength(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
+        } else {
+          crtDragActive = false;
         }
       }
 
@@ -244,6 +305,14 @@ export function registerSettingsScene(_canvas, ctx) {
         setAmbientVolume(getAmbientVolume() - 4);
         return;
       }
+      if (wasKeyPressed('q')) {
+        setCrtStrength(getCrtStrength() - 4);
+        return;
+      }
+      if (wasKeyPressed('e')) {
+        setCrtStrength(getCrtStrength() + 4);
+        return;
+      }
       if (wasMousePressed(0)) {
         if (inRect(mouse, langLeftRect)) {
           cycleLanguage(-1);
@@ -261,6 +330,12 @@ export function registerSettingsScene(_canvas, ctx) {
           const ratio = (mouse.x - volumeTrackRect.x) / volumeTrackRect.w;
           setAmbientVolume(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
           volumeDragActive = true;
+          return;
+        }
+        if (crtTrackRect && crtHitRect && inRect(mouse, crtHitRect)) {
+          const ratio = (mouse.x - crtTrackRect.x) / crtTrackRect.w;
+          setCrtStrength(Math.round(Math.max(0, Math.min(1, ratio)) * 100));
+          crtDragActive = true;
           return;
         }
       }

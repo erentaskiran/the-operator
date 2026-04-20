@@ -17,6 +17,7 @@ import { registerVerdictScene } from './scenes/verdictScene.js';
 import { registerBadEndScene } from './scenes/badEndScene.js';
 import { startBootAmbient } from './interrogationAudio.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from './ui/theme.js';
+import { getCrtStrength } from './videoSettings.js';
 
 async function loadCustomFonts() {
   const font = new FontFace('m5x7', 'url(./assets/m5x7.ttf)');
@@ -80,10 +81,14 @@ function update(dt) {
 }
 
 function drawScanlines() {
+  const strength = getCrtStrength() / 100;
+  if (strength <= 0.001) return;
+
   const spacing = 3;
   const rollOffset = Math.floor(scanTime * 5) % spacing;
-  const breathe = Math.sin(scanTime * 2.2) * 0.015;
-  const alpha = Math.max(0, Math.min(0.3, 0.11 + breathe + scanFlicker * 0.02));
+  const breathe = Math.sin(scanTime * 2.2) * 0.015 * strength;
+  const base = 0.03 + strength * 0.17;
+  const alpha = Math.max(0, Math.min(0.3, base + breathe + scanFlicker * 0.02 * strength));
   ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
   for (let y = -rollOffset; y < DESIGN_H; y += spacing) {
     ctx.fillRect(0, y, DESIGN_W, 1);
