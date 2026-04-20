@@ -648,9 +648,10 @@ export function registerPlayScene(_canvas, ctx) {
       if (state.evidence.length > lastAppliedEvidenceCount) {
         const latest = state.evidence[state.evidence.length - 1];
         applyDialogueAudio(latest, state.fearBar, state.maxFearBar);
-        cctvStyle = classifyCctv(state.metrics.cctvVisual);
         lastAppliedEvidenceCount = state.evidence.length;
       }
+
+      cctvStyle = classifyCctv(state.metrics.cctvVisual || 'NEUTRAL');
 
       if (state.responseMode && cctvStyle !== 'NEUTRAL') {
         cctvIntensity = Math.min(1, cctvIntensity + dt * CCTV_RISE_SPEED);
