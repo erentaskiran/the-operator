@@ -55,7 +55,6 @@ import {
   applyNodeAtmosphere,
   enterInterrogationAudio,
 } from '../interrogationAudio.js';
-import { trackEvent } from '../analytics.js';
 
 const LAYOUT = {
   narration: { x: 8, y: 8, w: 518, h: 48 },
@@ -581,11 +580,6 @@ export function registerPlayScene(_canvas, ctx) {
       resetRun();
       enterInterrogationAudio();
       applyNodeAtmosphere(state.currentNode, state.currentNodeId);
-      const caseDef = CASES[state.caseIndex];
-      trackEvent('case-started', {
-        case: caseDef?.id || 'unknown',
-        lang: getLanguage(),
-      });
       pauseOpen = false;
       pauseRects = [];
       pauseSelectedIndex = 0;
