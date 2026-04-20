@@ -96,32 +96,32 @@ export const TR = {
   BRIEFING_TITLE: '[ OPERATOR BRIFINGI ]',
   BRIEFING_HINT_NEXT: 'ENTER / → : Ileri',
   BRIEFING_HINT_BACK: '← : Geri',
-  BRIEFING_HINT_STATE: 'SPACE : Sonraki durum',
+  BRIEFING_HINT_STATE: 'SPACE : Simulasyonu ilerlet',
   BRIEFING_HINT_EXIT: 'ESC : Menu',
   BRIEFING_INTRO_TITLE: 'ODAYI OKUMAK',
   BRIEFING_INTRO_BODY:
-    '- Bu oyunda 5 kaynagi birlikte okursun: NABIZ, NEFES, GSR, STRES ve portre.\n- Tek bir kanal tek basina kanit degildir.\n- Her sorudan sonra degisimi gor, sonra dosya ile karsilastir.',
+    '- Bu oyunda 5 kaynağı birlikte okursun: NABIZ, NEFES, GSR, STRES ve portre.\n- Tek bir kanal, tek başına kesin kanıt değildir.\n- Her sorudan sonra önce değişimi gör, sonra dosyayla karşılaştır.',
   BRIEFING_PULSE_TITLE: 'NABIZ',
   BRIEFING_PULSE_BODY:
-    '- Nabizda atim sikligi + ani sicrama anlarina birlikte bak.\n- Sert sorudan sonra yukselis normaldir.\n- Beta-bloker notu varsa sakin nabzi tek basina dogru kabul etme.',
+    '- Nabızda hem ritme hem ani sıçramalara birlikte bak.\n- Sert bir sorudan sonra yükselmesi normaldir.\n- Dosyada beta-bloker notu varsa sakin görünen nabza hemen güvenme.',
   BRIEFING_BREATHING_TITLE: 'NEFES',
   BRIEFING_BREATHING_BODY:
-    '- Nefes kanalinda ritme bak: duzenli/derin akim daha kontrolludur.\n- Yuzeysel ve hizli akis savunma baskisini gosterir.\n- Uzun duz bolge + ani nefes, nefes tutma denemesi olabilir.',
+    '- Nefeste ritim çok şey söyler: düzenli ve derin nefes daha kontrollü bir tablo verir.\n- Kısa ve hızlı nefes, genelde baskı altında olunduğunu gösterir.\n- Uzun düz çizgi sonrası ani nefes, nefes tutma denemesi olabilir.',
   BRIEFING_GSR_TITLE: 'GSR (DERI ILETKENLIGI)',
   BRIEFING_GSR_BODY:
-    '- GSR tepkiyi gecikmeli verir; artis genelde soru anindan hemen sonra gelir.\n- Kafein/anksiyete taban seviyeyi yuksek tutabilir.\n- Bu durumda zamanlama, yukseklikten daha degerlidir.',
+    '- GSR tepkisi gecikmeli gelir; yükselişi çoğu zaman sorudan kısa süre sonra görürsün.\n- Kafein ve anksiyete taban seviyeyi zaten yüksek gösterebilir.\n- Bu durumda yükseklikten çok, tepkinin zamanlamasına odaklan.',
   BRIEFING_FEAR_TITLE: 'STRES METRESI',
   BRIEFING_FEAR_BODY:
-    '- Stres metresi tek kanal degil, genel sorgu baskisinin ozetidir.\n- Dogru baskida yukselir; zamansiz/zayif hamlede dusebilir.\n- Yuksek stres otomatik suclu demek degildir.',
+    '- Stres metresi tek bir kanal değil, sorgudaki genel baskının özetidir.\n- Doğru hamlede yükselir; zamansız veya zayıf hamlede düşebilir.\n- Yüksek stres görmek, otomatik olarak suçlu demek değildir.',
   BRIEFING_CCTV_TITLE: 'SUPHELI PORTRESI',
   BRIEFING_CCTV_BODY:
-    '- Portrede metin etiketi yok; sadece gorsel ipucu var.\n- Kirmizi/titrek: gerginlik, cokme etkisi: kirilma, soguk/sabit: kontrol.\n- Portreyi mutlaka poligraf kanallariyla birlikte yorumla.',
+    '- Portrede metin etiketi yok; sadece görsel ipuçları var.\n- Kırmızı/titrek görünüm gerginliği, çökme efekti kırılmayı, soğuk/sabit görünüm kontrolü işaret eder.\n- Portreyi mutlaka poligraf sinyalleriyle birlikte yorumla.',
   BRIEFING_MODIFIERS_TITLE: 'SAGLIK VE ALISKANLIK',
   BRIEFING_MODIFIERS_BODY:
-    '- Dossier\'daki medical/habits notlari oyunu dogrudan etkiler.\n- "polygraph_effect" satirlarini okumadan yorum yapma.\n- Kural: once dosya, sonra grafik.',
+    '- Dossier\'daki sağlık ve alışkanlık notları oyunu doğrudan etkiler.\n- "polygraph_effect" satırlarını okumadan yorum yapma.\n- Basit kural: önce dosyayı oku, sonra grafiğe bak.',
   BRIEFING_CLOSE_TITLE: 'OPERATOR SENSIN',
   BRIEFING_CLOSE_BODY:
-    '- Guvenli akis: soruyu sor -> degisimi gor -> dosya ile capraz kontrol et.\n- Sonucu logdan tekrar oku.\n- Bu adimlari birlestirmeden hukum verme.',
+    '- En güvenli yol şu: soruyu sor, değişimi izle, dosyayla çapraz kontrol et.\n- Karar vermeden önce logu bir kez daha gözden geçir.\n- Tek bir sinyale bakıp hüküm verme.',
 
   // polygraph / UI
   POLY_HEADER: 'POLIGRAF SINYALLERI',
