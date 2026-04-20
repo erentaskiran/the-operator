@@ -101,11 +101,23 @@ DOSSIER (background the player reads BEFORE interrogation):
 - priors: 0-3 short factual bullets about prior incidents or proceedings.
   Not verdict-revealing.
 - pressure_points: 1-3 short bullets describing emotional or situational
-  leverage. These telegraph which tactics (EMPATHIC, TRAP, EVIDENCE, etc.)
-  will unlock or block the suspect. EACH pressure point must note whether it
-  connects to the PRIMARY or SECONDARY secret, and which biometric channels
-  it mainly affects (e.g. "PRIMARY secret — spikes HR and GSR together" or
-  "SECONDARY secret — GSR surge only, HR suppressed by medication").
+  leverage. This text is SHOWN DIRECTLY TO THE PLAYER on the case file
+  ("Pressure Points" section). STRICT RULES:
+  - NEVER write meta-game labels like "PRIMARY secret", "SECONDARY secret",
+    "displaced guilt", "primary charge", or any equivalent. The player must
+    deduce on their own which trigger relates to the actual charge.
+  - DO NOT reveal which secret is the real crime versus misdirection.
+  - DO NOT directly name what the secret is about (e.g. "protecting his
+    partner", "an affair"); instead name the TRIGGER TOPIC (e.g. "mention
+    of business partner's name", "questions about home life", "expense
+    line items") and the EXPECTED BIOMETRIC PATTERN (e.g. "GSR surges
+    while HR stays muted by medication").
+  - You may hint at which tactics (EMPATHIC, TRAP, EVIDENCE, etc.) tend
+    to land or backfire.
+  Format: "[Trigger topic] — [expected biometric pattern] — [optional
+  tactic hint]". Example: "Mention of her business partner's name — GSR
+  surges sharply with breathing irregularity; HR spike masked by
+  medication — EMPATHIC framing tends to open more than direct pressure."
 - modifiers: numeric knobs that translate medical+habits into live polygraph
   distortion. MUST be consistent with the polygraph_effect notes. Defaults
   are 0/1; only deviate where the dossier justifies it.

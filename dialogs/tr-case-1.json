@@ -23,7 +23,7 @@
         {
           "relation": "Eş",
           "name": "Nurcan Atılgan",
-          "note": "Evlilik resmî olarak sürmekte; ancak çift ayrı yaşıyor, boşanma süreci henüz başlatılmamış. Kerem'in bu konudaki sessizliği ikincil sırla doğrudan bağlantılı olabilir — sorgu sırasında 'eş' kelimesi geçtiğinde biyometrik yükselme beklenir."
+          "note": "Evlilik resmî olarak sürmekte; ancak çift ayrı yaşıyor, boşanma süreci henüz başlatılmamış. Kerem bu konuyu dışarıda hiç açmıyor; 'eş' veya 'aile' kelimeleri geçtiğinde belirgin biyometrik yükselme beklenir."
         },
         {
           "relation": "Baba",
@@ -33,7 +33,7 @@
         {
           "relation": "Şantiye Şefi (yakın çalışma arkadaşı)",
           "name": "Hakan Doğan",
-          "note": "On iki yıllık çalışma arkadaşı; davada tanık sıfatıyla dinleniyor. Kerem'in onu neden koruyup korumadığı sorusu, birincil ve ikincil sırların kesiştiği kritik basınç noktası."
+          "note": "On iki yıllık çalışma arkadaşı; davada tanık sıfatıyla dinleniyor. Hakan'ın adı geçtiğinde Kerem'in tepkisi belirgin biçimde değişiyor; sorgudaki en önemli baskı noktalarından biri."
         }
       ],
       "medical": [
@@ -62,9 +62,9 @@
         "Şantiyelerinde daha önce kayıt altına alınmış iki iş kazası (hafif yaralanma); her ikisinde de güvenlik ihlali tutanağı düzenlendi, idari para cezasıyla kapatıldı."
       ],
       "pressure_points": [
-        "Hakan Doğan'ın adı doğrudan anıldığında — BOTH BİRİNCİL ve İKİNCİL sır tetiklenir; HR ilaca rağmen hafifçe yükselir, GSR ve nefes instabilitesi belirgin biçimde artar. Oyuncu bu tepkinin iki farklı kaynağı olabileceğini göz önünde bulundurmalı.",
-        "Eşi Nurcan veya 'aile' ifadeleri geçtiğinde — İKİNCİL sır tetiklenir, yalnızca GSR güçlü şekilde yükselir, HR bisoprolol nedeniyle baskılı kalır. TRAP veya EMPATİK taktik bu noktada etkili olabilir.",
-        "Güvenlik denetim belgelerine veya 'gizlediğiniz bir şey var mı' sorusuna — BİRİNCİL sır tetiklenir; nefes instabilitesi ve GSR birlikte yükselir, HR tepkisi ilaç nedeniyle sönük kalır. EVIDENCE taktiği burada baskı yaratır ama doğrudan suçluluk kanıtı vermez."
+        "Hakan Doğan'ın adı doğrudan anıldığında — HR ilaca rağmen hafifçe yükselir, GSR ve nefes instabilitesi belirgin biçimde artar. Aynı isim birden çok hassas konuyla bağlantılı olabilir; tek bir sıçramayı tek bir nedene bağlamadan önce takip soruları gerekir.",
+        "Eşi Nurcan veya 'aile' ifadeleri geçtiğinde — yalnızca GSR güçlü şekilde yükselir, HR bisoprolol nedeniyle baskılı kalır. TRAP veya EMPATİK taktik bu noktada açıcı olabilir; AGRESİF baskı kapatır.",
+        "Güvenlik denetim belgeleri veya 'gizlediğiniz bir şey var mı' türü doğrudan sorularda — nefes instabilitesi ve GSR birlikte yükselir, HR tepkisi ilaç nedeniyle sönük kalır. EVIDENCE taktiği burada baskı yaratır ama tepki tek başına suçluluğun kanıtı sayılmamalıdır."
       ],
       "modifiers": {
         "heart_rate_suppression": 0.48,
@@ -308,7 +308,7 @@
         ]
       },
       "node_06_mechanism_test": {
-        "theme": "Mekanizma Testi",
+        "theme": "Plan Masada",
         "description": "Önünüze proje planları ve güvenlik protokolleri serildi. Kerem kağıtlara bakıyor, parmağıyla birkaç noktaya dokunmadan yaklaşıyor. Düşünürken alnını kazıyor.",
         "is_end_state": false,
         "choices": [

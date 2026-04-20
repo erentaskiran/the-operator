@@ -105,11 +105,22 @@ DOSSIER (oyuncunun sorgudan ONCE okuyacagi arka plan):
   sempatik tepki hafifler".
 - priors: 0-3 kisa olgusal bullet (onceki olaylar). Verdict'i ele vermez.
 - pressure_points: 1-3 kisa bullet, duygusal veya durumsal leverage.
-  Hangi taktigin (EMPATHIC, TRAP, EVIDENCE, vb.) supheliyi kiracagini
-  veya bloklayacagini ima eder. HER baskilama noktasi BIRINCIL mi yoksa
-  IKINCIL sirla mi baglandigi ve hangi biyometrik kanali esas olarak
-  etkiledigi belirtilmeli (orn. "BIRINCIL sir — HR ve GSR birlikte yukselir"
-  veya "IKINCIL sir — yalnizca GSR yukselir, ilac HR'yi bastirir").
+  Bu metin DOGRUDAN OYUNCUYA gosterilir (dosya ekranindaki "Baski Noktalari"
+  bolumu). KESIN KURALLAR:
+  - "BIRINCIL sir", "IKINCIL sir", "PRIMARY", "SECONDARY", "yer degistirmis
+    suclilik", "displaced guilt" gibi meta-oyun etiketlerini ASLA YAZMA.
+    Oyuncu hangi sirrin asil suclamayla ilgili oldugunu kendisi cikarmali.
+  - Hangi sirrin gercek suclu yoksa misdirection oldugunu IFSA ETME.
+  - Hangi sirrin neye bagli oldugunu (orn. "ortagi koruyor", "gizli iliski")
+    DOGRUDAN soyleme; bunun yerine TETIKLEYICI KONUYU (orn. "is ortaginin
+    adi", "ev hayati", "harcama kalemleri") ve BEKLENEN BIYOMETRIK DESENI
+    (orn. "GSR yukselir, HR ilac nedeniyle baskili kalir") yaz.
+  - Hangi taktigin (EMPATHIC, TRAP, EVIDENCE vb.) etkili olabilecegini
+    ima edebilirsin.
+  Format: "[Tetikleyici konu] — [beklenen biyometrik desen] — [taktik
+  ipucu, opsiyonel]". Ornek: "Is ortaginin adi anildiginda — GSR ve nefes
+  instabilitesi belirgin yukselir; HR ilac nedeniyle sönük kalir — EMPATIK
+  yaklasim daha cok bilgi acabilir."
 - modifiers: medical+habits'i canli poligraf bozulmasina ceviren sayisal
   ayarlar. polygraph_effect notlariyla TUTARLI olmali. Default 0/1; sadece
   dossier'in destekledigi yerde sapma yap.

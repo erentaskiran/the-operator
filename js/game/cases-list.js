@@ -12,6 +12,12 @@ export const CASES = [
     language: 'tr',
   },
   {
+    id: 'tr-case-3',
+    file: './dialogs/tr-case-3.json',
+    label: "Doruk Yapı Zimmet Davası - 1,4 Milyon TL'nin İzi",
+    language: 'tr',
+  },
+  {
     id: 'en-case-1',
     file: './dialogs/en-case-1.json',
     label: 'Velastyn Adverse Events Investigation — Ardent BioPharma',

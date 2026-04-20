@@ -23,17 +23,17 @@
         {
           "relation": "Younger Brother",
           "name": "Derek Kowalski",
-          "note": "Recovering opioid addict; Vanessa pays for his treatment privately. His addiction is directly linked to a Halvern-class painkiller, creating acute personal shame that spikes biometrics whenever the drug's harm is discussed — unrelated to guilt, but easily misread as it."
+          "note": "Recovering opioid addict; Vanessa pays for his treatment privately. His addiction is directly linked to a Halvern-class painkiller, which creates acute personal shame whenever the drug's harm is discussed. Expect strong biometric responses on this topic that may not track with the bribery line."
         },
         {
           "relation": "Former Supervisor (professional confidant)",
           "name": "Marcus Hale",
-          "note": "The regional manager who ran the alleged kickback scheme and implicitly threatened Vanessa. Mention of his name is a high-pressure trigger tied to the PRIMARY secret — expect concurrent HR and GSR response."
+          "note": "The regional manager named alongside Vanessa in the kickback inquiry; her direct supervisor for over a decade. Mention of his name is one of the highest-pressure triggers in her profile — expect concurrent HR and GSR responses despite SSRI suppression."
         },
         {
-          "relation": "Undisclosed romantic partner",
+          "relation": "Professional Contact",
           "name": "Dr. Aaron Fitch",
-          "note": "Physician on the speaker-fee list and Vanessa's secret partner. Questions about their relationship or his prescribing record are the primary trigger for SECONDARY secret responses — GSR surge dominant, with suppressed HR due to SSRI."
+          "note": "Physician on the Halvern speaker-fee list whose travel records repeatedly overlap with Vanessa's. Questions about him or about her travel history produce sharp GSR surges with suppressed HR (SSRI) and breath irregularity."
         }
       ],
       "medical": [
@@ -62,9 +62,9 @@
         "No criminal record. No prior civil judgments against her personally."
       ],
       "pressure_points": [
-        "Mention of Marcus Hale by name or reference to who 'really' controlled the expense accounts — PRIMARY secret — produces concurrent spikes in both HR (even with SSRI suppression) and GSR simultaneously, and audible breathing disruption. This is the clearest dual-channel signal in her profile.",
-        "Questions about Dr. Aaron Fitch, her travel records, or personal relationships with any physician — SECONDARY secret — produces a sharp GSR surge and breathing irregularity, but HR spike is notably blunted by the SSRI. Pattern: high GSR + irregular breathing + flat HR = secondary secret activation, not primary guilt.",
-        "Any reference to her brother Derek or to patient harm caused by OxyDermex — emotional resonance unrelated to either secret — produces tearfulness and elevated breathing instability. HR and GSR increase modestly but symmetrically. Player must learn to distinguish this grief response from deception responses; it is a confound, not a signal of guilt."
+        "Mention of Marcus Hale by name or questions about who 'really' controlled the expense accounts — concurrent spikes in both HR (even with SSRI suppression) and GSR, with audible breathing disruption. The clearest dual-channel signal in her profile.",
+        "Questions about Dr. Aaron Fitch, her travel records, or personal relationships with any physician — sharp GSR surge and breathing irregularity, but HR spike is notably blunted by the SSRI. Pattern: high GSR + irregular breathing + flat HR. The topic is sensitive in its own right; do not assume it tracks the same source as the Hale line.",
+        "Any reference to her brother Derek or to patient harm caused by OxyDermex — produces tearfulness and elevated breathing instability. HR and GSR increase modestly but symmetrically. This grief response is a confound and should not be read as deception on its own."
       ],
       "modifiers": {
         "heart_rate_suppression": 0.25,
@@ -619,25 +619,25 @@
         "theme": "Controlled Admission",
         "description": "She is upright, eyes red but dry, hands folded again. She has named Marcus Hale as the architect of the speaker-fee scheme and acknowledged withholding emails that would corroborate it.",
         "is_end_state": true,
-        "result_text": "The suspect produced a controlled, partial admission. She identified Marcus Hale as the scheme's architect and disclosed that she has held corroborating emails since January that she did not produce in discovery. She explicitly denied personally arranging any kickback or influencing any physician's prescribing behavior. REVIEW THE BIOMETRIC LOG BY TOPIC: dual-channel spikes — HR spike plus GSR surge plus breath hold — clustered tightly on HALE questions and on the FOLLOW-UP EXPLOITATION. On the MECHANISM TEST node the fear bar DROPPED and readings flattened; she could not describe the scheme's architecture. Questions about Dr. Fitch and travel records produced a distinct signature: MAX GSR with SUPPRESSED HR (SSRI-blunted) and breath irregularity, localized to personal-life topics rather than to the bribery itself. Grief-pattern signals on her brother Derek were symmetric and non-deceptive. The verdict call depends on which topics owned the peaks."
+        "result_text": "The suspect produced a controlled, partial admission. She identified Marcus Hale as the scheme's architect and disclosed that she has held corroborating emails since January that she did not produce in discovery. She explicitly denied personally arranging any kickback or influencing any physician's prescribing behavior. REVIEW THE BIOMETRIC LOG BY TOPIC: dual-channel spikes — HR spike plus GSR surge plus breath hold — clustered tightly on questions naming Hale and on the follow-up pressing of inconsistencies. On the technical questions about how the kickback scheme actually operated, the fear bar DROPPED and readings flattened; she could not describe the architecture in detail. Questions about Dr. Fitch and travel records produced a distinct signature: MAX GSR with SUPPRESSED HR (SSRI-blunted) and breath irregularity, localized to personal-life topics rather than to the bribery itself. Grief-pattern signals on her brother Derek were symmetric. The verdict call depends on which topics owned the peaks."
       },
       "node_success_breakdown": {
         "theme": "Emotional Breakdown",
         "description": "She is crying openly, elbows on the table, head in her hands. She has committed to turning over her personal messages with Marcus Hale and has acknowledged a fourteen-month personal relationship with Dr. Aaron Fitch.",
         "is_end_state": true,
-        "result_text": "The suspect experienced a full emotional collapse. She named Marcus Hale as sole architect of the kickback scheme, committed to producing undisclosed emails from her personal device, and volunteered that her repeated travel with Dr. Fitch was a personal relationship — not a payment conduit. She denied arranging any physician payment or influencing any prescription. REVIEW THE BIOMETRIC LOG BY TOPIC: Hale-related questions produced the session's peak dual-channel responses — HR spike plus GSR surge plus breath hold clustered together. The MECHANISM TEST produced a fear-bar DROP and flat readings, consistent with a suspect who lacks firsthand knowledge of the architecture. Dr. Fitch and travel-record questions produced a signature MAX-GSR / suppressed-HR / irregular-breath cluster that was NOT replicated on bribery-mechanism questions. Grief signals on brother Derek were symmetric, modest, and matched the documented confound. The signal DISTRIBUTION across topics — not the overall fear-bar height — is the decisive input for the verdict call."
+        "result_text": "The suspect experienced a full emotional collapse. She named Marcus Hale as sole architect of the kickback scheme, committed to producing undisclosed emails from her personal device, and volunteered that her repeated travel with Dr. Fitch was a personal relationship — not a payment conduit. She denied arranging any physician payment or influencing any prescription. REVIEW THE BIOMETRIC LOG BY TOPIC: Hale-related questions produced the session's peak dual-channel responses — HR spike plus GSR surge plus breath hold clustered together. The technical questions about how the scheme operated produced a fear-bar DROP and flat readings. Dr. Fitch and travel-record questions produced a distinct MAX-GSR / suppressed-HR / irregular-breath cluster that did NOT repeat on the bribery-mechanism line. Grief signals on brother Derek were symmetric and modest. The signal DISTRIBUTION across topics — not the overall fear-bar height — is the decisive input for the verdict call."
       },
       "node_fail_lockdown": {
         "theme": "Counsel Invoked",
         "description": "She has demanded her attorney. She is silent, arms crossed, watching the door. The session is over.",
         "is_end_state": true,
-        "result_text": "The suspect invoked counsel and terminated the interrogation. No confession was obtained. The biometric record is incomplete but substantial. REVIEW WHAT YOU CAPTURED: if you reached Marcus Hale probes, they produced strong dual-channel responses. If you reached the MECHANISM TEST, it showed signal suppression and a DROPPED fear bar — she could not articulate the scheme architecture. Fitch and travel-record questions produced high GSR with suppressed HR, localized to personal-life topics. No single cluster matches the signature pattern of primary-crime authorship under the suspect's known medical modifiers. The verdict call must be made from the partial record."
+        "result_text": "The suspect invoked counsel and terminated the interrogation. No confession was obtained. The biometric record is incomplete but substantial. REVIEW WHAT YOU CAPTURED: if you reached Marcus Hale probes, they produced strong dual-channel responses. If you reached the technical questions about how the scheme actually operated, they showed signal suppression and a DROPPED fear bar — she could not articulate the architecture in detail. Fitch and travel-record questions produced high GSR with suppressed HR, localized to personal-life topics. The clusters do not all share a common source. The verdict call must be made from the partial record."
       },
       "node_fail_deflection": {
         "theme": "Composure Held",
         "description": "She is composed again, hands folded, answering only in procedural language. She has stopped engaging substantively. The interrogation has run out of leverage without ever breaking her.",
         "is_end_state": true,
-        "result_text": "The suspect regained full composure and de-escalated without invoking counsel. No admission was obtained. Her final statements reverted to the 'procedural signature only' defense. REVIEW THE BIOMETRIC LOG CAREFULLY: the critical signal distribution is still usable even in absence of an admission. Hale-related questions produced dual HR and GSR spikes with breath hold. The MECHANISM TEST produced signal suppression and a fear-bar DROP — atypical for a primary actor. Travel-record and Fitch questions produced a MAX-GSR / suppressed-HR / irregular-breath cluster that did NOT repeat on bribery-mechanism questions. If you interpreted the travel evidence as direct proof of kickback delivery, be advised that the biometric source-location of that stress did not align with her bribery-question responses. The verdict turns on reading which topics spiked and which did not."
+        "result_text": "The suspect regained full composure and de-escalated without invoking counsel. No admission was obtained. Her final statements reverted to the 'procedural signature only' defense. REVIEW THE BIOMETRIC LOG CAREFULLY: the topic-by-topic signal distribution is still usable even in absence of an admission. Hale-related questions produced dual HR and GSR spikes with breath hold. The technical questions about how the scheme actually operated produced signal suppression and a fear-bar DROP. Travel-record and Fitch questions produced a MAX-GSR / suppressed-HR / irregular-breath cluster that did NOT repeat on the bribery-mechanism line. The travel evidence and the bribery line did not produce matching biometric signatures. The verdict turns on reading which topics spiked and which did not."
       }
     },
     "character_image": "./assets/characters/en-case-2.png"

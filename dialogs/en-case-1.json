@@ -33,7 +33,7 @@
         {
           "relation": "Supervisor / Colleague",
           "name": "Dr. Marcus Hale",
-          "note": "VP of Clinical Affairs at Ardent BioPharma. Named separately in the FDA inquiry. Renata's answers about Hale should be treated as a primary signal zone — she has strong personal reasons to deflect questions away from him."
+          "note": "VP of Clinical Affairs at Ardent BioPharma. Named separately in the FDA inquiry. Mention of Hale produces some of the strongest biometric responses in Renata's profile; she clearly has personal reasons to steer questions away from him."
         }
       ],
       "medical": [
@@ -62,9 +62,9 @@
         "2023: Cited in a deposition for a separate civil case involving an Ardent distributor; she provided testimony only, was not named as a party."
       ],
       "pressure_points": [
-        "Direct questions naming Dr. Marcus Hale or asking about their working relationship — SECONDARY secret — triggers the sharpest biometric response. Expect GSR surge (amplified by caffeine + GAD modifiers), pronounced breathing irregularity, and micro-pauses before answers. HR spike will be suppressed by propranolol and may not track. This is the displaced guilt channel.",
-        "Questions about expense reports, hotel bookings, or the 2021 audit — SECONDARY secret — produces a fast GSR surge and visible breathing stutter. If the player pursues this line, Renata may deflect aggressively or over-explain. HR remains muted. This response is distinct from the primary charge and should be distinguishable by topic.",
-        "Questions about the specific mechanism of adverse event log alteration (timestamps, database access, who submitted the final Phase III package) — PRIMARY secret — produces moderate signals. She knows the answer but did not perform the act. Stress is cognitive suppression, not guilt. GSR rises but returns to baseline faster than in the Hale or expense lines; breathing irregularity is lower. A skilled player can distinguish the two response profiles."
+        "Direct questions naming Dr. Marcus Hale or asking about their working relationship — sharpest biometric response in her profile. Expect a GSR surge (amplified by caffeine and GAD), pronounced breathing irregularity, and micro-pauses before answers. HR spike will be suppressed by propranolol and may not track.",
+        "Questions about expense reports, hotel bookings, or the 2021 audit — produces a fast GSR surge and visible breathing stutter; HR remains muted. She tends to deflect aggressively or over-explain. The pattern overlaps with the Hale line — pinning the source requires comparing topics across questions.",
+        "Questions about the specific mechanism of adverse event log alteration (timestamps, database access, who submitted the final Phase III package) — moderate signals only. GSR rises but returns to baseline faster than in the Hale or expense lines; breathing irregularity is lower. A careful operator can distinguish this response profile from the others."
       ],
       "modifiers": {
         "heart_rate_suppression": 0.55,
@@ -273,7 +273,7 @@
         ]
       },
       "node_05_mechanism": {
-        "theme": "Mechanism Test",
+        "theme": "Schematic on the Table",
         "description": "You slide a single page across the table — a schematic of Ardent's clinical data pipeline, annotated with the FDA's reconstructed version of the altered log entries. Renata studies it for a long moment.",
         "is_end_state": false,
         "choices": [
@@ -570,25 +570,25 @@
         "theme": "Full Admission of Knowledge",
         "description": "Renata is crying quietly, composed but exhausted. Her attorney has not been called. She has given you a concrete March-to-July timeline of suspicion and inaction, and an offer to surrender her personal email archive.",
         "is_end_state": true,
-        "result_text": "Interrogation closes with a full narrative of what the suspect knew and when. Key biometric distribution for the verdict screen: on the MECHANISM TEST (node_05) and direct denials of altering data, signals dropped to BASELINE — HR stable, GSR stable, breath calm, genuine uncertainty about system names. On questions naming Dr. Hale and on the 2021 expense audit, GSR surged to MAX with breath holding and hand tension under the table, HR muted (propranolol). On the final timeline admission, signals rose moderately — consistent with shame over inaction, not the sharp cluster of direct-act guilt. The suspect admitted to failure to report suspicion, and to separate personal misconduct, but her physiology was cleanest on the precise question of whether she altered the Phase III safety summary."
+        "result_text": "Interrogation closes with a full narrative of what the suspect knew and when. Key biometric distribution for the verdict screen: on the technical questions about how the data was altered and on direct denials of altering data, signals dropped to BASELINE — HR stable, GSR stable, breath calm, hedged answers about system names. On questions naming Dr. Hale and on the 2021 expense audit, GSR surged to MAX with breath holding and hand tension under the table, HR muted (propranolol). On the final timeline admission, signals rose moderately. The suspect admitted to failure to report suspicion and to separate personal misconduct. Her physiology held cleanest on the precise question of whether she altered the Phase III safety summary."
       },
       "node_success_partial": {
         "theme": "Controlled Denial",
         "description": "Renata holds her composure through the last question. She does not break, but she has given you a clear, flat denial of the charged act and a signal record that contrasts sharply across topics.",
         "is_end_state": true,
-        "result_text": "Interrogation closes with a composed final denial and a clean biometric contrast across the session. Key distribution for the verdict screen: Hale-topic and expense-topic questions produced the session's peak GSR (SURGE to MAX) with breath-holding and micro-pinch tells, HR suppressed by propranolol throughout. The MECHANISM TEST (node_05) produced baseline readings — flat HR, stable GSR, hedged system names, genuine uncertainty. The final closing denial of participation in the safety summary produced BASELINE/CALM across all channels. The strongest deception signals of the session attach to topics the suspect herself framed as 'personal' and 'not relating to the trial.' Interpret the signal topology before calling the verdict."
+        "result_text": "Interrogation closes with a composed final denial and a clean biometric contrast across the session. Key distribution for the verdict screen: Hale-topic and expense-topic questions produced the session's peak GSR (SURGE to MAX) with breath-holding and micro-pinch tells, HR suppressed by propranolol throughout. The technical mechanism questions produced baseline readings — flat HR, stable GSR, hedged system names. The final closing denial of participation in the safety summary produced BASELINE/CALM across all channels. The session's strongest stress responses attached to topics the suspect herself framed as 'personal' and 'not relating to the trial.' Read the topic-by-topic distribution carefully before calling the verdict."
       },
       "node_fail_lockdown": {
         "theme": "Counsel Invoked",
         "description": "Renata stands, removes the finger clip herself, and states she will not answer further questions without her attorney present. The technician marks the session terminated at the operator's miscalculation.",
         "is_end_state": true,
-        "result_text": "Session ends in a hard legal shutdown after a threatening or coercive move. The biometric record is intact but contaminated — late-session spikes are now indistinguishable from duress response to the operator's conduct. Useful data: early and mid-session contrasts between Hale/expense topics (high GSR surge, HR muted) and mechanism-test topics (baseline) are still on the record. Late-session spikes cannot be cleanly attributed. The player must render a verdict on a partial tape."
+        "result_text": "Session ends in a hard legal shutdown after a threatening or coercive move. The biometric record is intact but contaminated — late-session spikes are now indistinguishable from duress response to the operator's conduct. Useful data: early and mid-session contrasts between Hale/expense topics (high GSR surge, HR muted) and the technical mechanism questions (baseline) are still on the record. Late-session spikes cannot be cleanly attributed. You must render a verdict on a partial tape."
       },
       "node_fail_deflection": {
         "theme": "Reframe Accepted",
-        "description": "The suspect exits composed, having agreed to provide an affidavit through her attorney on her own schedule. She has not overtly invoked counsel in-room, but the session never returned from the pivot. You are left holding pages of secondary-topic evidence.",
+        "description": "The suspect exits composed, having agreed to provide an affidavit through her attorney on her own schedule. She has not overtly invoked counsel in-room, but the session never returned from the pivot. You are left holding pages of evidence drawn from the topics she steered you toward.",
         "is_end_state": true,
-        "result_text": "Session ends softly without a shutdown, but with the suspect having successfully redirected the interrogation onto secondary material. Biometric record shows the session's highest GSR surges attached to expense audit documentation and the name Dr. Hale, with breath-holding and hand-pinch tells — but these peaks cluster on topics the suspect repeatedly framed as 'personal' and 'not Velastyn.' No equivalent peak cluster was produced on any question about the mechanism of data alteration, credentials, or the final Phase III safety summary. The mechanism test was not completed cleanly in this path. A player reading only the peak values will see guilt; a player reading the topic-by-topic distribution will see something more complicated."
+        "result_text": "Session ends softly without a shutdown, but with the suspect having successfully redirected the interrogation onto her chosen ground. Biometric record shows the session's highest GSR surges attached to expense audit documentation and the name Dr. Hale, with breath-holding and hand-pinch tells — but these peaks cluster on topics the suspect repeatedly framed as 'personal' and 'not Velastyn.' No equivalent peak cluster was produced on any question about the mechanism of data alteration, credentials, or the final Phase III safety summary. The technical mechanism line was never fully exercised on this path. A reading based only on peak values points one way; a reading of the topic-by-topic distribution points elsewhere."
       }
     },
     "character_image": "./assets/characters/en-case-1.png"
