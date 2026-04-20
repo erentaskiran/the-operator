@@ -77,9 +77,32 @@ function drawMiniWave(ctx, x, y, w, h, samples, color, type) {
   ctx.restore();
 }
 
+function drawMiniStressColumn(ctx, x, y, w, h, fearLevel = 0, maxFearBar = 100) {
+  drawRect(ctx, x, y, w, h, COLORS.fearTrack);
+
+  const safeMax = Math.max(1, Number(maxFearBar) || 100);
+  const level = Math.max(0, Math.min(safeMax, Number(fearLevel) || 0));
+  if (level > 0) {
+    const ratio = level / safeMax;
+    const fillH = Math.max(1, Math.floor(h * ratio));
+    drawRect(ctx, x, y + h - fillH, w, fillH, COLORS.fear);
+  }
+
+  for (let i = 1; i < 4; i += 1) {
+    const ty = y + Math.round((h * i) / 4);
+    drawRect(ctx, x - 1, ty, 1, 1, COLORS.amberDim);
+    drawRect(ctx, x + w, ty, 1, 1, COLORS.amberDim);
+  }
+
+  drawRect(ctx, x - 1, y, w + 2, 1, COLORS.amberDim);
+  drawRect(ctx, x - 1, y + h - 1, w + 2, 1, COLORS.amberDim);
+  drawRect(ctx, x - 1, y, 1, h, COLORS.amberDim);
+  drawRect(ctx, x + w, y, 1, h, COLORS.amberDim);
+}
+
 const FIXED_ENTRY_H = 140;
 
-function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
+function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker, maxFearBar) {
   drawPanel(ctx, x, y, w, h, {
     border: COLORS.amberDim,
     fill: 'rgba(14, 9, 6, 0.7)',
@@ -88,7 +111,7 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
   const padX = 6;
   const textW = w - padX * 2;
   const waveRowH = 10;
-  const waveStackH = waveRowH * 3 + 4;
+  const waveStackH = waveRowH * 3 + 14;
   const textAreaBottom = y + h - waveStackH;
 
   ctx.save();
@@ -141,9 +164,14 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
   ctx.restore();
 
   const waveLabelW = 22;
+  const stressW = 8;
+  const stressGap = 4;
   const waveX = x + padX + waveLabelW;
-  const waveW = textW - waveLabelW;
+  const waveW = textW - waveLabelW - stressW - stressGap;
+  const stressX = waveX + waveW + stressGap;
   const waveStartY = y + h - waveRowH * 3 - 4;
+  const stressY = waveStartY;
+  const stressH = waveRowH * 3;
   const samples = marker?.samples || { hr: [], breathing: [], gsr: [] };
 
   drawText(ctx, t('VERDICT_WAVE_HR'), x + padX, waveStartY + waveRowH / 2, {
@@ -187,6 +215,15 @@ function drawEvidenceEntry(ctx, x, y, w, h, index, evidence, marker) {
     COLORS.gsr,
     'gsr'
   );
+
+  drawText(ctx, t('VERDICT_WAVE_STRESS'), stressX + stressW / 2, waveStartY - 2, {
+    size: 9,
+    color: COLORS.fear,
+    align: 'center',
+    font: UI_FONT,
+    baseline: 'bottom',
+  });
+  drawMiniStressColumn(ctx, stressX, stressY, stressW, stressH, evidence.fearLevel, maxFearBar);
 }
 
 function drawVerdictButton(ctx, rect, label, subtitle, hovered, accent) {
@@ -477,7 +514,8 @@ function drawVerdictScene(ctx) {
           FIXED_ENTRY_H,
           idx,
           evidence[idx],
-          markers[idx]
+          markers[idx],
+          state.maxFearBar
         );
       }
     }

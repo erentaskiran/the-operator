@@ -317,6 +317,8 @@ export function pickChoice(index) {
   }
 
   const mechanics = choice.mechanics || {};
+  const fearDelta = mechanics.korku_bari_delta || 0;
+  const nextFearBar = clamp(state.fearBar + fearDelta, 0, state.maxFearBar);
 
   resetSignalsToBaseline();
 
@@ -337,7 +339,8 @@ export function pickChoice(index) {
     heartRate: mechanics.heart_rate || 'BASELINE',
     breathing: mechanics.breathing || 'BASELINE',
     gsr: mechanics.gsr || 'BASELINE',
-    fearDelta: mechanics.korku_bari_delta || 0,
+    fearDelta,
+    fearLevel: nextFearBar,
     score: deception.score,
   });
 
@@ -359,7 +362,7 @@ export function pickChoice(index) {
   state.pendingSignalApplyAt = state.time + 0.35;
 
   const prevFear = state.fearBar;
-  state.fearBar = clamp(state.fearBar + (mechanics.korku_bari_delta || 0), 0, state.maxFearBar);
+  state.fearBar = nextFearBar;
   if (state.fearBar !== prevFear) {
     state.fearFlash = 1;
   }

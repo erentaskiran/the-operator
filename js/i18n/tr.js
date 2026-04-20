@@ -61,6 +61,7 @@ export const TR = {
   VERDICT_WAVE_HR: 'HR',
   VERDICT_WAVE_BREATHING: 'NF',
   VERDICT_WAVE_GSR: 'GS',
+  VERDICT_WAVE_STRESS: 'ST',
 
   // bad end
   BAD_END_TITLE: '[ SORGU BASARISIZ ]',
