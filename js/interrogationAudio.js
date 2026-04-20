@@ -1,6 +1,8 @@
 import './interrogationSound.js';
 
 const AMBIENT_VOLUME_KEY = 'the-operator:ambient-volume:v1';
+const AMBIENT_VOLUME_MAX = 12;
+const AMBIENT_VOLUME_LOG_STRENGTH = 24;
 
 function clamp01(v) {
   return Math.max(0, Math.min(1, v));
@@ -8,6 +10,14 @@ function clamp01(v) {
 
 function clamp100(v) {
   return Math.max(0, Math.min(100, v));
+}
+
+function getEngineVolumePercent(uiVolume) {
+  const normalized = clamp01(uiVolume / 100);
+  const curved =
+    Math.log1p(normalized * AMBIENT_VOLUME_LOG_STRENGTH) /
+    Math.log1p(AMBIENT_VOLUME_LOG_STRENGTH);
+  return clamp100(curved * AMBIENT_VOLUME_MAX);
 }
 
 function blend(from, to, amount = 0.35) {
@@ -323,7 +333,7 @@ function ensureScene() {
   }
 
   scene = new Ctor({
-    volume: ambientVolume / 100,
+    volume: getEngineVolumePercent(ambientVolume) / 100,
     mood: 'tense',
     tension: 10,
     autoEvents: true,
@@ -352,7 +362,7 @@ export function setAmbientVolume(nextVolume) {
     window.dispatchEvent(new Event('master-volume-changed'));
   }
   if (scene) {
-    scene.setVolume(ambientVolume);
+    scene.setVolume(getEngineVolumePercent(ambientVolume));
   }
 }
 
@@ -377,7 +387,7 @@ export function enterInterrogationAudio() {
   activeProfile = 'play';
   s.play();
   s.setMood('tense');
-  s.setVolume(ambientVolume);
+  s.setVolume(getEngineVolumePercent(ambientVolume));
   s.setMod('calm', 0);
   s.setTension(10);
   runtimeMix.mod = 'calm';
@@ -408,7 +418,7 @@ export function applyAmbientProfile(profile) {
     s.setMood('cold');
     s.setMod('calm', 0);
     s.setTension(6);
-    s.setVolume(ambientVolume);
+    s.setVolume(getEngineVolumePercent(ambientVolume));
     s.setLayer('room', 46);
     s.setLayer('rain', 16);
     s.setLayer('drone', 34);
@@ -428,7 +438,7 @@ export function applyAmbientProfile(profile) {
     s.setMood('cold');
     s.setMod('calm', 0);
     s.setTension(12);
-    s.setVolume(ambientVolume);
+    s.setVolume(getEngineVolumePercent(ambientVolume));
     s.setLayer('room', 44);
     s.setLayer('rain', 14);
     s.setLayer('drone', 40);
@@ -447,7 +457,7 @@ export function applyAmbientProfile(profile) {
     s.setMood('breaking');
     s.setMod('both', 42);
     s.setTension(58);
-    s.setVolume(ambientVolume);
+    s.setVolume(getEngineVolumePercent(ambientVolume));
     s.setLayer('room', 28);
     s.setLayer('rain', 7);
     s.setLayer('drone', 68);
@@ -461,7 +471,7 @@ export function applyAmbientProfile(profile) {
     s.setMood('reveal');
     s.setMod('excited', 20);
     s.setTension(24);
-    s.setVolume(ambientVolume);
+    s.setVolume(getEngineVolumePercent(ambientVolume));
     s.setLayer('piano', 72);
     s.setLayer('organ', 42);
     s.setLayer('room', 36);
@@ -476,7 +486,7 @@ export function applyAmbientProfile(profile) {
     s.setMood('silent');
     s.setMod('afraid', 34);
     s.setTension(30);
-    s.setVolume(ambientVolume);
+    s.setVolume(getEngineVolumePercent(ambientVolume));
     s.setLayer('room', 54);
     s.setLayer('rain', 17);
     s.setLayer('drone', 44);

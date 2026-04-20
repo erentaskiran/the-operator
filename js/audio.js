@@ -1,6 +1,8 @@
 import { getAudio } from './assets.js';
 
 const MASTER_VOLUME_KEY = 'the-operator:ambient-volume:v1';
+const GLOBAL_VOLUME_MAX = 0.12;
+const GLOBAL_VOLUME_LOG_STRENGTH = 24;
 
 let currentMusic = null;
 let currentMusicBaseVolume = 0.6;
@@ -18,7 +20,11 @@ function getMasterVolumeScale() {
     const raw = stored == null || String(stored).trim() === '' ? NaN : Number(stored);
     if (Number.isFinite(raw)) {
       const percent = raw <= 1 ? raw * 100 : raw;
-      return clamp01(percent / 100);
+      const normalized = clamp01(percent / 100);
+      const curved =
+        Math.log1p(normalized * GLOBAL_VOLUME_LOG_STRENGTH) /
+        Math.log1p(GLOBAL_VOLUME_LOG_STRENGTH);
+      return clamp01(curved * GLOBAL_VOLUME_MAX);
     }
   } catch {}
   return 0.5;
