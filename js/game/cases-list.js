@@ -26,7 +26,7 @@ export const CASES = [
   {
     id: 'tr-case-5',
     file: './dialogs/tr-case-5.json',
-    label: 'Vektör E-Spor Kulübü Antrenörlük Lisansı İptali Dosyası - Serdar Önal',
+    label: 'Vektör E-Spor Kulübü - Antrenörlük Lisansı İptali',
     language: 'tr',
   },
   {
