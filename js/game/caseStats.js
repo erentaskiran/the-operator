@@ -43,6 +43,16 @@ export function recordAttempt(caseId, correct) {
   return current;
 }
 
+export function recordBadEnd(caseId) {
+  const all = ensureLoaded();
+  const current = all[caseId] || { attempts: 0, successes: 0, fails: 0 };
+  current.attempts += 1;
+  all[caseId] = current;
+  cache = all;
+  safeSave(all);
+  return current;
+}
+
 export function resetStats() {
   cache = {};
   safeSave({});

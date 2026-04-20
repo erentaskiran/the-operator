@@ -1,271 +1,643 @@
 {
   "game_data": {
-    "title": "Osman v. Hargrove Academy — Fraudulent Scholarship Certification",
+    "title": "Osei v. Halvern Biosciences et al. — Wrongful Death & Alleged Kickback Conspiracy",
     "suspect": {
-      "name": "Celeste Vaughn",
-      "role": "Head of School, Hargrove Academy (private K-12)",
-      "profile": "Celeste Vaughn climbed from a classroom English teacher in suburban Ohio to heading one of the region's most prestigious private schools by her early forties. Colleagues describe her as precise, politically fluent, and glacially composed under pressure — she rarely breaks in board meetings even when budgets collapse or major donors threaten to walk. She holds an M.Ed. from Northwestern and has been cited in two regional education journals on admissions equity. Suspicious detail: she quietly eliminated the school's long-tenured scholarship coordinator role eighteen months ago under the label 'administrative restructuring,' absorbed the duties herself, and never hired a replacement. Humanizing detail: on her own time and expense, she mentors first-generation college applicants through a small nonprofit every other Saturday."
+      "name": "Vanessa Kowalski",
+      "role": "Senior Pharmaceutical Sales Representative",
+      "profile": "Vanessa Kowalski grew up in suburban Cleveland, the daughter of a union electrician and a school nurse. She put herself through Ohio State on partial scholarship, earning a degree in biology before pivoting into pharmaceutical sales in her mid-twenties. Over fifteen years she climbed to Senior Rep at Halvern Biosciences, managing a tri-county physician network in the Pacific Northwest. She is meticulous, highly adaptable, and reads people with unnerving precision — skills that made her consistently the top-grossing rep in her region. Suspicious detail: internal Halvern Slack logs show she exchanged over 200 direct messages with regional manager Marcus Hale in the six weeks before the wrongful-death lawsuit was filed, then abruptly stopped all digital contact with him. Humanizing detail: she quietly funds her younger brother's addiction treatment program out of pocket and visits him every other month, a fact she shares with almost no one."
     },
     "system_config": {
       "initial_fear_bar": 20,
       "max_fear_bar": 100,
-      "fear_bar_description": "The fear bar tracks accumulated psychological pressure on the suspect across the interrogation session. It rises when questions strike close to concealed truths, personal vulnerabilities, or undisclosed relationships, and falls when the suspect successfully reframes, deflects, or regains procedural control. A high fear bar does not confirm guilt — it signals that the operator has identified emotionally or legally sensitive terrain. The player must cross-reference fear bar movement against biometric signals to distinguish deception responses from anxiety reactions attributable to the suspect's documented medical profile.",
+      "fear_bar_description": "The fear bar tracks Vanessa's accumulating psychological stress as she navigates interrogation about her role in the kickback scheme, her withheld communications, and the personal secrets she is protecting. It rises as the operator closes in on areas of genuine vulnerability and falls when she regains control or deflects successfully.",
       "heart_rate_baseline": 76,
-      "gsr_baseline": 9
+      "gsr_baseline": 7.5
     },
-    "context": "The Osman family has filed a civil fraud complaint against Hargrove Academy and its Head of School, Celeste Vaughn, alleging that Vaughn deliberately falsified eligibility documentation for the Alderton Merit Scholarship in order to award it to Bram Whitmore, son of the Academy's largest capital campaign donor, Grant Whitmore. Yusra Osman, a first-generation immigrant student who met every published academic criterion for the award, was passed over without a documented rationale, while Bram Whitmore's academic record falls measurably below the scholarship's stated minimum threshold. A parallel inquiry by the Illinois State Board of Education is examining whether the Academy misrepresented scholarship eligibility standards in its publicly filed compliance reports. Vaughn maintains that the selection process involved holistic criteria not fully captured in published guidelines, and that donor relationships played no role in the final decision. The case is complicated by the fact that Vaughn dissolved the scholarship coordinator position eighteen months prior, leaving herself as the sole decision-maker with no co-signatory oversight. No direct financial transaction between the Whitmore family and Vaughn personally has been documented, leaving investigators uncertain whether her motive was institutional pressure, personal loyalty, or something else entirely.",
-    "true_verdict": "GUILTY",
-    "verdict_truth_text": "Celeste Vaughn did falsify the Alderton Merit Scholarship eligibility certification for Bram Whitmore, using the administrative monopoly she had deliberately engineered by eliminating the scholarship coordinator role. Her motive was not financial leverage or institutional pressure — it was a long-concealed affair she had with Grant Whitmore years prior, which produced Bram as a biological half-sibling to her own son Oliver, a fact unknown to her husband Thomas, to either boy, and to every investigative record. Unable to name or act on the connection openly, she channeled it into a single fraudulent certification, in doing so denying Yusra Osman a scholarship she had fully and legitimately earned.",
+    "context": "Gerald Osei, a 52-year-old construction foreman, died of an opioid overdose in March 2022 after his physician, Dr. Marcus Brennan, dramatically escalated his prescription for Halvern's painkiller OxyDermex over a six-month period. Osei's family filed a wrongful-death civil suit against Halvern Biosciences and Dr. Brennan, alleging that Halvern's sales team orchestrated cash-equivalent 'speaker fee' kickbacks to physicians in exchange for high-volume prescriptions. Discovery has revealed an apparent speaker-program network involving multiple physicians in the region, with Vanessa Kowalski's name appearing on distribution lists and her electronic signature on several promotional expense vouchers totaling over $180,000. She is named as a co-defendant and faces potential federal conspiracy charges if the Department of Justice opens a parallel criminal investigation. Internal communications show Kowalski had intensive contact with her regional manager, Marcus Hale, in the weeks before the suit was filed, then abruptly ceased all communication with him. The core question: did Kowalski knowingly participate in the kickback scheme, passively benefit from it, or become entangled in a paper trail she did not create?",
+    "true_verdict": "NOT_GUILTY",
+    "verdict_truth_text": "Vanessa Kowalski did not orchestrate or authorize the OxyDermex kickback scheme. Marcus Hale, her regional manager, designed and executed the payment-for-prescriptions network entirely and deliberately routed the transactions through her signature authority without her knowledge or consent. When she discovered the scheme in January 2022, Hale threatened to make her the scapegoat. Rather than expose him, she chose silence — a decision driven partly by fear of career destruction and partly by her need to protect her brother Derek's ongoing addiction treatment, which depends entirely on her income. Her real secrets were two: withholding exculpatory evidence (emails from Hale) that would prove her innocence, and falsifying her own expense reports to fund a fourteen-month personal relationship with Dr. Aaron Fitch, one of the physicians on the speaker list. Neither of those acts constitutes participation in the bribery. Hale is the guilty party.",
     "dossier": {
-      "age": 44,
-      "identity_summary": "Celeste Vaughn has served as Head of School at Hargrove Academy since 2018. She holds an M.Ed. from Northwestern University and carries a current K-12 administrative license in the state of Illinois.",
+      "age": 41,
+      "identity_summary": "Vanessa Kowalski is a fifteen-year veteran pharmaceutical sales representative at Halvern Biosciences, holding a BS in Biology from Ohio State and multiple company performance awards. She managed a tri-county physician network in Washington State and held signatory authority over regional promotional expense accounts.",
       "family": [
         {
-          "relation": "Husband",
-          "name": "Thomas Vaughn",
-          "note": "Commercial real estate broker; no knowledge of past affair. Risk of marital collapse if personal history surfaces — creates high emotional volatility under indirect questioning about her private life."
+          "relation": "Younger Brother",
+          "name": "Derek Kowalski",
+          "note": "Recovering opioid addict; Vanessa pays for his treatment privately. His addiction is directly linked to a Halvern-class painkiller, creating acute personal shame that spikes biometrics whenever the drug's harm is discussed — unrelated to guilt, but easily misread as it."
         },
         {
-          "relation": "Son",
-          "name": "Oliver Vaughn (age 16)",
-          "note": "Currently enrolled at Hargrove Academy. His presence in the school creates a documented conflict-of-interest flag that investigators have already noted in pre-interview materials."
+          "relation": "Former Supervisor (professional confidant)",
+          "name": "Marcus Hale",
+          "note": "The regional manager who ran the alleged kickback scheme and implicitly threatened Vanessa. Mention of his name is a high-pressure trigger tied to the PRIMARY secret — expect concurrent HR and GSR response."
         },
         {
-          "relation": "Major Donor / External Pressure",
-          "name": "Grant Whitmore",
-          "note": "Father of scholarship beneficiary Bram Whitmore. Known to the record only as 'principal donor.' True personal history with Celeste is undisclosed and not in any file available to investigators."
+          "relation": "Undisclosed romantic partner",
+          "name": "Dr. Aaron Fitch",
+          "note": "Physician on the speaker-fee list and Vanessa's secret partner. Questions about their relationship or his prescribing record are the primary trigger for SECONDARY secret responses — GSR surge dominant, with suppressed HR due to SSRI."
         }
       ],
       "medical": [
         {
-          "condition": "Generalized Anxiety Disorder (diagnosed 2015, currently managed)",
-          "polygraph_effect": "Chronically elevated GSR baseline and mild breathing irregularity that appear on neutral and control questions alike. Elevated sweat response should not be interpreted as deception-specific without comparison to baseline."
+          "condition": "Generalized Anxiety Disorder (diagnosed 2019, disclosed on intake form)",
+          "polygraph_effect": "Chronically elevated GSR baseline and high breathing instability; anticipatory anxiety before questioning produces pre-test spikes that can make the baseline itself appear deceptive. Player should treat her baseline GSR as inherently elevated and weight relative change, not absolute level."
         },
         {
-          "condition": "Situational insomnia (self-reported onset approximately 6 weeks ago)",
-          "polygraph_effect": "Sleep deprivation raises overall physiological arousal. Breathing trace may display low-amplitude jitter across all question categories regardless of content."
+          "condition": "Migraine with aura (managed, not currently active)",
+          "polygraph_effect": "No direct biometric knob effect during a standard session; noted for narrative context. Prodrome states can cause mild light sensitivity and irritability that may affect behavioral cues but do not distort pulse, GSR, or respiration in a measurable way."
         }
       ],
       "habits": [
         {
-          "habit": "Daily sertraline (SSRI, 100mg) — prescribed for GAD",
-          "polygraph_effect": "Blunts sympathetic reactivity. Heart rate spikes to stress-laden questions will be reduced in amplitude by roughly 20%. GSR responses are partially muted but not eliminated — notable spikes still occur under high emotional load."
+          "habit": "Daily SSRI (escitalopram 10 mg, disclosed on medical form)",
+          "polygraph_effect": "Blunts sympathetic nervous system response; heart rate spikes are dampened by approximately 20-25%. Her HR responses to high-stress questions will appear flatter than expected. Player should not interpret a muted HR spike as calm — GSR and breathing become more reliable channels for this suspect."
         },
         {
-          "habit": "Nicotine replacement patch (21mg/day) — cessation attempt, approximately 5 weeks in",
-          "polygraph_effect": "Transdermal nicotine maintains a slight upward shift in resting heart rate (+3 to +4 BPM). Effect is tonic, not phasic — it does not spike acutely in response to specific questions."
-        },
-        {
-          "habit": "High-volume coffee consumption (3–4 cups daily, typically before 11am)",
-          "polygraph_effect": "Elevates baseline skin conductance level. GSR responses may read above expected clinical range even on low-stakes content; amplification is across the board, not selective."
+          "habit": "Very high caffeine intake (3-4 espressos per day, self-reported)",
+          "polygraph_effect": "Elevates GSR baseline and amplifies sweat response amplitude. Combined with anxiety disorder, her GSR readings will run consistently hot. Isolated GSR spikes are less diagnostic; look for GSR spikes that co-occur with breathing disruption to flag genuine stress events."
         }
       ],
       "priors": [
-        "2019: Named as sole respondent in a wrongful termination civil action filed by former scholarship coordinator Marguerite Pell. Matter settled out of court; terms sealed by mutual agreement.",
-        "2017: Subject of a Title IX procedural complaint at a prior institution concerning faculty hiring irregularities. Complaint dismissed following internal review with no findings of violation.",
-        "2021: Hargrove Academy received a state scholarship disbursement audit notice. Audit closed with an administrative corrective-action memo; no financial penalty was assessed."
+        "2018: Named in an internal Halvern HR complaint by a junior rep alleging credit misattribution on a sales account. Complaint was closed without finding after mediation.",
+        "2021: State licensing board inquiry into a promotional dinner that exceeded allowable cost limits. Cleared; attributed to administrative error by a vendor.",
+        "No criminal record. No prior civil judgments against her personally."
       ],
       "pressure_points": [
-        "Any probing of Grant Whitmore's relationship with Celeste beyond his formal donor role risks destabilizing her controlled affect — she has worked extensively to keep the personal dimension invisible from every record.",
-        "Direct reference to Yusra Osman by name triggers visible discomfort; Celeste is aware of the Osman family's circumstances and carries suppressed guilt that cracks her composure when it surfaces.",
-        "Framing questions around Oliver — his future, his standing, what he would think — produces a protective, emotionally reactive response that tends to break through her professional register."
+        "Mention of Marcus Hale by name or reference to who 'really' controlled the expense accounts — PRIMARY secret — produces concurrent spikes in both HR (even with SSRI suppression) and GSR simultaneously, and audible breathing disruption. This is the clearest dual-channel signal in her profile.",
+        "Questions about Dr. Aaron Fitch, her travel records, or personal relationships with any physician — SECONDARY secret — produces a sharp GSR surge and breathing irregularity, but HR spike is notably blunted by the SSRI. Pattern: high GSR + irregular breathing + flat HR = secondary secret activation, not primary guilt.",
+        "Any reference to her brother Derek or to patient harm caused by OxyDermex — emotional resonance unrelated to either secret — produces tearfulness and elevated breathing instability. HR and GSR increase modestly but symmetrically. Player must learn to distinguish this grief response from deception responses; it is a confound, not a signal of guilt."
       ],
       "modifiers": {
-        "heart_rate_suppression": 0.2,
-        "heart_rate_baseline_shift": 4,
-        "gsr_sensitivity": 1.35,
-        "gsr_baseline_shift": 2,
-        "breathing_instability": 0.2
+        "heart_rate_suppression": 0.25,
+        "heart_rate_baseline_shift": 6,
+        "gsr_sensitivity": 1.45,
+        "gsr_baseline_shift": 2.5,
+        "breathing_instability": 0.28
       }
     },
     "start_node": "node_01_intro",
     "nodes": {
       "node_01_intro": {
-        "theme": "Opening Positions",
-        "description": "Celeste Vaughn sits composed at the table, hands folded, posture immaculate. She thanks you for the opportunity to 'clarify the record.' Her voice is measured, professional — the register of someone who has run difficult parent conferences and board meetings for years.",
+        "theme": "Opening Contact",
+        "description": "She sits across the metal table, posture straight, hands folded. A thin coat of perspiration is visible on her upper lip under the fluorescent light. A half-drunk paper cup of coffee sits beside her.",
         "is_end_state": false,
         "choices": [
           {
-            "type": "ANALYTICAL",
-            "question": "Ms. Vaughn, walk me through the Alderton Merit Scholarship selection criteria — exactly as they appear in the Academy's published guidelines.",
-            "answer": "The Alderton scholarship considers academic achievement, character, and demonstrated community engagement. The guidelines are public record. I'm happy to provide copies if they haven't already been furnished to your office.",
+            "type": "EMPATHIC",
+            "question": "I know this process is stressful. Let's just talk about how you do your job. No traps.",
+            "answer": "I appreciate that. Fifteen years in the industry and I have never been on this side of a conference table. Ask what you need.",
             "mechanics": {
               "heart_rate": "STABLE",
               "breathing": "CALM",
-              "gsr": "STABLE",
-              "cctv_visual": "CONTROLLED_SMILE",
+              "gsr": "INCREASE",
+              "cctv_visual": "LOOK_DOWN",
               "korku_bari_delta": 5,
-              "gameplay_note": "PROGRESS: She's fully on script. No deception signal — this is her comfort zone. Baseline established. Use this reading to calibrate against future spikes."
+              "gameplay_note": "PROGRESS: opened rapport. Note elevated GSR baseline — that is caffeine plus anxiety disorder, not deception."
             },
-            "next_node": "node_02_process_audit"
+            "next_node": "node_02_expense_vouchers"
           },
           {
-            "type": "EMPATHIC",
-            "question": "I've read about your work mentoring first-generation college applicants on your own time. That's a real commitment. I want to understand how someone who built that record arrives at a decision like the one we're investigating.",
-            "answer": "I appreciate you saying that. I've spent my entire career trying to make education more accessible. Whatever conclusions this process reaches, I want that part of my record to remain visible.",
+            "type": "ANALYTICAL",
+            "question": "Ms. Kowalski, I want to walk through your responsibilities and the documents bearing your name. Procedurally.",
+            "answer": "That's fine. I'd rather keep this procedural too.",
             "mechanics": {
-              "heart_rate": "RISE",
-              "breathing": "DEEP",
-              "gsr": "INCREASE",
-              "cctv_visual": "BRIEF_LOOK_DOWN",
-              "korku_bari_delta": 10,
-              "gameplay_note": "PROGRESS: Empathic framing produces a genuine emotional micro-response — the look-down is involuntary. GSR increase suggests this topic touches something real. She is not immune to personal framing. Route toward vulnerability."
+              "heart_rate": "BASELINE",
+              "breathing": "BASELINE",
+              "gsr": "STABLE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 3,
+              "gameplay_note": "BASELINE ESTABLISHED: her neutral-topic readings — use these as the reference for later deltas."
             },
-            "next_node": "node_04_osman_confrontation"
+            "next_node": "node_02_expense_vouchers"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "You signed off on a scheme that killed a man. Start there.",
+            "answer": "I did no such thing. Before you accuse me of homicide I'd like to know if I'm under arrest, and if not, I'm trying to decide whether to keep sitting here.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -12,
+              "gameplay_note": "WRONG MOVE: triggered defensive posture from the first exchange. Note HR spike is blunted — SSRI is doing its work. The GSR surge is the real indicator."
+            },
+            "next_node": "node_02b_guarded"
           }
         ]
       },
-      "node_02_process_audit": {
-        "theme": "The Oversight Gap",
-        "description": "You've laid the published criteria on the table and Celeste has acknowledged them. Now you press on the structural fact that eliminated every check on her authority: the absence of any co-signatory since Marguerite Pell's position was dissolved.",
+      "node_02_expense_vouchers": {
+        "theme": "The Vouchers",
+        "description": "The operator slides a folder of promotional expense vouchers across the table, each bearing her electronic signature. She glances at them but does not pick them up.",
         "is_end_state": false,
         "choices": [
           {
             "type": "FORENSIC_CALL_OUT",
-            "question": "The scholarship coordinator role — Marguerite Pell's position — was eliminated eighteen months ago and never replaced. You absorbed those duties yourself. That means the Whitmore certification had exactly one signatory: you. Why did no second reviewer look at this file?",
-            "answer": "Administrative restructuring is a standard part of institutional management. Centralizing oversight can actually improve consistency and reduce the risk of conflicting recommendations. I followed the same criteria I have always applied.",
+            "question": "Your signature authorized payments totaling over one hundred eighty thousand dollars to physicians in your region. Walk me through those approvals.",
+            "answer": "Those are my initials on the bottom of each voucher, yes. They came through the regional approval queue the same way two or three dozen did every quarter. My job was to sign off on documents regional had already pre-approved.",
             "mechanics": {
-              "heart_rate": "SPIKE",
+              "heart_rate": "RISE",
               "breathing": "SHALLOW",
               "gsr": "SURGE",
-              "cctv_visual": "JAW_TIGHTEN",
-              "korku_bari_delta": 20,
-              "gameplay_note": "LIE SIGNAL: She is defending the structural decision that enabled the fraud. Spike cluster despite a composed verbal answer — this is a deception pattern, not anxiety. The jaw tighten is suppressed aggression. Log this."
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 8,
+              "gameplay_note": "PROGRESS: she is framing her role as procedural — pre-emptively distancing herself from authorship."
             },
-            "next_node": "node_03_whitmore_probe"
+            "next_node": "node_03_hale_probe"
           },
           {
-            "type": "TRAP",
-            "question": "You've described the selection as holistic. I'd like you to tell me, precisely, which holistic factors elevated Bram Whitmore's file — and where those factors are documented in the certification record you signed.",
-            "answer": "Holistic review is standard practice in elite academic institutions. Not every dimension of character or potential translates neatly into a checklist item. I exercised professional judgment. That is what the role requires.",
+            "type": "EMPATHIC",
+            "question": "Walk me through how a voucher actually gets to your desk. I am not assuming anything yet.",
+            "answer": "Thank you. So — a speaker event gets approved at the regional level. The vendor invoices us. Finance routes it to the territory's senior rep — me — for a countersignature. I don't set the fees. I don't pick the speakers. I verify the paperwork is complete and I sign.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "CALM",
+              "gsr": "INCREASE",
+              "cctv_visual": "RELEASED_SHOULDERS",
+              "korku_bari_delta": 12,
+              "gameplay_note": "PROGRESS: volunteered full workflow with low biometric stress. Describing the process does not trigger her — a meaningful data point."
+            },
+            "next_node": "node_03_hale_probe"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Which of these physicians did you personally select for the speaker program?",
+            "answer": "I... the selection process is run out of the regional office. I don't personally select them. I can confirm who is on the list, but that is about it.",
             "mechanics": {
               "heart_rate": "RISE",
               "breathing": "UNEVEN",
-              "gsr": "SPIKE",
+              "gsr": "SURGE",
               "cctv_visual": "EYE_DART",
-              "korku_bari_delta": 15,
-              "gameplay_note": "PARTIAL TRUTH: She is deploying legitimate educational language to paper over a documentation gap she knows is damning. GSR spike and eye movement signal active evasion. The trap partially lands — note the breathing irregularity."
+              "korku_bari_delta": 4,
+              "gameplay_note": "PARTIAL: deflected upward to 'regional office'. Note the spike on the word selection — proximity to something."
             },
-            "next_node": "node_04_osman_confrontation"
+            "next_node": "node_03_hale_probe"
           }
         ]
       },
-      "node_03_whitmore_probe": {
-        "theme": "The Donor's Shadow",
-        "description": "You shift the line of questioning to Grant Whitmore directly. Celeste's posture adjusts almost imperceptibly — shoulders pull fractionally inward, the folded hands tighten by a degree.",
+      "node_02b_guarded": {
+        "theme": "Damaged Rapport",
+        "description": "She has pulled her arms across her chest and shifted back in the chair. Her breathing has visibly deepened. She is waiting for the next accusation.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "STRATEGIC",
+            "question": "Let me step back. I am not charging you with anything right now. I am trying to understand the paperwork.",
+            "answer": "Alright. I'll answer what I can. But I am not going to be called a killer and pretend that is a normal opening line.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "DEEP",
+              "gsr": "STABLE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 5,
+              "gameplay_note": "RECOVERY: de-escalation worked. Baseline returning, but trust is damaged for the remainder of the session."
+            },
+            "next_node": "node_03_hale_probe"
+          },
+          {
+            "type": "LEGAL_THREAT",
+            "question": "Do you want me to read you the conspiracy statute, or would you rather cooperate?",
+            "answer": "I'd like you to read me whatever lets me decide if I should call my attorney. Because at this rate I am about two more sentences from doing that.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -15,
+              "gameplay_note": "WRONG MOVE: attorney invocation is now one move away. The suspect has hardened."
+            },
+            "next_node": "node_03_hale_probe"
+          }
+        ]
+      },
+      "node_03_hale_probe": {
+        "theme": "The Supervisor",
+        "description": "She has been composed describing paperwork. The operator shifts topic and asks about her direct supervisor. Her shoulders inch upward. The pulse light on the sensor ticks faster.",
         "is_end_state": false,
         "choices": [
           {
             "type": "NARROW_TARGET",
-            "question": "How would you characterize your personal relationship with Grant Whitmore — outside of the donor context? Have you socialized with him, met his family, known him in any capacity beyond capital campaign events?",
-            "answer": "Grant Whitmore is a capital campaign donor. Our interactions have been professional. He attended school events, as donors typically do. I — I don't have a relationship with him outside that framework.",
+            "question": "Tell me about Marcus Hale. What was your working relationship with him?",
+            "answer": "Marcus is — was — my regional manager. We worked together five years. He ran the territory above mine. I reported to him weekly.",
             "mechanics": {
-              "heart_rate": "MAX_SPIKE",
+              "heart_rate": "SPIKE",
               "breathing": "HOLDING_BREATH",
-              "gsr": "MAX",
-              "cctv_visual": "FROZEN",
-              "korku_bari_delta": 35,
-              "gameplay_note": "LIE SIGNAL: Strongest cluster in the session so far. Hesitation before denial, over-specified refusal, HOLDING_BREATH — this is a textbook suppression response. She is protecting something deeply personal. Prioritize this signal."
+              "gsr": "SURGE",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 15,
+              "gameplay_note": "HIGH SIGNAL: dual-channel spike on Hale's name — HR jumps even with SSRI blunting, GSR surges, breath hold. Something live is attached to this man."
             },
-            "next_node": "node_05_oliver_pivot"
+            "next_node": "node_04_mechanism_test"
           },
           {
-            "type": "AGGRESSIVE",
-            "question": "Let me be direct, Ms. Vaughn. We believe Grant Whitmore applied financial leverage to compel this award and that you complied in order to protect the capital campaign. That is the theory of this case. Is that what happened?",
-            "answer": "That is categorically false. I would ask you to note for the record that I am not responding further to accusations framed in this manner without legal counsel present.",
-            "mechanics": {
-              "heart_rate": "ERRATIC",
-              "breathing": "HYPERVENTILATION",
-              "gsr": "SURGE",
-              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
-              "korku_bari_delta": -25,
-              "gameplay_note": "WRONG MOVE: The signal is real but you have handed her a clean exit into defensive posture. More critically, financial leverage is the wrong theory — the truth is personal, not transactional. Aggressive donor-fraud framing closes the session prematurely."
-            },
-            "next_node": "node_fail_lockdown"
-          }
-        ]
-      },
-      "node_04_osman_confrontation": {
-        "theme": "The Name She Avoids",
-        "description": "You set Yusra Osman's application file on the table — GPA, standardized scores, community service record, two teacher recommendations. You slide it toward Celeste without comment and let the silence hold for several seconds.",
-        "is_end_state": false,
-        "choices": [
-          {
-            "type": "MORAL_PRESSURE",
-            "question": "Yusra Osman's family left a country they could no longer safely live in. She ranked in the top two percent of her class. Her file is right in front of you. I'd like you to look at it and tell me, in your own words, why she didn't receive this scholarship.",
-            "answer": "Scholarship decisions are — they are difficult. Many deserving students apply every year. There is no single metric that... the process considers the whole person, not just...",
+            "type": "EMPATHIC",
+            "question": "Someone put you in a position with these vouchers, didn't they? Who signs your paycheck?",
+            "answer": "I... I am not going to speculate about other employees. I just want to talk about my own conduct.",
             "mechanics": {
               "heart_rate": "SPIKE",
               "breathing": "UNEVEN",
               "gsr": "SURGE",
               "cctv_visual": "LOOK_DOWN",
-              "korku_bari_delta": 25,
-              "gameplay_note": "LIE SIGNAL: She trails off mid-sentence — deeply atypical for someone this verbally controlled. Avoidance behavior when the file is in front of her. The guilt response is visible. Yusra Osman's name is a confirmed pressure point."
+              "korku_bari_delta": 18,
+              "gameplay_note": "HIGH SIGNAL: refused to name superior — protective deflection. GSR surge plus breath disruption. She is shielding someone above her."
             },
-            "next_node": "node_05_oliver_pivot"
+            "next_node": "node_04_mechanism_test"
           },
           {
-            "type": "EVIDENCE",
-            "question": "The state board audit found no documentation for any holistic evaluation criteria in the Whitmore file. The only record is a certification bearing your signature alone, listing standard academic metrics — which Bram Whitmore failed to meet by sixteen grade-point units. Explain that discrepancy.",
-            "answer": "Administrative documentation practices vary across institutions and review cycles. The absence of a supplementary evaluative note does not constitute fraud. I followed institutional policy as I understood and applied it.",
+            "type": "SYSTEMIC_READ",
+            "question": "In your opinion, who actually controls the speaker program budget?",
+            "answer": "Regional leadership. I do not have approval authority on the program itself. Just on the paperwork at the end of the chain.",
             "mechanics": {
-              "heart_rate": "INCREASE",
+              "heart_rate": "RISE",
               "breathing": "SHALLOW",
-              "gsr": "SPIKE",
-              "cctv_visual": "LIP_PRESS",
-              "korku_bari_delta": 15,
-              "gameplay_note": "PARTIAL TRUTH: She is describing genuine policy ambiguity — but the lip press and spike pattern suggest she knows the documentation gap is the weakest point in her defense. Solid evidence play. Move toward the personal angle next."
+              "gsr": "INCREASE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 5,
+              "gameplay_note": "PARTIAL: broad institutional answer, avoided naming Hale. A leverage window closed without pressure being applied."
             },
-            "next_node": "node_03_whitmore_probe"
+            "next_node": "node_04_mechanism_test"
           }
         ]
       },
-      "node_05_oliver_pivot": {
-        "theme": "The Son Question",
-        "description": "Signal has accumulated across the session. Celeste's breathing has not fully recovered from the previous exchange. You shift register entirely — away from institutional procedure and into the personal. Her hands are no longer folded.",
+      "node_04_mechanism_test": {
+        "theme": "How It Worked",
+        "description": "The operator leans forward and asks her to explain, step by step, how the alleged kickbacks would actually move through the Halvern system. She blinks. Her expression goes uncertain, almost blank.",
         "is_end_state": false,
         "choices": [
           {
-            "type": "EMPATHIC",
-            "question": "Your son Oliver attends Hargrove. He's sixteen. If he ever found out that a decision made in this building caused a real, lasting harm to a family like the Osmans — what would that do to him? What does he think of the person you are?",
-            "answer": "Oliver — he is not part of this. Please don't bring my son into this.",
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Explain to me, in your own words, the actual payment architecture. How do speaker fees translate into prescription volume? Where is the loop?",
+            "answer": "The... I don't know what you mean by 'loop'. Speaker fees are honoraria. A physician gives a peer-to-peer talk, they are paid a standard rate. I don't know what you're asking me to describe. If you are asking me how a bribe would work, I genuinely don't know. I've never structured one.",
             "mechanics": {
-              "heart_rate": "MAX_SPIKE",
-              "breathing": "HYPERVENTILATION",
-              "gsr": "MAX",
-              "cctv_visual": "TEAR_POOLING",
-              "korku_bari_delta": 45,
-              "gameplay_note": "LIE SIGNAL / BREAKDOWN APPROACHING: Highest-signal response in the session. The physical response is involuntary and sustained. Tear pooling paired with MAX cluster is the clearest deception-under-guilt profile. She is at the edge of a disclosure she cannot fully contain."
+              "heart_rate": "DROP",
+              "breathing": "CALM",
+              "gsr": "DECREASE",
+              "cctv_visual": "EMPTY_STARE",
+              "korku_bari_delta": 25,
+              "gameplay_note": "CRITICAL SIGNAL: the fear bar DROPS on the mechanism question. She cannot describe the scheme. Readings flatten. This is the single most diagnostic moment of the session — a scheme architect would spike here, not relax."
             },
-            "next_node": "node_success_confession"
+            "next_node": "node_05_followup"
           },
           {
-            "type": "LEGAL_THREAT",
-            "question": "The Osman family's attorney has subpoenaed all personal communications between you and Grant Whitmore over the past five years — including private accounts. I am offering you the opportunity to get ahead of what those records will show before they are unsealed.",
-            "answer": "I'm going to stop you there. I have cooperated fully and voluntarily with this process. This has now become an active legal matter and I will not continue without counsel present. That is my final statement.",
+            "type": "ANALYTICAL",
+            "question": "Dr. Brennan's prescriptions of OxyDermex quadrupled after he was added to the speaker list. Explain that correlation.",
+            "answer": "I cannot explain a physician's prescribing behavior. I don't have access to individual scripts. I know the speaker list existed. I cannot tell you why anyone's numbers went up. I was not in that room.",
             "mechanics": {
-              "heart_rate": "ERRATIC",
+              "heart_rate": "STABLE",
+              "breathing": "BASELINE",
+              "gsr": "STABLE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 15,
+              "gameplay_note": "CRITICAL SIGNAL: no technical detail offered, no payment-to-prescription mechanism articulated. Readings FLAT while discussing the alleged scheme itself."
+            },
+            "next_node": "node_05_followup"
+          },
+          {
+            "type": "TRAP",
+            "question": "You clearly knew every step of how this worked. Stop pretending.",
+            "answer": "I didn't. And I am not pretending. You are asking me to describe something I was told existed only after the lawsuit was filed, when I read it in the complaint.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": -5,
+              "gameplay_note": "WRONG MOVE: trap accusation on the mechanism question produced only mild defensive reaction. Had she known the architecture, this would have spiked hard. The absence of that spike is itself evidence."
+            },
+            "next_node": "node_05_followup"
+          }
+        ]
+      },
+      "node_05_followup": {
+        "theme": "The Contradiction",
+        "description": "The operator sits back. There is a contradiction on the table — her signature on the vouchers, her ignorance of how the scheme worked — and he lets the silence stretch before naming it.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "You signed vouchers for a scheme you can't describe. Either you are lying about not knowing it, or someone used your authority. Pick one.",
+            "answer": "Then someone used my authority. I don't... look. Regional routinely sent me batches of paperwork. Dozens at a time. I verified formatting and signed. If a specific line item was fraudulent, I did not — I would not — have caught it at my level of review.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
               "breathing": "HOLDING_BREATH",
               "gsr": "SURGE",
+              "cctv_visual": "HAND_PINCH_UNDER_TABLE",
+              "korku_bari_delta": 22,
+              "gameplay_note": "MAJOR PROGRESS: forced her into the 'someone used my account' frame. Session's second-highest biometric cluster. She is naming the mechanism without naming the person."
+            },
+            "next_node": "node_06_fitch_probe"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "If someone routed payments through your signature without telling you what they were for, you would not be the first person in this industry that happened to. You can tell me.",
+            "answer": "If I said someone did that, I'd be accusing a colleague of fraud. On the record. With you. And I don't have proof I can hand you. I have suspicions, and suspicions are not evidence.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 18,
+              "gameplay_note": "PROGRESS: she admits to 'suspicions' — a half-step toward disclosure. Did NOT deny the framing. Heavy GSR; HR blunted by SSRI."
+            },
+            "next_node": "node_06_fitch_probe"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "You are hiding behind 'I just signed'. A senior rep does not 'just sign' one hundred and eighty thousand dollars.",
+            "answer": "A senior rep with fifteen territories and a weekly signature queue of two hundred documents absolutely does. And if you want to talk about what a reasonable review looks like, bring in my compliance officer. Don't sit here and tell me what I should have caught.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "DEEP",
+              "gsr": "SPIKE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -10,
+              "gameplay_note": "WRONG MOVE: overshot her leverage moment. She retreated behind procedure and will be harder to move next node."
+            },
+            "next_node": "node_08_reframe"
+          }
+        ]
+      },
+      "node_06_fitch_probe": {
+        "theme": "A Name On The List",
+        "description": "The operator pulls another sheet from the folder — the list of physicians in the speaker program. He runs a finger down it and stops at one name. Her eyes follow the finger. Her posture does not change, but she swallows.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "NARROW_TARGET",
+            "question": "Dr. Aaron Fitch. Tell me about your relationship with him, specifically.",
+            "answer": "Dr. Fitch is on my physician roster. He is one of fourteen in the north county network. I have a professional relationship with him, same as the others.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "SHALLOW",
+              "gsr": "MAX",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 10,
+              "gameplay_note": "DISPLACED SIGNAL PATTERN: GSR MAXES while HR barely moves, breathing goes shallow. This is her SSRI-suppressed stress signature — remember it and compare to her Hale-cluster readings."
+            },
+            "next_node": "node_08_reframe"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Is there something personal going on between you and Dr. Fitch?",
+            "answer": "That... that is not a question I thought you would be asking me today. No. I don't see how that is relevant to any of this.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "MAX",
+              "cctv_visual": "EYE_DART",
+              "korku_bari_delta": 20,
+              "gameplay_note": "DISPLACED SIGNAL: enormous GSR with muted HR and a breath hold. 'I don't see how that is relevant' is a dodge, not a denial. Read the PATTERN — is it primary guilt or something else?"
+            },
+            "next_node": "node_08_reframe"
+          },
+          {
+            "type": "EVIDENCE",
+            "question": "We have your corporate travel records and hotel receipts. Dr. Fitch was in the same cities as you on eleven separate trips over fourteen months. Explain.",
+            "answer": "Those... those trips were professional. Conference travel. Territory review. I don't have to justify each one to you.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "MAX",
+              "cctv_visual": "HAND_PINCH_UNDER_TABLE",
+              "korku_bari_delta": 15,
+              "gameplay_note": "PEAK DISPLACED SIGNAL: max GSR plus hyperventilation, HR suppressed. This topic spikes harder than the mechanism question did. Note the asymmetry carefully."
+            },
+            "next_node": "node_09_travel_records"
+          }
+        ]
+      },
+      "node_08_reframe": {
+        "theme": "Her Counter-Move",
+        "description": "She takes a slow breath and places both hands flat on the table. Her tone shifts. She is about to try to move the conversation onto ground of her own choosing.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "STRATEGIC",
+            "question": "No. Let's stay on the vouchers. Tell me about the ones from Q3 of 2021.",
+            "answer": "Fine. Q3 was a heavy speaker-fee quarter. I can walk through those, but I would like it noted for the record that I have already told you I did not select participants or determine fees.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
               "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 10,
+              "gameplay_note": "PROGRESS: redirect held. She re-anchored but kept her 'procedural role' defense consistent with every prior answer."
+            },
+            "next_node": "node_10_final_push"
+          },
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "If regional leadership pressured you to sign off on things you questioned, I want the name. Now.",
+            "answer": "I... I want to talk to my attorney before I name anyone. That is not refusal. That is practicality.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 25,
+              "gameplay_note": "MAJOR PROGRESS: session's highest HR spike, even with SSRI suppression. She is at the wall. Critically: she did NOT deny that a name exists."
+            },
+            "next_node": "node_10_final_push"
+          },
+          {
+            "type": "GULLIBLE",
+            "question": "So what you are saying is you were just doing your job like everyone else in the chain?",
+            "answer": "That is exactly what I am saying. Thank you. I am a signature at the end of a process I didn't design. I've said that from the beginning.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "CALM",
+              "gsr": "DECREASE",
+              "cctv_visual": "RELEASED_SHOULDERS",
+              "korku_bari_delta": -25,
+              "gameplay_note": "WRONG MOVE: you accepted her frame. All readings dropped to baseline. Leverage completely lost."
+            },
+            "next_node": "node_fail_deflection"
+          }
+        ]
+      },
+      "node_09_travel_records": {
+        "theme": "Hotel Receipts",
+        "description": "She stares at the receipts spread on the table. Her hands have gone still. The silence stretches longer than any before it in the session.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EVIDENCE",
+            "question": "These travel dates match speaker-fee payment cycles. This is how the money moved — you were delivering it.",
+            "answer": "That is not what those receipts are. You are reading coincidence as conspiracy. I have told you I do not have anything to add about the speaker program payments.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
               "korku_bari_delta": -20,
-              "gameplay_note": "WRONG MOVE: You were close to the real nerve — the personal history — but procedural legal pressure gives her a controlled exit. She has practice shutting down adversarial frames. The session ends before the secret surfaces."
+              "gameplay_note": "WRONG INTERPRETATION: note that accusing her of using travel to deliver money triggered LESS response than the empathic question about Fitch. The travel stress is about something else entirely — your accusation misread the source."
+            },
+            "next_node": "node_fail_deflection"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Eleven trips, same cities, same physician on the list. That is not conference travel. What was it?",
+            "answer": "It was... personal. Not every one. But several. I am not going to discuss my personal life on a record I do not control.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "MAX",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 15,
+              "gameplay_note": "PROGRESS: elicited 'personal'. Secondary-secret confirmed, but this is NOT a kickback admission. Separate the two sources in the record."
+            },
+            "next_node": "node_08_reframe"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Whatever this is between you and Dr. Fitch — I am not trying to publicize it. I am trying to separate it from the bribery allegation.",
+            "answer": "If I tell you what you think you already know, it ends up in a deposition. It ends his marriage. It ends my career regardless of whether I touched a single dollar of that speaker fund. So I am going to need more than your word.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 22,
+              "gameplay_note": "BREAKTHROUGH: she has just implicitly told you the Fitch matter is SEPARATE from the bribery. 'Regardless of whether I touched a single dollar' — that phrasing matters."
+            },
+            "next_node": "node_08_reframe"
+          }
+        ]
+      },
+      "node_10_final_push": {
+        "theme": "The Last Window",
+        "description": "She looks exhausted. Her coffee has gone cold. The operator has to decide how to close.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "PRESSURE",
+            "question": "Give me the name. The person who controlled those vouchers. Now.",
+            "answer": "Marcus Hale. It was Marcus. He set up the speaker fees. He put them through my account because I had signature authority in his territory too after the 2020 restructuring. He told me if I said anything he would make the paper trail look like mine. I have... I have emails. Emails I did not hand over in discovery.",
+            "mechanics": {
+              "heart_rate": "MAX_SPIKE",
+              "breathing": "CRYING",
+              "gsr": "MAX",
+              "cctv_visual": "BREAKDOWN",
+              "korku_bari_delta": 40,
+              "gameplay_note": "ADMISSION: she names Hale and admits withholding evidence. Note this is a confession of a COVER-UP, not of running the bribery. The distinction decides the verdict."
+            },
+            "next_node": "node_success_partial"
+          },
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Gerald Osei's wife has a video of him playing with their grandson two weeks before he died. You have a brother who nearly died from a Halvern opioid. Who are you protecting and why?",
+            "answer": "I am not... oh god. Derek. Don't — don't bring him into this, please.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "CRYING",
+              "gsr": "SURGE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 10,
+              "gameplay_note": "GRIEF CONFOUND: symmetric HR plus GSR rise with breath instability — this is her brother-pattern, documented in the dossier. Do not misread as guilt."
+            },
+            "next_node": "node_07_brother_derek"
+          },
+          {
+            "type": "TACTICAL_RESET",
+            "question": "Let's take a minute. You mentioned your brother earlier. Tell me about him.",
+            "answer": "Derek. My brother. He... he nearly died on a drug made by the company that signs my paychecks. Do you understand what that is like? Every day I sell medicine and I wonder if someone's Derek is taking it.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": -5,
+              "gameplay_note": "TACTICAL RESET: short-term drop in pressure, but opens a new emotional channel. Symmetric HR and GSR with breath jitter — note this baseline pattern carries no deception signature."
+            },
+            "next_node": "node_07_brother_derek"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Last chance. Confess to organizing the kickbacks or I walk this to the U.S. Attorney tonight.",
+            "answer": "Then walk it. I did not organize them. I am calling my attorney.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -30,
+              "gameplay_note": "WRONG MOVE: premature ultimatum. Attorney invoked. Note the specific denial 'I did not organize them' came with defensive but NOT confession-pattern signals — no sustained breath hold on the denial itself."
             },
             "next_node": "node_fail_lockdown"
           }
         ]
       },
-      "node_success_confession": {
-        "theme": "The Fracture",
-        "description": "Celeste Vaughn's composure has broken in a way that cannot be walked back. She sits with her hands in her lap, breathing audibly, eyes glassy. The room is quiet.",
+      "node_07_brother_derek": {
+        "theme": "The Brother",
+        "description": "She is wiping her eyes with the edge of her sleeve. She looks smaller than she did an hour ago. The interrogation has become something else.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EMPATHIC",
+            "question": "I don't think you did this, Vanessa. I think you have been covering for someone. And I think you know what the right thing is.",
+            "answer": "It was Hale. I'll say it. Marcus Hale ran the speaker program as a pay-for-scripts scheme. I found out in January. I confronted him. He told me he would blame me, that I would lose everything — my job, my brother's treatment, all of it. I kept quiet. I have the messages. You can have them.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "CRYING",
+              "gsr": "SURGE",
+              "cctv_visual": "BREAKDOWN",
+              "korku_bari_delta": 40,
+              "gameplay_note": "FULL BREAKDOWN: she releases the architect's name and commits to producing the withheld emails. This is a confession of COVER-UP and of knowledge, not of running the scheme."
+            },
+            "next_node": "node_success_breakdown"
+          },
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Gerald Osei was somebody's Derek. Think about that and tell me what you know.",
+            "answer": "I know... I know it was not me. But I know who it was. And I know I have the proof on my personal laptop. And I know I am done pretending I don't.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "CRYING",
+              "gsr": "SURGE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 35,
+              "gameplay_note": "CONTROLLED ADMISSION: explicit denial of her own bribery role, explicit implication of another. She is offering evidence."
+            },
+            "next_node": "node_success_breakdown"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Your brother is irrelevant. Answer the question about Hale or we are done.",
+            "answer": "We are done. I want my attorney.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": -40,
+              "gameplay_note": "WRONG MOVE: shattered the only emotional opening left. Attorney invoked."
+            },
+            "next_node": "node_fail_lockdown"
+          }
+        ]
+      },
+      "node_success_partial": {
+        "theme": "Controlled Admission",
+        "description": "She is upright, eyes red but dry, hands folded again. She has named Marcus Hale as the architect of the speaker-fee scheme and acknowledged withholding emails that would corroborate it.",
         "is_end_state": true,
-        "result_text": "Celeste Vaughn did not issue a formal confession, but her controlled presentation collapsed in the final exchange. When questioned about Oliver's awareness of her choices, she became visibly distressed — sustained tear pooling, hyperventilation, hands withdrawn from the table — and her prepared verbal responses ceased entirely. She stated, in a reduced voice: 'I need a moment.' Then, after a long pause: 'There are things about this situation I have not been able to explain to anyone. I would like to speak to legal counsel — but I also don't know how much longer I can hold this.' No admission of specific wrongdoing was recorded. The polygraph log shows a sustained maximum-signal cluster in the final two exchanges, particularly dense on questions touching Oliver Vaughn and Grant Whitmore's personal relationship. The player must now assess the cumulative biometric record to reach a verdict."
+        "result_text": "The suspect produced a controlled, partial admission. She identified Marcus Hale as the scheme's architect and disclosed that she has held corroborating emails since January that she did not produce in discovery. She explicitly denied personally arranging any kickback or influencing any physician's prescribing behavior. REVIEW THE BIOMETRIC LOG BY TOPIC: dual-channel spikes — HR spike plus GSR surge plus breath hold — clustered tightly on HALE questions and on the FOLLOW-UP EXPLOITATION. On the MECHANISM TEST node the fear bar DROPPED and readings flattened; she could not describe the scheme's architecture. Questions about Dr. Fitch and travel records produced a distinct signature: MAX GSR with SUPPRESSED HR (SSRI-blunted) and breath irregularity, localized to personal-life topics rather than to the bribery itself. Grief-pattern signals on her brother Derek were symmetric and non-deceptive. The verdict call depends on which topics owned the peaks."
+      },
+      "node_success_breakdown": {
+        "theme": "Emotional Breakdown",
+        "description": "She is crying openly, elbows on the table, head in her hands. She has committed to turning over her personal messages with Marcus Hale and has acknowledged a fourteen-month personal relationship with Dr. Aaron Fitch.",
+        "is_end_state": true,
+        "result_text": "The suspect experienced a full emotional collapse. She named Marcus Hale as sole architect of the kickback scheme, committed to producing undisclosed emails from her personal device, and volunteered that her repeated travel with Dr. Fitch was a personal relationship — not a payment conduit. She denied arranging any physician payment or influencing any prescription. REVIEW THE BIOMETRIC LOG BY TOPIC: Hale-related questions produced the session's peak dual-channel responses — HR spike plus GSR surge plus breath hold clustered together. The MECHANISM TEST produced a fear-bar DROP and flat readings, consistent with a suspect who lacks firsthand knowledge of the architecture. Dr. Fitch and travel-record questions produced a signature MAX-GSR / suppressed-HR / irregular-breath cluster that was NOT replicated on bribery-mechanism questions. Grief signals on brother Derek were symmetric, modest, and matched the documented confound. The signal DISTRIBUTION across topics — not the overall fear-bar height — is the decisive input for the verdict call."
       },
       "node_fail_lockdown": {
-        "theme": "Tactical Retreat",
-        "description": "Celeste Vaughn has invoked legal counsel. She sits straight, hands folded again, expression fully reset — the composure of the opening minutes restored as if by muscle memory.",
+        "theme": "Counsel Invoked",
+        "description": "She has demanded her attorney. She is silent, arms crossed, watching the door. The session is over.",
         "is_end_state": true,
-        "result_text": "Celeste Vaughn terminated voluntary cooperation and requested legal counsel to be present before any further questioning. Her final verbal posture was formal and non-committal, and no unscripted disclosure was recorded in the closing phase. The polygraph data captured before the lockdown presents a mixed picture: some elevated GSR readings consistent with either high-load anxiety or active concealment, heart rate shifts that were partially suppressed throughout by documented medication, and breathing irregularities the dossier warns may reflect her GAD baseline and recent insomnia onset. The player must determine whether the partial signal record accumulated before the session closed is sufficient to support a verdict, or whether the absence of a sustained deception cluster introduces meaningful ambiguity."
+        "result_text": "The suspect invoked counsel and terminated the interrogation. No confession was obtained. The biometric record is incomplete but substantial. REVIEW WHAT YOU CAPTURED: if you reached Marcus Hale probes, they produced strong dual-channel responses. If you reached the MECHANISM TEST, it showed signal suppression and a DROPPED fear bar — she could not articulate the scheme architecture. Fitch and travel-record questions produced high GSR with suppressed HR, localized to personal-life topics. No single cluster matches the signature pattern of primary-crime authorship under the suspect's known medical modifiers. The verdict call must be made from the partial record."
+      },
+      "node_fail_deflection": {
+        "theme": "Composure Held",
+        "description": "She is composed again, hands folded, answering only in procedural language. She has stopped engaging substantively. The interrogation has run out of leverage without ever breaking her.",
+        "is_end_state": true,
+        "result_text": "The suspect regained full composure and de-escalated without invoking counsel. No admission was obtained. Her final statements reverted to the 'procedural signature only' defense. REVIEW THE BIOMETRIC LOG CAREFULLY: the critical signal distribution is still usable even in absence of an admission. Hale-related questions produced dual HR and GSR spikes with breath hold. The MECHANISM TEST produced signal suppression and a fear-bar DROP — atypical for a primary actor. Travel-record and Fitch questions produced a MAX-GSR / suppressed-HR / irregular-breath cluster that did NOT repeat on bribery-mechanism questions. If you interpreted the travel evidence as direct proof of kickback delivery, be advised that the biometric source-location of that stress did not align with her bribery-question responses. The verdict turns on reading which topics spiked and which did not."
       }
     },
     "character_image": "./assets/characters/en-case-2.png"

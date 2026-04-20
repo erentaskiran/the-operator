@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { runPipeline, parseJsonBlock } from './llm-pipeline.js';
+import { runPipeline, parseJsonBlock, MODEL } from './llm-pipeline.js';
 import { generateCharacterImage } from './generate-character-image.mjs';
 
 const caseId = process.argv[2];
@@ -70,6 +70,23 @@ KURALLAR:
   - "NOT_GUILTY" = secret karanlik bile olsa supheli bu suctan masum
   - Davayi en ilginc kilan verdict'i sec; zamanla her ikisini de kullan
   - Enum degerleri ingilizce kalmali
+  - ONEMLI: NOT_GUILTY davalar daha zordur ve daha ilginctir. Onceliklendirin.
+    NOT_GUILTY bir supheli yine de GERCEK bir ikincil sirri gizliyor olmali
+    (baskasini koruma, ayri bir kucuk suc, bir ask iliskisi veya mali utanc).
+    Bu ikincil sirr guclu fizyolojik tepkilere yol acar ama suclama konusu olan
+    sucun mekanizmasiyla ilgili degil.
+
+KATMANLI SIRLAR (ZORUNLU):
+- Her supheli EN AZ IKI farkli seyi gizlemeli:
+  BIRINCIL SIR: dogrudan suclamayla ilgili olgu (suclu veya masum olabilir)
+  IKINCIL SIR: suclamayla ILGISIZ, gercek stres tepkisi yaratan baska bir gizli
+    (orn. bir ask iliskisi, mali utanc, birini koruma, gecmisteki bir hata).
+    Bu "yer degistirmis suclilik" kaynagi — birincil suclilik gibi gorunen ama
+    aslinda oyle olmayan sinyaller. Her ikisini "secret" alaninda su bicimde
+    belgele: "BIRINCIL: [suclama ile ilgili sir]. IKINCIL: [ilgisiz stres kaynagi]."
+- Ikincil sir gercek bir baskilama noktasi olmali ve yuksek biyometrik tepkilere
+  yol acmali. Hangisinin hangi sorularda tetiklendigini dikkatle gozlemlemeyle
+  birincil sirdan ayirt edilebilmeli.
 
 DOSSIER (oyuncunun sorgudan ONCE okuyacagi arka plan):
 - age: gercekci bir yas
@@ -89,7 +106,10 @@ DOSSIER (oyuncunun sorgudan ONCE okuyacagi arka plan):
 - priors: 0-3 kisa olgusal bullet (onceki olaylar). Verdict'i ele vermez.
 - pressure_points: 1-3 kisa bullet, duygusal veya durumsal leverage.
   Hangi taktigin (EMPATHIC, TRAP, EVIDENCE, vb.) supheliyi kiracagini
-  veya bloklayacagini ima eder.
+  veya bloklayacagini ima eder. HER baskilama noktasi BIRINCIL mi yoksa
+  IKINCIL sirla mi baglandigi ve hangi biyometrik kanali esas olarak
+  etkiledigi belirtilmeli (orn. "BIRINCIL sir — HR ve GSR birlikte yukselir"
+  veya "IKINCIL sir — yalnizca GSR yukselir, ilac HR'yi bastirir").
 - modifiers: medical+habits'i canli poligraf bozulmasina ceviren sayisal
   ayarlar. polygraph_effect notlariyla TUTARLI olmali. Default 0/1; sadece
   dossier'in destekledigi yerde sapma yap.
@@ -209,30 +229,126 @@ SINYAL-GERCEK UYUMU:
     HOLDING_BREATH veya HYPERVENTILATION, gergin cctv_visual) — sozel
     cevap sakin kalsa bile
   - Yumusak/empatik cerceveleme taktigi ile sakin yanitlar mumkun
+  - Mekanizma-testi sorulari YUKSEK sinyaller uretir — supheli mimariyi
+    bizzat biliyor ve ayrinti suclandirici
 - Eger suspect.true_verdict == "NOT_GUILTY":
-  - Supheli gorunur biciminde gergin olabilir (masum insan da sorguda
-    sicrayabilir) ama keskin aldatma sinyalleri seyrek ve dagilmis
-    olmali — cogunlukla RISE/INCREASE seviyesinde ve SHALLOW/UNEVEN
-    nefes, MAX_SPIKE/SURGE/HOLDING_BREATH kumesi degil
-  - Sert suclama sorulari savunmaci sicramalar yaratabilir ama surekli
-    MAX GSR + HR MAX_SPIKE + HOLDING_BREATH birlikteligi OLMAMALI
+  - Supheli GUCLU bicimde spikelayabilir — ama yalnizca IKINCIL sirra
+    iliskin sorularda (yer degistirmis suclilik). Ikincil sirra iliskin
+    sorular MAX_SPIKE/SURGE/HOLDING_BREATH kumeleri uretebilir ve oyuncuyu
+    suclulugun izini bulduklarini sandirir.
+  - BIRINCIL suclamanin mekanizmasina iliskin sorular DUSUK/STABLE sinyaller
+    uretmeli — supheli gercekten birinci el bilgiye sahip degil. Korku bari
+    mekanizma-testi dugumunde DUSMELI.
+  - Sert suclama sorulari savunmaci sicramalar yaratabilir ama suclama-
+    spesifik sorularda surekli MAX GSR + HR MAX_SPIKE + HOLDING_BREATH
+    birlikteligi OLMAMALI
+  - Basari dugumunun result_text alani sinyal DAGILIMINI tanimlamali
+    (hangi sorular sicramis, hangileri sakin kalmis) — yalnizca zirve
+    degerleri degil — oyuncunun yuksek genel korku barına ragmen
+    NOT_GUILTY sonucuna dogru ulasabilmesi icin
 - NOT_GUILTY supheli icin asla sahte itiraf yazma; MAX_SPIKE + MAX GSR +
   HOLDING_BREATH / HYPERVENTILATION kombinasyonunu sadece GUILTY gerceklere
   sakla
 
-DUGUM SAYISI:
-- Toplam 5-7 dugum
+DUGUM SAYISI VE TOPOLOJI:
+- Toplam 10-14 dugum (minimum 10 — daha kisa graflar trivial derecede kolay davalar uretir)
 - Icermesi gerekenler:
   - node_01_intro (giris dugumu)
-  - 3-4 sorusturma dugumu
-  - 1 "temiz sonuc" son dugumu (id "success" icermeli, orn. node_success_*)
-    — supheli isbirligi / itiraf / yikilma; guclu sinyal deseni
-  - 1+ "asinmis sonuc" son dugumu (id "fail" icermeli, orn. node_fail_*)
-    — supheli avukata sigindi / kilitlendi / savdi; belirsiz sinyal deseni
+  - 7-10 sorusturma dugumu
+  - 1-2 "temiz sonuc" son dugumu (id "success" icermeli, orn. node_success_*)
+    Mumkunse farkli varyantlar: node_success_breakdown (tam duygusal cokus +
+    kabul) ve node_success_partial (kontrollü kismen kabul, supheli sogukkanlı
+    kalir ama kanit ezici). Her birinin result_text alani farkli bir biyometrik
+    desen tanimlamali.
+  - 2+ "asinmis sonuc" son dugumu (id "fail" icermeli, orn. node_fail_*)
+    Mumkunse farkli varyantlar: orn. node_fail_lockdown (sert hukuki kapanma)
+    veya node_fail_deflection (yumusak savusturma — avukat talep etmeden sorgu
+    biter, sinyal kaydi belirsiz kalir).
+
+YOL UZUNLUGU KURALLARI (OYUN DERINLIGI ICIN KRITIK):
+- Hicbir son dugumu (basari veya basarisizlik) baslangic dugununden 6'dan az
+  gecisle erisilebilir olmamali. Oyuncu herhangi bir sorgu sona ermeden once
+  en az 6 icerik dugumunden gecmeli.
+- Yanlis bir secim, erken dugumlerden (node_01_intro veya ilk uc icerik dugumu)
+  dogrudan bir fail son dugumune HICBIR ZAMAN yonlendirmemeli. Erken yanlis
+  hamleler bunun yerine ZAYIF BIR DALA yonlendirmeli — sorguyu daha gucluklu
+  kosullarda devam ettiren normal bir icerik dugumu (supheli daha temkinli,
+  uretken yollar azalmis, biyometrik bazline kaydi). Dogrudan fail-dugumu
+  yonlendirmesini yalnizca son 2 icerik dugumundeki yanlis hamleler icin
+  kullan.
+- Grafin en az IKI YAKINLASMA NOKTASI olmali: birbirinden bagimsiz iki ayri
+  yol ciftinin ayni ara dugume ulastigi noktalar. Bu, oturumun tum uzunlugunda
+  birden fazla rotanin gercekci kalmasini saglar.
+- Saf dogrusal zincirlerden (A→B→C→D→son) kacin. En az iki dugum, farkli
+  onceki dugumlerden birden fazla rota ile erisilebilir olmali.
+- 4. dugumden sonraki her sorusturma dugumu, uretken bir yon ile incelikle
+  yanlis bir yon arasinda anlamli bir gerilim sunmali — ikinci yarida sorgu
+  hicbir zaman kendinden akici hissettirmemeli.
+
+ZORUNLU DUGUM — MEKANIZMA TESTI (ZORLUK ICIN KRITIK):
+- Bir sorusturma dugumu MUTLAKA bir mekanizma-bilgi testi olmali: supheliden
+  iddia edilen haksiz fiilin NASIL isledigini teknik/procedürel detayla
+  aciklamasi istenmeli.
+  - GUILTY supheli: YUKSEK sinyaller uretir (HR SPIKE/MAX_SPIKE, GSR SURGE/MAX)
+    cunku mimariyi bizzat biliyor ve ayrinti suclandirici.
+  - NOT_GUILTY supheli: DUSUK/STABLE sinyaller uretir cunku mekanizma hakkinda
+    birinci el bilgisi yok — yuzeysel aciklama, kucuk olgusal hatalar, gercek
+    belirsizlik. Korku bari burada DUSEBILIR.
+  Bu dugum, birincil suclulugun yer degistirmis sucluluktan ayirt edilmesini
+  saglayan temel aractir. Onsuz oyuncu ikiyi birbirinden ayiramaz.
+
+ZORUNLU DUGUM — TAKIP SOMURULMESI:
+- Mekanizma testinin ARDINDAN gelen bir sorusturma dugumu mutlaka takip
+  somurulmesi dugumu olmali: operator, mekanizma testinde (veya daha onceki
+  bir yanittan) ortaya cikan somut bir tutarsizligi veya boslugu supheliye
+  karsi kullanir ve aciklama talep eder. Bu dugum:
+  - Suphelinin bir onceki dugumde soyledigi somut bir seye atif yapmali.
+  - En az 3 secim sunmali: (a) hassas adli takip, (b) aciklama davet eden
+    empatik yeniden cerceveleme, (c) avantaji teslim eden erken tirmanma.
+  - Dogru yolda oturumun ikinci en yuksek biyometrik kumesini uretmeli.
+
+ZORUNLU DUGUM — SUPHELI YENIDEN CERCEVELEME GIRISIMI:
+- Bir sorusturma dugumu mutlaka suphelinin aktif sekilde anlatiyi degistirmeye
+  calistigi bir an olmali: yeni bir aciklama getiriyor, daha zor bir soruyu
+  onlemek icin kismen kabul ediyor ya da ucan bir suclamaya donuyor. Operator
+  nasil yanitlayacagini secmeli:
+  - Yeniden cercevelemeyi kabul et (yanlis hamle: biyometrik suskulasiyor,
+    supheli zemin kazaniyor)
+  - Nazikce asil konuya geri don (ilerleme: orta duzey sinyal)
+  - Yeniden cercevelemeyi dogrudan bir celiski ile zorlat (yuksek sinyal,
+    yuksek risk)
+
+ZORUNLU — YANILTICI KANIT YOLU:
+- Bir kanit yolu MUTLAKA yaniltici olmali: gercek bir kanit parcasi ama IKINCIL
+  sirri dogruluyor, birincil sucu degil. Bu yolu izleyen oyuncular onu birincil
+  suclilik olarak yanlislikla okuyabilir. Bu yol success dugumune degil, fail
+  veya belirsiz bir dugume gitmeli — kanit gercek ama yorum yanlis.
+
+HER DUGUM ICIN SECIM SAYISI:
+- En az UC sorusturma dugumu 3 secim sunmali (sadece 2 degil).
+- 3 secimli her dugumun ucuncu secimi metodolojik olarak makul GORUNMELI ama
+  sorguyu incelikle zayiflatmali — yanlis hamleler agresif veya aptalca
+  OLMAMALI. Oyuncu bunun yanlis oldugunu ancak mekanik sonucu gordukten sonra
+  anlamali.
+- Grafin ikinci yarisinda (5. dugum ve sonrasi) en az bir dugum TAKTIKSEL
+  RESET secenegi sunmali: baskiyi duraklatip suphelinin nefes almasina izin
+  veren bir secim — kisa vadede yanlis (korku_bari_delta negatif) ama
+  dogrudan fail'e yonlendirmek yerine yeni bir yol acabilir.
 
 TUM DUGUMLER (son dugumler dahil) icin alanlar:
 - theme: 2-5 kelimelik kisa sahne etiketi (orn. "Gece Yarisi Commit'i")
-- description: oyuncuya (operator) sahneyi kuran 1-2 cumle
+- description: OYUNCUYA GOSTERILEN 1-2 cumlelik sahne anlatimidir. Yalnizca
+  operatorun odada gozlemlediklerini yaz: suphelinin gorünür durusu, tavri
+  ya da anin fiziksel/durumsal baglami (masada ne var, atmosfer, konu
+  degisimindeki gecis). description icin KESIN KURALLAR:
+  - Sirlara, birincil/ikincil sirlara veya gizli motivlere HICBIR ATIF yapma.
+  - Biyometrik strateji, sinyal tahmini veya oyun tavsiyesi YAZMA.
+  - Meta-oyun dili KULLANMA ("yaniltici kanit yolu", "mekanizma testi dugumu",
+    "yer degistirmis suclilik", "bu kanit ikincil sirri dogruluyor",
+    "biyometrik olarak patlayici" vb.).
+  - Oyuncu o an sorgu odasinda oturuyormus gibi yaz. Yalnizca gercek bir
+    gozlemcinin o anda fiziksel olarak gorebilecegi veya hissedebilecegi
+    seyleri tanimla.
 - is_end_state: boolean
 
 SON OLMAYAN DUGUMLER:
@@ -255,15 +371,26 @@ CHOICE.type:
   TRAP, PRESSURE, EVIDENCE — veya sahneye ozel yeni bir etiket
 - Not: EMPATHETIC degil, EMPATHIC kullan (mevcut veriyle tutarli)
 
+CEVAP ALANI (KRITIK):
+- answer: Suphelinin BIRINCI SAHIS DOGRUDAN KONUSMA olarak yazilmis sozlu yaniti.
+  Ucuncu sahis anlati veya sahne yonlendirmesi ASLA kullanma
+  (orn. YANLIS: 'Biraz gerilir ve diyor ki...', 'Duraklayarak sozu aliyor...',
+       'Sesi titrerek "bilmiyorum" diyor.').
+  Yalnizca suphelinin gercekten soyledigi sozcukleri yaz; duraksamalar
+  uclu nokta olarak ifade edilmeli (orn. '...ben... bilmiyorum'),
+  savunma, kacamak, kismen kabul ya da inkar iceren cumleler dogal konusma
+  dilinde yazilmali. Eylem tanimi yok. Anlati sesi yok. Anlati icinde
+  alcaktirmalı alinti yok.
+
 MECHANICS (suphelinin tepkisine VE true_verdict'e uyan degeri sec — yukaridaki
 SINYAL-GERCEK UYUMU bolumune bakin):
 - heart_rate: BASELINE | STABLE | RISE | INCREASE | SPIKE | MAX_SPIKE | DROP | ERRATIC
 - breathing: BASELINE | CALM | DEEP | SHALLOW | HOLDING_BREATH | UNEVEN | HYPERVENTILATION | CRYING
 - gsr: BASELINE | STABLE | INCREASE | SPIKE | SURGE | MAX | DECREASE
-- cctv_visual: serbest UPPER_SNAKE_CASE mikro-ifade veya beden ipucu
-  (LIP_PRESS, JAW_TIGHTEN, EYE_DART, TEAR_POOLING, STONE_FACE,
-  BREAKDOWN, EMPTY_STARE, RELEASED_SHOULDERS, DEFENSIVE_CROSS_ARMS,
-  RELIEVED_EXHALE, LOOK_DOWN, MICRO_TWITCH, FROZEN, AVOIDANCE vb.)
+- cctv_visual: YALNIZCA su degerlerden biri olmali (bilesik veya ozel deger yok):
+  EYE_DART | LOOK_DOWN | RELIEVED_EXHALE | HAND_PINCH_UNDER_TABLE |
+  DEFENSIVE_CROSS_ARMS | BREAKDOWN | STONE_FACE | EMPTY_STARE |
+  JAW_TIGHTEN | RELEASED_SHOULDERS | LIP_PRESS | TEAR_POOLING
 - korku_bari_delta: tam sayi, yaklasik -50 ile +50 arasi
   - negatif = yanlis hamle, supheli kontrolu geri aliyor
   - pozitif = dogru hamle, maskeyi cozuyor
@@ -284,7 +411,9 @@ DOGRULAMA:
 - Tum next_node degerleri "nodes" icinde var olan bir id'ye isaret etmeli
 - start_node "nodes" icinde bulunmali`;
 
-const STEP_4_ASSEMBLE = `Nihai oyun JSON'unu birlestiriyorsun.
+const STEP_4_EXTRAS = `Nihai dava birlestirmesi icin yalnizca geri kalan
+yaratici alanlari uretiyorsun. Supheli, dava ve dugumler kodda birlestirilecek —
+bunlari YENIDEN URETME.
 
 GIRDI:
 Supheli:
@@ -293,66 +422,33 @@ Supheli:
 Dava:
 {{case_json}}
 
-Dugumler:
-{{nodes_json}}
-
 CIKTI KURALLARI:
 - Yalnizca gecerli JSON dondur
-- Semaya TAM olarak uymali
-- Tum serbest metinler Turkce kalmali
+- Markdown veya aciklama yok
+- Serbest metinler Turkce olmali
 
 CIKTI:
 {
-  "game_data": {
-    "title": string,
-    "suspect": {
-      "name": string,
-      "role": string,
-      "profile": string
-    },
-    "system_config": {
-      "initial_fear_bar": 20,
-      "max_fear_bar": 100,
-      "fear_bar_description": string,
-      "heart_rate_baseline": number,
-      "gsr_baseline": number
-    },
-    "context": string,
-    "true_verdict": "GUILTY" | "NOT_GUILTY",
-    "verdict_truth_text": string,
-    "dossier": <suspect.dossier'i OLDUGU GIBI kopyala>,
-    "start_node": string,
-    "nodes": <dugum girdisinden OLDUGU GIBI kopyala; her dugumde theme,
-              description, is_end_state bulunmali; ayrica choices[] veya
-              result_text alani olmali>
-  }
+  "fear_bar_description": string,
+  "heart_rate_baseline": number,
+  "gsr_baseline": number,
+  "verdict_truth_text": string
 }
 
 KURALLAR:
-- suspect.name, role, profile alanlarini girdiden kopyala
-- suspect.dossier'i game_data.dossier icine TUM IC ALANLAR ile OLDUGU GIBI kopyala
-- title ve context degerlerini dava girdisinden al
-- suspect.true_verdict degerini game_data.true_verdict icine OLDUGU GIBI yaz
-  (enum degeri ingilizce kalir: "GUILTY" veya "NOT_GUILTY")
-- verdict_truth_text uret: 2-3 cumle Turkce aciklama, suphelinin gercekte
-  ne yaptigini (veya yapmadigini) ac. Hukum ekranindan sonra sonuc ekraninda
-  gosterilir. suspect.secret, suspect.motive ve true_verdict ile tutarli olmali:
-  - GUILTY ise: suphelinin gercek fiilini acik bir dille anlat
+- fear_bar_description: 1-2 cumle, sorgulama sirasinda supheli uzerindeki
+  duygusal/psikolojik baskinin nasil takip edildigini aciklar (Turkce).
+- heart_rate_baseline: BPM sayisi. ~70'ten basla, dossier.modifiers.
+  heart_rate_baseline_shift anlamliysa uygula. Tipik aralik 60-90.
+- gsr_baseline: microsiemens sayisi. ~5'ten basla, dossier.modifiers.
+  gsr_baseline_shift anlamliysa uygula. Tipik aralik 4-10.
+- verdict_truth_text: 2-3 cumle Turkce aciklama, suphelinin gercekte
+  ne yaptigini (veya yapmadigini) ac. Hukum ekranindan sonra sonuc
+  ekraninda gosterilir. suspect.secret, suspect.motive ve true_verdict
+  ile tutarli olmali:
+  - GUILTY ise: suphelinin gercek fiilini acik bir dille anlat.
   - NOT_GUILTY ise: gercek sorumluyu ya da nedeni isaret et; suphelinin
-    secret'inin karanlik ama bu davada sucsuz oldugunu belirt
-- start_node ve nodes degerlerini dugum girdisinden AYNEN aktar -
-  theme, description, is_end_state, choices, mechanics, next_node,
-  result_text alanlarini yeniden sekillendirme veya silme
-- fear_bar_description duygusal/psikolojik baski takibini Turkce aciklamali
-- Yalnizca system_config icine temel biyometrik alanlar ekle:
-  - heart_rate_baseline
-  - gsr_baseline
-- Bu baseline degerleri SAYISAL olmali ve gercekci aralikta secilmeli:
-  - heart_rate_baseline: BPM sayisi (genelde 60-90)
-  - gsr_baseline: microsiemens sayisi (genelde 4-10)
-- Degerler sakin/normale yakin olmali ve uretilen vakayla uyumlu secilmeli.
-- Ekstra alan ekleme
-- Gecerli JSON olmasini sagla`;
+    secret'inin karanlik ama bu davada sucsuz oldugunu belirt.`;
 
 const fill = (template, vars) =>
   Object.entries(vars).reduce(
@@ -360,31 +456,44 @@ const fill = (template, vars) =>
     template
   );
 
+const think = (budget) => ({ type: 'enabled', budget_tokens: budget });
+
 const steps = [
   {
+    // Karmaşık yaratıcı profil — Sonnet kalitesi gerekli
     name: 'suspect',
+    model: MODEL.HEAVY,
     prompt: STEP_1_SUSPECT,
     parse: parseJsonBlock,
+    thinking: think(4000),
+    maxTokens: 12000,
   },
   {
+    // Basit yapılandırılmış özet — Haiku yeterli ve çok daha ucuz
     name: 'case',
+    model: MODEL.LIGHT,
     prompt: (r) => fill(STEP_2_CASE, { suspect_json: r.suspect }),
     parse: parseJsonBlock,
+    thinking: think(1024),
+    maxTokens: 3000,
   },
   {
+    // En karmaşık adım — 10-14 düğümlü dal grafiği — Opus en yüksek kalite
     name: 'nodes',
+    model: MODEL.NODES,
     prompt: (r) => fill(STEP_3_NODES, { suspect_json: r.suspect, case_json: r.case }),
     parse: parseJsonBlock,
+    thinking: think(10000),
+    maxTokens: 50000,
   },
   {
-    name: 'final',
-    prompt: (r) =>
-      fill(STEP_4_ASSEMBLE, {
-        suspect_json: r.suspect,
-        case_json: r.case,
-        nodes_json: r.nodes,
-      }),
+    // Dört basit alan — Haiku hızlıca ve ucuza halleder
+    name: 'extras',
+    model: MODEL.LIGHT,
+    prompt: (r) => fill(STEP_4_EXTRAS, { suspect_json: r.suspect, case_json: r.case }),
     parse: parseJsonBlock,
+    thinking: think(1024),
+    maxTokens: 3000,
   },
 ];
 
@@ -392,22 +501,53 @@ const STEP_LABELS = {
   suspect: 'Şüpheli oluşturuluyor...',
   case: 'Dava bağlamı oluşturuluyor...',
   nodes: 'Sorgulama düğümleri oluşturuluyor...',
-  final: "Final dava JSON'u derleniyor...",
+  extras: 'Hüküm metni ve baseline değerleri üretiliyor...',
 };
 
 const { results } = await runPipeline(steps, {
   system: SYSTEM,
-  thinking: true,
   onStepStart: ({ name }) => console.log(STEP_LABELS[name] ?? `${name} işleniyor...`),
-  onStep: ({ name, text }) => console.log(`[${name}] tamamlandı — ${text.length} karakter`),
+  onStep: ({ name, text, stopReason }) => {
+    const step = steps.find((s) => s.name === name);
+    const model = step?.model ?? 'default';
+    console.log(`[${name}] tamamlandı — ${text.length} karakter, model=${model}, stop_reason=${stopReason}`);
+  },
 });
+
+const suspect = results.suspect.suspect;
+const caseCtx = results.case;
+const nodes = results.nodes;
+const extras = results.extras;
 
 const imageOutPath = resolve('assets', 'characters', `${caseId}.png`);
 console.log('Karakter görseli oluşturuluyor...');
-await generateCharacterImage(results.suspect.suspect, imageOutPath);
+await generateCharacterImage(suspect, imageOutPath);
 
-results.final.game_data.character_image = `./assets/characters/${caseId}.png`;
+const finalOutput = {
+  game_data: {
+    title: caseCtx.title,
+    suspect: {
+      name: suspect.name,
+      role: suspect.role,
+      profile: suspect.profile,
+    },
+    system_config: {
+      initial_fear_bar: 20,
+      max_fear_bar: 100,
+      fear_bar_description: extras.fear_bar_description,
+      heart_rate_baseline: extras.heart_rate_baseline,
+      gsr_baseline: extras.gsr_baseline,
+    },
+    context: caseCtx.context,
+    true_verdict: suspect.true_verdict,
+    verdict_truth_text: extras.verdict_truth_text,
+    dossier: suspect.dossier,
+    start_node: nodes.start_node,
+    nodes: nodes.nodes,
+    character_image: `./assets/characters/${caseId}.png`,
+  },
+};
 
 const outPath = resolve('dialogs', `${caseId}.json`);
-writeFileSync(outPath, JSON.stringify(results.final, null, 2));
+writeFileSync(outPath, JSON.stringify(finalOutput, null, 2));
 console.log(`yazildi: ${outPath}`);

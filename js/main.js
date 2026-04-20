@@ -14,6 +14,7 @@ import { registerDossierScene } from './scenes/dossierScene.js';
 import { registerPlayScene } from './scenes/playScene.js';
 import { registerResultScene } from './scenes/resultScene.js';
 import { registerVerdictScene } from './scenes/verdictScene.js';
+import { registerBadEndScene } from './scenes/badEndScene.js';
 import { startBootAmbient } from './interrogationAudio.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from './ui/theme.js';
 
@@ -66,6 +67,7 @@ registerDossierScene(canvas, ctx);
 registerPlayScene(canvas, ctx);
 registerVerdictScene(canvas, ctx);
 registerResultScene(canvas, ctx);
+registerBadEndScene(canvas, ctx);
 
 function update(dt) {
   scanTime += dt;

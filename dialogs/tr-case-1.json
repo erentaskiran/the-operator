@@ -1,267 +1,580 @@
 {
   "game_data": {
-    "title": "Selin Acar Ölüm Davası: Tıbbi İhmal mi, Kaza mı?",
+    "title": "Çankaya Konut Projesi — İşçi Ölümü Davası",
     "suspect": {
-      "name": "Tayfun Keleş",
-      "role": "Plastik Cerrah / Özel Klinik Sahibi",
-      "profile": "Ankara'nın orta sınıf bir ailesinde yetişen Keleş, İstanbul Üniversitesi Tıp Fakültesi'ni birincilikle tamamlamış, ardından uzmanlığını Münih'te yapmıştır. Türkiye'ye dönüşünde Nişantaşı'nda kurduğu klinik, on beş yılda ünlü isimlerin tercihi hâline gelmiştir. Meslektaşları onu titiz ve soğukkanlı olarak tanımlar; ancak yakın çevresi son iki yılda belirgin bir sinirlilik ve içe kapanma fark etmiştir. Kliniğin muhasebe kayıtlarında gerekçelendirilmemiş nakit çekimler dikkat çekmektedir. Bununla birlikte yerel bir yetimhaneye düzenli bağış yapar, yeğeninin tıp eğitim masraflarını tamamen kendi üstlenmiştir."
+      "name": "Kerem Atılgan",
+      "role": "İnşaat Müteahhidi",
+      "profile": "Konya kökenli, ilk gençliğini babasının küçük taşeronluk şirketinde çalışarak geçiren Kerem, 38 yaşında orta ölçekli bir müteahhitlik firması olan Atılgan Yapı'nın sahibidir. Yirmi yıl önce sıfırdan başlayarak Ankara çevresindeki konut projelerinde kendine sağlam bir yer edinmiş; belediyelerle ve özel sektörle sürdürdüğü uzun vadeli ilişkileriyle tanınır. Dışarıdan bakıldığında sabırlı, hesapçı ve kendi ekibine bağlı biri izlenimini verir; nadiren ses yükseltir, krizleri sessizce yönetmeyi tercih eder. Ancak yakın çevresindeki birkaç kişi onun bazı hesapları kapatmayı ne kadar geciktirdiğini ve belirli isimler etrafında garip bir sessizlik yarattığını fark etmiştir. Öte yandan şantiyedeki en genç işçinin düğünü için kendi cebinden para verdiği, kimseye söylemediği de bilinmektedir."
     },
     "system_config": {
       "initial_fear_bar": 20,
       "max_fear_bar": 100,
-      "fear_bar_description": "Korku barı, şüphelinin sorgu boyunca hissettiği psikolojik ve duygusal baskının birikimli ölçümüdür. Değer yükseldikçe şüphelinin savunma mekanizmaları çözülmeye, biyometrik sinyalleri ise gerçeği sızdırmaya başlar. Düşük değer şüphelinin kontrolü elinde tuttuğunu; yüksek değer ise kırılma noktasına yaklaşıldığını gösterir.",
+      "fear_bar_description": "Sorgu boyunca suçlunun korku barı, Hakan Doğan'ın adı ve aile/eş temaları anıldığında keskin şekilde yükselir; mekanizma testlerinde ve doğrudan güvenlik suçlamaları sırasında düşer. Bu dalgalanma, suçlunun iki farklı kaynaktan gelen stresin altında olduğunu gösterir.",
       "heart_rate_baseline": 76,
-      "gsr_baseline": 7
+      "gsr_baseline": 8
     },
-    "context": "42 yaşındaki Selin Acar, Dr. Tayfun Keleş'in Nişantaşı'ndaki özel kliniğinde geçirdiği estetik operasyonun ardından yoğun bakıma alınmış ve 18 saat içinde hayatını kaybetmiştir. Otopsi raporunda ölüm nedeni olarak intraoperatif damar hasarına bağlı kontrolsüz iç kanama gösterilmiştir. Acar'ın ailesi, ölümün cerrahi ihmalden kaynaklandığını öne sürerek Keleş hakkında taksirle öldürme suçlamasıyla savcılığa başvurmuştur. Savcılık, Keleş'in operasyon öncesinde bilişsel ya da fiziksel kapasitesini etkileyebilecek herhangi bir madde alıp almadığını ve hastanın şikâyetlerini bildirmesinin ardından müdahaleyi bilerek riskli koşullarda sürdürüp sürdürmediğini araştırmaktadır. Keleş ise komplikasyonun anatomik bir varyasyondan kaynaklandığını, kendisinin standart tüm protokollere uyduğunu ve ölümün öngörülemez bir tıbbi kaza olduğunu savunmaktadır.",
-    "true_verdict": "GUILTY",
-    "verdict_truth_text": "Tayfun Keleş, 14 Mart sabahı kronik ağrı bahanesiyle kendisine yüksek doz opioid reçete etmiş ve Selin Acar'ın operasyonuna bu maddenin etkisi altında girmiştir. El titremesi ve konsantrasyon kaybıyla yürütülen ameliyatta kritik bir damarı yanlış keserek hastanın kontrolsüz iç kanamayla hayatını kaybetmesine doğrudan neden olmuştur. İlgili reçeteleri klinik sistemine hiç kaydetmemiş, dijital izleri silmiş ve Acar'ın TTB şikâyetinin yarattığı varoluşsal baskı altında gerçeği sistematik biçimde örtbas etmeye çalışmıştır.",
+    "context": "31 Mart 2023'te Ankara Çankaya'daki Atılgan Yapı'ya ait bir konut inşaatında çatı iskeletinden düşen işçi Mehmet Yıldırım hayatını kaybetti. Savcılık, güvenlik denetim kayıtlarının tahrif edildiğini, koruyucu ekipman eksikliklerinin proje başında tespit edilmesine rağmen görmezden gelindiğini ve Kerem Atılgan'ın maliyeti düşürmek için şantiye şefi Hakan Doğan'a baskı yaptığını öne sürüyor. Kerem'in avukatı, şantiye yönetimi ve günlük karar alma mekanizmasında Kerem'in minimal bir rolü olduğunu ve tam sorumluluk Hakan Doğan'a ait olduğunu iddia ediyor. Savcılık, Kerem'in elindeki güvenlik denetim belgelerini neden açık etmediğini, gerçek sorumluyu neden koruyup korumadığını ve bunun ihmali derecesinde bir suç oluşturup oluşturmadığını araştırıyor.",
+    "true_verdict": "NOT_GUILTY",
+    "verdict_truth_text": "Kerem Atılgan, Çankaya Projesinde meydana gelen işçi ölümüne doğrudan sebep olmamıştır. Günlük güvenlik kararları ve uygulamalar Hakan Doğan tarafından alınmıştır. Kerem, Hakan'ı doğrudan suçlayacak belgeleri savcılıktan saklıyor çünkü bu belgeler hem kendi denetim ihmalini hem de Hakan'ın eşi Selin ile yaşadığı gizli ilişkiyi ortaya çıkaracak; bu yüzden Hakan'ı tamamen mahvetmek istemiyorum. Suçlu olan İHMALDİR, ancak suçlamanın konusu olan ölüm mekanizmasında sorumlu değildir.",
     "dossier": {
-      "age": 48,
-      "identity_summary": "Nişantaşı merkezli özel kliniğin kurucusu ve baş cerrahı; estetik cerrahi alanında on beş yıllık deneyime sahip yüksek profilli bir isim. Son dönemde hem mesleki hem kişisel alanda belirgin baskı altında olduğu gözlemlenmektedir.",
+      "age": 42,
+      "identity_summary": "Atılgan Yapı'nın kurucusu ve tek ortaklı sahibi; Ankara ve çevresinde on yılı aşkın süredir faaliyet gösteren orta ölçekli bir müteahhitlik firması. Kamu ihalelerinde sicili temiz, ancak mali kayıtlarında dönemsel gecikme ve kapatılmamış avans kalemleri dikkat çekiyor.",
       "family": [
         {
-          "relation": "Eş (ayrı yaşıyor)",
-          "name": "Derya Keleş",
-          "note": "İki yıldır süren boşanma süreci mali anlaşmazlık nedeniyle tıkanmış durumda; Keleş üzerinde ciddi finansal ve duygusal baskı kaynağı. EMPATHIC taktikte kırılganlık noktası olarak kullanılabilir."
+          "relation": "Eş",
+          "name": "Nurcan Atılgan",
+          "note": "Evlilik resmî olarak sürmekte; ancak çift ayrı yaşıyor, boşanma süreci henüz başlatılmamış. Kerem'in bu konudaki sessizliği ikincil sırla doğrudan bağlantılı olabilir — sorgu sırasında 'eş' kelimesi geçtiğinde biyometrik yükselme beklenir."
         },
         {
-          "relation": "Yeğen",
-          "name": "Bora Arslan",
-          "note": "Keleş'in tüm eğitim masraflarını üstlendiği tıp öğrencisi. Keleş'in çöküşü hâlinde doğrudan etkilenecek olan bu figür, EMPATHIC baskıda güçlü bir koz niteliği taşır."
+          "relation": "Baba",
+          "name": "Rıfat Atılgan",
+          "note": "Emekli taşeron, hafif demans tanısı var, bakım evinde. Kerem aylık bakım masrafını tek başına karşılıyor; mali baskı için önemli bir leverage noktası."
         },
         {
-          "relation": "Abla",
-          "name": "Aslı Arslan",
-          "note": "Kliniğe küçük bir ortaklıkla dahil olan kişi; açıklanamayan nakit çekimlerden kısmen haberdar olabilir. Yanlış bir soruyla kardeşini koruma refleksine girerek anahtar bilgiyi örteleyebilir."
+          "relation": "Şantiye Şefi (yakın çalışma arkadaşı)",
+          "name": "Hakan Doğan",
+          "note": "On iki yıllık çalışma arkadaşı; davada tanık sıfatıyla dinleniyor. Kerem'in onu neden koruyup korumadığı sorusu, birincil ve ikincil sırların kesiştiği kritik basınç noktası."
         }
       ],
       "medical": [
         {
-          "condition": "Kontrol altında hipertansiyon — bisoprolol 5 mg/gün (beta-bloker)",
-          "polygraph_effect": "Bisoprolol sempatik kalp atışı tepkisini belirgin biçimde bastırır; stres ya da yalan sırasında beklenen nabız artışı gözlemlenmeyebilir. Kalp atışı ipuçlarına tek başına güvenilmemeli."
+          "condition": "Hipertansiyon — günlük bisoprolol 5 mg kullanımı (son iki yıldır)",
+          "polygraph_effect": "Beta-bloker kalp atışı tepkisini belirgin biçimde baskılar; stres anlarında beklenen HR artışı gerçekleşmez veya çok küçük kalır. Nabız kanalına güvenmemeli; HR düşük çıksa bile suçluluk kanıtı sayılmamalı."
         },
         {
-          "condition": "Kronik migren — akut atak dönemlerinde sumatriptan kullanımı",
-          "polygraph_effect": "Sumatriptan doğrudan biyometrik baskı yaratmaz; ancak aktif migren atağında nefes örüntüsünde tutarsızlık gözlemlenebilir. Sorgu öncesinde atak bildirirse solunum okumaları güvenilirliğini kaybeder."
+          "condition": "Kronik migren — özellikle yüksek stres dönemlerinde. İlaç kullanımı yok (painkiller bağımlılığı korkusu). Sorgu ortamında tetiklenebilir.",
+          "polygraph_effect": "Doğrudan sayısal biyometrik etkisi yok; ancak uzun sorgularda dikkat dağınıklığı ve cevap gecikmesi gözlemlenebilir, bu yanlış okumaya neden olabilir."
         }
       ],
       "habits": [
         {
-          "habit": "Yüksek kafein tüketimi — günde 5-6 fincan espresso, zaman zaman enerji içeceği",
-          "polygraph_effect": "GSR bazal seviyesini yükseltir ve ter bezlerini daha tepkisel kılar; nötr sorularda bile yüksek GSR ölçümü alınabilir. Tüm GSR sıçramalarının bağlamı dikkatle değerlendirilmeli."
+          "habit": "Günde 4-5 fincan Türk kahvesi, genellikle öğleden sonra da devam eder",
+          "polygraph_effect": "Yüksek kafein GSR baseline'ını yükseltir ve ter tepki sensitivitesini artırır; dinlenme halinde bile GSR okumaları normalin üzerinde çıkabilir. GSR'deki yüksek baseline tek başına suç kanıtı sayılmamalı."
         },
         {
-          "habit": "Reçeteli uyku ilacı — zolpidem, düzensiz aralıklarla",
-          "polygraph_effect": "Düşük dozda kalıntı etkisi sempatik yanıtı hafifçe yumuşatabilir; bisoprolol ile birleştiğinde kalp atışı baskılanması kümülatif hâle gelir."
+          "habit": "Uyku düzensizliği — çoğu gece 4-5 saat uyuyor, inşaat projelerinin yoğunluğuna bağlıyor",
+          "polygraph_effect": "Kronik uyku eksikliği sempatik sinir sistemi aktivasyonunu artırır; nefes dalgasında hafif baseline instabilite ve GSR'de ek duyarlılık yaratır."
         }
       ],
       "priors": [
-        "2019 — Bir hasta komplikasyon iddiasıyla dava açmış; dava mahkeme dışında gizli tazminat anlaşmasıyla sonuçlanmıştır.",
-        "2022 — Sağlık Bakanlığı denetiminde kliniğin sterilizasyon kayıtlarında eksiklik tespit edilmiş, yazılı uyarı cezası uygulanmıştır.",
-        "Son altı ayda klinik banka hesabından toplam 340.000 TL tutarında nakit çekim yapılmıştır; gerekçe belgelenmemiştir."
+        "2019: Bir taşeron firmayla sözleşme ihlali davası — mahkeme dışı uzlaşmayla sonuçlandı, detaylar kapalı.",
+        "2021: Vergi dairesiyle KDV gecikme cezası; ödendi, suç kaydına yansımadı.",
+        "Şantiyelerinde daha önce kayıt altına alınmış iki iş kazası (hafif yaralanma); her ikisinde de güvenlik ihlali tutanağı düzenlendi, idari para cezasıyla kapatıldı."
       ],
       "pressure_points": [
-        "Yeğen ve abla bağı: EMPATHIC taktikte aile yükümlülükleri vurgulanırsa savunma refleksleri zayıflayabilir; GSR ve solunum tepkisi belirginleşir.",
-        "2019 gizli tazminat anlaşması: EVIDENCE taktiğiyle bu dava gündeme getirilirse suçluluk kaygısı tırmanır ve anlık GSR sıçraması güvenilir sinyal üretebilir.",
-        "Mesleki kimlik baskısı: Cerrahî yetkinliğine açıkça ya da dolaylı biçimde itiraz edilirse aşırı savunmacı tepki verebilir; bu tepki biyometrik okumaları karmaşıklaştırır, ancak söylem tutarsızlıklarını gün yüzüne çıkarabilir."
+        "Hakan Doğan'ın adı doğrudan anıldığında — BOTH BİRİNCİL ve İKİNCİL sır tetiklenir; HR ilaca rağmen hafifçe yükselir, GSR ve nefes instabilitesi belirgin biçimde artar. Oyuncu bu tepkinin iki farklı kaynağı olabileceğini göz önünde bulundurmalı.",
+        "Eşi Nurcan veya 'aile' ifadeleri geçtiğinde — İKİNCİL sır tetiklenir, yalnızca GSR güçlü şekilde yükselir, HR bisoprolol nedeniyle baskılı kalır. TRAP veya EMPATİK taktik bu noktada etkili olabilir.",
+        "Güvenlik denetim belgelerine veya 'gizlediğiniz bir şey var mı' sorusuna — BİRİNCİL sır tetiklenir; nefes instabilitesi ve GSR birlikte yükselir, HR tepkisi ilaç nedeniyle sönük kalır. EVIDENCE taktiği burada baskı yaratır ama doğrudan suçluluk kanıtı vermez."
       ],
       "modifiers": {
-        "heart_rate_suppression": 0.58,
-        "heart_rate_baseline_shift": 4,
-        "gsr_sensitivity": 1.42,
-        "gsr_baseline_shift": 2.5,
-        "breathing_instability": 0.12
+        "heart_rate_suppression": 0.48,
+        "heart_rate_baseline_shift": 6,
+        "gsr_sensitivity": 1.45,
+        "gsr_baseline_shift": 3,
+        "breathing_instability": 0.18
       }
     },
     "start_node": "node_01_intro",
     "nodes": {
       "node_01_intro": {
-        "theme": "Açılış: Kaleyi Yoklamak",
-        "description": "Tayfun Keleş avukatının önerileri doğrultusunda hazırlıklı görünüyor; soğukkanlı, düzenli bir duruş sergiliyor. Operasyon günü rutinini sormak ona anlatı zemini sunacak; şikâyet meselesini erkenden açmak ise duygusal topografyayı ortaya çıkarabilir.",
+        "theme": "Sorgu Başlangıcı",
+        "description": "Kerem Atılgan gri takım elbisesiyle masanın karşısında oturuyor, ellerini sakince dizlerine koymuş. Önüne konulan kahve fincanına dokunmadı; buhar yavaş yavaş havaya karışıyor.",
         "is_end_state": false,
         "choices": [
           {
             "type": "ANALYTICAL",
-            "question": "Dr. Keleş, operasyon günü sabahki rutininizi adım adım anlatır mısınız? Hangi saatte kliniğe geldiniz, operasyon öncesi hangi hazırlıkları yaptınız?",
-            "answer": "Sabah sekizde klinikeydim. Standart hazırlık protokolünü uyguladım: hasta dosyasını inceledim, ameliyathane ekibiyle kısa bir brifing yaptım. Her şey olağan bir başlangıçtı.",
+            "question": "Bay Atılgan, 31 Mart sabahı, saat on ile on bir arası tam olarak neredeydiniz? Ajandanızla başlayalım.",
+            "answer": "O sabah Çankaya'da değildim. Kızılay'daki ofiste bir banka yetkilisiyle görüşmem vardı, sonrasında babamın bakımevine geçtim. Ajandamı getirdim, dilerseniz gösterebilirim.",
             "mechanics": {
               "heart_rate": "STABLE",
-              "breathing": "CALM",
-              "gsr": "INCREASE",
-              "cctv_visual": "CONTROLLED_NOD",
-              "korku_bari_delta": 5,
-              "gameplay_note": "KISMEN DOĞRU: Cevap genel hatlarıyla tutarlı görünüyor ama klinik sistem kayıtlarıyla çelişen bir saat boşluğu var — giriş kaydı 07:14'te kesilmiş. GSR bazal yüksek; kafein mi başka bir etken mi henüz ayırt edilemiyor."
+              "breathing": "BASELINE",
+              "gsr": "STABLE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 4,
+              "gameplay_note": "TEMEL OKUMA: Zaman çizelgesi sorusu temiz, sinyal düz. GSR baseline kafein yüzünden zaten yüksek; bunu suç belirtisi olarak okuma."
             },
-            "next_node": "node_02_operation_day"
+            "next_node": "node_02_timeline"
           },
           {
             "type": "EMPATHIC",
-            "question": "Bu sürecin sizin için de son derece ağır olduğunu tahmin ediyorum. Selin Acar nasıl bir hastaydı, nasıl biriydi?",
-            "answer": "Titiz biriydi. Beklentilerini net biçimde ifade ederdi. Aramızdaki ilişki tamamen profesyoneldi. Ölümü... trajik.",
+            "question": "Başlamadan önce şunu bilmenizi istiyorum: burada amacım kimseyi yıpratmak değil. Bir adam öldü. O gün size nasıl anlatıldı?",
+            "answer": "Saat on bir civarında Hakan aradı. Önce 'bir kaza oldu' dedi, sonra... sonra adını söyledi. Mehmet. Yirmi dört yaşındaydı. O an ne yapacağımı bilemedim, sadece arabaya bindim.",
             "mechanics": {
               "heart_rate": "STABLE",
               "breathing": "DEEP",
-              "gsr": "STABLE",
+              "gsr": "INCREASE",
               "cctv_visual": "LOOK_DOWN",
-              "korku_bari_delta": 8,
-              "gameplay_note": "İLERLEME: Empati kapısı aralandı. 'Trajik' kelimesi dikkat çekici — 'üzücü' ya da 'yıkıcı' değil. Mesafeli kelime seçimi, bağı olduğundan zayıf gösterme çabası olabilir."
+              "korku_bari_delta": 6,
+              "gameplay_note": "DOĞRU HAMLE: Empatik açılış savunma duvarını indirdi; üzüntü işaretleri gerçek duruyor."
             },
-            "next_node": "node_03_complaint"
+            "next_node": "node_02_timeline"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Maliyeti düşürmek için bir işçinin hayatını ucuza sattınız. Bunun farkında mısınız?",
+            "answer": "Bu cümleyi kabul etmiyorum. Ben hiçbir zaman 'güvenliği kıs' demedim, kimseye böyle bir şey söylemedim. Sözlerinize dikkat edin.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "SHALLOW",
+              "gsr": "SPIKE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -6,
+              "gameplay_note": "YANLIŞ HAMLE: Erken saldırı şüpheliyi savunmaya kilitledi; sonraki dugumlerde kapıyı zorlayacaksın."
+            },
+            "next_node": "node_03_opening_press"
           }
         ]
       },
-      "node_02_operation_day": {
-        "theme": "Operasyon Sabahı: Saat Boşluğu",
-        "description": "Keleş sabah rutinini anlattı; ancak klinik ağ kayıtları 07:14 ile 08:30 arasında sistem erişiminin kesildiğini gösteriyor. Bu aralık, silinmiş reçete kalıntılarının zaman damgasıyla örtüşüyor.",
+      "node_02_timeline": {
+        "theme": "Gün Haritası",
+        "description": "Kerem deri çantasından küçük bir ajanda çıkarıp parmağıyla 31 Mart sayfasını gösteriyor. Her randevunun yanında kısa notlar var; yazı düzenli, sayfa eskimiş.",
         "is_end_state": false,
         "choices": [
           {
             "type": "FORENSIC_CALL_OUT",
-            "question": "Klinik ağ kayıtları saat 07:14'te oturumunuzun kapandığını gösteriyor. Klinikte olduğunuzu söylüyorsunuz ama bu aralıkta sistemlere hiç erişmemişsiniz. O saatlerde tam olarak neredeydiniz?",
-            "answer": "Bilgisayar başında durmak zorunda değilim her zaman. Ameliyathaneyi fiziksel olarak denetliyordum — ekipmanlara bakıyordum, asistanlarla konuşuyordum. Bunların tümünün kayıtta olması gerekmez.",
+            "question": "Ajandada on bir yirmide 'H.D. aradı' yazıyor. H.D., Hakan Doğan demek sanırım. O gün sizinle iletişim kuran tek kişi o muydu?",
+            "answer": "Evet, Hakan. Saha müdürüm. O sabah ilk haber ondan geldi... genelde ilk haber her zaman ondan gelir.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": 9,
+              "gameplay_note": "KRİTİK İŞARET: 'Hakan' adı anıldığında GSR patlıyor, HR ilaca rağmen yükseliyor. Bu tepki iki farklı kaynaktan da geliyor olabilir — acele yorumlama."
+            },
+            "next_node": "node_05_hakan_relationship"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "O güne kadar Çankaya projesini ne sıklıkta şahsen denetlediniz?",
+            "answer": "Açık konuşayım... haftada bir, bazen iki hafta bir. Projeyi Hakan'a bırakmıştım. Belki bu benim hatam, ama her şantiyeye gidecek vaktim olmuyor, on iki projem var şu an.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "BASELINE",
+              "gsr": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 7,
+              "gameplay_note": "İLERLEME: Kısmi itiraf — az denetlediğini kabul ediyor. Sinyaller ılımlı; doğrudan suç değil, ihmal beyanı."
+            },
+            "next_node": "node_04_documents"
+          },
+          {
+            "type": "GULLIBLE",
+            "question": "Anlıyorum, bakımevi ziyareti önemli. Başka bir konuya geçelim.",
+            "answer": "Teşekkür ederim. Babamla ilgili konuşmak benim için... kolay değil. Diğer sorulara geçebiliriz.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "BASELINE",
+              "gsr": "DECREASE",
+              "cctv_visual": "RELIEVED_EXHALE",
+              "korku_bari_delta": -8,
+              "gameplay_note": "YANLIŞ HAMLE: Açılışı erkenden bıraktın, şüpheli rahatladı. Alibi detayını baskı altında sınamadın."
+            },
+            "next_node": "node_04_documents"
+          }
+        ]
+      },
+      "node_03_opening_press": {
+        "theme": "Savunma Duvari",
+        "description": "Kerem hafifçe geri yaslandı, ceketinin düğmesini çözdü ve kollarını göğsünde kavuşturdu. Sesi daha alçak, daha ölçülü çıkıyor şimdi.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EVIDENCE",
+            "question": "O hâlde şuna bakalım. Güvenlik denetim tutanaklarında sizin imzanız var — ama şantiyede olmadığınız günlerde bile tarih atılmış. Bunu nasıl açıklıyorsunuz?",
+            "answer": "Bazı belgeler şantiyede hazırlanıp daha sonra ofiste imzalanır. Bu, standart bir işleyiş. Tarihlerin sahte atıldığını iddia ediyorsanız, bunu belgelemeniz gerekir.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "cctv_visual": "HAND_PINCH_UNDER_TABLE",
+              "korku_bari_delta": 5,
+              "gameplay_note": "İLERLEME: Belgeyi kabul ediyor ama imzaların içeriğinden uzak duruyor. Masa altı el sıkması gözden kaçırma."
+            },
+            "next_node": "node_04_documents"
+          },
+          {
+            "type": "ANALYTICAL",
+            "question": "Size yüklenmek istemiyorum. Sadece zinciri anlamak istiyorum. Şantiyede günlük kararları kim alıyordu?",
+            "answer": "Hakan Doğan alıyordu. Günlük ekip yönetimi, malzeme siparişi, vardiya dağılımı... hepsi onun yetkisindeydi. Ben genel koordinatördüm.",
             "mechanics": {
               "heart_rate": "RISE",
               "breathing": "SHALLOW",
               "gsr": "SURGE",
               "cctv_visual": "JAW_TIGHTEN",
-              "korku_bari_delta": 20,
-              "gameplay_note": "YALAN SİNYALİ: GSR belirgin artış — kafein bazalinin çok üstünde. Beta-bloker HR'ı kısmen bastırıyor ama nefes sığlaştı. Açıklama genel ve doğrulanamaz; saat boşluğunu kapatmıyor."
+              "korku_bari_delta": 8,
+              "gameplay_note": "KRİTİK: Hakan'ın adı geçti — GSR patladı, HR ilaca rağmen yükseldi. Bu sinyali aceleyle suç kanıtı sayma."
             },
-            "next_node": "node_04_records"
-          },
-          {
-            "type": "STRATEGIC",
-            "question": "Anatomik varyasyon iddiasını operasyon öncesi görüntüleme raporlarında belgelenmiş olarak gördünüz mü?",
-            "answer": "Görüntüleme raporları standart aralıklar içindeydi. Vasküler varyasyonlar her zaman görüntülemeyle öngörülemez; bu cerrahi bir gerçek, herhangi bir uzman bunu doğrular.",
-            "mechanics": {
-              "heart_rate": "STABLE",
-              "breathing": "CALM",
-              "gsr": "INCREASE",
-              "cctv_visual": "CONTROLLED_NOD",
-              "korku_bari_delta": 3,
-              "gameplay_note": "YANLIŞ HAMLE: Teknik olarak savunulabilir bir cevap aldınız. Sinyaller düşük ve karışık. Gerçek sorulardan uzaklaştınız — bu hat sizi şikâyet meselesine götürecek ama asıl kanıt zincirini zayıflatıyor."
-            },
-            "next_node": "node_03_complaint"
+            "next_node": "node_05_hakan_relationship"
           }
         ]
       },
-      "node_03_complaint": {
-        "theme": "Dilekçe: Varoluşsal Tehdit",
-        "description": "Selin Acar'ın TTB şikâyeti Keleş'in kariyerini bitirebilecek tek bir belgeydi. Bu meselenin ne zaman ve nasıl gündeme getirildiği, Keleş'in motivasyonunu açığa çıkarabilir ya da tamamen kapatabilir.",
+      "node_04_documents": {
+        "theme": "Denetim Klasörü",
+        "description": "Masanın üzerine kırmızı kapaklı bir klasör konuluyor. Kerem klasöre bir saniye baktı, sonra bakışını geri çekti. Elini kahve fincanına uzattı ama fincana dokunmadı.",
         "is_end_state": false,
         "choices": [
           {
-            "type": "EVIDENCE",
-            "question": "Selin Acar'ın size Kasım ayında gönderdiği mesaj elimizde: 'TTB başvurusunu bu hafta yapacağım.' Bu mesajı alınca ne hissettiniz?",
-            "answer": "O mesajı almış olmam... bunu bir tehdit olarak değerlendirdiğim anlamına gelmez. Her hastanın şikâyet hakkı var. Ben her zaman hukuki sürece güvenirim.",
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Şu tutanakta, 18 Mart'ta yapıldığı yazılan güvenlik denetiminin imza sayfasında sizin adınız var. Ama 18 Mart'ta Konya'da bir düğündeydiniz — uçuş kayıtları elimizde. Bu imzayı siz atmadınız, değil mi?",
+            "answer": "O imzayı... o imzayı Hakan getirdi, ofiste imzaladım. Tarih üzerine bakmadım. Hata bende, kabul ediyorum. Ama bu bir güvenlik ihmali değil, evrak takibi eksikliği.",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "UNEVEN",
+              "gsr": "SURGE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 11,
+              "gameplay_note": "İLERLEME: Evrak ihmalini kabul etti. Nefes dengesizliği ve GSR birlikte yükseldi; HR ilaç yüzünden bastırılı kaldı."
+            },
+            "next_node": "node_06_mechanism_test"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Bu klasördeki işleyişi sizden dinlemek istiyorum. Kendi sözlerinizle — nasıl işledi?",
+            "answer": "Genelde... Hakan saha müdürü olarak denetim tutanaklarını tutar. Ayın sonunda dosyayı getirir, ben imzalarım. Teker teker okuduğumu söyleyemem. Projelerimiz çok, zaman yok. Güvendim.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 9,
+              "gameplay_note": "İLERLEME: Yumuşak çerçeveleme itirafı kolaylaştırdı. Düşük HR ve sakin nefes — suçluluk yerine utanç profili."
+            },
+            "next_node": "node_06_mechanism_test"
+          },
+          {
+            "type": "STRATEGIC",
+            "question": "Belgeler üzerinde daha sonra, avukatınız eşliğinde çalışabiliriz. Önce başka bir şeye dönelim.",
+            "answer": "İyi olur. Ben de sakin kafayla bakmak isterim. Teşekkür ederim.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "BASELINE",
+              "gsr": "DECREASE",
+              "cctv_visual": "RELIEVED_EXHALE",
+              "korku_bari_delta": -10,
+              "gameplay_note": "YANLIŞ HAMLE: Tam kanıt karşısında geri çekildin; en güçlü kartını tükettin. Şüpheli zemini topluyor."
+            },
+            "next_node": "node_05_hakan_relationship"
+          }
+        ]
+      },
+      "node_05_hakan_relationship": {
+        "theme": "Hakan Doğan",
+        "description": "\"Hakan Doğan\" adı söylendiği anda Kerem'in çenesi bir an kasıldı, sonra gevşedi. Sağ eli masanın altına kaydı. Gözleri sizden ayrılmadı ama göz kapaklarının hareketi bir kaç saniye hızlandı.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "TRAP",
+            "question": "On iki yıllık saha müdürünüz. Onun hakkında bize söylemek isteyip de söylemediğiniz bir şey var mı, Bay Atılgan?",
+            "answer": "Hakan benim... iş arkadaşım. Çok yakın. Ama onun hakkında size söylemem gereken bir şey yok. Yoksa söylerdim zaten.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "MAX",
+              "cctv_visual": "HAND_PINCH_UNDER_TABLE",
+              "korku_bari_delta": 13,
+              "gameplay_note": "YALAN SİNYALİ: GSR tavana vurdu, nefesini tuttu. Ama HR ilaç altında minimal. Bu tepki iki kaynaklı olabilir; daha fazla veri gerek."
+            },
+            "next_node": "node_06_mechanism_test"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Tek bir soru: o gün şantiyede en yüksek yetkili kimdi?",
+            "answer": "Hakan Doğan. Saha müdürü olarak ben orada olmadığım her an — ki çoğu an değildim — yetkili oydu. Günlük kararlar onundu. Bunu resmi olarak da ifade edebilirim.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "BASELINE",
+              "gsr": "INCREASE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": 10,
+              "gameplay_note": "DOĞRU HAMLE: Dar hedefli soru net bir yetki zinciri çıkardı. HR sakin — olgusal bir açıklama, saklama değil."
+            },
+            "next_node": "node_06_mechanism_test"
+          },
+          {
+            "type": "MORAL_PRESSURE",
+            "question": "Bir arkadaşı korumak için bir işçinin hayatını pazarlık masasına koydunuz mu?",
+            "answer": "Bu soru... bu soru haksız. Ben hiç kimsenin hayatını pazarlık masasına koymadım. Hakan'ı da kimseye satmadım, Mehmet'i de kimseye harcamadım. Bu cümleyi kurmanıza müsaade etmiyorum.",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "MAX",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -4,
+              "gameplay_note": "KARIŞIK SİNYAL: Ahlaki baskı tepkiyi ikiye böldü. GSR ve nefes patladı ama cevap içeriği savunmacı ve net. Yanlış yola girmek kolay."
+            },
+            "next_node": "node_06_mechanism_test"
+          }
+        ]
+      },
+      "node_06_mechanism_test": {
+        "theme": "Mekanizma Testi",
+        "description": "Önünüze proje planları ve güvenlik protokolleri serildi. Kerem kağıtlara bakıyor, parmağıyla birkaç noktaya dokunmadan yaklaşıyor. Düşünürken alnını kazıyor.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "ANALYTICAL",
+            "question": "Bize adım adım anlatın: çatı iskeletinde yürürlükteki düşüş koruma sistemi nasıl kuruluyordu? Halat hangi noktaya bağlanır, günlük kontrolü kim imzalar, saha mühendisi hangi aşamada devreye girer?",
+            "answer": "Şey... standart bir düşüş koruma sistemi vardı. Halatlar... genellikle ana taşıyıcı kolona bağlanır. Sabah kontrolleri... saha mühendisi yapar. Ama ben... teknik detayların hepsine hâkim değilim, açıkçası. Hangi marka ekipman kullanıldığını... onu bile bilmiyorum. Saha mühendisimiz daha iyi anlatırdı.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "BASELINE",
+              "gsr": "STABLE",
+              "cctv_visual": "EMPTY_STARE",
+              "korku_bari_delta": -3,
+              "gameplay_note": "KRİTİK OKUMA: Mekanizma sorusunda sinyaller DÜŞTÜ, korku barı geriledi. Suçluluk yerine bilgisizlik profili — ihmal olabilir ama birinci el fail değil. Bu dugum hukum için ASIL delildir."
+            },
+            "next_node": "node_07_followup"
+          },
+          {
+            "type": "SYSTEMIC_READ",
+            "question": "Son bir yıl içinde bu şantiyede bizzat kaç gün bulundunuz? Takvim üzerinde gösterebilir misiniz?",
+            "answer": "Bizzat... sanırım yedi, sekiz gün. Belki dokuz. Çoğu yarım saatlik ziyaretti. İtiraf edeyim, bu az. Çok az. Ama Hakan'a güveniyordum. Her şeyi ona bırakmıştım.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "LOOK_DOWN",
+              "korku_bari_delta": 7,
+              "gameplay_note": "İLERLEME: Sistemsel bakış ihmali açığa çıkardı. Utanç sinyali var ama suç-mekanizması sinyali yok — kilit ayrım."
+            },
+            "next_node": "node_07_followup"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Dolanmayı bırakın. O sistemin nasıl çalıştığını biliyorsunuz ve bilerek göz yumdunuz. Öyle değil mi?",
+            "answer": "Hayır! Ben o sistemi bilmiyorum, detaylarını bilmiyorum ve göz yummadım. Siz beni bildiklerimden değil, bilmediklerimden suçluyorsunuz. Avukatımı arıyorum.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "SPIKE",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": -9,
+              "gameplay_note": "YANLIŞ HAMLE: Düşük sinyalli bir anda agresiflik şüpheliyi avukat eşiğine götürdü. Zorlu bir dal açıldı."
+            },
+            "next_node": "node_08_reframe_attempt"
+          }
+        ]
+      },
+      "node_07_followup": {
+        "theme": "Takip Sömürüsü",
+        "description": "Dosyadan bir sayfa daha çıkarıp Kerem'in önüne bıraktınız: firma tüzüğünün bir maddesi altı çizili. Kerem sayfayı okudu, kaşları hafifçe çatıldı, başını kaldırmadı.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Az önce 'teknik detaylara hâkim değilim' dediniz. Ama firma tüzüğünüzün yedinci maddesinde — sizin imzanızla — 'tüm saha güvenlik sözleşmelerinin son onayı genel müdürdedir' yazıyor. Hangi versiyonu kabul edelim?",
+            "answer": "O imzalar... şekilsel olmuş. Hakan dosyayı getiriyor, ben imzalıyorum. Detayları konuşmuyoruz. Bu... bu bir ihmal olabilir, kabul ediyorum. Ama kasıt değil. Maliyet kısmak için değil. Sadece... aşırı yüklenme.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 12,
+              "gameplay_note": "DOĞRU HAMLE: Yazılı tutarsızlık üzerine baskı ikinci en yüksek kümenin kapısını açtı. İhmal kabulü var, suç-mekanizması itirafı yok."
+            },
+            "next_node": "node_08_reframe_attempt"
+          },
+          {
+            "type": "EMPATHIC",
+            "question": "Bir insan yedi şantiyeyi aynı anda yönetemez. Sistemin sizi nereden kırdığını anlatın.",
+            "answer": "Beni kıran... güven. Hakan'a güvendim, kör güvendim. Belgeler gelir, imzalarım. Rapor gelir, okurum — bazen okumam. Kendi kendime dedim ki 'o orada, yeterli'. Ama orada olmak yetmiyor. Ben orada olmalıydım. Mehmet için... bir cümle bile kurmadım kendi kendime.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 10,
+              "gameplay_note": "İLERLEME: Empatik çerçeve pişmanlık açığa çıkardı. HR sakin — korku değil, suçluluk/keder. Bu dugum biyometriye özen isteyen bir andır."
+            },
+            "next_node": "node_09_family_pressure"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Aşırı yüklenme değil. Bu bir karardı. Söyleyin, maliyeti kısmak için kimi aradınız?",
+            "answer": "Hiç kimseyi! Hiç kimseyi aramadım, hiç kimseye 'kıs' demedim! Bu sözlerinizi kabul etmiyorum, kayıt dışı konuşmak istiyorum.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "SPIKE",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -7,
+              "gameplay_note": "YANLIŞ HAMLE: Suç-mekanizması konusunda düşük sinyal verdiği bir noktada zorlama yaptın. Şüpheli kendini korumaya çekildi."
+            },
+            "next_node": "node_08_reframe_attempt"
+          }
+        ]
+      },
+      "node_08_reframe_attempt": {
+        "theme": "Yeniden Çerçeveleme",
+        "description": "Kerem ellerini yavaşça kaldırdı, avuç içleri size dönük. Ses tonu değişti — şimdiki hâli daha ölçülü, neredeyse resmi.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "STRATEGIC",
+            "question": "Haklısınız. Bu konuşmayı avukatınızın hazır olduğu bir gün sürdürelim. Bugünkü oturumu burada keselim.",
+            "answer": "Teşekkür ederim. Avukatım Pazartesi döner. O zaman devam ederiz. İyi günler.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "BASELINE",
+              "gsr": "DECREASE",
+              "cctv_visual": "RELIEVED_EXHALE",
+              "korku_bari_delta": -14,
+              "gameplay_note": "YANLIŞ HAMLE: Tam sıkıştırma anında kapıyı açtın. Şüpheli sakinleşerek çıkıyor; kayıt eksik kalacak."
+            },
+            "next_node": "node_fail_deflection"
+          },
+          {
+            "type": "NARROW_TARGET",
+            "question": "Hakan'ın avukatlı ifadesi ayrı bir oturumda. Şu an, sizin imzaladığınız o tutanağa dönelim. Nerede imzaladınız, kim getirdi, kaçta?",
+            "answer": "Dördüncü katta, benim odamda. Hakan getirdi. Saat... öğleden sonra üç gibi. Kahvemi içiyordum. İki dakika sürmedi.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "UNEVEN",
+              "gsr": "INCREASE",
+              "cctv_visual": "LIP_PRESS",
+              "korku_bari_delta": 11,
+              "gameplay_note": "DOĞRU HAMLE: Dar hedef, kaçışa izin vermedi. Somut mekan ve saat çıktı; ihmal profiline uygun."
+            },
+            "next_node": "node_10_final_push"
+          },
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Az önce 'hiçbir şey saklamıyorum' dediniz. Şimdi 'Hakan için avukatım lazım' diyorsunuz. Bu iki cümlenin ikisi birden doğru olamaz. Hangisi yalan?",
+            "answer": "İkisi de yalan değil. Hakan... Hakan hakkında sizin duymanız gereken şeyler var ama bunları söylersem kendimi de yakarım. Şantiyeye az gittim, evrakı dikkatli okumadım, kimseyi korumuyorum ama... her şey karışık. Anlıyor musunuz?",
+            "mechanics": {
+              "heart_rate": "INCREASE",
+              "breathing": "HOLDING_BREATH",
+              "gsr": "SURGE",
+              "cctv_visual": "HAND_PINCH_UNDER_TABLE",
+              "korku_bari_delta": 14,
+              "gameplay_note": "KRİTİK İLERLEME: Çelişki zorlamasi 'her şey karışık' ifadesini açtı. GSR+nefes patladı, HR ilaç altında hafif yükseldi. İki kaynaklı stres imzası belirgin."
+            },
+            "next_node": "node_10_final_push"
+          }
+        ]
+      },
+      "node_09_family_pressure": {
+        "theme": "Aile Baskısı",
+        "description": "Dosyadan bir başka sayfa çıkardınız: banka ekstreleri, bakımevi faturası ve bir boşanma sürecine dair ön yazışma. Kerem sayfaları gördü, oturuşu değişti, boynundaki damar belirginleşti.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "EMPATHIC",
+            "question": "Eşinizden ayrı yaşıyorsunuz. Babanızın bakımevi ücretini tek başınıza karşılıyorsunuz. Bu kadar yükün altında bir adam, maliyet kısmak isteyebilir. Size yargılamıyorum — anlatın.",
+            "answer": "Mali baskım var, evet. Babamın masrafı var, evet. Eşimle işler... iyi değil. Ama ben bir kuruşu işçiden kısarak kazanmam. Ailemi bu masaya getirdiğiniz için üzgünüm.",
+            "mechanics": {
+              "heart_rate": "STABLE",
+              "breathing": "UNEVEN",
+              "gsr": "MAX",
+              "cctv_visual": "JAW_TIGHTEN",
+              "korku_bari_delta": 8,
+              "gameplay_note": "YANILTICI SİNYAL: GSR tavanda ama HR ilaç altında neredeyse hareketsiz. 'Aile' ve 'eş' temaları ikincil bir stres kaynağını çağırıyor; bunu suç-mekanizması ile karıştırma."
+            },
+            "next_node": "node_10_final_push"
+          },
+          {
+            "type": "TRAP",
+            "question": "Sinyalleriniz başka bir şey söylüyor, Bay Atılgan. Boşanma yazışmasında eşinizle mal paylaşımı kavgası var. Bu kadar nakit sıkışıklığı içinde güvenlik harcamasından kısmak sizin için çok çekici olmuş olmalı. Öyle değil mi?",
+            "answer": "Hayır. Hayır. Bu cümleyi... bu cümleyi anlamıyorum bile. Eşimle aramızdaki şey buradaki konuyla ilgili değil. Siz şimdi olmayan bir bağlantı kuruyorsunuz. Bu suçlama saçma.",
+            "mechanics": {
+              "heart_rate": "RISE",
+              "breathing": "HYPERVENTILATION",
+              "gsr": "MAX",
+              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
+              "korku_bari_delta": -11,
+              "gameplay_note": "YANLIŞ HAMLE: Yanıltıcı kanıt yolu. GSR patladı çünkü başka bir sır çağrıldı — ama sen bunu güvenlik suçu olarak okudun. Şüpheli şimdi hem kapanıyor hem haklı görünüyor."
+            },
+            "next_node": "node_fail_deflection"
+          },
+          {
+            "type": "ANALYTICAL",
+            "question": "Bir ara verelim. Kahveniz soğudu. İstiyorsanız sıcak getirelim, beş dakika sonra devam ederiz.",
+            "answer": "Olur. Teşekkür ederim. Biraz su da alırım.",
+            "mechanics": {
+              "heart_rate": "DROP",
+              "breathing": "DEEP",
+              "gsr": "DECREASE",
+              "cctv_visual": "RELEASED_SHOULDERS",
+              "korku_bari_delta": -6,
+              "gameplay_note": "TAKTİKSEL RESET: Kısa vadede ivme kaybettin; şüpheli rahatladı. Ama baskıyı körüklemedin, yeni bir açı için alan açıldı."
+            },
+            "next_node": "node_10_final_push"
+          }
+        ]
+      },
+      "node_10_final_push": {
+        "theme": "Son Baskı",
+        "description": "Masada iki dosya yan yana: bir imza sayfası, bir saha raporu. Kerem her iki dosyaya da dokunmak istemiyor gibi ellerini geri çekti. Bakışları bir noktada sabit duruyor, masa örtüsünü inceliyormuş gibi.",
+        "is_end_state": false,
+        "choices": [
+          {
+            "type": "FORENSIC_CALL_OUT",
+            "question": "Son bir şey. Elinizde Hakan Doğan'ın o gün sahada tek yetkili olduğunu, güvenlik harcamalarını kendi kararıyla kıstığını gösteren belgeler olduğunu biliyoruz. Bu belgeleri neden savcılığa vermediniz? Onu neden koruyorsunuz?",
+            "answer": "Çünkü... Hakan'ı tamamen yıkarsam, ben de yıkılırım. O belgeler onun sorumluluğunu gösterir, evet — ama benim şantiyeye ne kadar az gittiğimi de gösterir. İkimiz de batarız. Ve... ve başka şeyler de var. Söyleyemediğim, söylemek istemediğim şeyler. Bunu sadece bir kişi için söylemiyorum. Başka insanların hayatı da buna bağlı.",
             "mechanics": {
               "heart_rate": "SPIKE",
               "breathing": "HOLDING_BREATH",
               "gsr": "MAX",
-              "cctv_visual": "EYE_DART",
-              "korku_bari_delta": 28,
-              "gameplay_note": "YALAN SİNYALİ: Güçlü çoklu sinyal. Beta-bloker HR'ı kısıyor ama yine de sızdı. GSR maksimuma ulaştı. 'Almış olmam' ve 'anlamına gelmez' — dolaylı kabul üstüne savunma inşası. Göz kaçırması ani ve belirgin."
-            },
-            "next_node": "node_05_substance"
-          },
-          {
-            "type": "AGGRESSIVE",
-            "question": "Selin Acar sizi köşeye sıkıştırmıştı ve onu susturmanın en hızlı yolunu seçtiniz. Bunu burada açıkça söyleyin.",
-            "answer": "Bu bir suçlama ve kesinlikle reddediyorum. Avukatım olmadan bu sorguya devam etmeyeceğim.",
-            "mechanics": {
-              "heart_rate": "ERRATIC",
-              "breathing": "HYPERVENTILATION",
-              "gsr": "SURGE",
-              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
-              "korku_bari_delta": -32,
-              "gameplay_note": "YANLIŞ HAMLE: Erken ve ham suçlama onu tamamen kapattı. Biyometrik sinyaller güçlüydü ama kanıt zinciri kurulmadan sorgu bitti. Toplanan veri yetersiz."
-            },
-            "next_node": "node_fail_lockdown"
-          }
-        ]
-      },
-      "node_04_records": {
-        "theme": "Silinen Kayıtlar: Dijital Ayak İzi",
-        "description": "Adli bilişim ekibi klinik veritabanında operasyon sabahına ait silinmiş kayıt kalıntıları tespit etti. Keleş bu bilgiye nasıl tepki verecek, bunu şimdi öğreneceksiniz.",
-        "is_end_state": false,
-        "choices": [
-          {
-            "type": "NARROW_TARGET",
-            "question": "Adli bilişim ekibimiz veritabanında 14 Mart sabahı 07:22 ile 08:15 arasında oluşturulan ve ardından silinen reçete girişi kalıntıları tespit etti. Bu kayıtlar neyi içeriyordu?",
-            "answer": "Ne bulduğunuzu... tam olarak anlamıyorum. Sistem zaman zaman teknik hatalar üretiyor. Benden bağımsız bir aksaklık olmuş olabilir.",
-            "mechanics": {
-              "heart_rate": "MAX_SPIKE",
-              "breathing": "HYPERVENTILATION",
-              "gsr": "MAX",
-              "cctv_visual": "MICRO_TWITCH",
-              "korku_bari_delta": 38,
-              "gameplay_note": "YALAN SİNYALİ: En güçlü sinyal kümesi bu noktaya kadar. Bisoprolol limitine ulaşıldı — HR bile bastırılmaya rağmen sızdı. GSR tavan yaptı. 'Ne bulduğunuzu anlamıyorum' yapısı bilgi saklamayı ele veriyor; 'teknik hata' hazır bir savunma kalıbı."
-            },
-            "next_node": "node_05_substance"
-          },
-          {
-            "type": "LEGAL_THREAT",
-            "question": "Savcılık bilişim suçları birimi bu kayıtların büyük bölümünü restore etti. Bu aşamada işbirliği yapmazsanız delil karartma suçlaması gündemin üst sırasına taşınır.",
-            "answer": "Avukatım burada olmadan bu konuyu konuşmaya devam etmeyeceğim. Baskı altında ifade vermem.",
-            "mechanics": {
-              "heart_rate": "RISE",
-              "breathing": "SHALLOW",
-              "gsr": "SURGE",
-              "cctv_visual": "STONE_FACE",
-              "korku_bari_delta": -22,
-              "gameplay_note": "YANLIŞ HAMLE: Hukuki tehdit onu kapattı. Sinyaller orta şiddette ama ifade kesildi. Kısmi biyometrik veri elde edildi, sözel kanıt yok."
-            },
-            "next_node": "node_fail_lockdown"
-          }
-        ]
-      },
-      "node_05_substance": {
-        "theme": "İtirafın Eşiği: O Sabah Ne Aldı?",
-        "description": "Silinen kayıtlar, saat boşluğu ve şikâyet motivasyonu birbirine bağlandı. Artık doğrudan sormak mümkün: Keleş o sabah ameliyathaneye girerken gerçekten tamamen yerinde miydi?",
-        "is_end_state": false,
-        "choices": [
-          {
-            "type": "MORAL_PRESSURE",
-            "question": "Dr. Keleş, ameliyat ekibinden birden fazla kişi o sabah elinizin titrediğini gördüğünü söyledi. Siz de bunu biliyorsunuz. Sadece Bora'yı düşünün — yeğeninizi, tıp öğrencisini. Bu gerçeği ondan önce bizden duymasını mı istiyorsunuz?",
-            "answer": "...(uzun bir sessizlik)... Ben yeterince uyuyamamıştım. Ağrı vardı. Bunu... yönetmeye çalıştım. Sadece odaklanmak istedim. Başka bir şey değildi.",
-            "mechanics": {
-              "heart_rate": "SPIKE",
-              "breathing": "CRYING",
-              "gsr": "SURGE",
-              "cctv_visual": "BREAKDOWN",
-              "korku_bari_delta": 48,
-              "gameplay_note": "DOĞRU HAMLE: Aile kozu ile ahlaki baskının birleşimi savunmayı eritti. 'Ağrıyı yönetmeye çalıştım' doğrudan itiraf değil ama örtülü doğrulama. Bu sorgunun en güçlü sinyal serisi — kayıt altında."
+              "cctv_visual": "TEAR_POOLING",
+              "korku_bari_delta": 16,
+              "gameplay_note": "KIRILMA ANI: İki kaynaklı sır aynı anda yüzeye çıktı. HR ilaca rağmen sıçradı, GSR tavanda, nefes tutuldu. Ama dikkat: içerik 'ben yaptım' değil, 'karışık' ifadesi."
             },
             "next_node": "node_success_breakdown"
           },
           {
-            "type": "AGGRESSIVE",
-            "question": "14 Mart sabahı opioid aldınız, kayıtları sildiniz ve Selin Acar bunun bedelini hayatıyla ödedi. Şimdi burada bunu söyleyin.",
-            "answer": "Bunu böyle çarpıtamazsınız. Avukatım olmadan bir kelime daha söylemeyeceğim.",
+            "type": "EMPATHIC",
+            "question": "Şantiyeye yeterince gitmediğinizi söyleyin bize. Sadece bunu kabul edin. Fazlasını istemiyorum şu an.",
+            "answer": "Şantiyeye yeterince gitmedim. Evrakı dikkatli okumadım. Güvendim ve bu güven bir adamın hayatına mal oldu. Bunu kabul ediyorum. Hakan'ın yetkisini ve o gün aldığı kararları ayrı bir ifadeyle vermeye hazırım. Gerisi... gerisi avukatımla olsun.",
             "mechanics": {
               "heart_rate": "RISE",
-              "breathing": "HOLDING_BREATH",
-              "gsr": "SPIKE",
-              "cctv_visual": "DEFENSIVE_CROSS_ARMS",
-              "korku_bari_delta": -28,
-              "gameplay_note": "YANLIŞ HAMLE: İtirafın eşiğindeyken ham suçlama savunma duvarını yeniden örttü. Önemli sinyaller birikiyor ama sözel ifade kesildi — eksik veriyle hüküm ekranına gideceksiniz."
+              "breathing": "DEEP",
+              "gsr": "INCREASE",
+              "cctv_visual": "RELEASED_SHOULDERS",
+              "korku_bari_delta": 12,
+              "gameplay_note": "DOĞRU HAMLE: Kontrollü kısmi itiraf. Sinyaller düşüşte; utanç var, panik yok. İhmal profili netleşiyor."
+            },
+            "next_node": "node_success_partial"
+          },
+          {
+            "type": "AGGRESSIVE",
+            "question": "Hakan'ı koruyorsanız yanında hapse girersiniz. Son şansınız — onun adını suç ortağı olarak verin ya da tüm yükü üstlenin.",
+            "answer": "Böyle bir cümleyle konuşmayacağım. Bu oturumu şu andan itibaren avukatım eşliğinde sürdüreceğim. Başka bir şey söylemeyeceğim.",
+            "mechanics": {
+              "heart_rate": "SPIKE",
+              "breathing": "SHALLOW",
+              "gsr": "SURGE",
+              "cctv_visual": "STONE_FACE",
+              "korku_bari_delta": -15,
+              "gameplay_note": "YANLIŞ HAMLE: Tehdit hukuki kapanmayı tetikledi. Kanıt kısmen elde ama itiraf kapandı."
             },
             "next_node": "node_fail_lockdown"
           }
         ]
       },
       "node_success_breakdown": {
-        "theme": "Yıkılış: Örtülü Kabul",
-        "description": "Savunma duvarı çatladı. Keleş avukatını talep etmeden önce 'ağrıyı yönetmeye çalıştım' ifadesini kayıt altına aldırdı.",
+        "theme": "Kırılma ve Açılım",
+        "description": "Kerem yüzünü ellerine gömdü ve birkaç saniye sessiz kaldı. Sonra, omuzları gevşeyerek, yavaş yavaş konuşmaya başladı.",
         "is_end_state": true,
-        "result_text": "Tayfun Keleş ifadesini yarıda kesip avukatını talep etti; ancak bunu yapmadan önce operasyon sabahı ağrı ve konsantrasyon kaybına ilişkin örtülü bir kabul kayıt altına girdi. Silinen reçete kalıntıları, 07:14-08:30 arası açıklanamayan saat boşluğu ve bu sözel sızıntı sorgu tutanağında bir arada yer alıyor. Keleş şu an avukatıyla görüşüyor. Sorgu boyunca toplanan biyometrik veri ve bu ifade hukuk ekibine iletildi — hükmü poligraf kayıtlarını okuyarak sen vereceksin."
+        "result_text": "Kerem Atılgan uzun bir duraksamanın ardından Hakan Doğan'ın olay günü sahada tek karar alıcı olduğunu, güvenlik harcamalarını kendi inisiyatifiyle kıstığını ve kendisinin olay saatinde Kızılay'daki banka görüşmesinde olduğunu doğrulayan belge setini sundu. Ardından, sesi kırılarak, Hakan'ın eşi Selin Doğan ile sekiz aydır süren ilişkisini açıkladı ve bu yüzden belgeleri neden savcılıktan uzak tuttuğunu anlattı. SİNYAL DAĞILIMI: Mekanizma testinde HR STABLE, GSR STABLE, korku barı DÜŞTÜ — birinci el bilgi eksikliği profili. Hakan'ın adı geçen tüm dugumlerde GSR SURGE/MAX, nefes instabilitesi belirgin, HR bisoprolol altında hafif yükselme. Eş ve aile temaları anıldığında GSR MAX tek başına — HR neredeyse hareketsiz. İki ayrı stres kaynağının biyometrik imzası ayırt edilebilir hâlde kayda geçti. Hüküm operatöründe."
+      },
+      "node_success_partial": {
+        "theme": "Kontrollü Kabul",
+        "description": "Kerem uzun bir nefes verdi, oturuşunu topladı ve sesini alçalttı. Gözleri bir noktaya kilitli, ama ses tonu sakin.",
+        "is_end_state": true,
+        "result_text": "Kerem Atılgan soğukkanlılığını koruyarak resmi bir ifade verdi: şantiyeye yeterince gitmediğini, denetim evraklarını okumadan imzaladığını ve bunun açık bir ihmal olduğunu kabul etti. Hakan Doğan'ın günlük yetki zincirindeki kritik rolünü doğrulayan belgeleri sunacağını belirtti. Ancak ne Selin Doğan'ın adını andı ne de ilişkisi hakkında bir açıklama yaptı. SİNYAL DAĞILIMI: Mekanizma testi boyunca HR ve GSR STABLE kaldı, korku barı geriledi — suç-mekanizması bilgisi yok. Yalnızca 'Hakan', 'aile' ve 'eş' temalarında GSR SURGE/MAX; HR ilaca rağmen minimal tepki verdi. İki farklı tetikleyici profil kayıtta birbirinden ayrılabilir durumda. Tam itiraf yok, ama ihmal kabulü ve yetki zinciri doğrulaması elde edildi."
       },
       "node_fail_lockdown": {
-        "theme": "Kapanma: Avukat Kalkanı",
-        "description": "Keleş sorguyu kapattı. Savunma duvarını korumayı başardı; sözel ifade yetersiz, biyometrik veri ise parçalı kaldı.",
+        "theme": "Hukuki Kapanma",
+        "description": "Kerem yavaşça ayağa kalktı, ceketinin düğmesini ilikledi ve sandalyesini masaya itti. Odaya giren gardiyana başıyla selam verdi.",
         "is_end_state": true,
-        "result_text": "Tayfun Keleş avukatını talep ederek ifadeyi sonlandırdı. Sorgu boyunca toplanan biyometrik veriler kayıt altında; ancak sözel ifade zayıf ve savunmacı kaldı, doğrudan hiçbir kabul elde edilemedi. Keleş savunma hattını korumayı başardı. Elindeki poligraf sinyallerini ve sorgu boyunca biriken biyometrik veriyi inceleyerek kendi hükmünü ver."
+        "result_text": "Kerem Atılgan, 'bundan sonraki tüm sorulara avukatım eşliğinde yanıt vereceğim' diyerek sorguyu sonlandırdı. Kayıtlarda kafeine bağlı yüksek başlangıç GSR değeri, Hakan ve eş temalarında tekrarlayan GSR patlamaları, mekanizma testinde belirgin sakinlik ve son baskıda keskin bir HR sıçraması yer alıyor. İki farklı stres imzası ayırt edilebilir hâlde ama hiçbiri tam olarak kapatılamadı. Hüküm salt biyometrik okumaya ve sunulan belge setine dayanacak."
+      },
+      "node_fail_deflection": {
+        "theme": "Yumuşak Savuşturma",
+        "description": "Kerem sandalyesinde geriye yaslandı, kahvesine ilk kez uzandı ve bir yudum aldı. Gözleri yumuşadı. Oda içindeki hava gevşemiş gibi hissediliyor.",
+        "is_end_state": true,
+        "result_text": "Kerem Atılgan anlatıyı ustaca kendi zeminine çekti; operatör yeniden çerçevelemeyi kabul etti veya yanıltıcı bir kanıt yolunu takip etti. Sorgu, kesin bir itiraf veya açık bir kapanma olmadan sona erdi. Kayıtlarda parçalı bir tablo var: mekanizma sorularında tutarlı sakinlik (HR STABLE, GSR STABLE, korku barı düşüşte), Hakan adı geçtiğinde güçlü GSR tepkileri ve nefes dalgalanması, aile/eş temalarında HR sessiz kalırken GSR MAX. Tepki dağılımı iki kaynaklı görünüyor ama yorum için yeterli baskı kurulamadı. Hüküm tamamen operatörün biyometrik okuma becerisine kalıyor."
       }
     },
     "character_image": "./assets/characters/tr-case-1.png"

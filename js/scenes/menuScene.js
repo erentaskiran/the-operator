@@ -21,6 +21,8 @@ import { applyAmbientProfile } from '../interrogationAudio.js';
 let menuAnim = 0;
 let infoScrollOffset = 0;
 let infoMaxScroll = 0;
+let listScrollOffset = 0;
+let listMaxScroll = 0;
 let lastCaseIndex = -1;
 
 function getVisibleCases() {
@@ -65,25 +67,47 @@ function parseLabel(label) {
   };
 }
 
-function drawStatsPill(ctx, x, y, stats) {
+function drawStatusIcon(ctx, x, y, stats) {
   if (!stats || stats.attempts <= 0) return;
-  const pillColor =
-    stats.successes > 0 ? COLORS.success : stats.fails > 0 ? COLORS.fail : COLORS.amber;
-  const label = `x${stats.attempts}`;
-  ctx.font = `9px ${UI_FONT}`;
-  const textW = ctx.measureText(label).width;
-  const pillW = Math.max(18, textW + 8);
-  const pillH = 10;
-  const pillX = x - pillW;
-  const pillY = y - pillH / 2;
-  drawRect(ctx, pillX, pillY, pillW, pillH, pillColor);
-  drawText(ctx, label, pillX + pillW / 2, pillY + pillH / 2 + 1, {
-    size: 9,
-    color: COLORS.ink,
-    align: 'center',
-    baseline: 'middle',
-    font: UI_FONT,
-  });
+
+  const size = 12;
+  const cx = x - size / 2;
+  const cy = y - size / 2;
+  const mid = size / 2;
+  const pad = 2.5;
+
+  ctx.save();
+  ctx.lineWidth = 1.5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  if (stats.successes > 0) {
+    // Checkmark — completed
+    ctx.strokeStyle = COLORS.success;
+    ctx.beginPath();
+    ctx.moveTo(cx + pad, cy + mid);
+    ctx.lineTo(cx + mid - 1, cy + size - pad - 1);
+    ctx.lineTo(cx + size - pad, cy + pad);
+    ctx.stroke();
+  } else if (stats.fails > 0) {
+    // X — failed (wrong verdict)
+    ctx.strokeStyle = COLORS.fail;
+    ctx.beginPath();
+    ctx.moveTo(cx + pad, cy + pad);
+    ctx.lineTo(cx + size - pad, cy + size - pad);
+    ctx.moveTo(cx + size - pad, cy + pad);
+    ctx.lineTo(cx + pad, cy + size - pad);
+    ctx.stroke();
+  } else {
+    // Dash — attempted (bad end, no verdict made)
+    ctx.strokeStyle = COLORS.amber;
+    ctx.beginPath();
+    ctx.moveTo(cx + pad, cy + mid);
+    ctx.lineTo(cx + size - pad, cy + mid);
+    ctx.stroke();
+  }
+
+  ctx.restore();
 }
 
 function drawCaseCard(ctx, x, y, w, h, opts) {
@@ -117,6 +141,8 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
   const textX = characterImage ? x + h + 4 : x + 44;
   const textW = characterImage ? w - h - 12 : w - 52;
 
+  const hasStatus = stats && stats.attempts > 0;
+
   drawText(ctx, prefix, textX, y + 13, {
     size: 11,
     color: selected ? COLORS.amberBright : COLORS.cream,
@@ -124,9 +150,8 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     baseline: 'middle',
   });
 
-  drawStatsPill(ctx, x + w - 6, y + 13, stats);
-
-  drawWrappedText(ctx, suffix, textX, y + 28, textW, {
+  const suffixW = hasStatus ? textW - 18 : textW;
+  drawWrappedText(ctx, suffix, textX, y + 28, suffixW, {
     size: 11,
     color: COLORS.creamDim,
     font: UI_FONT,
@@ -134,16 +159,7 @@ function drawCaseCard(ctx, x, y, w, h, opts) {
     maxLines: 2,
   });
 
-  if (stats && stats.attempts > 0) {
-    const breakdown = `${t('STAT_SHORT_CORRECT')} ${stats.successes}  ${t('STAT_SHORT_FAIL')} ${stats.fails}`;
-    drawText(ctx, breakdown, x + w - 6, y + h - 6, {
-      size: 9,
-      color: stats.successes > 0 ? COLORS.success : COLORS.fail,
-      font: UI_FONT,
-      align: 'right',
-      baseline: 'alphabetic',
-    });
-  }
+  drawStatusIcon(ctx, x + w - 6, y + h - 6, stats);
 
   if (selected) {
     const pulse = 0.5 + 0.5 * Math.sin(pulseT * 3);
@@ -199,10 +215,15 @@ function drawMenuScene(ctx) {
   const cardGap = 6;
   const listX = 28;
   const listStartY = 96;
+  const listAreaH = DESIGN_H - listStartY - 56;
   const mouse = getMousePos();
 
   const visibleCases = getVisibleCases();
   const visibleIdx = getVisibleIdx(visibleCases);
+
+  const totalListH =
+    visibleCases.length > 0 ? visibleCases.length * (cardH + cardGap) - cardGap : 0;
+  listMaxScroll = Math.max(0, totalListH - listAreaH);
 
   if (visibleCases.length === 0) {
     const noP = smoothstep(clamp((menuAnim - 0.5) / 0.35, 0, 1));
@@ -220,9 +241,14 @@ function drawMenuScene(ctx) {
     }
   }
 
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(listX - 2, listStartY, cardW + 4, listAreaH);
+  ctx.clip();
+
   for (let i = 0; i < visibleCases.length; i += 1) {
     const caseDef = visibleCases[i];
-    const y = listStartY + i * (cardH + cardGap);
+    const y = listStartY + i * (cardH + cardGap) - listScrollOffset;
     const rect = { x: listX, y, w: cardW, h: cardH, index: i };
     state.menuCaseRects.push(rect);
 
@@ -241,7 +267,6 @@ function drawMenuScene(ctx) {
     const numberStr = String(i + 1).padStart(2, '0');
     const characterImage = getImage(`defendant-${caseDef.id}`);
 
-    ctx.save();
     ctx.globalAlpha = cardP;
     drawCaseCard(ctx, listX - xOffset, y, cardW, cardH, {
       number: numberStr,
@@ -253,7 +278,19 @@ function drawMenuScene(ctx) {
       stats: getStats(caseDef.id),
       characterImage,
     });
-    ctx.restore();
+  }
+
+  ctx.restore();
+
+  if (listMaxScroll > 0) {
+    const sbX = listX + cardW + 3;
+    const sbY = listStartY;
+    const sbH = listAreaH;
+    const sbW = 3;
+    drawRect(ctx, sbX, sbY, sbW, sbH, COLORS.amberDim);
+    const thumbH = Math.max(16, (listAreaH / totalListH) * sbH);
+    const thumbY = sbY + (listScrollOffset / listMaxScroll) * (sbH - thumbH);
+    drawRect(ctx, sbX, thumbY, sbW, thumbH, COLORS.amberBright);
   }
 
   const infoP = smoothstep(clamp((menuAnim - 0.85) / 0.4, 0, 1));
@@ -376,6 +413,8 @@ export function registerMenuScene(_canvas, ctx) {
       menuAnim = 0;
       infoScrollOffset = 0;
       infoMaxScroll = 0;
+      listScrollOffset = 0;
+      listMaxScroll = 0;
       lastCaseIndex = -1;
       applyAmbientProfile('menu');
 
@@ -390,11 +429,45 @@ export function registerMenuScene(_canvas, ctx) {
       if (state.caseIndex !== lastCaseIndex) {
         lastCaseIndex = state.caseIndex;
         infoScrollOffset = 0;
+
+        const cardH = 44;
+        const cardGap = 6;
+        const listStartY = 96;
+        const listAreaH = DESIGN_H - listStartY - 56;
+        const visibleForScroll = getVisibleCases();
+        const selectedIdx = getVisibleIdx(visibleForScroll);
+        const cardTop = selectedIdx * (cardH + cardGap);
+        const cardBottom = cardTop + cardH;
+        if (cardTop < listScrollOffset) {
+          listScrollOffset = cardTop;
+        } else if (cardBottom > listScrollOffset + listAreaH) {
+          listScrollOffset = cardBottom - listAreaH;
+        }
+        listScrollOffset = clamp(listScrollOffset, 0, listMaxScroll);
       }
 
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
-        infoScrollOffset = clamp(infoScrollOffset + toUnifiedScrollLines(wheel), 0, infoMaxScroll);
+        const mouse = getMousePos();
+        const cardW = 192;
+        const listX = 28;
+        const listStartY = 96;
+        const listAreaH = DESIGN_H - listStartY - 56;
+        const infoX = listX + cardW + 12;
+        const mouseOverList =
+          mouse.x >= listX &&
+          mouse.x <= listX + cardW + 6 &&
+          mouse.y >= listStartY &&
+          mouse.y <= listStartY + listAreaH;
+        if (mouseOverList) {
+          listScrollOffset = clamp(
+            listScrollOffset + toUnifiedScrollLines(wheel) * 50,
+            0,
+            listMaxScroll
+          );
+        } else if (mouse.x >= infoX) {
+          infoScrollOffset = clamp(infoScrollOffset + toUnifiedScrollLines(wheel), 0, infoMaxScroll);
+        }
       }
 
       const visible = getVisibleCases();

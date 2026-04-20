@@ -99,7 +99,7 @@ export async function generateCharacterImage(suspect, outPath) {
     `gradients, game character portrait style similar to modern indie RPG/visual novel aesthetic, ` +
     `high detail despite pixel constraints, no outline border, character looking slightly ` +
     `off-camera with emotional expression, consistent art style across all characters. ` +
-    `Character description: ${name}, ${role}. ${profile}`;
+    `Character description: ${role}. ${profile} No text, labels, or names anywhere in the image.`;
 
   const result = await ai.models.generateImages({
     model: 'imagen-4.0-generate-001',

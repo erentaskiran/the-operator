@@ -378,13 +378,19 @@ function advanceToPendingNode() {
     return;
   }
   if (result.isEnd) {
+    const wasSuccess = state.currentNodeId.includes('success');
     state.interrogationOutcome = {
       nodeId: state.currentNodeId,
       theme: state.currentNode?.theme || '',
       description: state.currentNode?.description || '',
       resultText: state.currentNode?.result_text || '',
-      wasSuccess: state.currentNodeId.includes('success'),
+      wasSuccess,
     };
+    setScene(wasSuccess ? 'verdict' : 'bad-end');
+    return;
+  }
+  if (shouldForceVerdictByStress()) {
+    finalizeCurrentMarkerCapture();
     setScene('verdict');
   }
 }
@@ -579,7 +585,7 @@ export function registerPlayScene(_canvas, ctx) {
       tickFearAnimation(dt);
       updateMarkerCapture();
 
-      if (shouldForceVerdictByStress()) {
+      if (!state.responseMode && shouldForceVerdictByStress()) {
         finalizeCurrentMarkerCapture();
         setScene('verdict');
         return;
