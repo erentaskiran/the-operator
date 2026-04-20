@@ -5,14 +5,14 @@ import { t } from '../i18n/index.js';
 
 function buildEntries(d, suspect) {
   const entries = [];
-  entries.push({ type: 'heading', text: 'KIMLIK' });
-  entries.push({ type: 'kv', key: 'Ad', value: suspect?.name || '-' });
-  entries.push({ type: 'kv', key: 'Gorev', value: suspect?.role || '-' });
-  if (d?.age != null) entries.push({ type: 'kv', key: 'Yas', value: String(d.age) });
+  entries.push({ type: 'heading', text: t('DOSSIER_IDENTITY') });
+  entries.push({ type: 'kv', key: t('DOSSIER_NAME'), value: suspect?.name || '-' });
+  entries.push({ type: 'kv', key: t('DOSSIER_ROLE'), value: suspect?.role || '-' });
+  if (d?.age != null) entries.push({ type: 'kv', key: t('DOSSIER_AGE'), value: String(d.age) });
   if (d?.identity_summary) entries.push({ type: 'body', text: d.identity_summary });
 
   if (d?.family?.length) {
-    entries.push({ type: 'heading', text: 'AILE' });
+    entries.push({ type: 'heading', text: t('DOSSIER_FAMILY') });
     for (const f of d.family) {
       entries.push({
         type: 'item',
@@ -23,36 +23,36 @@ function buildEntries(d, suspect) {
   }
 
   if (d?.medical?.length) {
-    entries.push({ type: 'heading', text: 'SAGLIK' });
+    entries.push({ type: 'heading', text: t('DOSSIER_HEALTH') });
     for (const m of d.medical) {
       entries.push({
         type: 'item',
         label: m.condition,
         detail: m.polygraph_effect || '',
-        tag: 'POLIGRAF',
+        tag: t('DOSSIER_POLY_TAG'),
       });
     }
   }
 
   if (d?.habits?.length) {
-    entries.push({ type: 'heading', text: 'ALISKANLIK' });
+    entries.push({ type: 'heading', text: t('DOSSIER_HABITS') });
     for (const h of d.habits) {
       entries.push({
         type: 'item',
         label: h.habit,
         detail: h.polygraph_effect || '',
-        tag: 'POLIGRAF',
+        tag: t('DOSSIER_POLY_TAG'),
       });
     }
   }
 
   if (d?.priors?.length) {
-    entries.push({ type: 'heading', text: 'GECMIS' });
+    entries.push({ type: 'heading', text: t('DOSSIER_PRIORS') });
     for (const p of d.priors) entries.push({ type: 'body', text: `• ${p}` });
   }
 
   if (d?.pressure_points?.length) {
-    entries.push({ type: 'heading', text: 'BASKI NOKTALARI' });
+    entries.push({ type: 'heading', text: t('DOSSIER_PRESSURE') });
     for (const pp of d.pressure_points) entries.push({ type: 'body', text: `• ${pp}` });
   }
 
