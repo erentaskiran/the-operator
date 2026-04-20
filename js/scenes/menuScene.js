@@ -23,6 +23,12 @@ import { drawSceneBackground } from '../ui/background.js';
 import { drawPanel } from '../ui/panel.js';
 import { t, getLanguage } from '../i18n/index.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
+import {
+  getScrollTarget,
+  resetScroll,
+  setScrollTarget,
+  tickScrollOffset,
+} from '../smoothScroll.js';
 
 let menuAnim = 0;
 let infoScrollOffset = 0;
@@ -357,7 +363,6 @@ function drawMenuScene(ctx) {
         }
       );
       infoMaxScroll = scrollResult.maxScroll;
-      infoScrollOffset = scrollResult.clampedScroll;
     } else {
       drawText(ctx, t('MENU_CASE_LOAD_ERROR'), infoX + infoW / 2, infoY + infoH / 2, {
         align: 'center',
@@ -430,6 +435,8 @@ export function registerMenuScene(_canvas, ctx) {
       listScrollOffset = 0;
       listMaxScroll = 0;
       lastCaseIndex = -1;
+      resetScroll('menu.list');
+      resetScroll('menu.info');
       applyAmbientProfile('menu');
 
       const visible = getVisibleCases();
@@ -440,9 +447,12 @@ export function registerMenuScene(_canvas, ctx) {
     update(dt) {
       menuAnim += dt;
 
+      listScrollOffset = tickScrollOffset('menu.list', dt, listMaxScroll);
+      infoScrollOffset = tickScrollOffset('menu.info', dt, infoMaxScroll);
+
       if (state.caseIndex !== lastCaseIndex) {
         lastCaseIndex = state.caseIndex;
-        infoScrollOffset = 0;
+        setScrollTarget('menu.info', 0, infoMaxScroll);
 
         const cardH = 44;
         const cardGap = 6;
@@ -452,12 +462,14 @@ export function registerMenuScene(_canvas, ctx) {
         const selectedIdx = getVisibleIdx(visibleForScroll);
         const cardTop = selectedIdx * (cardH + cardGap);
         const cardBottom = cardTop + cardH;
-        if (cardTop < listScrollOffset) {
-          listScrollOffset = cardTop;
-        } else if (cardBottom > listScrollOffset + listAreaH) {
-          listScrollOffset = cardBottom - listAreaH;
+        const currentTarget = getScrollTarget('menu.list');
+        let nextTarget = currentTarget;
+        if (cardTop < currentTarget) {
+          nextTarget = cardTop;
+        } else if (cardBottom > currentTarget + listAreaH) {
+          nextTarget = cardBottom - listAreaH;
         }
-        listScrollOffset = clamp(listScrollOffset, 0, listMaxScroll);
+        setScrollTarget('menu.list', nextTarget, listMaxScroll);
       }
 
       const wheel = getPlatformScrollDelta();
@@ -474,13 +486,17 @@ export function registerMenuScene(_canvas, ctx) {
           mouse.y >= listStartY &&
           mouse.y <= listStartY + listAreaH;
         if (mouseOverList) {
-          listScrollOffset = clamp(
-            listScrollOffset + toUnifiedScrollLines(wheel) * 50,
-            0,
+          setScrollTarget(
+            'menu.list',
+            getScrollTarget('menu.list') + toUnifiedScrollLines(wheel) * 50,
             listMaxScroll
           );
         } else if (mouse.x >= infoX) {
-          infoScrollOffset = clamp(infoScrollOffset + toUnifiedScrollLines(wheel), 0, infoMaxScroll);
+          setScrollTarget(
+            'menu.info',
+            getScrollTarget('menu.info') + toUnifiedScrollLines(wheel),
+            infoMaxScroll
+          );
         }
       }
 

@@ -10,6 +10,12 @@ import {
 } from '../input.js';
 import { clamp, lerp } from '../math.js';
 import {
+  getScrollTarget,
+  resetScroll,
+  setScrollTarget,
+  tickScrollOffset,
+} from '../smoothScroll.js';
+import {
   applyPendingResponseSignals,
   finalizeCurrentMarkerCapture,
   flushPendingResponseSignals,
@@ -202,7 +208,6 @@ function drawPlayScene(ctx) {
       descSlice,
       narrationScrollOffset
     );
-    narrationScrollOffset = narrScroll.clampedScroll;
     narrationMaxScroll = narrScroll.maxScroll;
     narrationBodyRect = narrScroll.bodyRect
       ? {
@@ -234,9 +239,7 @@ function drawPlayScene(ctx) {
       suspectLabel: getSuspectLabel(),
     });
     questionMaxScroll = modalResult.questionMaxScroll;
-    questionScrollOffset = modalResult.questionClampedScroll;
     answerMaxScroll = modalResult.answerMaxScroll;
-    answerScrollOffset = modalResult.answerClampedScroll;
     dialogueQuestionRect = modalResult.questionRect || null;
     dialogueAnswerRect = modalResult.answerRect || null;
     state.choiceRects = [];
@@ -253,7 +256,6 @@ function drawPlayScene(ctx) {
     });
     state.choiceRects = choiceResult.rects;
     choiceMaxScroll = choiceResult.maxScroll;
-    choiceScrollOffset = choiceResult.clampedScroll;
     dialogueQuestionRect = null;
     dialogueAnswerRect = null;
   } else {
@@ -327,7 +329,6 @@ function drawPlayScene(ctx) {
     ctx.restore();
     if (ease > 0.95) {
       logMaxScroll = result.maxScroll;
-      logScrollOffset = result.clampedScroll;
     }
   }
 
@@ -353,7 +354,6 @@ function drawPlayScene(ctx) {
     ctx.restore();
     if (dossEase > 0.95) {
       dossierMaxScroll = result.maxScroll;
-      dossierScrollOffset = result.clampedScroll;
     }
   }
 
@@ -441,10 +441,12 @@ function updateLogHover(dt) {
     if (inRect(mouse, liveTabRect)) {
       logExpanded = !logExpanded;
       if (!logExpanded) {
+        resetScroll('play.log');
         logScrollOffset = 0;
       }
     } else if (logExpanded && !inRect(mouse, panelRect)) {
       logExpanded = false;
+      resetScroll('play.log');
       logScrollOffset = 0;
     }
   }
@@ -459,7 +461,11 @@ function updateLogHover(dt) {
   if (logExpanded && inRect(mouse, panelRect)) {
     const wheel = getPlatformScrollDelta();
     if (wheel !== 0) {
-      logScrollOffset = clamp(logScrollOffset + toUnifiedScrollPixels(wheel), 0, logMaxScroll);
+      setScrollTarget(
+        'play.log',
+        getScrollTarget('play.log') + toUnifiedScrollPixels(wheel),
+        logMaxScroll
+      );
     }
   }
 }
@@ -485,10 +491,12 @@ function updateDossierHover(dt) {
     if (inRect(mouse, liveTabRect)) {
       dossierExpanded = !dossierExpanded;
       if (!dossierExpanded) {
+        resetScroll('play.dossier');
         dossierScrollOffset = 0;
       }
     } else if (dossierExpanded && !inRect(mouse, panelRect)) {
       dossierExpanded = false;
+      resetScroll('play.dossier');
       dossierScrollOffset = 0;
     }
   }
@@ -503,9 +511,9 @@ function updateDossierHover(dt) {
   if (dossierExpanded && inRect(mouse, panelRect)) {
     const wheel = getPlatformScrollDelta();
     if (wheel !== 0) {
-      dossierScrollOffset = clamp(
-        dossierScrollOffset + toUnifiedScrollPixels(wheel),
-        0,
+      setScrollTarget(
+        'play.dossier',
+        getScrollTarget('play.dossier') + toUnifiedScrollPixels(wheel),
         dossierMaxScroll
       );
     }
@@ -599,6 +607,12 @@ export function registerPlayScene(_canvas, ctx) {
       narrationTextProgress = 0;
       narrationScrollOffset = 0;
       narrationMaxScroll = 0;
+      resetScroll('play.narration');
+      resetScroll('play.question');
+      resetScroll('play.answer');
+      resetScroll('play.log');
+      resetScroll('play.dossier');
+      resetScroll('play.choice');
       narrationBodyRect = null;
       choicesAnim = 0;
       polygraphSlide = 0;
@@ -621,6 +635,13 @@ export function registerPlayScene(_canvas, ctx) {
       updateWave(state, dt);
       tickFearAnimation(dt);
       updateMarkerCapture();
+
+      narrationScrollOffset = tickScrollOffset('play.narration', dt, narrationMaxScroll);
+      questionScrollOffset = tickScrollOffset('play.question', dt, questionMaxScroll);
+      answerScrollOffset = tickScrollOffset('play.answer', dt, answerMaxScroll);
+      logScrollOffset = tickScrollOffset('play.log', dt, logMaxScroll);
+      dossierScrollOffset = tickScrollOffset('play.dossier', dt, dossierMaxScroll);
+      choiceScrollOffset = tickScrollOffset('play.choice', dt, choiceMaxScroll);
 
       if (!state.responseMode && shouldForceVerdictByStress()) {
         finalizeCurrentMarkerCapture();
@@ -683,6 +704,10 @@ export function registerPlayScene(_canvas, ctx) {
         questionMaxScroll = 0;
         choiceScrollOffset = 0;
         choiceMaxScroll = 0;
+        resetScroll('play.narration');
+        resetScroll('play.answer');
+        resetScroll('play.question');
+        resetScroll('play.choice');
       }
 
       const totalTextLen = narrationTotalLen();
@@ -828,9 +853,9 @@ export function registerPlayScene(_canvas, ctx) {
           const mouse = getMousePos();
           const overNarration = inRect(mouse, narrationBodyRect);
           if (overNarration && narrationMaxScroll > 0) {
-            narrationScrollOffset = clamp(
-              narrationScrollOffset + toUnifiedScrollLines(wheel),
-              0,
+            setScrollTarget(
+              'play.narration',
+              getScrollTarget('play.narration') + toUnifiedScrollLines(wheel),
               narrationMaxScroll
             );
             return;
@@ -846,11 +871,23 @@ export function registerPlayScene(_canvas, ctx) {
           const overAnswer = inRect(mouse, dialogueAnswerRect);
           const delta = toUnifiedScrollLines(wheel);
           if (overQuestion && questionMaxScroll > 0) {
-            questionScrollOffset = clamp(questionScrollOffset + delta, 0, questionMaxScroll);
+            setScrollTarget(
+              'play.question',
+              getScrollTarget('play.question') + delta,
+              questionMaxScroll
+            );
           } else if (overAnswer && answerMaxScroll > 0) {
-            answerScrollOffset = clamp(answerScrollOffset + delta, 0, answerMaxScroll);
+            setScrollTarget(
+              'play.answer',
+              getScrollTarget('play.answer') + delta,
+              answerMaxScroll
+            );
           } else {
-            answerScrollOffset = clamp(answerScrollOffset + delta, 0, answerMaxScroll);
+            setScrollTarget(
+              'play.answer',
+              getScrollTarget('play.answer') + delta,
+              answerMaxScroll
+            );
           }
         }
         handleResponseMode(dt);
@@ -860,9 +897,9 @@ export function registerPlayScene(_canvas, ctx) {
       if (!state.responseMode && state.currentNode?.choices && !logExpanded && !dossierExpanded) {
         const wheel = getPlatformScrollDelta();
         if (wheel !== 0) {
-          choiceScrollOffset = clamp(
-            choiceScrollOffset + toUnifiedScrollPixels(wheel),
-            0,
+          setScrollTarget(
+            'play.choice',
+            getScrollTarget('play.choice') + toUnifiedScrollPixels(wheel),
             choiceMaxScroll
           );
         }

@@ -14,6 +14,12 @@ import { drawPanel } from '../ui/panel.js';
 import { t } from '../i18n/index.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
 import { playCaseCloseSlam } from '../audio.js';
+import {
+  getScrollTarget,
+  resetScroll,
+  setScrollTarget,
+  tickScrollOffset,
+} from '../smoothScroll.js';
 
 let anim = 0;
 let textScrollOffset = 0;
@@ -75,7 +81,6 @@ function drawBadEndScene(ctx) {
     scrollbarThumbColor: COLORS.fail,
   });
   textMaxScroll = scroll.maxScroll;
-  textScrollOffset = scroll.clampedScroll;
 
   const pulse = 0.55 + 0.45 * Math.abs(Math.sin(anim * 2.2));
   ctx.save();
@@ -98,6 +103,7 @@ export function registerBadEndScene(_canvas, ctx) {
       textMaxScroll = 0;
       textViewportRect = null;
       recorded = false;
+      resetScroll('badEnd.text');
 
       applyAmbientProfile('result-bad');
       playCaseCloseSlam(0.8);
@@ -113,18 +119,21 @@ export function registerBadEndScene(_canvas, ctx) {
     update(dt) {
       anim += dt;
 
+      textScrollOffset = tickScrollOffset('badEnd.text', dt, textMaxScroll);
+
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
-        textScrollOffset = Math.max(
-          0,
-          Math.min(textMaxScroll, textScrollOffset + toUnifiedScrollPixels(wheel))
+        setScrollTarget(
+          'badEnd.text',
+          getScrollTarget('badEnd.text') + toUnifiedScrollPixels(wheel),
+          textMaxScroll
         );
       }
       if (wasKeyPressed('arrowup')) {
-        textScrollOffset = Math.max(0, textScrollOffset - 12);
+        setScrollTarget('badEnd.text', getScrollTarget('badEnd.text') - 12, textMaxScroll);
       }
       if (wasKeyPressed('arrowdown')) {
-        textScrollOffset = Math.min(textMaxScroll, textScrollOffset + 12);
+        setScrollTarget('badEnd.text', getScrollTarget('badEnd.text') + 12, textMaxScroll);
       }
 
       if (wasKeyPressed('escape') || wasKeyPressed('enter') || wasMousePressed(0)) {

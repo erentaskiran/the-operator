@@ -7,7 +7,6 @@ import {
   wasKeyPressed,
   wasMousePressed,
 } from '../input.js';
-import { clamp } from '../math.js';
 import { state, getDefendantImageKey } from '../game/state.js';
 import { COLORS, DESIGN_H, DESIGN_W, UI_FONT } from '../ui/theme.js';
 import { drawSceneBackground } from '../ui/background.js';
@@ -15,6 +14,12 @@ import { drawPanel } from '../ui/panel.js';
 import { drawPortraitBadge } from '../ui/portraitBadge.js';
 import { t, getLanguage } from '../i18n/index.js';
 import { CASES } from '../game/cases.js';
+import {
+  getScrollTarget,
+  resetScroll,
+  setScrollTarget,
+  tickScrollOffset,
+} from '../smoothScroll.js';
 
 let scroll = 0;
 let maxScroll = 0;
@@ -192,7 +197,6 @@ function drawDossierScene(ctx) {
       scrollbarThumbColor: COLORS.amberBright,
     }
   );
-  summaryScroll = summaryDraw.clampedScroll;
   summaryMaxScroll = summaryDraw.maxScroll;
 
   drawRect(ctx, summaryRect.x - 2, summaryRect.y - 2, summaryRect.w + 4, 1, COLORS.amberDim);
@@ -214,7 +218,6 @@ function drawDossierScene(ctx) {
   const entries = buildEntries(state.gameData?.dossier);
   const { layout, totalHeight } = layoutEntries(ctx, entries, contentW - 8);
   maxScroll = Math.max(0, totalHeight - contentH);
-  scroll = clamp(scroll, 0, maxScroll);
 
   ctx.save();
   ctx.beginPath();
@@ -349,25 +352,34 @@ export function registerDossierScene(_canvas, ctx) {
       summaryRect = null;
       anim = 0;
       startRect = null;
+      resetScroll('dossier.main');
+      resetScroll('dossier.summary');
     },
     update(dt) {
       anim += dt;
+      scroll = tickScrollOffset('dossier.main', dt, maxScroll);
+      summaryScroll = tickScrollOffset('dossier.summary', dt, summaryMaxScroll);
+
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
         const delta = toUnifiedScrollPixels(wheel);
         const mouse = getMousePos();
         const overSummary = inRect(mouse, summaryRect);
         if (overSummary && summaryMaxScroll > 0) {
-          summaryScroll = clamp(summaryScroll + delta, 0, summaryMaxScroll);
+          setScrollTarget(
+            'dossier.summary',
+            getScrollTarget('dossier.summary') + delta,
+            summaryMaxScroll
+          );
         } else {
-          scroll = clamp(scroll + delta, 0, maxScroll);
+          setScrollTarget('dossier.main', getScrollTarget('dossier.main') + delta, maxScroll);
         }
       }
       if (wasKeyPressed('arrowdown') || wasKeyPressed('s')) {
-        scroll = clamp(scroll + 24, 0, maxScroll);
+        setScrollTarget('dossier.main', getScrollTarget('dossier.main') + 24, maxScroll);
       }
       if (wasKeyPressed('arrowup') || wasKeyPressed('w')) {
-        scroll = clamp(scroll - 24, 0, maxScroll);
+        setScrollTarget('dossier.main', getScrollTarget('dossier.main') - 24, maxScroll);
       }
       if (wasKeyPressed('enter')) {
         setScene('play');

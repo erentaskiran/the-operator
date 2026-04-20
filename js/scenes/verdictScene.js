@@ -22,6 +22,12 @@ import { drawDossierPanel } from '../ui/dossierPanel.js';
 import { t } from '../i18n/index.js';
 import { applyAmbientProfile } from '../interrogationAudio.js';
 import { playCaseCloseSlam } from '../audio.js';
+import {
+  getScrollTarget,
+  resetScroll,
+  setScrollTarget,
+  tickScrollOffset,
+} from '../smoothScroll.js';
 
 const VERDICT_GUILTY = 'GUILTY';
 const VERDICT_NOT_GUILTY = 'NOT_GUILTY';
@@ -441,7 +447,6 @@ function drawVerdictScene(ctx) {
     }
   );
   summaryMaxScroll = summaryScroll.maxScroll;
-  summaryScrollOffset = summaryScroll.clampedScroll;
 
   dossierViewportRect = { x: leftX, y: dossierY, w: leftW, h: dossierH };
   const dossierScroll = drawDossierPanel(
@@ -455,7 +460,6 @@ function drawVerdictScene(ctx) {
     dossierScrollOffset
   );
   dossierMaxScroll = dossierScroll.maxScroll;
-  dossierScrollOffset = dossierScroll.clampedScroll;
 
   const listX = rightX;
   const listY = areaY;
@@ -493,7 +497,6 @@ function drawVerdictScene(ctx) {
   const rowCount = Math.ceil(evidence.length / columns);
   const totalH = rowCount * FIXED_ENTRY_H + Math.max(0, rowCount - 1) * entryGap;
   listMaxScroll = Math.max(0, totalH - (listBodyH - 8));
-  listScrollOffset = Math.max(0, Math.min(listMaxScroll, listScrollOffset));
 
   ctx.save();
   ctx.beginPath();
@@ -623,6 +626,9 @@ export function registerVerdictScene(_canvas, ctx) {
       summaryScrollOffset = 0;
       summaryMaxScroll = 0;
       summaryViewportRect = null;
+      resetScroll('verdict.list');
+      resetScroll('verdict.dossier');
+      resetScroll('verdict.summary');
       pendingVerdict = null;
       confirmOkRect = null;
       confirmCancelRect = null;
@@ -630,6 +636,10 @@ export function registerVerdictScene(_canvas, ctx) {
     },
     update(dt) {
       anim += dt;
+
+      listScrollOffset = tickScrollOffset('verdict.list', dt, listMaxScroll);
+      dossierScrollOffset = tickScrollOffset('verdict.dossier', dt, dossierMaxScroll);
+      summaryScrollOffset = tickScrollOffset('verdict.summary', dt, summaryMaxScroll);
 
       if (pendingVerdict) {
         const mouse = getMousePos();
@@ -658,31 +668,34 @@ export function registerVerdictScene(_canvas, ctx) {
       const wheel = getPlatformScrollDelta();
       if (wheel !== 0) {
         if (summaryMaxScroll > 0 && summaryViewportRect && inRect(mouse, summaryViewportRect)) {
-          summaryScrollOffset = Math.max(
-            0,
-            Math.min(summaryMaxScroll, summaryScrollOffset + toUnifiedScrollLines(wheel))
+          setScrollTarget(
+            'verdict.summary',
+            getScrollTarget('verdict.summary') + toUnifiedScrollLines(wheel),
+            summaryMaxScroll
           );
         } else if (
           dossierMaxScroll > 0 &&
           dossierViewportRect &&
           inRect(mouse, dossierViewportRect)
         ) {
-          dossierScrollOffset = Math.max(
-            0,
-            Math.min(dossierMaxScroll, dossierScrollOffset + toUnifiedScrollPixels(wheel))
+          setScrollTarget(
+            'verdict.dossier',
+            getScrollTarget('verdict.dossier') + toUnifiedScrollPixels(wheel),
+            dossierMaxScroll
           );
         } else if (listMaxScroll > 0 && (!listViewportRect || inRect(mouse, listViewportRect))) {
-          listScrollOffset = Math.max(
-            0,
-            Math.min(listMaxScroll, listScrollOffset + toUnifiedScrollPixels(wheel))
+          setScrollTarget(
+            'verdict.list',
+            getScrollTarget('verdict.list') + toUnifiedScrollPixels(wheel),
+            listMaxScroll
           );
         }
       }
       if (wasKeyPressed('arrowup')) {
-        listScrollOffset = Math.max(0, listScrollOffset - 12);
+        setScrollTarget('verdict.list', getScrollTarget('verdict.list') - 12, listMaxScroll);
       }
       if (wasKeyPressed('arrowdown')) {
-        listScrollOffset = Math.min(listMaxScroll, listScrollOffset + 12);
+        setScrollTarget('verdict.list', getScrollTarget('verdict.list') + 12, listMaxScroll);
       }
       if (wasKeyPressed('1')) {
         pendingVerdict = VERDICT_GUILTY;
